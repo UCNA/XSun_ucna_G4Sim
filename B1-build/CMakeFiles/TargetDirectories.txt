@@ -1,2 +1,0 @@
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/B1-build/CMakeFiles/B1.dir
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/B1-build/CMakeFiles/exampleB1.dir
