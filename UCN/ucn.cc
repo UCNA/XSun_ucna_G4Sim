@@ -1,5 +1,5 @@
 #include "DetectorConstruction.hh"
-#include "B1ActionInitialization.hh"
+#include "ActionInitialization.hh"
 
 #ifdef G4MULTITHREADED
 #include "G4MTRunManager.hh"
@@ -14,8 +14,6 @@
 #include "G4UIExecutive.hh"
 
 #include "Randomize.hh"
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 int main(int argc,char** argv)
 {
@@ -48,7 +46,7 @@ int main(int argc,char** argv)
   runManager->SetUserInitialization(physicsList);
     
   // User action initialization
-  runManager->SetUserInitialization(new B1ActionInitialization());
+  runManager->SetUserInitialization(new ActionInitialization());
   
   // Initialize visualization
   //
@@ -83,5 +81,3 @@ int main(int argc,char** argv)
   delete visManager;
   delete runManager;
 }
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo.....

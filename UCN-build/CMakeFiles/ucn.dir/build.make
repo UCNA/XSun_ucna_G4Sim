@@ -72,78 +72,32 @@ CMakeFiles/ucn.dir/ucn.cc.o.provides: CMakeFiles/ucn.dir/ucn.cc.o.requires
 
 CMakeFiles/ucn.dir/ucn.cc.o.provides.build: CMakeFiles/ucn.dir/ucn.cc.o
 
-CMakeFiles/ucn.dir/src/B1EventAction.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1EventAction.cc
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1EventAction.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1EventAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1EventAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc
 
-CMakeFiles/ucn.dir/src/B1EventAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1EventAction.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1EventAction.cc > CMakeFiles/ucn.dir/src/B1EventAction.cc.i
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc > CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.i
 
-CMakeFiles/ucn.dir/src/B1EventAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1EventAction.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1EventAction.cc -o CMakeFiles/ucn.dir/src/B1EventAction.cc.s
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc -o CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s
 
-CMakeFiles/ucn.dir/src/B1EventAction.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1EventAction.cc.o.requires
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires
 
-CMakeFiles/ucn.dir/src/B1EventAction.cc.o.provides: CMakeFiles/ucn.dir/src/B1EventAction.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1EventAction.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1EventAction.cc.o.provides
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.provides: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.provides
 
-CMakeFiles/ucn.dir/src/B1EventAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1EventAction.cc.o
-
-CMakeFiles/ucn.dir/src/B1Run.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1Run.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1Run.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1Run.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1Run.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1Run.cc
-
-CMakeFiles/ucn.dir/src/B1Run.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1Run.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1Run.cc > CMakeFiles/ucn.dir/src/B1Run.cc.i
-
-CMakeFiles/ucn.dir/src/B1Run.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1Run.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1Run.cc -o CMakeFiles/ucn.dir/src/B1Run.cc.s
-
-CMakeFiles/ucn.dir/src/B1Run.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1Run.cc.o.requires
-
-CMakeFiles/ucn.dir/src/B1Run.cc.o.provides: CMakeFiles/ucn.dir/src/B1Run.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1Run.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1Run.cc.o.provides
-
-CMakeFiles/ucn.dir/src/B1Run.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1Run.cc.o
-
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1PrimaryGeneratorAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1PrimaryGeneratorAction.cc
-
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1PrimaryGeneratorAction.cc > CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.i
-
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1PrimaryGeneratorAction.cc -o CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.s
-
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.requires
-
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.provides: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.provides
-
-CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o
+CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
 
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc
 
@@ -164,97 +118,143 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides: CMakeFiles/ucn.dir/sr
 
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides.build: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
 
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1ActionInitialization.cc
+CMakeFiles/ucn.dir/src/Run.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/Run.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/Run.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc
+
+CMakeFiles/ucn.dir/src/Run.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/Run.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc > CMakeFiles/ucn.dir/src/Run.cc.i
+
+CMakeFiles/ucn.dir/src/Run.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/Run.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc -o CMakeFiles/ucn.dir/src/Run.cc.s
+
+CMakeFiles/ucn.dir/src/Run.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/Run.cc.o.requires
+
+CMakeFiles/ucn.dir/src/Run.cc.o.provides: CMakeFiles/ucn.dir/src/Run.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/Run.cc.o.provides
+
+CMakeFiles/ucn.dir/src/Run.cc.o.provides.build: CMakeFiles/ucn.dir/src/Run.cc.o
+
+CMakeFiles/ucn.dir/src/SteppingAction.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/SteppingAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/SteppingAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc
+
+CMakeFiles/ucn.dir/src/SteppingAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/SteppingAction.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc > CMakeFiles/ucn.dir/src/SteppingAction.cc.i
+
+CMakeFiles/ucn.dir/src/SteppingAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/SteppingAction.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc -o CMakeFiles/ucn.dir/src/SteppingAction.cc.s
+
+CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires
+
+CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides: CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides
+
+CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
+
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/ActionInitialization.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1ActionInitialization.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/ActionInitialization.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/ActionInitialization.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/ActionInitialization.cc
 
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1ActionInitialization.cc > CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.i
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/ActionInitialization.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/ActionInitialization.cc > CMakeFiles/ucn.dir/src/ActionInitialization.cc.i
 
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1ActionInitialization.cc -o CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.s
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/ActionInitialization.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/ActionInitialization.cc -o CMakeFiles/ucn.dir/src/ActionInitialization.cc.s
 
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.requires
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.requires
 
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.provides: CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.provides
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.provides: CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.provides
 
-CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o
+CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.provides.build: CMakeFiles/ucn.dir/src/ActionInitialization.cc.o
 
-CMakeFiles/ucn.dir/src/B1RunAction.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1RunAction.cc
+CMakeFiles/ucn.dir/src/EventAction.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1RunAction.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1RunAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1RunAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/EventAction.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/EventAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc
 
-CMakeFiles/ucn.dir/src/B1RunAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1RunAction.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1RunAction.cc > CMakeFiles/ucn.dir/src/B1RunAction.cc.i
+CMakeFiles/ucn.dir/src/EventAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/EventAction.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc > CMakeFiles/ucn.dir/src/EventAction.cc.i
 
-CMakeFiles/ucn.dir/src/B1RunAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1RunAction.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1RunAction.cc -o CMakeFiles/ucn.dir/src/B1RunAction.cc.s
+CMakeFiles/ucn.dir/src/EventAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/EventAction.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc -o CMakeFiles/ucn.dir/src/EventAction.cc.s
 
-CMakeFiles/ucn.dir/src/B1RunAction.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1RunAction.cc.o.requires
+CMakeFiles/ucn.dir/src/EventAction.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/EventAction.cc.o.requires
 
-CMakeFiles/ucn.dir/src/B1RunAction.cc.o.provides: CMakeFiles/ucn.dir/src/B1RunAction.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1RunAction.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1RunAction.cc.o.provides
+CMakeFiles/ucn.dir/src/EventAction.cc.o.provides: CMakeFiles/ucn.dir/src/EventAction.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/EventAction.cc.o.provides
 
-CMakeFiles/ucn.dir/src/B1RunAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1RunAction.cc.o
+CMakeFiles/ucn.dir/src/EventAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/EventAction.cc.o
 
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1SteppingAction.cc
+CMakeFiles/ucn.dir/src/RunAction.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1SteppingAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/RunAction.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/RunAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc
 
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1SteppingAction.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1SteppingAction.cc > CMakeFiles/ucn.dir/src/B1SteppingAction.cc.i
+CMakeFiles/ucn.dir/src/RunAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/RunAction.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc > CMakeFiles/ucn.dir/src/RunAction.cc.i
 
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1SteppingAction.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1SteppingAction.cc -o CMakeFiles/ucn.dir/src/B1SteppingAction.cc.s
+CMakeFiles/ucn.dir/src/RunAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/RunAction.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc -o CMakeFiles/ucn.dir/src/RunAction.cc.s
 
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.requires
+CMakeFiles/ucn.dir/src/RunAction.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/RunAction.cc.o.requires
 
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.provides: CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.provides
+CMakeFiles/ucn.dir/src/RunAction.cc.o.provides: CMakeFiles/ucn.dir/src/RunAction.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/RunAction.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/RunAction.cc.o.provides
 
-CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o
+CMakeFiles/ucn.dir/src/RunAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/RunAction.cc.o
 
 # Object files for target ucn
 ucn_OBJECTS = \
 "CMakeFiles/ucn.dir/ucn.cc.o" \
-"CMakeFiles/ucn.dir/src/B1EventAction.cc.o" \
-"CMakeFiles/ucn.dir/src/B1Run.cc.o" \
-"CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o" \
+"CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o" \
 "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o" \
-"CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o" \
-"CMakeFiles/ucn.dir/src/B1RunAction.cc.o" \
-"CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o"
+"CMakeFiles/ucn.dir/src/Run.cc.o" \
+"CMakeFiles/ucn.dir/src/SteppingAction.cc.o" \
+"CMakeFiles/ucn.dir/src/ActionInitialization.cc.o" \
+"CMakeFiles/ucn.dir/src/EventAction.cc.o" \
+"CMakeFiles/ucn.dir/src/RunAction.cc.o"
 
 # External object files for target ucn
 ucn_EXTERNAL_OBJECTS =
 
 ucn: CMakeFiles/ucn.dir/ucn.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1EventAction.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1Run.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o
+ucn: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1RunAction.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o
+ucn: CMakeFiles/ucn.dir/src/Run.cc.o
+ucn: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
+ucn: CMakeFiles/ucn.dir/src/ActionInitialization.cc.o
+ucn: CMakeFiles/ucn.dir/src/EventAction.cc.o
+ucn: CMakeFiles/ucn.dir/src/RunAction.cc.o
 ucn: CMakeFiles/ucn.dir/build.make
 ucn: /home/xuansun/geant4/geant4-10.01.p02-install/lib/libG4Tree.so
 ucn: /home/xuansun/geant4/geant4-10.01.p02-install/lib/libG4FR.so
@@ -323,13 +323,13 @@ CMakeFiles/ucn.dir/build: ucn
 .PHONY : CMakeFiles/ucn.dir/build
 
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/ucn.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1EventAction.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1Run.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1RunAction.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/Run.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/ActionInitialization.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/EventAction.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/RunAction.cc.o.requires
 .PHONY : CMakeFiles/ucn.dir/requires
 
 CMakeFiles/ucn.dir/clean:

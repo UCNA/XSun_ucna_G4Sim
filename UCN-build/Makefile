@@ -165,149 +165,29 @@ ucn/fast:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/build
 .PHONY : ucn/fast
 
-src/B1ActionInitialization.o: src/B1ActionInitialization.cc.o
-.PHONY : src/B1ActionInitialization.o
+src/ActionInitialization.o: src/ActionInitialization.cc.o
+.PHONY : src/ActionInitialization.o
 
 # target to build an object file
-src/B1ActionInitialization.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o
-.PHONY : src/B1ActionInitialization.cc.o
+src/ActionInitialization.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.o
+.PHONY : src/ActionInitialization.cc.o
 
-src/B1ActionInitialization.i: src/B1ActionInitialization.cc.i
-.PHONY : src/B1ActionInitialization.i
-
-# target to preprocess a source file
-src/B1ActionInitialization.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.i
-.PHONY : src/B1ActionInitialization.cc.i
-
-src/B1ActionInitialization.s: src/B1ActionInitialization.cc.s
-.PHONY : src/B1ActionInitialization.s
-
-# target to generate assembly for a file
-src/B1ActionInitialization.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.s
-.PHONY : src/B1ActionInitialization.cc.s
-
-src/B1EventAction.o: src/B1EventAction.cc.o
-.PHONY : src/B1EventAction.o
-
-# target to build an object file
-src/B1EventAction.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1EventAction.cc.o
-.PHONY : src/B1EventAction.cc.o
-
-src/B1EventAction.i: src/B1EventAction.cc.i
-.PHONY : src/B1EventAction.i
+src/ActionInitialization.i: src/ActionInitialization.cc.i
+.PHONY : src/ActionInitialization.i
 
 # target to preprocess a source file
-src/B1EventAction.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1EventAction.cc.i
-.PHONY : src/B1EventAction.cc.i
+src/ActionInitialization.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.i
+.PHONY : src/ActionInitialization.cc.i
 
-src/B1EventAction.s: src/B1EventAction.cc.s
-.PHONY : src/B1EventAction.s
-
-# target to generate assembly for a file
-src/B1EventAction.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1EventAction.cc.s
-.PHONY : src/B1EventAction.cc.s
-
-src/B1PrimaryGeneratorAction.o: src/B1PrimaryGeneratorAction.cc.o
-.PHONY : src/B1PrimaryGeneratorAction.o
-
-# target to build an object file
-src/B1PrimaryGeneratorAction.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o
-.PHONY : src/B1PrimaryGeneratorAction.cc.o
-
-src/B1PrimaryGeneratorAction.i: src/B1PrimaryGeneratorAction.cc.i
-.PHONY : src/B1PrimaryGeneratorAction.i
-
-# target to preprocess a source file
-src/B1PrimaryGeneratorAction.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.i
-.PHONY : src/B1PrimaryGeneratorAction.cc.i
-
-src/B1PrimaryGeneratorAction.s: src/B1PrimaryGeneratorAction.cc.s
-.PHONY : src/B1PrimaryGeneratorAction.s
+src/ActionInitialization.s: src/ActionInitialization.cc.s
+.PHONY : src/ActionInitialization.s
 
 # target to generate assembly for a file
-src/B1PrimaryGeneratorAction.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.s
-.PHONY : src/B1PrimaryGeneratorAction.cc.s
-
-src/B1Run.o: src/B1Run.cc.o
-.PHONY : src/B1Run.o
-
-# target to build an object file
-src/B1Run.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1Run.cc.o
-.PHONY : src/B1Run.cc.o
-
-src/B1Run.i: src/B1Run.cc.i
-.PHONY : src/B1Run.i
-
-# target to preprocess a source file
-src/B1Run.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1Run.cc.i
-.PHONY : src/B1Run.cc.i
-
-src/B1Run.s: src/B1Run.cc.s
-.PHONY : src/B1Run.s
-
-# target to generate assembly for a file
-src/B1Run.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1Run.cc.s
-.PHONY : src/B1Run.cc.s
-
-src/B1RunAction.o: src/B1RunAction.cc.o
-.PHONY : src/B1RunAction.o
-
-# target to build an object file
-src/B1RunAction.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1RunAction.cc.o
-.PHONY : src/B1RunAction.cc.o
-
-src/B1RunAction.i: src/B1RunAction.cc.i
-.PHONY : src/B1RunAction.i
-
-# target to preprocess a source file
-src/B1RunAction.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1RunAction.cc.i
-.PHONY : src/B1RunAction.cc.i
-
-src/B1RunAction.s: src/B1RunAction.cc.s
-.PHONY : src/B1RunAction.s
-
-# target to generate assembly for a file
-src/B1RunAction.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1RunAction.cc.s
-.PHONY : src/B1RunAction.cc.s
-
-src/B1SteppingAction.o: src/B1SteppingAction.cc.o
-.PHONY : src/B1SteppingAction.o
-
-# target to build an object file
-src/B1SteppingAction.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o
-.PHONY : src/B1SteppingAction.cc.o
-
-src/B1SteppingAction.i: src/B1SteppingAction.cc.i
-.PHONY : src/B1SteppingAction.i
-
-# target to preprocess a source file
-src/B1SteppingAction.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1SteppingAction.cc.i
-.PHONY : src/B1SteppingAction.cc.i
-
-src/B1SteppingAction.s: src/B1SteppingAction.cc.s
-.PHONY : src/B1SteppingAction.s
-
-# target to generate assembly for a file
-src/B1SteppingAction.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1SteppingAction.cc.s
-.PHONY : src/B1SteppingAction.cc.s
+src/ActionInitialization.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.s
+.PHONY : src/ActionInitialization.cc.s
 
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
@@ -332,6 +212,126 @@ src/DetectorConstruction.s: src/DetectorConstruction.cc.s
 src/DetectorConstruction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s
 .PHONY : src/DetectorConstruction.cc.s
+
+src/EventAction.o: src/EventAction.cc.o
+.PHONY : src/EventAction.o
+
+# target to build an object file
+src/EventAction.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.o
+.PHONY : src/EventAction.cc.o
+
+src/EventAction.i: src/EventAction.cc.i
+.PHONY : src/EventAction.i
+
+# target to preprocess a source file
+src/EventAction.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.i
+.PHONY : src/EventAction.cc.i
+
+src/EventAction.s: src/EventAction.cc.s
+.PHONY : src/EventAction.s
+
+# target to generate assembly for a file
+src/EventAction.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.s
+.PHONY : src/EventAction.cc.s
+
+src/PrimaryGeneratorAction.o: src/PrimaryGeneratorAction.cc.o
+.PHONY : src/PrimaryGeneratorAction.o
+
+# target to build an object file
+src/PrimaryGeneratorAction.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
+.PHONY : src/PrimaryGeneratorAction.cc.o
+
+src/PrimaryGeneratorAction.i: src/PrimaryGeneratorAction.cc.i
+.PHONY : src/PrimaryGeneratorAction.i
+
+# target to preprocess a source file
+src/PrimaryGeneratorAction.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.i
+.PHONY : src/PrimaryGeneratorAction.cc.i
+
+src/PrimaryGeneratorAction.s: src/PrimaryGeneratorAction.cc.s
+.PHONY : src/PrimaryGeneratorAction.s
+
+# target to generate assembly for a file
+src/PrimaryGeneratorAction.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s
+.PHONY : src/PrimaryGeneratorAction.cc.s
+
+src/Run.o: src/Run.cc.o
+.PHONY : src/Run.o
+
+# target to build an object file
+src/Run.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.o
+.PHONY : src/Run.cc.o
+
+src/Run.i: src/Run.cc.i
+.PHONY : src/Run.i
+
+# target to preprocess a source file
+src/Run.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.i
+.PHONY : src/Run.cc.i
+
+src/Run.s: src/Run.cc.s
+.PHONY : src/Run.s
+
+# target to generate assembly for a file
+src/Run.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.s
+.PHONY : src/Run.cc.s
+
+src/RunAction.o: src/RunAction.cc.o
+.PHONY : src/RunAction.o
+
+# target to build an object file
+src/RunAction.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/RunAction.cc.o
+.PHONY : src/RunAction.cc.o
+
+src/RunAction.i: src/RunAction.cc.i
+.PHONY : src/RunAction.i
+
+# target to preprocess a source file
+src/RunAction.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/RunAction.cc.i
+.PHONY : src/RunAction.cc.i
+
+src/RunAction.s: src/RunAction.cc.s
+.PHONY : src/RunAction.s
+
+# target to generate assembly for a file
+src/RunAction.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/RunAction.cc.s
+.PHONY : src/RunAction.cc.s
+
+src/SteppingAction.o: src/SteppingAction.cc.o
+.PHONY : src/SteppingAction.o
+
+# target to build an object file
+src/SteppingAction.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.o
+.PHONY : src/SteppingAction.cc.o
+
+src/SteppingAction.i: src/SteppingAction.cc.i
+.PHONY : src/SteppingAction.i
+
+# target to preprocess a source file
+src/SteppingAction.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.i
+.PHONY : src/SteppingAction.cc.i
+
+src/SteppingAction.s: src/SteppingAction.cc.s
+.PHONY : src/SteppingAction.s
+
+# target to generate assembly for a file
+src/SteppingAction.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.s
+.PHONY : src/SteppingAction.cc.s
 
 ucn.o: ucn.cc.o
 .PHONY : ucn.o
@@ -371,27 +371,27 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... ucn"
-	@echo "... src/B1ActionInitialization.o"
-	@echo "... src/B1ActionInitialization.i"
-	@echo "... src/B1ActionInitialization.s"
-	@echo "... src/B1EventAction.o"
-	@echo "... src/B1EventAction.i"
-	@echo "... src/B1EventAction.s"
-	@echo "... src/B1PrimaryGeneratorAction.o"
-	@echo "... src/B1PrimaryGeneratorAction.i"
-	@echo "... src/B1PrimaryGeneratorAction.s"
-	@echo "... src/B1Run.o"
-	@echo "... src/B1Run.i"
-	@echo "... src/B1Run.s"
-	@echo "... src/B1RunAction.o"
-	@echo "... src/B1RunAction.i"
-	@echo "... src/B1RunAction.s"
-	@echo "... src/B1SteppingAction.o"
-	@echo "... src/B1SteppingAction.i"
-	@echo "... src/B1SteppingAction.s"
+	@echo "... src/ActionInitialization.o"
+	@echo "... src/ActionInitialization.i"
+	@echo "... src/ActionInitialization.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"
+	@echo "... src/EventAction.o"
+	@echo "... src/EventAction.i"
+	@echo "... src/EventAction.s"
+	@echo "... src/PrimaryGeneratorAction.o"
+	@echo "... src/PrimaryGeneratorAction.i"
+	@echo "... src/PrimaryGeneratorAction.s"
+	@echo "... src/Run.o"
+	@echo "... src/Run.i"
+	@echo "... src/Run.s"
+	@echo "... src/RunAction.o"
+	@echo "... src/RunAction.i"
+	@echo "... src/RunAction.s"
+	@echo "... src/SteppingAction.o"
+	@echo "... src/SteppingAction.i"
+	@echo "... src/SteppingAction.s"
 	@echo "... ucn.o"
 	@echo "... ucn.i"
 	@echo "... ucn.s"

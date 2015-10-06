@@ -1,12 +1,12 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/ucn.dir/ucn.cc.o"
-  "CMakeFiles/ucn.dir/src/B1EventAction.cc.o"
-  "CMakeFiles/ucn.dir/src/B1Run.cc.o"
-  "CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o"
+  "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
   "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
-  "CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o"
-  "CMakeFiles/ucn.dir/src/B1RunAction.cc.o"
-  "CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o"
+  "CMakeFiles/ucn.dir/src/Run.cc.o"
+  "CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
+  "CMakeFiles/ucn.dir/src/ActionInitialization.cc.o"
+  "CMakeFiles/ucn.dir/src/EventAction.cc.o"
+  "CMakeFiles/ucn.dir/src/RunAction.cc.o"
   "ucn.pdb"
   "ucn"
 )
