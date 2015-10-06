@@ -17,8 +17,8 @@ class Run : public G4Run
 
     // method from the base class
     virtual void Merge(const G4Run*);
-    
-    void AddEdep (G4double edep); 
+
+    void AddEdep (G4double edep);
 
     // get methods
     G4double GetEdep()  const { return fEdep; }
@@ -28,8 +28,6 @@ class Run : public G4Run
     G4double  fEdep;
     G4double  fEdep2;
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
 

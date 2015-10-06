@@ -26,7 +26,7 @@ int main(int argc,char** argv)
 
   // Choose the Random engine
   G4Random::setTheEngine(new CLHEP::RanecuEngine);
-  
+
   // Construct the default run manager
   //
 #ifdef G4MULTITHREADED
@@ -44,10 +44,10 @@ int main(int argc,char** argv)
   G4VModularPhysicsList* physicsList = new QBBC;
   physicsList->SetVerboseLevel(1);
   runManager->SetUserInitialization(physicsList);
-    
+
   // User action initialization
   runManager->SetUserInitialization(new ActionInitialization());
-  
+
   // Initialize visualization
   //
   G4VisManager* visManager = new G4VisExecutive;
@@ -60,13 +60,13 @@ int main(int argc,char** argv)
 
   // Process macro or start UI session
   //
-  if ( ! ui ) { 
+  if ( ! ui ) {
     // batch mode
     G4String command = "/control/execute ";
     G4String fileName = argv[1];
     UImanager->ApplyCommand(command+fileName);
   }
-  else { 
+  else {
     // interactive mode
     UImanager->ApplyCommand("/control/execute init_vis.mac");
     ui->SessionStart();
@@ -75,9 +75,9 @@ int main(int argc,char** argv)
 
   // Job termination
   // Free the store: user actions, physics_list and detector_description are
-  // owned and deleted by the run manager, so they should not be deleted 
+  // owned and deleted by the run manager, so they should not be deleted
   // in the main() program !
-  
+
   delete visManager;
   delete runManager;
 }

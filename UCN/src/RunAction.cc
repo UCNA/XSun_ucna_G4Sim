@@ -11,18 +11,18 @@
 
 RunAction::RunAction()
 : G4UserRunAction()
-{ 
+{
   // add new units for dose
-  // 
+  //
   const G4double milligray = 1.e-3*gray;
   const G4double microgray = 1.e-6*gray;
-  const G4double nanogray  = 1.e-9*gray;  
+  const G4double nanogray  = 1.e-9*gray;
   const G4double picogray  = 1.e-12*gray;
-   
+
   new G4UnitDefinition("milligray", "milliGy" , "Dose", milligray);
   new G4UnitDefinition("microgray", "microGy" , "Dose", microgray);
   new G4UnitDefinition("nanogray" , "nanoGy"  , "Dose", nanogray);
-  new G4UnitDefinition("picogray" , "picoGy"  , "Dose", picogray);        
+  new G4UnitDefinition("picogray" , "picoGy"  , "Dose", picogray);
 }
 
 
@@ -32,12 +32,12 @@ RunAction::~RunAction()
 
 G4Run* RunAction::GenerateRun()
 {
-  return new Run; 
+  return new Run;
 }
 
 
 void RunAction::BeginOfRunAction(const G4Run*)
-{ 
+{
   //inform the runManager to save random number seed
   G4RunManager::GetRunManager()->SetRandomNumberStore(false);
 }
@@ -47,7 +47,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
 {
   G4int nofEvents = run->GetNumberOfEvent();
   if (nofEvents == 0) return;
-  
+
   const Run* ucnRun = static_cast<const Run*>(run);
 
   // Compute dose
@@ -79,9 +79,9 @@ void RunAction::EndOfRunAction(const G4Run* run)
     G4double particleEnergy = particleGun->GetParticleEnergy();
     runCondition += G4BestUnit(particleEnergy,"Energy");
   }
-        
+
   // Print
-  //  
+  //
   if (IsMaster()) {
     G4cout
      << G4endl
@@ -92,12 +92,12 @@ void RunAction::EndOfRunAction(const G4Run* run)
      << G4endl
      << "--------------------End of Local Run------------------------";
   }
-  
+
   G4cout
      << G4endl
      << " The run consists of " << nofEvents << " "<< runCondition
      << G4endl
-     << " Dose in scoring volume : " 
+     << " Dose in scoring volume : "
      << G4BestUnit(dose,"Dose") << " +- " << G4BestUnit(rmsDose,"Dose")
      << G4endl
      << "------------------------------------------------------------"
