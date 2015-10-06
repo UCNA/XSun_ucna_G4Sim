@@ -30,7 +30,7 @@
 
 #include "B1RunAction.hh"
 #include "B1PrimaryGeneratorAction.hh"
-#include "B1DetectorConstruction.hh"
+#include "DetectorConstruction.hh"
 #include "B1Run.hh"
 
 #include "G4RunManager.hh"
@@ -93,8 +93,8 @@ void B1RunAction::EndOfRunAction(const G4Run* run)
   G4double rms = edep2 - edep*edep/nofEvents;
   if (rms > 0.) rms = std::sqrt(rms); else rms = 0.;
 
-  const B1DetectorConstruction* detectorConstruction
-   = static_cast<const B1DetectorConstruction*>
+  const DetectorConstruction* detectorConstruction
+   = static_cast<const DetectorConstruction*>
      (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
   G4double mass = detectorConstruction->GetScoringVolume()->GetMass();
   G4double dose = edep/mass;

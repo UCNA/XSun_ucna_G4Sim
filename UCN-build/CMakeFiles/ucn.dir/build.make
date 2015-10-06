@@ -141,28 +141,28 @@ CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.provides: CMakeFiles/ucn.di
 
 CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o
 
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1DetectorConstruction.cc
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1DetectorConstruction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc
 
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1DetectorConstruction.cc > CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.i
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/DetectorConstruction.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc > CMakeFiles/ucn.dir/src/DetectorConstruction.cc.i
 
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1DetectorConstruction.cc -o CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.s
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc -o CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s
 
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.requires
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
 
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.provides: CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.provides
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides
 
-CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.provides.build: CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides.build: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
 
 CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/B1ActionInitialization.cc
@@ -239,7 +239,7 @@ ucn_OBJECTS = \
 "CMakeFiles/ucn.dir/src/B1EventAction.cc.o" \
 "CMakeFiles/ucn.dir/src/B1Run.cc.o" \
 "CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o" \
-"CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o" \
+"CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o" \
 "CMakeFiles/ucn.dir/src/B1RunAction.cc.o" \
 "CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o"
@@ -251,7 +251,7 @@ ucn: CMakeFiles/ucn.dir/ucn.cc.o
 ucn: CMakeFiles/ucn.dir/src/B1EventAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/B1Run.cc.o
 ucn: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o
-ucn: CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o
+ucn: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
 ucn: CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o
 ucn: CMakeFiles/ucn.dir/src/B1RunAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o
@@ -326,7 +326,7 @@ CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/ucn.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1EventAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1Run.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1PrimaryGeneratorAction.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1RunAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B1SteppingAction.cc.o.requires

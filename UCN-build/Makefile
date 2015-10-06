@@ -189,30 +189,6 @@ src/B1ActionInitialization.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1ActionInitialization.cc.s
 .PHONY : src/B1ActionInitialization.cc.s
 
-src/B1DetectorConstruction.o: src/B1DetectorConstruction.cc.o
-.PHONY : src/B1DetectorConstruction.o
-
-# target to build an object file
-src/B1DetectorConstruction.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.o
-.PHONY : src/B1DetectorConstruction.cc.o
-
-src/B1DetectorConstruction.i: src/B1DetectorConstruction.cc.i
-.PHONY : src/B1DetectorConstruction.i
-
-# target to preprocess a source file
-src/B1DetectorConstruction.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.i
-.PHONY : src/B1DetectorConstruction.cc.i
-
-src/B1DetectorConstruction.s: src/B1DetectorConstruction.cc.s
-.PHONY : src/B1DetectorConstruction.s
-
-# target to generate assembly for a file
-src/B1DetectorConstruction.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1DetectorConstruction.cc.s
-.PHONY : src/B1DetectorConstruction.cc.s
-
 src/B1EventAction.o: src/B1EventAction.cc.o
 .PHONY : src/B1EventAction.o
 
@@ -333,6 +309,30 @@ src/B1SteppingAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B1SteppingAction.cc.s
 .PHONY : src/B1SteppingAction.cc.s
 
+src/DetectorConstruction.o: src/DetectorConstruction.cc.o
+.PHONY : src/DetectorConstruction.o
+
+# target to build an object file
+src/DetectorConstruction.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
+.PHONY : src/DetectorConstruction.cc.o
+
+src/DetectorConstruction.i: src/DetectorConstruction.cc.i
+.PHONY : src/DetectorConstruction.i
+
+# target to preprocess a source file
+src/DetectorConstruction.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.i
+.PHONY : src/DetectorConstruction.cc.i
+
+src/DetectorConstruction.s: src/DetectorConstruction.cc.s
+.PHONY : src/DetectorConstruction.s
+
+# target to generate assembly for a file
+src/DetectorConstruction.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s
+.PHONY : src/DetectorConstruction.cc.s
+
 ucn.o: ucn.cc.o
 .PHONY : ucn.o
 
@@ -374,9 +374,6 @@ help:
 	@echo "... src/B1ActionInitialization.o"
 	@echo "... src/B1ActionInitialization.i"
 	@echo "... src/B1ActionInitialization.s"
-	@echo "... src/B1DetectorConstruction.o"
-	@echo "... src/B1DetectorConstruction.i"
-	@echo "... src/B1DetectorConstruction.s"
 	@echo "... src/B1EventAction.o"
 	@echo "... src/B1EventAction.i"
 	@echo "... src/B1EventAction.s"
@@ -392,6 +389,9 @@ help:
 	@echo "... src/B1SteppingAction.o"
 	@echo "... src/B1SteppingAction.i"
 	@echo "... src/B1SteppingAction.s"
+	@echo "... src/DetectorConstruction.o"
+	@echo "... src/DetectorConstruction.i"
+	@echo "... src/DetectorConstruction.s"
 	@echo "... ucn.o"
 	@echo "... ucn.i"
 	@echo "... ucn.s"
