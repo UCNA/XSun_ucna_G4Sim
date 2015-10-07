@@ -124,15 +124,20 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4AuxiliaryNavServices.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.icc
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BooleanSolid.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BooleanSolid.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CSGSolid.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassificationOfNewTrack.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Color.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Colour.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Cons.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Cons.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DCofThisEvent.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.icc
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DisplacedSolid.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectronOccupancy.hh
@@ -186,6 +191,7 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4OrderedTable.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PDefSplitter.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PVPlacement.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PVReplica.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParameterisedNavigation.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParameterisedNavigation.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleChange.hh
@@ -245,6 +251,7 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SteppingManager.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.icc
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SubtractionSolid.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SystemOfUnits.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Threading.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
@@ -264,6 +271,8 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Transform3D.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Trd.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Trd.icc
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Tubs.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Tubs.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UBox.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UCons.hh
@@ -276,6 +285,7 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4USolid.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4USphere.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UTrd.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UTubs.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserLimits.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserLimits.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserStackingAction.hh
@@ -299,6 +309,8 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserEventInformation.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserTrackInformation.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VVolumeMaterialScanner.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VisAttributes.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VisAttributes.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Visible.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Visible.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VoxelNavigation.hh
@@ -313,6 +325,8 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/USphere.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTrd.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTrd.icc
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTubs.hh
+CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTubs.icc
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTypes.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UUtils.hh
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UVector3.hh
