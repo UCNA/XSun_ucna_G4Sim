@@ -145,15 +145,24 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   experimentalHall_phys = new G4PVPlacement(NULL,G4ThreeVector(),"World_Phys", experimentalHall_log,0,false,0,checkOverlaps);
 
 
-/*
-
-
-
-
 
   // Get nist material manager
-  G4NistManager* nist = G4NistManager::Instance();
+  //G4NistManager* nist = G4NistManager::Instance();
 
+
+
+  // Set Shape2 as scoring volume
+  //
+  fScoringVolume = experimentalHall_log;
+
+  //
+  //always return the physical World
+  //
+  return experimentalHall_phys;
+
+
+
+/*
   // Envelope parameters
   //
   G4double env_sizeXY = 20*cm, env_sizeZ = 30*cm;
@@ -274,8 +283,4 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   //
   fScoringVolume = logicShape2;
 */
-  //
-  //always return the physical World
-  //
-  return experimentalHall_phys;
 }

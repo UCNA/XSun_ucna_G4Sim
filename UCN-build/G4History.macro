@@ -49,17 +49,13 @@
 /vis/scene/notifyHandlers
 /vis/set/colour
 /vis/set/lineWidth
-/vis/scene/add/text 0 6 -4 cm 18 4 4 Shape1
-/vis/scene/notifyHandlers
-/vis/scene/add/text 6 7 10 cm 18 4 4 Shape2
-/vis/scene/notifyHandlers
-/vis/geometry/set/visibility World 0 false
-/vis/geometry/set/visibility Envelope 0 false
 /vis/viewer/set/style surface
 /vis/viewer/set/hiddenMarker true
 /vis/viewer/set/viewpointThetaPhi 120 150
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
-/run/beamOn 10
+/run/beamOn 1
 /vis/scene/notifyHandlers scene-0
+/run/beamOn 10
+/run/beamOn 100
