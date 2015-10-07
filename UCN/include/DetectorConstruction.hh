@@ -3,7 +3,8 @@
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
-#include <G4Material.hh>
+
+#include <G4Material.hh>		// stole from Michael Mendenhall's code.
 #include <G4Element.hh>
 #include <G4SystemOfUnits.hh>
 
@@ -51,6 +52,12 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
   private:
     void DefineMaterials();
+
+    float fScintStepLimit;
+
+    G4LogicalVolume* experimentalHall_log;
+    G4VPhysicalVolume* experimentalHall_phys;
+
 };
 
 #endif

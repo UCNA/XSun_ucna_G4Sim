@@ -11,11 +11,14 @@
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
 
+#include <G4UserLimits.hh>	// stole from Michael Mendenhall's code.
+
 using	namespace	std;
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fScoringVolume(0)
+  fScoringVolume(0), fScintStepLimit(1),
+  experimentalHall_log(0), experimentalHall_phys(0)
 { }
 
 
@@ -26,7 +29,7 @@ void DetectorConstruction::DefineMaterials()
 {
 
   G4cout << "Initial Vacuum has been set to null pointer." << G4endl;
-  Vacuum = NULL;
+  Vacuum = NULL;		//This value is set later using the setVacuumPressure method.
 
   string name,symbol;
   int z;
@@ -96,6 +99,8 @@ void DetectorConstruction::DefineMaterials()
   Sci->AddElement(G4Element::GetElement("C"),nAtoms=4.68);
   Sci->AddElement(G4Element::GetElement("H"),nAtoms=5.15);
 
+  G4cout << "\n Completed construction of materials. Exiting ConstructMaterials(). \n" << G4endl;
+
 }
 
 void DetectorConstruction::setVacuumPressure(G4double pressure)
@@ -113,6 +118,38 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   DefineMaterials();	// immediate call to define all materials used as class properties (so ~global access)
 
   setVacuumPressure(0);
+
+
+  ////////////////////////////////////////
+  // user step limits
+  ////////////////////////////////////////
+  G4UserLimits* UserCoarseLimits = new G4UserLimits();
+  UserCoarseLimits->SetMaxAllowedStep(10*m);
+  G4UserLimits* UserGasLimits = new G4UserLimits();
+  UserGasLimits->SetMaxAllowedStep(1*cm);
+  G4UserLimits* UserSolidLimits = new G4UserLimits();
+  UserSolidLimits->SetMaxAllowedStep(fScintStepLimit*mm);	// hard coded scint step limit to mm units
+
+  G4bool checkOverlaps = true;
+
+  ///////////////////////////////////////
+  //experimental Hall
+  ///////////////////////////////////////
+  const G4double expHall_halfx=1.0*m;
+  const G4double expHall_halfy=1.0*m;
+  const G4double expHall_halfz=4.0*m;
+  G4Box* experimentalHall_box = new G4Box("expHall_box",expHall_halfx,expHall_halfy,expHall_halfz);
+  experimentalHall_log = new G4LogicalVolume(experimentalHall_box,Vacuum,"World_Log");
+//  experimentalHall_log->SetVisAttributes(G4VisAttributes::Invisible);
+  experimentalHall_log->SetUserLimits(UserCoarseLimits);
+  experimentalHall_phys = new G4PVPlacement(NULL,G4ThreeVector(),"World_Phys", experimentalHall_log,0,false,0,checkOverlaps);
+
+
+/*
+
+
+
+
 
   // Get nist material manager
   G4NistManager* nist = G4NistManager::Instance();
@@ -236,9 +273,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // Set Shape2 as scoring volume
   //
   fScoringVolume = logicShape2;
-
+*/
   //
   //always return the physical World
   //
-  return physWorld;
+  return experimentalHall_phys;
 }
