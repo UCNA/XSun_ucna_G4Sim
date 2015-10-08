@@ -34,9 +34,13 @@ DetectorConstruction::DetectorConstruction()
   fScoringVolume(0), fScintStepLimit(1),
   experimentalHall_log(0), experimentalHall_phys(0),
   container_log(0), holder_phys(0),
-  window_log(0), window_phys(0)/*,
-  coating_log[0](0), coating_log[1](0)*/
-{ }	// source holder variables should go in line above, as constructor definition. BUT then ordering is wrong
+  window_log(0), window_phys(0)
+{
+  coating_log[0] = NULL;	// source holder member variables should go here or in line above
+  coating_log[1] = NULL;	// but then ordering is wrong with the materials
+  coating_phys[0] = NULL;	// so it's done right before source holder is made.
+  coating_phys[1] = NULL;
+}
 
 
 DetectorConstruction::~DetectorConstruction()
@@ -185,7 +189,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // source holder container
   G4Box* holder_box = new G4Box("source_holder_box",0.5*SourceHolderWidth,0.5*SourceHolderHeight,0.5*fSourceHolderThickness);
-  container_log = new G4LogicalVolume(holder_box,Vacuum,"source_constainer_log");
+  container_log = new G4LogicalVolume(holder_box,Vacuum,"source_container_log");
 //  container_log->SetVisAttributes(G4VisAttributes::Invisible);
 
   // source holder paddle
@@ -193,20 +197,36 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4SubtractionSolid* holder = new G4SubtractionSolid("source_holder", holder_box, holder_hole);
   G4LogicalVolume* holder_log = new G4LogicalVolume(holder,Brass,"source_holder_log");
   holder_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0,0.5)));
-  holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0);
+  holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0,checkOverlaps);
 
   // sealed source foil
   G4Tubs* window_tube = new G4Tubs("window_tube",0.,SourceWindowRadius,fWindowThick,0.,2*M_PI);
   window_log = new G4LogicalVolume(window_tube,fWindowMat,"source_window_log");
   G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));
   window_log->SetVisAttributes(visWindow);
-  window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
+  window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0,checkOverlaps);
 
   // source foil coating
   G4Tubs* coating_tube = new G4Tubs("source_coating_tube", 0., SourceWindowRadius, fCoatingThick*0.5, 0., 2*M_PI);
+	//	flag: 1 means EAST
+	//            2 means WEST
+	//	and int sd is an instance of SIDE sd (in Mendenhall code)
+	//	which I don't understand...
   for(int sd = 0; sd <= 1; sd++)
   {
-    coating_log[sd] = new G4LogicalVolume(coating_tube, fCoatingMat, append(sd, "source_coating_log_"));
+    coating_log[sd] = new G4LogicalVolume(coating_tube, fCoatingMat, Append(sd, "source_coating_log_"));
+    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
+
+    if(sd == 0)
+    {
+      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fWindowThick+fCoatingThick*0.5)),
+				coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0,checkOverlaps);
+    }
+    if(sd == 1)
+    {
+      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fWindowThick+fCoatingThick*0.5)),
+                                coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0,checkOverlaps);
+    }
 
 G4cout << "\n no problems so far \n" << G4endl;
   }
@@ -353,7 +373,7 @@ G4cout << "\n no problems so far \n" << G4endl;
 
 string DetectorConstruction::Append(int i, string str)
 {
-  stringstream s;
-  s << str << i;
-  return s.str();
+  stringstream newString;
+  newString << str << i;
+  return newString.str();
 }
