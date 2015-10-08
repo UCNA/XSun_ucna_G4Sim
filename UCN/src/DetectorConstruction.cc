@@ -33,8 +33,9 @@ DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
   fScoringVolume(0), fScintStepLimit(1),
   experimentalHall_log(0), experimentalHall_phys(0),
-  container_log(0), holder_phys(0),
-  window_log(0), window_phys(0)
+  container_log(0), holder_phys(0), ring_phys(0),
+  window_log(0), window_phys(0),
+  source_phys(0)
 {
   coating_log[0] = NULL;	// source holder member variables should go here or in line above
   coating_log[1] = NULL;	// but then ordering is wrong with the materials
@@ -176,6 +177,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fCoatingMat = Al;
   fSourceHolderThickness = 0.1*um;
 
+  fSourceHolderPos = G4ThreeVector(0,0,0);
+
 /*  if(fWindowThick == NULL)	// a check to see that window thickness has been defined
   {				// ****** I honestly don't know what Michael's code is doing here.
     fWindowThick = 0.001*um;	// ****** I don't understand the statment if(!fWindowThick)
@@ -211,7 +214,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	//	flag: 1 means EAST
 	//            2 means WEST
 	//	and int sd is an instance of SIDE sd (in Mendenhall code)
-	//	which I don't understand...
+	//	which I'm not sure is correct...
   for(int sd = 0; sd <= 1; sd++)
   {
     coating_log[sd] = new G4LogicalVolume(coating_tube, fCoatingMat, Append(sd, "source_coating_log_"));
@@ -227,9 +230,22 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fWindowThick+fCoatingThick*0.5)),
                                 coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0,checkOverlaps);
     }
-
-G4cout << "\n no problems so far \n" << G4endl;
   }
+
+  // source retaining ring
+  G4Tubs* ring_tube = new G4Tubs("source_ring_tube",SourceWindowRadius,SourceRingRadius,SourceRingThickness/2,0.,2*M_PI);
+  G4LogicalVolume* ring_log = new G4LogicalVolume(ring_tube,Al,"source_ring_log");
+  ring_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
+  ring_phys = new G4PVPlacement(NULL,G4ThreeVector(),ring_log,"source_ring_phys",container_log,false,0);
+
+
+  // ----- end of source holder class code.
+
+  source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
+
+
+
+
 
 
   // Get nist material manager

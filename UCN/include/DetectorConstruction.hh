@@ -7,6 +7,7 @@
 #include <G4Material.hh>		// stole from Michael Mendenhall's code.
 #include <G4Element.hh>
 #include <G4SystemOfUnits.hh>
+#include <G4ThreeVector.hh>
 
 #include <string>
 #include <sstream>
@@ -64,6 +65,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* coating_log[2];
 
 
+    G4VPhysicalVolume* source_phys;
+
 
   protected:
     G4LogicalVolume*  fScoringVolume;	// from B1 example
@@ -86,6 +89,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* experimentalHall_log;
     G4VPhysicalVolume* experimentalHall_phys;
 
+    G4ThreeVector fSourceHolderPos;
 };
 
 #endif
