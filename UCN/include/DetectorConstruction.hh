@@ -89,7 +89,10 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* experimentalHall_log;
     G4VPhysicalVolume* experimentalHall_phys;
 
-    G4ThreeVector fSourceHolderPos;
+    G4ThreeVector fSourceHolderPos;	// here and below is returning to Mendenhall's DetectorConstruction class
+
+    G4String sGeometry;
+
 };
 
 #endif

@@ -41,6 +41,7 @@ DetectorConstruction::DetectorConstruction()
   coating_log[1] = NULL;	// but then ordering is wrong with the materials
   coating_phys[0] = NULL;	// so it's done right before source holder is made.
   coating_phys[1] = NULL;
+  sGeometry = "C";      // initializing a geometry configuration.
 }
 
 
@@ -175,9 +176,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fCoatingThick = 0.1*um;	// really should go in constructor, but
   fWindowMat = Mylar;		// materials might be defined in wrong order
   fCoatingMat = Al;
-  fSourceHolderThickness = 0.1*um;
+  fSourceHolderThickness = (3./16.)*inch;
 
-  fSourceHolderPos = G4ThreeVector(0,0,0);
+  fSourceHolderPos = G4ThreeVector(0,0,0);	// initialize the position
 
 /*  if(fWindowThick == NULL)	// a check to see that window thickness has been defined
   {				// ****** I honestly don't know what Michael's code is doing here.
@@ -200,14 +201,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4SubtractionSolid* holder = new G4SubtractionSolid("source_holder", holder_box, holder_hole);
   G4LogicalVolume* holder_log = new G4LogicalVolume(holder,Brass,"source_holder_log");
   holder_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0,0.5)));
-  holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0,checkOverlaps);
+  holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0);
 
   // sealed source foil
   G4Tubs* window_tube = new G4Tubs("window_tube",0.,SourceWindowRadius,fWindowThick,0.,2*M_PI);
   window_log = new G4LogicalVolume(window_tube,fWindowMat,"source_window_log");
   G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));
   window_log->SetVisAttributes(visWindow);
-  window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0,checkOverlaps);
+  window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
 
   // source foil coating
   G4Tubs* coating_tube = new G4Tubs("source_coating_tube", 0., SourceWindowRadius, fCoatingThick*0.5, 0., 2*M_PI);
@@ -218,17 +219,17 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   for(int sd = 0; sd <= 1; sd++)
   {
     coating_log[sd] = new G4LogicalVolume(coating_tube, fCoatingMat, Append(sd, "source_coating_log_"));
-    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
+//    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
 
     if(sd == 0)
     {
       coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fWindowThick+fCoatingThick*0.5)),
-				coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0,checkOverlaps);
+				coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
     }
     if(sd == 1)
     {
       coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fWindowThick+fCoatingThick*0.5)),
-                                coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0,checkOverlaps);
+                                coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
     }
   }
 
@@ -242,6 +243,59 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // ----- end of source holder class code.
 
   source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
+
+
+  ///////////////////////////////////////
+  // geometry-dependent settings
+  ///////////////////////////////////////
+
+  // ----- begin moving code from Mendenhall's DetectorConstruction geometry-dependent settings
+
+  G4cout << "Using geometry flag '" << sGeometry << "' ..." << G4endl;
+
+  if(sGeometry == "A")
+  {
+    G4cout << "Configuration A" << G4endl;
+  }
+  else if(sGeometry == "B")
+  {
+    G4cout << "Configuration B" << G4endl;
+  }
+  else if(sGeometry == "C")
+  {
+    G4cout << "Configuration C" << G4endl;
+  }
+  else if(sGeometry == "D")
+  {
+    G4cout << "Configuration D" << G4endl;
+  }
+  else if(sGeometry == "2007")
+  {
+    G4cout << "Configuration B" << G4endl;
+  }
+  else if(sGeometry == "siDet")
+  {
+    G4cout << "Configuration siDet" << G4endl;
+  }
+  else if(sGeometry == "thinFoil")
+  {
+    G4cout << "Configuration thinFoil" << G4endl;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
