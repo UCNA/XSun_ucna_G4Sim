@@ -31,7 +31,7 @@
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fScoringVolume(0), fScintStepLimit(1),
+  fScoringVolume(0), fScintStepLimit(1),	// note: fScintStepLimit initialized here
   experimentalHall_log(0), experimentalHall_phys(0),
   container_log(0), holder_phys(0), ring_phys(0),
   window_log(0), window_phys(0),
@@ -105,19 +105,19 @@ void DetectorConstruction::DefineMaterials()
   Polyethylene->AddElement(G4Element::GetElement("C"),nAtoms=2);
   Polyethylene->AddElement(G4Element::GetElement("H"),nAtoms=4);
 
-	// Wirechamber fill: pentane @ 100torr
+  // Wirechamber fill: pentane @ 100torr
   double P_MWPC = 100*torr;
   double T_MWPC = 298*kelvin;
   WCPentane = new G4Material("Pentane",(72.17*mg)/(22.4*cm3)*P_MWPC/(760*torr)*(273.15*kelvin)/T_MWPC,2,kStateGas,T_MWPC,P_MWPC);
   WCPentane->AddElement(G4Element::GetElement("C"),nAtoms=5);
   WCPentane->AddElement(G4Element::GetElement("H"),nAtoms=12);
 
-	// Wirechamber fill: N2 @ 95torr
+  // Wirechamber fill: N2 @ 95torr
   double P_N2 = P_MWPC - 5*torr;
   WCNitrogen = new G4Material("MWPC_N2",(28*mg)/(22.4*cm3)*P_N2/(760*torr)*(273.15*kelvin)/T_MWPC,1,kStateGas,T_MWPC,P_N2);
   WCNitrogen->AddElement(G4Element::GetElement("N"),nAtoms=2);
 
-	// Scintillator, per Eljen EJ-204 datasheet
+  // Scintillator, per Eljen EJ-204 datasheet
   Sci=new G4Material("Scintillator",1.032*g/cm3,2);
   Sci->AddElement(G4Element::GetElement("C"),nAtoms=4.68);
   Sci->AddElement(G4Element::GetElement("H"),nAtoms=5.15);
@@ -128,7 +128,7 @@ void DetectorConstruction::DefineMaterials()
 
 void DetectorConstruction::setVacuumPressure(G4double pressure)
 {
-	// our slightly crappy vacuum: low-pressure air (density @20c; 1.290*mg/cm3 @STP)
+  // our slightly crappy vacuum: low-pressure air (density @20c; 1.290*mg/cm3 @STP)
   G4cout<<"------------- Detector vacuum is set at "<<pressure/torr<<" Torr"<<G4endl;
 
   Vacuum = new G4Material("Vacuum",1.2048*mg/cm3*pressure/atmosphere,2,kStateGas,293*kelvin,pressure);
@@ -143,9 +143,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   setVacuumPressure(0);	// this is the set vacuum pressure that was warned about in DefineMaterials()
 
 
-  ////////////////////////////////////////
   // user step limits
-  ////////////////////////////////////////
   G4UserLimits* UserCoarseLimits = new G4UserLimits();
   UserCoarseLimits->SetMaxAllowedStep(10*m);
   G4UserLimits* UserGasLimits = new G4UserLimits();
@@ -153,32 +151,27 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4UserLimits* UserSolidLimits = new G4UserLimits();
   UserSolidLimits->SetMaxAllowedStep(fScintStepLimit*mm);	// hard coded scint step limit to mm units
 
-  G4bool checkOverlaps = true;
+  G4bool checkOverlaps = true;					// Just a flag to check overlaps of geometry
 
-  ///////////////////////////////////////
-  //experimental Hall
-  ///////////////////////////////////////
+  //----- experimental Hall -----//
   const G4double expHall_halfx=1.0*m;
   const G4double expHall_halfy=1.0*m;
   const G4double expHall_halfz=4.0*m;
   G4Box* experimentalHall_box = new G4Box("expHall_box",expHall_halfx,expHall_halfy,expHall_halfz);
   experimentalHall_log = new G4LogicalVolume(experimentalHall_box,Vacuum,"World_Log");
-//  experimentalHall_log->SetVisAttributes(G4VisAttributes::GetInvisible());	// figure out syntax later
+  experimentalHall_log->SetVisAttributes(G4VisAttributes::Invisible);
   experimentalHall_log->SetUserLimits(UserCoarseLimits);
   experimentalHall_phys = new G4PVPlacement(NULL,G4ThreeVector(),"World_Phys", experimentalHall_log,0,false,0,checkOverlaps);
 
-// ---- Now we begin moving all the remaining geometry into the world ----- //
 
-
-  // Source holder object will be defined here.
-
+  //----- source holder object -----//
   fWindowThick = 4.7*um;	// class initialization variables.
   fCoatingThick = 0.1*um;	// really should go in constructor, but
   fWindowMat = Mylar;		// materials might be defined in wrong order
   fCoatingMat = Al;
   fSourceHolderThickness = (3./16.)*inch;
 
-  fSourceHolderPos = G4ThreeVector(0,0,0);	// initialize the position
+  fSourceHolderPos = G4ThreeVector(0,0,0);	// initialize the position. Should be done in Constructor but w/e
 
 /*  if(fWindowThick == NULL)	// a check to see that window thickness has been defined
   {				// ****** I honestly don't know what Michael's code is doing here.
@@ -194,7 +187,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // source holder container
   G4Box* holder_box = new G4Box("source_holder_box",0.5*SourceHolderWidth,0.5*SourceHolderHeight,0.5*fSourceHolderThickness);
   container_log = new G4LogicalVolume(holder_box,Vacuum,"source_container_log");
-//  container_log->SetVisAttributes(G4VisAttributes::Invisible);
+  container_log->SetVisAttributes(G4VisAttributes::Invisible);
 
   // source holder paddle
   G4Tubs* holder_hole = new G4Tubs("source_holder_hole",0.,SourceRingRadius,fSourceHolderThickness,0.,2*M_PI);
@@ -215,11 +208,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	//	flag: 1 means EAST
 	//            2 means WEST
 	//	and int sd is an instance of SIDE sd (in Mendenhall code)
-	//	which I'm not sure is correct...
+	//	which I'm not sure is correct interpretation of code...
   for(int sd = 0; sd <= 1; sd++)
   {
     coating_log[sd] = new G4LogicalVolume(coating_tube, fCoatingMat, Append(sd, "source_coating_log_"));
-//    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
+    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
 
     if(sd == 0)
     {
@@ -239,18 +232,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   ring_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
   ring_phys = new G4PVPlacement(NULL,G4ThreeVector(),ring_log,"source_ring_phys",container_log,false,0);
 
-
   // ----- end of source holder class code.
 
   source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
 
 
-  ///////////////////////////////////////
-  // geometry-dependent settings
-  ///////////////////////////////////////
-
-  // ----- begin moving code from Mendenhall's DetectorConstruction geometry-dependent settings
-
+  //----- geometry-dependent settings -----//
   G4cout << "Using geometry flag '" << sGeometry << "' ..." << G4endl;
 
   if(sGeometry == "A")
