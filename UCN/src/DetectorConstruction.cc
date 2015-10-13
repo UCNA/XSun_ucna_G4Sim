@@ -11,7 +11,7 @@
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
 
-#include <G4UserLimits.hh>	// stole from Michael Mendenhall's code.
+#include <G4UserLimits.hh>		// stole from Michael Mendenhall's code.
 
 #include <G4SubtractionSolid.hh>	// taken from Source holder class
 
@@ -262,7 +262,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double decayTube_Length = 3.0*m;
   G4Tubs* decayTube_tube = new G4Tubs("decayTube_tube",fTrapIRtrap, decayTube_OR, decayTube_Length/2.,0.,2*M_PI);
   decayTube_log = new G4LogicalVolume(decayTube_tube,Cu,"decayTube_log");
-  decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
+//  decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
+  decayTube_log->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of this once geometry is in
   new G4PVPlacement(NULL,G4ThreeVector(),decayTube_log,"decayTube",experimentalHall_log,false,0);
 
   // plug - not sure if this is even used or what it is
@@ -284,9 +285,88 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Tubs* collimatorTube = new G4Tubs("collimatorTube",fTrapIRcollimator,fTrapIRcollimator+collimator_thick,collimator_thick/2.,0.,2*M_PI);
   G4Tubs* collimatorBackTube = new G4Tubs("collimatorBackTube",decayTube_OR+1.*mm,fTrapIRcollimator+collimator_thick,collimator_thick,0.,2*M_PI);
 
+  G4double beWinPosZ = -thicknessOfTrapWindow/2.+fTrapCoatingThick/2.;
+  G4double mylarWinPosZ = thicknessOfTrapWindow/2.-fTrapWindowThick/2.;
+
+  G4double trap_winPosZ=(decayTube_Length+thicknessOfTrapWindow)/2.;
+  G4double trap_monitor_thickness = 1.0*mm;
+  G4double trap_monitor_posZ = 0.5*m;
+  G4Tubs* trap_monitor_tube = new G4Tubs("trap_monitor_tube",0.,fTrapIRtrap,trap_monitor_thickness/2,0.,2*M_PI);
+
+  G4RotationMatrix* wigRot = new G4RotationMatrix;
+  wigRot->rotateY(M_PI/2.*rad);
+  wigRot->rotateX(M_PI/2.*rad);
+
+  for(int sd = 0; sd <= 1; sd++)	// exact same "legend" as source holder loop
+  {
+/*    if(crinkleAngle)			// commented out because I need to add wiggle foil class/object
+    {
+      wigglefoils[sd].thetaMax = crinkleAngle;
+    }
+    wigglefoils[sd].containerMat = Vacuum;
+    wigglefoils[sd].length = 2*decayTube_OR;
+    wigglefoils[sd].nseg = int(4*decayTube_OR/wigglefoils[sd].period)+1;
+    wigglefoils[sd].addLayer(fWindowMat,fWindowThick,true,visWindow);
+    wigglefoils[sd].addLayer(fCoatingMat,fCoatingThick,true,visWindow);
+    wigglefoils[sd].Construct();
+*/
+
+    trap_win_log[sd] = new G4LogicalVolume(trap_win_tube,Vacuum,Append(sd,"trap_win_log_"));
+    trap_win_log[sd]->SetVisAttributes(visWindow);
+
+    if(fCrinkleAngle)
+    {
+	G4cout << "\n Crinkle angle is non-zero \n" << G4endl;
+//      new G4PVPlacement(wigRot,G4ThreeVector(0.,0.,ssign(sd)*(decayTube_Length+wigglefoils[sd].getContainerThick())/2),
+//      				wigglefoils[sd].container_log,sideSubst("trap_wigglefoil%c",sd),world,false,0);
+    }
+    else
+    {
+	G4cout << "\n Crinkle angle is zero, hence we evaluate the else \n" << G4endl;
+      if(sd == 0)
+      {
+        new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*trap_winPosZ),trap_win_log[sd],
+								Append(sd,"trap_win_"),experimentalHall_log,false,0);
+      }
+      if(sd == 1)
+      {
+        new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*trap_winPosZ),trap_win_log[sd],
+                                                                Append(sd,"trap_win_"),experimentalHall_log,false,0);
+      }
+    }
+
+    mylar_win_log[sd] = new G4LogicalVolume(mylarTube, fTrapWindowMat, Append(sd,"mylar_win_log_"));
+    be_win_log[sd] = new G4LogicalVolume(beTube, fTrapCoatingMat,Append(sd,"be_win_log_"));
+    if(sd == 0)
+    {
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*mylarWinPosZ),mylar_win_log[sd],
+                                        Append(sd,"mylar_win_"),trap_win_log[sd],false,0);
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*beWinPosZ),be_win_log[sd],
+                                        Append(sd,"be_win_"),trap_win_log[sd],false,0);
+    }
+    if(sd == 1)
+    {
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*mylarWinPosZ),mylar_win_log[sd],
+                                        Append(sd,"mylar_win_"),trap_win_log[sd],false,0);
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*beWinPosZ),be_win_log[sd],
+                                        Append(sd,"be_win_"),trap_win_log[sd],false,0);
+    }
 
 
-
+    G4double collimatorPosZ = (decayTube_Length+collimator_thick)/2.;
+/*    collimatorPosZ += (fCrinkleAngle?wigglefoils[sd].getContainerThick():thicknessOfTrapWindow)/2.;
+    collimator_log[sd] = new G4LogicalVolume(collimatorTube, fTrapCollimatorMat, sideSubst("collimator_log%c",sd));
+    G4double collimatorBackZ = decayTube_Length/2.-collimator_thick;
+    collimatorBack_log[sd] = new G4LogicalVolume(collimatorBackTube, fTrapCollimatorMat, sideSubst("collimatorBack_log%c",sd));
+    new G4PVPlacement(NULL,G4ThreeVector(0.,0.,ssign(sd)*collimatorPosZ),collimator_log[sd],
+						sideSubst("collimator%c",sd),experimentalHall_log,false,0);
+    new G4PVPlacement(NULL,G4ThreeVector(0.,0.,ssign(sd)*collimatorBackZ),collimatorBack_log[sd],
+						sideSubst("collimatorBack%c",sd),experimentalHall_log,false,0);
+    trap_monitor_log[sd] = new G4LogicalVolume(trap_monitor_tube,Vacuum,sideSubst("trap_monitor_log%c",sd));
+    new G4PVPlacement(NULL,G4ThreeVector(0.,0.,ssign(sd)*trap_monitor_posZ),
+						trap_monitor_log[sd],sideSubst("trap_monitor%c",sd),experimentalHall_log,false,0);
+*/
+  }
 
 
 
