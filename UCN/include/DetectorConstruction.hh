@@ -109,7 +109,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     G4ThreeVector fSourceHolderPos;	// here and below is returning to Mendenhall's DetectorConstruction class
 
-    float fCrinkleAngle;		// Decay trap foil crinkle angle
+//    float fCrinkleAngle;		// Decay trap foil crinkle angle. NOT USING
 
 };
 

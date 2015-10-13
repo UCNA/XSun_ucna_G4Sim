@@ -19,7 +19,7 @@
 #include <G4Material.hh>
 #include <G4Element.hh>
 #include <G4Box.hh>
-#include <G4Tubs.hh>
+#include <G4Tubs.hh>			// nothing used by decay trap construction
 #include <G4VPhysicalVolume.hh>
 #include <G4LogicalVolume.hh>
 #include <G4ThreeVector.hh>
@@ -172,11 +172,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   fSourceHolderPos = G4ThreeVector(0,0,0);	// initialize the position. Should be done in Constructor but w/e
 
-/*  if(fWindowThick == NULL)	// a check to see that window thickness has been defined
-  {				// ****** I honestly don't know what Michael's code is doing here.
-    fWindowThick = 0.001*um;	// ****** I don't understand the statment if(!fWindowThick)
-  }
-*/
   const G4double SourceRingRadius = 0.5*inch;
   const G4double SourceWindowRadius = SourceRingRadius-3.*mm;
   const G4double SourceRingThickness = 3.2*mm; // suspiciously close to 1/8 in
@@ -253,8 +248,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fTrapWindowMat = Mylar;
   fTrapCoatingMat = Be;
 
-  fCrinkleAngle = 0.;	// can be set independently (in Mendenhall code) using user input
-			// for now, note that 0. evaluates to false.
+//  fCrinkleAngle = 0.;	// can be set independently (in Mendenhall code) using user input
+			// For now, we are not using this at all.
 
 
   // decay tube construction
@@ -276,7 +271,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   }
 
   // trap windows, collimator, monitors
-
   G4double thicknessOfTrapWindow = fTrapWindowThick + fTrapCoatingThick;
   G4double collimator_thick = 0.8*inch;
   G4Tubs* trap_win_tube = new G4Tubs("trap_win_tube",0.,decayTube_OR,thicknessOfTrapWindow/2.,0.,2*M_PI);
@@ -299,30 +293,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   for(int sd = 0; sd <= 1; sd++)	// exact same "legend" as source holder loop
   {
-/*    if(crinkleAngle)			// commented out because I need to add wiggle foil class/object
-    {
-      wigglefoils[sd].thetaMax = crinkleAngle;
-    }
-    wigglefoils[sd].containerMat = Vacuum;
-    wigglefoils[sd].length = 2*decayTube_OR;
-    wigglefoils[sd].nseg = int(4*decayTube_OR/wigglefoils[sd].period)+1;
-    wigglefoils[sd].addLayer(fWindowMat,fWindowThick,true,visWindow);
-    wigglefoils[sd].addLayer(fCoatingMat,fCoatingThick,true,visWindow);
-    wigglefoils[sd].Construct();
-*/
-
     trap_win_log[sd] = new G4LogicalVolume(trap_win_tube,Vacuum,Append(sd,"trap_win_log_"));
     trap_win_log[sd]->SetVisAttributes(visWindow);
 
-    if(fCrinkleAngle)
-    {
-	G4cout << "\n Crinkle angle is non-zero \n" << G4endl;
-//      new G4PVPlacement(wigRot,G4ThreeVector(0.,0.,ssign(sd)*(decayTube_Length+wigglefoils[sd].getContainerThick())/2),
-//      				wigglefoils[sd].container_log,sideSubst("trap_wigglefoil%c",sd),world,false,0);
-    }
-    else
-    {
-	G4cout << "\n Crinkle angle is zero, hence we evaluate the else \n" << G4endl;
+	// note the weird indexing because there is an if-else statement dependent on fCrinkleAngle
       if(sd == 0)
       {
         new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*trap_winPosZ),trap_win_log[sd],
@@ -333,10 +307,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*trap_winPosZ),trap_win_log[sd],
                                                                 Append(sd,"trap_win_"),experimentalHall_log,false,0);
       }
-    }
 
     mylar_win_log[sd] = new G4LogicalVolume(mylarTube, fTrapWindowMat, Append(sd,"mylar_win_log_"));
     be_win_log[sd] = new G4LogicalVolume(beTube, fTrapCoatingMat,Append(sd,"be_win_log_"));
+	// add some visualizations to these logical volumes
     if(sd == 0)
     {
       new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*mylarWinPosZ),mylar_win_log[sd],
@@ -354,18 +328,31 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
     G4double collimatorPosZ = (decayTube_Length+collimator_thick)/2.;
-/*    collimatorPosZ += (fCrinkleAngle?wigglefoils[sd].getContainerThick():thicknessOfTrapWindow)/2.;
-    collimator_log[sd] = new G4LogicalVolume(collimatorTube, fTrapCollimatorMat, sideSubst("collimator_log%c",sd));
+    collimatorPosZ += (thicknessOfTrapWindow)/2.;
+    collimator_log[sd] = new G4LogicalVolume(collimatorTube, fTrapCollimatorMat, Append(sd,"collimator_log_"));
     G4double collimatorBackZ = decayTube_Length/2.-collimator_thick;
-    collimatorBack_log[sd] = new G4LogicalVolume(collimatorBackTube, fTrapCollimatorMat, sideSubst("collimatorBack_log%c",sd));
-    new G4PVPlacement(NULL,G4ThreeVector(0.,0.,ssign(sd)*collimatorPosZ),collimator_log[sd],
-						sideSubst("collimator%c",sd),experimentalHall_log,false,0);
-    new G4PVPlacement(NULL,G4ThreeVector(0.,0.,ssign(sd)*collimatorBackZ),collimatorBack_log[sd],
-						sideSubst("collimatorBack%c",sd),experimentalHall_log,false,0);
-    trap_monitor_log[sd] = new G4LogicalVolume(trap_monitor_tube,Vacuum,sideSubst("trap_monitor_log%c",sd));
-    new G4PVPlacement(NULL,G4ThreeVector(0.,0.,ssign(sd)*trap_monitor_posZ),
-						trap_monitor_log[sd],sideSubst("trap_monitor%c",sd),experimentalHall_log,false,0);
-*/
+    collimatorBack_log[sd] = new G4LogicalVolume(collimatorBackTube, fTrapCollimatorMat, Append(sd,"collimatorBack_log_"));
+    trap_monitor_log[sd] = new G4LogicalVolume(trap_monitor_tube,Vacuum,Append(sd,"trap_monitor_log_"));
+
+    if(sd == 0)
+    {
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*collimatorPosZ),collimator_log[sd],
+						Append(sd,"collimator_"),experimentalHall_log,false,0);
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*collimatorBackZ),collimatorBack_log[sd],
+						Append(sd,"collimatorBack_"),experimentalHall_log,false,0);
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*trap_monitor_posZ),
+						trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
+    }
+    if(sd == 1)
+    {
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*collimatorPosZ),collimator_log[sd],
+                                                Append(sd,"collimator_"),experimentalHall_log,false,0);
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*collimatorBackZ),collimatorBack_log[sd],
+                                                Append(sd,"collimatorBack_"),experimentalHall_log,false,0);
+      new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*trap_monitor_posZ),
+                                                trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
+    }
+
   }
 
 
@@ -413,127 +400,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
 
-/*
-  // Envelope parameters
-  //
-  G4double env_sizeXY = 20*cm, env_sizeZ = 30*cm;
-  G4Material* env_mat = nist->FindOrBuildMaterial("G4_WATER");
-
-  // Option to switch on/off checking of volumes overlaps
-  //
-  G4bool checkOverlaps = true;
-
-  //
-  // World
-  //
-  G4double world_sizeXY = 1.2*env_sizeXY;
-  G4double world_sizeZ  = 1.2*env_sizeZ;
-  G4Material* world_mat = nist->FindOrBuildMaterial("G4_AIR");
-
-  G4Box* solidWorld =
-    new G4Box("World",                       //its name
-       0.5*world_sizeXY, 0.5*world_sizeXY, 0.5*world_sizeZ);     //its size
-
-  G4LogicalVolume* logicWorld =
-    new G4LogicalVolume(solidWorld,          //its solid
-                        world_mat,           //its material
-                        "World");            //its name
-
-  G4VPhysicalVolume* physWorld =
-    new G4PVPlacement(0,                     //no rotation
-                      G4ThreeVector(),       //at (0,0,0)
-                      logicWorld,            //its logical volume
-                      "World",               //its name
-                      0,                     //its mother  volume
-                      false,                 //no boolean operation
-                      0,                     //copy number
-                      checkOverlaps);        //overlaps checking
-
-  //
-  // Envelope
-  //
-  G4Box* solidEnv =
-    new G4Box("Envelope",                    //its name
-        0.5*env_sizeXY, 0.5*env_sizeXY, 0.5*env_sizeZ); //its size
-
-  G4LogicalVolume* logicEnv =
-    new G4LogicalVolume(solidEnv,            //its solid
-                        env_mat,             //its material
-                        "Envelope");         //its name
-
-  new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(),         //at (0,0,0)
-                    logicEnv,                //its logical volume
-                    "Envelope",              //its name
-                    logicWorld,              //its mother  volume
-                    false,                   //no boolean operation
-                    0,                       //copy number
-                    checkOverlaps);          //overlaps checking
-
-  //
-  // Shape 1
-  //
-  G4Material* shape1_mat = nist->FindOrBuildMaterial("G4_A-150_TISSUE");
-  G4ThreeVector pos1 = G4ThreeVector(0, 2*cm, -7*cm);
-
-  // Conical section shape
-  G4double shape1_rmina =  0.*cm, shape1_rmaxa = 2.*cm;
-  G4double shape1_rminb =  0.*cm, shape1_rmaxb = 4.*cm;
-  G4double shape1_hz = 3.*cm;
-  G4double shape1_phimin = 0.*deg, shape1_phimax = 360.*deg;
-  G4Cons* solidShape1 =
-    new G4Cons("Shape1",
-    shape1_rmina, shape1_rmaxa, shape1_rminb, shape1_rmaxb, shape1_hz,
-    shape1_phimin, shape1_phimax);
-
-  G4LogicalVolume* logicShape1 =
-    new G4LogicalVolume(solidShape1,         //its solid
-                        shape1_mat,          //its material
-                        "Shape1");           //its name
-
-  new G4PVPlacement(0,                       //no rotation
-                    pos1,                    //at position
-                    logicShape1,             //its logical volume
-                    "Shape1",                //its name
-                    logicEnv,                //its mother  volume
-                    false,                   //no boolean operation
-                    0,                       //copy number
-                    checkOverlaps);          //overlaps checking
-
-
-  //
-  // Shape 2
-  //
-  G4Material* shape2_mat = nist->FindOrBuildMaterial("G4_BONE_COMPACT_ICRU");
-  G4ThreeVector pos2 = G4ThreeVector(0, -1*cm, 7*cm);
-
-  // Trapezoid shape
-  G4double shape2_dxa = 12*cm, shape2_dxb = 12*cm;
-  G4double shape2_dya = 10*cm, shape2_dyb = 16*cm;
-  G4double shape2_dz  = 6*cm;
-  G4Trd* solidShape2 =
-    new G4Trd("Shape2",                      //its name
-              0.5*shape2_dxa, 0.5*shape2_dxb,
-              0.5*shape2_dya, 0.5*shape2_dyb, 0.5*shape2_dz); //its size
-
-  G4LogicalVolume* logicShape2 =
-    new G4LogicalVolume(solidShape2,         //its solid
-                        shape2_mat,          //its material
-                        "Shape2");           //its name
-
-  new G4PVPlacement(0,                       //no rotation
-                    pos2,                    //at position
-                    logicShape2,             //its logical volume
-                    "Shape2",                //its name
-                    logicEnv,                //its mother  volume
-                    false,                   //no boolean operation
-                    0,                       //copy number
-                    checkOverlaps);          //overlaps checking
-
-  // Set Shape2 as scoring volume
-  //
-  fScoringVolume = logicShape2;
-*/
 }
 
 string DetectorConstruction::Append(int i, string str)
