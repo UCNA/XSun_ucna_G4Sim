@@ -86,6 +86,42 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* collimatorBack_log[2]; 	///< bracket behind collimator
     G4LogicalVolume* plug_log;
 
+// ---- Below are public variables from Scintillator Construction
+
+    G4double getScintFacePos() const { return fScintFacePos; }
+    G4double GetScintWidth() const { return fN2_volume_Z; }
+
+    G4double fScint_Radius; 			///< scintillator disc radius
+    G4double fBacking_Radius; 			///< backing veto (and overall volume) radius
+    G4double fScint_thick; 			///< scintillator disc thickness
+    G4double fDead_thick; 			///< dead scintillator thickness, 3 um according to Junhua's thesis
+    G4double fBacking_thick; 			///< backing vecto thickness (guess)
+    G4double fLightguide_thick; 		///< light guide thickness at scintillator edge (guess), sets scintillator to backing distance
+
+    G4LogicalVolume* N2_container_log; 		///< overall container (nitrogen volume)
+    G4LogicalVolume* Dscint_log; 		///< scintillator dead layer logical volume
+    G4LogicalVolume* scint_log; 		///< scintillator logical volume
+    G4LogicalVolume* backing_log; 		///< backing veto logical volume
+    G4LogicalVolume* lightguide_log; 		///< lightguide material logical volume
+
+// ----- Below are public variables from Wire Volume Construction
+    G4double GetWireVolWidth() const { return 2*cm; }
+
+    G4Material* fMWPCGas; 			///< MWPC fill gas
+    G4double fAnode_R; 				///< anode wire radius
+    G4double fCathode_R; 			///< cathode wire radius
+    G4double fPlating_thick; 			///< thickness of gold plating on wires
+    G4double fSpacing; 				///< wire spacing
+    G4int fNbOfWires; 				///< number of wires
+    G4double fPlaneSpacing; 			///< spacing between wireplanes
+
+    G4LogicalVolume* gas_log; 			///< constructed logical volume containing wireplanes
+    G4LogicalVolume* cathSeg_log; 		///< cathode "segment" containing one wire in gas
+    G4LogicalVolume* anodeSeg_log; 		///< anode "segment" containing one wire in gas
+    G4LogicalVolume* cathode_wire_log; 		///< cathode wires logical volume
+    G4LogicalVolume* cath_plate_log; 		///< gold plating on cathode segment
+    G4LogicalVolume* anode_wire_log; 		///< anode wires logical volume
+
   protected:
     G4LogicalVolume*  fScoringVolume;	// from B1 example
 
@@ -96,6 +132,15 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* ring_phys;
 
     G4double fSourceHolderThickness;
+
+// ---- Below are protected variables from Scintillator Construction
+    G4double fScintFacePos; 			///< position of scintillator face in container
+    G4double fN2_volume_Z; 			///< z width of N2 volume
+
+    G4VPhysicalVolume* Dscint_phys; 		///< dead layer physical volume
+    G4VPhysicalVolume* scint_phys; 		///< scintillator physical volume
+    G4VPhysicalVolume* backing_phys; 		///< backing veto physical volume
+    G4VPhysicalVolume* lightguide_phys; 	///< lightguide material physical volume
 
 
   private:
