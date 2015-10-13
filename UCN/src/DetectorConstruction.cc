@@ -238,36 +238,44 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
   //----- geometry-dependent settings -----//
-  G4cout << "Using geometry flag '" << sGeometry << "' ..." << G4endl;
+  // Note: we only need geometry settings "thinFoil"
+  // New initializer variables. Should be declared earlier but hopefully fine for now.
 
-  if(sGeometry == "A")
-  {
-    G4cout << "Configuration A" << G4endl;
-  }
-  else if(sGeometry == "B")
-  {
-    G4cout << "Configuration B" << G4endl;
-  }
-  else if(sGeometry == "C")
-  {
-    G4cout << "Configuration C" << G4endl;
-  }
-  else if(sGeometry == "D")
-  {
-    G4cout << "Configuration D" << G4endl;
-  }
-  else if(sGeometry == "2007")
-  {
-    G4cout << "Configuration B" << G4endl;
-  }
-  else if(sGeometry == "siDet")
-  {
-    G4cout << "Configuration siDet" << G4endl;
-  }
-  else if(sGeometry == "thinFoil")
-  {
-    G4cout << "Configuration thinFoil" << G4endl;
-  }
+
+  //----- Detector Decay Trap construction -----//
+
+  fTrapWindowThick = 0.180*um;
+  fTrapCoatingThick = 0.150*um;
+  fTrapIRtrap = 2.45*inch;
+  fTrapDecayTube_Wall = 2*mm;
+  fTrapIRcollimator = 2.3*inch;
+  fTrapTubeMat = Cu;
+  fTrapCollimatorMat = Polyethylene;
+  fTrapWindowMat = Mylar;
+  fTrapCoatingMat = Be;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

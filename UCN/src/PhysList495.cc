@@ -1,5 +1,4 @@
 #include "PhysList495.hh"
-//#include "PhysicsListMessenger.hh"
 
 #include <cassert>
 
@@ -17,7 +16,7 @@
 
 #include <G4ProcessManager.hh>
 
-PhysList495::PhysList495() : G4VModularPhysicsList()/*, myMessenger(new PhysicsListMessenger(this))*/, emPhysicsList(NULL) {
+PhysList495::PhysList495() : G4VModularPhysicsList(), emPhysicsList(NULL) {
 	G4LossTableManager::Instance();
 	defaultCutValue = 1.*um;
 	cutForGamma     = defaultCutValue;
@@ -47,9 +46,7 @@ void PhysList495::setPhysicsList(const G4String& plname) {
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////
 // Construct Particles /////////////////////////////////////////////////////
-
 void PhysList495::ConstructParticle() {
 	assert(emPhysicsList);
 	emPhysicsList->ConstructParticle();

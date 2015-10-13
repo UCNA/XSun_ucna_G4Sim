@@ -1,6 +1,6 @@
 #include "DetectorConstruction.hh"
-#include "ActionInitialization.hh"
 #include "PhysList495.hh"
+#include "ActionInitialization.hh"
 
 #ifdef G4MULTITHREADED
 #include "G4MTRunManager.hh"
@@ -44,6 +44,7 @@ int main(int argc,char** argv)
   runManager->SetUserInitialization(new PhysList495());
 
   // User action initialization
+  // Useful only in case of using Multithreaded (i.e. parallel)
   runManager->SetUserInitialization(new ActionInitialization());
 
   // Initialize visualization

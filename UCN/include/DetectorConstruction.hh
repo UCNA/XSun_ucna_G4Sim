@@ -55,18 +55,37 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     /// get thickness
     G4double getHolderThick() const { return fSourceHolderThickness; }
 
-    G4double fWindowThick; ///< source foil window single-side thickness
-    G4double fCoatingThick; ///< source foil coating thickness
-    G4Material* fWindowMat; ///< source foil window material
-    G4Material* fCoatingMat; ///< source foil coating material
+    G4double fWindowThick; 			///< source foil window single-side thickness
+    G4double fCoatingThick; 			///< source foil coating thickness
+    G4Material* fWindowMat; 			///< source foil window material
+    G4Material* fCoatingMat; 			///< source foil coating material
 
     G4LogicalVolume* container_log;
     G4LogicalVolume* window_log;
     G4LogicalVolume* coating_log[2];
 
-
     G4VPhysicalVolume* source_phys;
 
+//  ---- Below are the public variables from Decay Trap
+    G4double fTrapWindowThick;
+    G4double fTrapCoatingThick;
+    G4double fTrapIRtrap; 				///< decay trap IR
+    G4double fTrapDecayTube_Wall; 			///< decay trap wall thickness
+    G4double fTrapIRcollimator; 			///< collimator IR
+
+    G4Material* fTrapTubeMat; 			///< decay tube material
+    G4Material* fTrapCollimatorMat; 		///< collimator material
+    G4Material* fTrapWindowMat; 			///< decay tube window material
+    G4Material* fTrapCoatingMat; 			///< decay tube coating material
+
+    G4LogicalVolume* decayTube_log; 		///< decay trap tube
+    G4LogicalVolume* trap_win_log[2]; 		///< trap window volume
+    G4LogicalVolume* mylar_win_log[2]; 		///< mylar layer of window
+    G4LogicalVolume* be_win_log[2]; 		///< berillium layer of window
+    G4LogicalVolume* trap_monitor_log[2]; 	///< extra event monitoring region
+    G4LogicalVolume* collimator_log[2]; 	///< collimator
+    G4LogicalVolume* collimatorBack_log[2]; 	///< bracket behind collimator
+    G4LogicalVolume* plug_log;
 
   protected:
     G4LogicalVolume*  fScoringVolume;	// from B1 example

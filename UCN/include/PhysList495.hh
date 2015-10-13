@@ -4,8 +4,6 @@
 #include <G4VModularPhysicsList.hh>
 #include <G4VPhysicsConstructor.hh>
 
-//class PhysicsListMessenger;
-
 class PhysList495: public G4VModularPhysicsList {
 public:
 	/// constructor
@@ -25,8 +23,6 @@ public:
 	void setPhysicsList(const G4String& plname);
 
 private:
-//	PhysicsListMessenger* myMessenger;
-
 	G4double cutForGamma;
 	G4double cutForElectron;
 	G4double cutForPositron;
