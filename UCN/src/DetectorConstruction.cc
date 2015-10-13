@@ -35,13 +35,12 @@ DetectorConstruction::DetectorConstruction()
   experimentalHall_log(0), experimentalHall_phys(0),
   container_log(0), holder_phys(0), ring_phys(0),
   window_log(0), window_phys(0),
-  source_phys(0)
+  source_phys(0), decayTube_log(0), plug_log(0)
 {
   coating_log[0] = NULL;	// source holder member variables should go here or in line above
   coating_log[1] = NULL;	// but then ordering is wrong with the materials
   coating_phys[0] = NULL;	// so it's done right before source holder is made.
   coating_phys[1] = NULL;
-  sGeometry = "C";      // initializing a geometry configuration.
 }
 
 
@@ -165,10 +164,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
   //----- source holder object -----//
-  fWindowThick = 4.7*um;	// class initialization variables.
-  fCoatingThick = 0.1*um;	// really should go in constructor, but
-  fWindowMat = Mylar;		// materials might be defined in wrong order
-  fCoatingMat = Al;
+  fSourceWindowThick = 4.7*um;		// class initialization variables.
+  fSourceCoatingThick = 0.1*um;		// really should go in constructor, but
+  fSourceWindowMat = Mylar;		// materials might be defined in wrong order
+  fSourceCoatingMat = Al;
   fSourceHolderThickness = (3./16.)*inch;
 
   fSourceHolderPos = G4ThreeVector(0,0,0);	// initialize the position. Should be done in Constructor but w/e
@@ -197,31 +196,31 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0);
 
   // sealed source foil
-  G4Tubs* window_tube = new G4Tubs("window_tube",0.,SourceWindowRadius,fWindowThick,0.,2*M_PI);
-  window_log = new G4LogicalVolume(window_tube,fWindowMat,"source_window_log");
+  G4Tubs* window_tube = new G4Tubs("window_tube",0.,SourceWindowRadius,fSourceWindowThick,0.,2*M_PI);
+  window_log = new G4LogicalVolume(window_tube,fSourceWindowMat,"source_window_log");
   G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));
   window_log->SetVisAttributes(visWindow);
   window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
 
   // source foil coating
-  G4Tubs* coating_tube = new G4Tubs("source_coating_tube", 0., SourceWindowRadius, fCoatingThick*0.5, 0., 2*M_PI);
+  G4Tubs* coating_tube = new G4Tubs("source_coating_tube", 0., SourceWindowRadius, fSourceCoatingThick*0.5, 0., 2*M_PI);
 	//	flag: 1 means EAST
 	//            2 means WEST
 	//	and int sd is an instance of SIDE sd (in Mendenhall code)
 	//	which I'm not sure is correct interpretation of code...
   for(int sd = 0; sd <= 1; sd++)
   {
-    coating_log[sd] = new G4LogicalVolume(coating_tube, fCoatingMat, Append(sd, "source_coating_log_"));
+    coating_log[sd] = new G4LogicalVolume(coating_tube, fSourceCoatingMat, Append(sd, "source_coating_log_"));
     coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
 
     if(sd == 0)
     {
-      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fWindowThick+fCoatingThick*0.5)),
+      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
 				coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
     }
     if(sd == 1)
     {
-      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fWindowThick+fCoatingThick*0.5)),
+      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
                                 coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
     }
   }
@@ -254,14 +253,36 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fTrapWindowMat = Mylar;
   fTrapCoatingMat = Be;
 
+  fCrinkleAngle = 0.;	// can be set independently (in Mendenhall code) using user input
+			// for now, note that 0. evaluates to false.
 
 
+  // decay tube construction
+  G4double decayTube_OR = fTrapIRtrap+fTrapDecayTube_Wall;	// OR = outer radius
+  G4double decayTube_Length = 3.0*m;
+  G4Tubs* decayTube_tube = new G4Tubs("decayTube_tube",fTrapIRtrap, decayTube_OR, decayTube_Length/2.,0.,2*M_PI);
+  decayTube_log = new G4LogicalVolume(decayTube_tube,Cu,"decayTube_log");
+  decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
+  new G4PVPlacement(NULL,G4ThreeVector(),decayTube_log,"decayTube",experimentalHall_log,false,0);
 
+  // plug - not sure if this is even used or what it is
+  if(false)
+  {
+    G4Tubs* plug_tube = new G4Tubs("plug_tube",fTrapIRtrap-1*mm, fTrapIRtrap, 2.*cm, -2*cm/fTrapIRtrap, 2*cm/fTrapIRtrap);
+    plug_log = new G4LogicalVolume(plug_tube,Cu,"plug_log");
+    plug_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
+    new G4PVPlacement(NULL,G4ThreeVector(),plug_log,"plug",experimentalHall_log,false,0);
+  }
 
+  // trap windows, collimator, monitors
 
-
-
-
+  G4double thicknessOfTrapWindow = fTrapWindowThick + fTrapCoatingThick;
+  G4double collimator_thick = 0.8*inch;
+  G4Tubs* trap_win_tube = new G4Tubs("trap_win_tube",0.,decayTube_OR,thicknessOfTrapWindow/2.,0.,2*M_PI);
+  G4Tubs* mylarTube = new G4Tubs("mylarTube",0.,decayTube_OR,fTrapWindowThick/2.,0.,2*M_PI);
+  G4Tubs* beTube = new G4Tubs("beTube",0.,decayTube_OR,fTrapCoatingThick/2.,0.,2*M_PI);
+  G4Tubs* collimatorTube = new G4Tubs("collimatorTube",fTrapIRcollimator,fTrapIRcollimator+collimator_thick,collimator_thick/2.,0.,2*M_PI);
+  G4Tubs* collimatorBackTube = new G4Tubs("collimatorBackTube",decayTube_OR+1.*mm,fTrapIRcollimator+collimator_thick,collimator_thick,0.,2*M_PI);
 
 
 
@@ -299,7 +320,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // Get nist material manager
   //G4NistManager* nist = G4NistManager::Instance();
-
 
 
   // Set Shape2 as scoring volume
