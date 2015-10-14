@@ -9,6 +9,10 @@
 #include <G4SystemOfUnits.hh>
 #include <G4ThreeVector.hh>
 
+#include <G4ElectroMagneticField.hh>	// Taken from WirechamberConstruction.
+#include <G4MagneticField.hh>
+#include <G4RotationMatrix.hh>
+
 #include <string>
 #include <sstream>
 
@@ -105,8 +109,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* lightguide_log; 		///< lightguide material logical volume
 
 // ----- Below are public variables from Wire Volume Construction
-    G4double GetWireVolWidth() const { return 2*cm; }
-
     G4Material* fMWPCGas; 			///< MWPC fill gas
     G4double fAnode_R; 				///< anode wire radius
     G4double fCathode_R; 			///< cathode wire radius
@@ -121,6 +123,38 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* cathode_wire_log; 		///< cathode wires logical volume
     G4LogicalVolume* cath_plate_log; 		///< gold plating on cathode segment
     G4LogicalVolume* anode_wire_log; 		///< anode wires logical volume
+
+// ----- Below are public variables from Wirechamber construction
+    G4double GetWChamWidth() const { return 2*fmwpcContainer_halfZ; }
+
+    G4double fWChamWindowThick; 		///< mylar window thickness
+    G4double fmwpc_entrance_R; 			///< entrance window radius
+    G4double fmwpc_exit_R; 			///< exit window radius
+
+//    G4Material* fMWPCGas; 			///< MWPC fill gas 	// LIKELY SAME GAS AS USED BEFORE
+    G4double fEntranceToCathodes; 		///< entrance-window-to-cathode distance
+    G4double fExitToCathodes; 			///< exit-window-to-cathode distance
+
+    G4LogicalVolume* WCham_container_log; 	///< overall gas box
+    G4LogicalVolume* winIn_log; 		///< inner window
+    G4LogicalVolume* winOut_log; 		///< outer window
+    G4LogicalVolume* kevContainer_log; 		///< container volume for kevlar strip array
+    G4LogicalVolume* kevSeg_log; 		///< one segment of kevlar strip array
+    G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
+
+	/// electromagnetic field	- this is causing issues. Not sure why.
+//    virtual void GetFieldValue(const G4double Point[4], G4double* Bfield) const;
+	/// whether the field changes particle energy
+//    virtual G4bool DoesFieldChangeEnergy() const { return fE0 != 0; }
+	/// set up tracking in field
+//    void ConstructField();
+	/// set anode voltage
+//    void setPotential(G4double Vanode);
+
+    G4MagneticField* fMyBField; 			///< Magnetic field pointer
+    G4RotationMatrix* fMyRotation; 		///< rotation from global frame to local coordinates
+    G4ThreeVector fMyTranslation; 		///< translation from global coordinates to center of anode plane
+
 
   protected:
     G4LogicalVolume*  fScoringVolume;	// from B1 example
@@ -142,6 +176,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* backing_phys; 		///< backing veto physical volume
     G4VPhysicalVolume* lightguide_phys; 	///< lightguide material physical volume
 
+// ---- Below are protected variables from Wirechamber construction
+    G4double fmwpcContainer_halfZ; 		///< half-width of wirechamber
+    G4double fE0; 				///< field scaling constant
 
   private:
     void DefineMaterials();

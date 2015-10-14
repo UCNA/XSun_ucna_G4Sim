@@ -130,6 +130,10 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CSGSolid.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ChargeState.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ChordFinder.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ChordFinder.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassicalRK4.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassificationOfNewTrack.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Color.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Colour.hh
@@ -141,15 +145,24 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DisplacedSolid.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectronOccupancy.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Element.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElementTable.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElementVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EqMagElectricField.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EquationOfMotion.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EquationOfMotion.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Event.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EventManager.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Exp.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FastVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FieldManager.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FieldManager.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FieldTrack.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FieldTrack.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ForceCondition.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GPILSelection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GRSSolid.hh
@@ -166,6 +179,14 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LorentzVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagErrorStepper.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagErrorStepper.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagIntegratorDriver.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagIntegratorDriver.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagIntegratorStepper.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagIntegratorStepper.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Mag_EqRhs.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Material.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.icc
@@ -1162,6 +1183,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectronOccupancy.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Element.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElementTable.hh
@@ -1170,6 +1192,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EventManager.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FastVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ForceCondition.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GPILSelection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GRSSolid.hh
@@ -1187,6 +1210,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolumeStore.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LorentzVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Material.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.icc
@@ -1413,6 +1437,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectronOccupancy.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Element.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElementTable.hh
@@ -1421,6 +1446,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EventManager.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FastVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ForceCondition.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GPILSelection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GRSSolid.hh
@@ -1437,6 +1463,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LorentzVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Material.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.icc
@@ -1667,6 +1694,7 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DigiFilterFactories.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectronOccupancy.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Element.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElementTable.hh
@@ -1675,6 +1703,7 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4EventManager.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FastVector.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ForceCondition.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GMocrenFile.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GPILSelection.hh
@@ -1699,6 +1728,7 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LorentzVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MCCIndexConversionTable.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MTRunManager.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagneticField.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Material.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialCutsCouple.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MaterialPropertiesTable.hh

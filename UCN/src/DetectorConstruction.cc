@@ -32,6 +32,12 @@
 #include <cassert>			// scintillator construction classes
 #include <G4Polycone.hh>
 
+#include <math.h>			// Used in WirechamberConstruction
+#include <G4FieldManager.hh>
+#include <G4ChordFinder.hh>
+#include <G4EqMagElectricField.hh>
+#include <G4ClassicalRK4.hh>
+
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
   fScoringVolume(0), fScintStepLimit(1)/*,	// note: fScintStepLimit initialized here
@@ -382,7 +388,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fN2_volume_Z = fLightguide_thick+fBacking_thick; // length of N2 volume
   fScintFacePos = -fN2_volume_Z/2;
 
-
+	// -------------                                  
+	// This is important. Don't forget to change it/turn the variable into a loop counter.
   int sd = 0;	// this will become a for-loop to take values 0 and 1.
 
 	// overall container
@@ -508,6 +515,82 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   new G4PVReplica(Append(sd,"cathode_array_1_"), cathSeg_log, cathContainer1_log, kXAxis, fNbOfWires, fSpacing);
   new G4PVReplica(Append(sd,"cathode_array_2_"), cathSeg_log, cathContainer2_log, kXAxis, fNbOfWires, fSpacing);
   new G4PVReplica(Append(sd,"anode_array_"), anodeSeg_log, anodContainer_log, kXAxis, fNbOfWires, fSpacing);
+
+  //----- Begin Wirechamber Construction code -----//	Note: ONLY BRINGING OVER CONSTRUCTOR
+							// Remaining methods are left for later.
+  fWChamWindowThick = 6*um;	// initial wire chamber construction variable declaration
+  fmwpc_entrance_R = 7.0*cm;
+  fmwpc_exit_R = 7.5*cm;
+  fEntranceToCathodes = 5.0*mm;
+  fExitToCathodes = 5.0*mm;
+  fMyBField = NULL;	// this is tricky. Need to deal with Field
+  fE0 = 0;		// This initializes the field potential to 0
+// NOTE: fMWPCGas is already declared in the previous "block"
+
+  // note the 2cm comes from calling GetWireVolWidth() on WireVolumeContruction.
+  // Since it is a fixed value (method set to return 2cm), can just replace.
+  fmwpcContainer_halfZ = 0.5*(fEntranceToCathodes+fExitToCathodes+(2*cm));
+  G4double mwpc_volume_width=8.0*inch; // MWPC gas box width
+
+  G4Box* mwpcContainer_box = new G4Box("mwpcContainer_box",mwpc_volume_width/2,mwpc_volume_width/2,fmwpcContainer_halfZ);
+  WCham_container_log = new G4LogicalVolume(mwpcContainer_box, fMWPCGas,Append(sd,"mwpcContainer_log_"));
+  WCham_container_log->SetVisAttributes(G4VisAttributes::Invisible);
+
+  fMyTranslation = G4ThreeVector(0.,0.,(fEntranceToCathodes-fExitToCathodes)/2);
+  new G4PVPlacement(NULL,fMyTranslation, gas_log,Append(sd,"mwpc_phys_"),WCham_container_log,false,0);
+
+//  d = fSpacing;	// Reminder that Michael uses these for wirechamber class
+//  L = fPlaneSpacing;
+//  r = fAnode_R;
+
+  // rectangular cross section strings with equal volume to nominal 140um cylinders
+  const G4double kevlar_R=0.07*mm;
+  const G4double kevlar_spacing=5.*mm;
+  const G4int NbOfKevWires=32;
+  const G4double kevLength=15.*cm;
+  const G4double kev_AR = 16.; 				// aspect ratio, width:depth
+  const G4double kev_area = M_PI*kevlar_R*kevlar_R; 	// total cross section area
+  const G4double kev_eff_w = sqrt(kev_area*kev_AR); 	// effective width
+  const G4double kev_eff_t = sqrt(kev_area/kev_AR); 	// effective thickness
+  const G4double kevlarPosZ = -fmwpcContainer_halfZ+kev_eff_t/2.;
+
+  G4Box* kevContainer_box = new G4Box("kevContainer_box",NbOfKevWires*kevlar_spacing/2.,kevLength/2.,kev_eff_t/2.);
+  G4Box* kevSeg_box = new G4Box("kevSeg_box",kevlar_spacing/2.,kevLength/2.,kev_eff_t/2);
+  G4Box* kevStrip_box = new G4Box("kevStrip_box",kev_eff_w/2.,kevLength/2.,kev_eff_t/2.);
+
+  kevContainer_log = new G4LogicalVolume(kevContainer_box,Vacuum,Append(sd,"kevContainer_log_"));
+  kevSeg_log = new G4LogicalVolume(kevSeg_box,Vacuum,"kevSeg_log");
+  kevStrip_log = new G4LogicalVolume(kevStrip_box,Kevlar,"kevStrip_log");
+
+  G4VisAttributes* visKevlar = new G4VisAttributes(G4Colour(1,1.0,0,1.0));
+  kevStrip_log->SetVisAttributes(visKevlar);
+
+  // place components and replicate array
+  new G4PVPlacement(NULL,G4ThreeVector(0.,0.,kevlarPosZ), kevContainer_log,Append(sd,"kevContainer_phys_"),WCham_container_log,false,0);
+  new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.), kevStrip_log,"kevStrip_phys",kevSeg_log,false,0);
+  new G4PVReplica(Append(sd,"kevlar_plane_"), kevSeg_log, kevContainer_log, kXAxis, NbOfKevWires, kevlar_spacing);
+
+  // Mylar windows
+  G4Tubs* winInner_tube = new G4Tubs("winInner_tube",0.,fmwpc_entrance_R,fWChamWindowThick/2,0.,2*M_PI);
+  G4Tubs* winOuter_tube = new G4Tubs("winOuter_tube",0.,fmwpc_exit_R,fWChamWindowThick/2,0.,2*M_PI);
+  winIn_log = new G4LogicalVolume(winInner_tube,Mylar,Append(sd,"winIn_log_"));
+  winIn_log->SetVisAttributes(visWindow);
+  new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-fmwpcContainer_halfZ+kev_eff_t+fWChamWindowThick/2),winIn_log,
+					Append(sd,"winIn_"), WCham_container_log,false,0);
+  winOut_log = new G4LogicalVolume(winOuter_tube,Mylar,Append(sd,"winOut_log_"));
+  winOut_log->SetVisAttributes(visWindow);
+  new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fmwpcContainer_halfZ-fWChamWindowThick/2),winOut_log,
+					Append(sd,"winOut_"),WCham_container_log,false,0);
+
+
+
+
+
+
+
+
+
+
 
 
 
