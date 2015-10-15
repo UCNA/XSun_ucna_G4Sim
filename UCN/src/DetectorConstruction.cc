@@ -540,7 +540,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   new G4PVPlacement(NULL,fMyTranslation, gas_log,Append(sd,"mwpc_phys_"),WCham_container_log,false,0);
 
 //  d = fSpacing;	// Reminder that Michael uses these for wirechamber class
-//  L = fPlaneSpacing;
+//  L = fPlaneSpacing;	// not sure where - they never appeared at all in wirechamber
 //  r = fAnode_R;
 
   // rectangular cross section strings with equal volume to nominal 140um cylinders
@@ -581,6 +581,122 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   winOut_log->SetVisAttributes(visWindow);
   new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fmwpcContainer_halfZ-fWChamWindowThick/2),winOut_log,
 					Append(sd,"winOut_"),WCham_container_log,false,0);
+
+  //----- Begin DetectorPackageConstruction class code -----//
+
+  fDPC_detPackageRadius = 6.0*inch;		// initialize the DetectorPackageConstruction variables
+  fDPC_mwpc_entrance_thickness = 0.375*inch;
+  fDPC_mwpc_entrance_r = 3.0*inch;
+  fDPC_mwpc_entrance_depth = 5.0*inch;
+  fDPC_frontwin_frame_thick = 1.0*inch;
+  fDPC_backwin_frame_thick = 0.5*inch;
+
+  //Note: here in Michael's code an instance of mwpc and scint are declared given an input Side sd
+  //These are instances of WirechamberConstruction and ScintillatorConstruction.
+
+  // aluminum entrance collimator to detector package
+  const G4double entrance_section_length = fDPC_mwpc_entrance_depth+fDPC_frontwin_frame_thick;
+  G4Tubs* mwpc_entrance_tube = new G4Tubs("mwpc_entrance_tube",0,fDPC_detPackageRadius,0.5*entrance_section_length,0.,2*M_PI);
+  G4Tubs* entrance_front_tube = new G4Tubs("entrance_front_tube",fDPC_mwpc_entrance_r+fDPC_mwpc_entrance_thickness,
+						fDPC_detPackageRadius,0.5*fDPC_mwpc_entrance_thickness,0.,2*M_PI);
+  G4Tubs* entrance_mid_tube = new G4Tubs("entrance_mid_tube",fDPC_mwpc_entrance_r,
+						fDPC_mwpc_entrance_r+fDPC_mwpc_entrance_thickness,0.5*fDPC_mwpc_entrance_depth,0.,2*M_PI);
+  // Careful. Below is first call to mwpc object. Must replace with our current member variables!
+  G4Tubs* entrance_back_tube = new G4Tubs("entrance_back_tube",fmwpc_entrance_R,
+						fDPC_detPackageRadius,0.5*fDPC_frontwin_frame_thick,0.,2*M_PI);
+
+  G4VisAttributes* visMWPCEntrance = new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.8));
+  fDPC_mwpc_entrance_log = new G4LogicalVolume(mwpc_entrance_tube, Vacuum, Append(sd,"mwpc_entrance_log_"));
+  fDPC_mwpc_entrance_log->SetVisAttributes(G4VisAttributes::Invisible);
+  fDPC_entrance_front_log = new G4LogicalVolume(entrance_front_tube, Al, Append(sd,"entrance_front_log_"));
+  fDPC_entrance_mid_log = new G4LogicalVolume(entrance_mid_tube, Al, Append(sd,"entrance_mid_log_"));
+  fDPC_entrance_back_log = new G4LogicalVolume(entrance_back_tube, Al, Append(sd,"entrance_back_log_"));
+  fDPC_entrance_front_log->SetVisAttributes(visMWPCEntrance);
+  fDPC_entrance_mid_log->SetVisAttributes(visMWPCEntrance);
+  fDPC_entrance_back_log->SetVisAttributes(visMWPCEntrance);
+
+  fDPC_entrance_front_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-0.5*(entrance_section_length-fDPC_mwpc_entrance_thickness)),
+						fDPC_entrance_front_log,Append(sd,"entrance_front_"),fDPC_mwpc_entrance_log,false,0);
+  fDPC_entrance_mid_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-0.5*fDPC_frontwin_frame_thick),
+						fDPC_entrance_mid_log,Append(sd,"entrance_mid_"),fDPC_mwpc_entrance_log,false,0);
+  fDPC_entrance_back_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.5*(entrance_section_length-fDPC_frontwin_frame_thick)),
+						fDPC_entrance_back_log,Append(sd,"entrance_back_"),fDPC_mwpc_entrance_log,false,0);
+
+  // overall detector package
+  const G4double detPackageHalfZ = fDPC_mwpc_entrance_depth+(2*fmwpcContainer_halfZ)+1.0*inch;
+  G4Tubs* detPackage_tube = new G4Tubs(Append(sd,"detPackage_tube_"),0,fDPC_detPackageRadius,detPackageHalfZ,0.,2*M_PI);
+  fDPC_container_log = new G4LogicalVolume(detPackage_tube,Vacuum,Append(sd,"container_log_"));
+  fDPC_container_log->SetVisAttributes(G4VisAttributes::Invisible);
+
+  // place components relative to scintillator face at 0
+  fDPC_scint_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-fScintFacePos),
+				N2_container_log,Append(sd,"N2_vol_phys_"),fDPC_container_log,false,0);
+
+  const G4double mwpc_pos = -(2*fmwpcContainer_halfZ)/2.-fDPC_backwin_frame_thick-(fN2_volume_Z/2.+fScintFacePos);
+  fDPC_mwpc_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,mwpc_pos),
+  					WCham_container_log,Append(sd,"mwpcContainer_"),fDPC_container_log,false,0);
+  fMyTranslation[2] += mwpc_pos;	// I literally don't understand this syntax at all.
+					// But Michael had it and causes no errors so it must work.
+  const G4double entrance_pos = mwpc_pos-((2*fmwpcContainer_halfZ)+entrance_section_length)/2;
+  fDPC_entrance_face_pos = entrance_pos - 0.5*entrance_section_length;
+  fDPC_entrance_win_pos = entrance_pos + 0.5*entrance_section_length;
+  fDPC_mwpc_entrance_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,entrance_pos),
+  						fDPC_mwpc_entrance_log,Append(sd,"mwpc_entrance"),fDPC_container_log,false,0);
+
+  // aluminum exit window and N2 volume at back of gas box
+  G4Tubs* mwpc_exit_tube = new G4Tubs("mwpc_exit_tube",fmwpc_exit_R,fDPC_detPackageRadius,0.5*fDPC_backwin_frame_thick,0.,2*M_PI);
+  G4VisAttributes* visMWPCExit = new G4VisAttributes(G4Colour(0.3,0.3,0.3,0.8));
+  fDPC_mwpc_exit_log = new G4LogicalVolume(mwpc_exit_tube, Al, Append(sd,"mwpc_exit_log_"));
+  fDPC_mwpc_exit_log->SetVisAttributes(visMWPCExit);
+  fDPC_exit_frame_pos = mwpc_pos+((2*fmwpcContainer_halfZ)+fDPC_backwin_frame_thick)/2;
+  fDPC_mwpc_exit_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fDPC_exit_frame_pos),
+					fDPC_mwpc_exit_log,Append(sd,"mwpc_exit_"),fDPC_container_log,false,0);
+
+  G4Tubs* mwpc_exit_N2_tube = new G4Tubs("mwpc_exit_N2_tube",0,fmwpc_exit_R,0.5*fDPC_backwin_frame_thick,0.,2*M_PI);
+  fDPC_mwpc_exit_N2_log = new G4LogicalVolume(mwpc_exit_N2_tube, WCNitrogen, Append(sd,"mwpc_exit_N2_log_"));
+  fDPC_mwpc_exit_N2_log->SetVisAttributes(G4VisAttributes::Invisible);
+  fDPC_mwpc_exit_N2_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fDPC_exit_frame_pos),
+					fDPC_mwpc_exit_N2_log,Append(sd,"mwpc_exit_"),fDPC_container_log,false,0);
+  // material behind detector
+  const G4double backstuff_thick = 1.*inch;
+  G4Tubs* backstuff_tube = new G4Tubs(Append(sd,"backstuff_tube"),0,fDPC_detPackageRadius,backstuff_thick*0.5,0.,2*M_PI);
+  fDPC_backstuff_log = new G4LogicalVolume(backstuff_tube,SS304,Append(sd,"backstuff_log_"));
+  fDPC_backstuff_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,detPackageHalfZ-0.5*backstuff_thick),
+  						fDPC_backstuff_log,Append(sd,"backstuff_"),fDPC_container_log,false,0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

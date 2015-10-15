@@ -125,7 +125,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* anode_wire_log; 		///< anode wires logical volume
 
 // ----- Below are public variables from Wirechamber construction
-    G4double GetWChamWidth() const { return 2*fmwpcContainer_halfZ; }
+//    G4double GetWChamWidth() const { return 2*fmwpcContainer_halfZ; }
 
     G4double fWChamWindowThick; 		///< mylar window thickness
     G4double fmwpc_entrance_R; 			///< entrance window radius
@@ -155,6 +155,27 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4RotationMatrix* fMyRotation; 		///< rotation from global frame to local coordinates
     G4ThreeVector fMyTranslation; 		///< translation from global coordinates to center of anode plane
 
+// ---- Below are public variables from the Detector Package Construction
+    G4double fDPC_detPackageRadius;
+    G4double fDPC_mwpc_entrance_thickness; 	///< MWPC entrance tube wall thickness
+    G4double fDPC_mwpc_entrance_r; 		///< MWPC entrance tube radius
+    G4double fDPC_mwpc_entrance_depth; 		///< MWPC entrance tube depth
+    G4double fDPC_frontwin_frame_thick; 	///< MWPC front window frame thickness
+    G4double fDPC_backwin_frame_thick; 		///< MWPC exit window frame thickness
+
+    G4LogicalVolume* fDPC_container_log; 	///< overall positioning container
+    G4LogicalVolume* fDPC_mwpc_entrance_log; 	///< entrance port container
+    G4LogicalVolume* fDPC_entrance_front_log;	///< entrance port front plate
+    G4LogicalVolume* fDPC_entrance_mid_log; 	///< entrance port tube
+    G4LogicalVolume* fDPC_entrance_back_log; 	///< entrance port back plate (MWPC box cover)
+    G4LogicalVolume* fDPC_mwpc_exit_log; 	///< aluminum exit window from wirechamber
+    G4LogicalVolume* fDPC_mwpc_exit_N2_log; 	///< N2 between exit window and scintillator
+    G4LogicalVolume* fDPC_backstuff_log; 	///< miscellaneous mass behind detectors
+
+    G4double fDPC_entrance_face_pos; 		///< entrance window port entrance relative to scint face
+    G4double fDPC_entrance_win_pos; 		///< MWPC entrance window position relative to scint face
+    G4double fDPC_exit_frame_pos; 		///< exit window frame pos
+
 
   protected:
     G4LogicalVolume*  fScoringVolume;	// from B1 example
@@ -179,6 +200,17 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 // ---- Below are protected variables from Wirechamber construction
     G4double fmwpcContainer_halfZ; 		///< half-width of wirechamber
     G4double fE0; 				///< field scaling constant
+
+// ---- Below are protected variables from DetectorPackageConstruction
+    G4VPhysicalVolume* fDPC_scint_phys;
+    G4VPhysicalVolume* fDPC_mwpc_phys;
+    G4VPhysicalVolume* fDPC_mwpc_entrance_phys;
+    G4VPhysicalVolume* fDPC_entrance_front_phys;
+    G4VPhysicalVolume* fDPC_entrance_mid_phys;
+    G4VPhysicalVolume* fDPC_entrance_back_phys;
+    G4VPhysicalVolume* fDPC_mwpc_exit_phys;
+    G4VPhysicalVolume* fDPC_mwpc_exit_N2_phys;
+    G4VPhysicalVolume* fDPC_backstuff_phys;
 
   private:
     void DefineMaterials();
