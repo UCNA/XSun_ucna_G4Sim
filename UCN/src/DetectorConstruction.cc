@@ -40,7 +40,7 @@
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fScoringVolume(0), fScintStepLimit(1)/*,	// note: fScintStepLimit initialized here
+  fScoringVolume(0), fScintStepLimit(1), fMWPCBowing(0*cm), fDetRot(0.)/*,	// note: fScintStepLimit initialized here
   experimentalHall_log(0), experimentalHall_phys(0),
   container_log(0), holder_phys(0), ring_phys(0),
   window_log(0), window_phys(0),
@@ -663,10 +663,43 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fDPC_backstuff_log = new G4LogicalVolume(backstuff_tube,SS304,Append(sd,"backstuff_log_"));
   fDPC_backstuff_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,detPackageHalfZ-0.5*backstuff_thick),
   						fDPC_backstuff_log,Append(sd,"backstuff_"),fDPC_container_log,false,0);
+//----- End of Detector Package Construction -----//
+
+//----- Return to Detector Construction. Port the remainder of the code -----//
+
+/* The constructor in the for loop is only there to actually repeat all the previous code for a given sd value.
+So, if you ignore that part, you can just change the variables as desired from the class members you've already
+assigned and continue on. Again, first we are trying to get only one set of detector package to construct.*/
+
+  fEntranceToCathodes += fMWPCBowing;	// nothing changes since defaults to 0
+
+  G4RotationMatrix* sideFlip = new G4RotationMatrix();
+  fDetOffset = G4ThreeVector();
+  G4ThreeVector sideTrans;
+
+  if(sd == 0)				// also doesn't seem to matter since fDetRot defaults to 0
+  {
+    sideFlip->rotateZ(fDetRot*(-1)*rad);
+    sideTrans = G4ThreeVector(0.,0.,(-1)*(2.2*m-0))+fDetOffset*(-1);
+  }							// there are two getScintFacePos() methods
+  else if(sd == 1)					// One in DetectorPackageConstruction
+  {							// One in ScintillatorConstruction
+    sideFlip->rotateZ(fDetRot*(+1)*rad);
+    sideTrans = G4ThreeVector(0.,0.,(+1)*(2.2*m-0))+fDetOffset*(+1);
+  }
+  if(sd == 0)
+  {
+    sideFlip->rotateY(M_PI*rad);
+  }
+
+  detPackage_phys = new G4PVPlacement(sideFlip,sideTrans, fDPC_container_log,
+						Append(sd,"detPackage_phys_"),experimentalHall_log,false,0);
 
 
-
-
+//  dets[sd].mwpc.myRotation = sideFlip;	// don't understand. He has new definitions for rotations/translations
+//  dets[sd].mwpc.myTranslation = (*sideFlip)(dets[sd].mwpc.myTranslation);	// but he doesn't do a G4 placement?
+//  dets[sd].mwpc.myTranslation += sideTrans;	// So is everything placed in the geometry that is supposed to be or not??
+//  dets[sd].mwpc.setPotential(2700*volt);
 
 
 

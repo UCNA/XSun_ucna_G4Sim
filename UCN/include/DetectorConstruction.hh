@@ -55,6 +55,11 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     void setVacuumPressure(G4double pressure);
 
+    G4LogicalVolume* experimentalHall_log;
+    G4VPhysicalVolume* experimentalHall_phys;
+
+    G4VPhysicalVolume* detPackage_phys;	// Will be an array later
+
 // ---- Below are public variables from Source Holder class
     G4double getHolderThick() const { return fSourceHolderThickness; }
 
@@ -92,8 +97,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 // ---- Below are public variables from Scintillator Construction
 
-    G4double getScintFacePos() const { return fScintFacePos; }
-    G4double GetScintWidth() const { return fN2_volume_Z; }
+//    G4double getScintFacePos() const { return fScintFacePos; }
+//    G4double GetScintWidth() const { return fN2_volume_Z; }
 
     G4double fScint_Radius; 			///< scintillator disc radius
     G4double fBacking_Radius; 			///< backing veto (and overall volume) radius
@@ -143,7 +148,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
 
 	/// electromagnetic field	- this is causing issues. Not sure why.
-//    virtual void GetFieldValue(const G4double Point[4], G4double* Bfield) const;
+    void GetFieldValue(G4double Point[4], G4double* Bfield) const;
 	/// whether the field changes particle energy
 //    virtual G4bool DoesFieldChangeEnergy() const { return fE0 != 0; }
 	/// set up tracking in field
@@ -218,10 +223,10 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     float fScintStepLimit;
 
-    G4LogicalVolume* experimentalHall_log;
-    G4VPhysicalVolume* experimentalHall_phys;
-
     G4ThreeVector fSourceHolderPos;	// here and below is returning to Mendenhall's DetectorConstruction class
+    G4double fMWPCBowing;
+    G4double fDetRot;
+    G4ThreeVector fDetOffset;
 
 //    float fCrinkleAngle;		// Decay trap foil crinkle angle. NOT USING
 
