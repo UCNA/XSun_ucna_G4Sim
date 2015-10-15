@@ -390,8 +390,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 	// -------------                                  
 	// This is important. Don't forget to change it/turn the variable into a loop counter.
-  int sd = 0;	// this will become a for-loop to take values 0 and 1.
+//  int sd = 0;	// this will become a for-loop to take values 0 and 1.
 
+  for(int sd = 0; sd <=1; sd++)
+  {
 	// overall container
   G4Tubs* N2_vol_tube = new G4Tubs(Append(sd,"N2_vol_tube_"),0.,fBacking_Radius,fN2_volume_Z/2,0.,2*M_PI);
   N2_container_log = new G4LogicalVolume(N2_vol_tube,WCNitrogen,Append(sd,"N2_vol_log_"));
@@ -692,10 +694,10 @@ assigned and continue on. Again, first we are trying to get only one set of dete
     sideFlip->rotateY(M_PI*rad);
   }
 
-  detPackage_phys = new G4PVPlacement(sideFlip,sideTrans, fDPC_container_log,
+  detPackage_phys[sd] = new G4PVPlacement(sideFlip,sideTrans, fDPC_container_log,
 						Append(sd,"detPackage_phys_"),experimentalHall_log,false,0);
 
-
+  }
 //  dets[sd].mwpc.myRotation = sideFlip;	// don't understand. He has new definitions for rotations/translations
 //  dets[sd].mwpc.myTranslation = (*sideFlip)(dets[sd].mwpc.myTranslation);	// but he doesn't do a G4 placement?
 //  dets[sd].mwpc.myTranslation += sideTrans;	// So is everything placed in the geometry that is supposed to be or not??

@@ -58,7 +58,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* experimentalHall_log;
     G4VPhysicalVolume* experimentalHall_phys;
 
-    G4VPhysicalVolume* detPackage_phys;	// Will be an array later
+    G4VPhysicalVolume* detPackage_phys[2];	// Will be an array later
 
 // ---- Below are public variables from Source Holder class
     G4double getHolderThick() const { return fSourceHolderThickness; }
