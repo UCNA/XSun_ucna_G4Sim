@@ -58,10 +58,7 @@ DetectorConstruction::~DetectorConstruction()
 
 void DetectorConstruction::DefineMaterials()
 {
-
-  G4cout << "Initial Vacuum has been set to null pointer." << G4endl;
   Vacuum = NULL;		//This value is set later using the setVacuumPressure method.
-
   string name,symbol;
   int z;
   G4double a;
@@ -79,8 +76,6 @@ void DetectorConstruction::DefineMaterials()
   new G4Element(name="Cu", symbol="Cu",z=29, a=63.55*g/mole);
   new G4Element(name="Zn", symbol="Zn",z=30, a=65.39*g/mole);
 
-  cout << "\n \n \n \n Constructing Materials! \n \n \n \n" << endl;
-
   Be = new G4Material("Beryllium",4.,9.01*g/mole,1.848*g/cm3);
   Al = new G4Material("Aluminum",13.,26.98*g/mole,2.7*g/cm3);
   Si = new G4Material("Silicon",14.,28.09*g/mole,2.33*g/cm3);
@@ -88,57 +83,45 @@ void DetectorConstruction::DefineMaterials()
   Wu = new G4Material("Tungsten",74.,183.84*g/mole,19.3*g/cm3);
   Au = new G4Material("Gold",79.,196.97*g/mole,19.3*g/cm3);
 
-
   Brass = new G4Material("Brass",8.5*g/cm3,2);
   Brass->AddElement(G4Element::GetElement("Cu"),massFrac=0.70);
   Brass->AddElement(G4Element::GetElement("Zn"),massFrac=0.30);
-
   SS304 = new G4Material("Stainless304",8.03*g/cm3,3);
   SS304->AddElement(G4Element::GetElement("Fe"),massFrac=0.70);
   SS304->AddElement(G4Element::GetElement("Cr"),massFrac=0.20);
   SS304->AddElement(G4Element::GetElement("Ni"),massFrac=0.10);
-
   Kevlar = new G4Material("Kevlar",1.44*g/cm3,4);
   Kevlar->AddElement(G4Element::GetElement("N"),nAtoms=2);
   Kevlar->AddElement(G4Element::GetElement("C"),nAtoms=14);
   Kevlar->AddElement(G4Element::GetElement("H"),nAtoms=10);
   Kevlar->AddElement(G4Element::GetElement("O"),nAtoms=2);
-
   Mylar = new G4Material("Mylar",1.4*g/cm3,3);
   Mylar->AddElement(G4Element::GetElement("C"),nAtoms=5);
   Mylar->AddElement(G4Element::GetElement("H"),nAtoms=4);
   Mylar->AddElement(G4Element::GetElement("O"),nAtoms=2);
-
   Polyethylene = new G4Material("Polyethylene",0.95*g/cm3,2);
   Polyethylene->AddElement(G4Element::GetElement("C"),nAtoms=2);
   Polyethylene->AddElement(G4Element::GetElement("H"),nAtoms=4);
-
   // Wirechamber fill: pentane @ 100torr
   double P_MWPC = 100*torr;
   double T_MWPC = 298*kelvin;
   WCPentane = new G4Material("Pentane",(72.17*mg)/(22.4*cm3)*P_MWPC/(760*torr)*(273.15*kelvin)/T_MWPC,2,kStateGas,T_MWPC,P_MWPC);
   WCPentane->AddElement(G4Element::GetElement("C"),nAtoms=5);
   WCPentane->AddElement(G4Element::GetElement("H"),nAtoms=12);
-
   // Wirechamber fill: N2 @ 95torr
   double P_N2 = P_MWPC - 5*torr;
   WCNitrogen = new G4Material("MWPC_N2",(28*mg)/(22.4*cm3)*P_N2/(760*torr)*(273.15*kelvin)/T_MWPC,1,kStateGas,T_MWPC,P_N2);
   WCNitrogen->AddElement(G4Element::GetElement("N"),nAtoms=2);
-
   // Scintillator, per Eljen EJ-204 datasheet
   Sci=new G4Material("Scintillator",1.032*g/cm3,2);
   Sci->AddElement(G4Element::GetElement("C"),nAtoms=4.68);
   Sci->AddElement(G4Element::GetElement("H"),nAtoms=5.15);
-
-  G4cout << "\n Completed construction of materials. Exiting ConstructMaterials(). \n" << G4endl;
-
 }
 
 void DetectorConstruction::setVacuumPressure(G4double pressure)
 {
   // our slightly crappy vacuum: low-pressure air (density @20c; 1.290*mg/cm3 @STP)
   G4cout<<"------------- Detector vacuum is set at "<<pressure/torr<<" Torr"<<G4endl;
-
   Vacuum = new G4Material("Vacuum",1.2048*mg/cm3*pressure/atmosphere,2,kStateGas,293*kelvin,pressure);
   Vacuum->AddElement(G4Element::GetElement("N"),0.78);
   Vacuum->AddElement(G4Element::GetElement("O"),0.22);
@@ -147,10 +130,10 @@ void DetectorConstruction::setVacuumPressure(G4double pressure)
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   DefineMaterials();	// immediate call to define all materials used as class properties (so ~global access)
-
   setVacuumPressure(0);	// this is the set vacuum pressure that was warned about in DefineMaterials()
 
-
+  G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));	// placed here for presentation
+										// return to place in code later.
   // user step limits
   G4UserLimits* UserCoarseLimits = new G4UserLimits();
   UserCoarseLimits->SetMaxAllowedStep(10*m);
@@ -173,12 +156,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
   //----- source holder object -----//
-  fSourceWindowThick = 4.7*um;		// class initialization variables.
+/*  fSourceWindowThick = 4.7*um;		// class initialization variables.
   fSourceCoatingThick = 0.1*um;		// really should go in constructor, but
   fSourceWindowMat = Mylar;		// materials might be defined in wrong order
   fSourceCoatingMat = Al;
   fSourceHolderThickness = (3./16.)*inch;
-
   fSourceHolderPos = G4ThreeVector(0,0,0);	// initialize the position. Should be done in Constructor but w/e
 
   const G4double SourceRingRadius = 0.5*inch;
@@ -196,16 +178,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Tubs* holder_hole = new G4Tubs("source_holder_hole",0.,SourceRingRadius,fSourceHolderThickness,0.,2*M_PI);
   G4SubtractionSolid* holder = new G4SubtractionSolid("source_holder", holder_box, holder_hole);
   G4LogicalVolume* holder_log = new G4LogicalVolume(holder,Brass,"source_holder_log");
-//  holder_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0,0.5)));
-  holder_log->SetVisAttributes(G4VisAttributes::Invisible); // use above
+  holder_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0,0.5)));
+//  holder_log->SetVisAttributes(G4VisAttributes::Invisible); // use above
   holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0);
 
   // sealed source foil
   G4Tubs* window_tube = new G4Tubs("window_tube",0.,SourceWindowRadius,fSourceWindowThick,0.,2*M_PI);
   window_log = new G4LogicalVolume(window_tube,fSourceWindowMat,"source_window_log");
-  G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));
-//  window_log->SetVisAttributes(visWindow);
-  window_log->SetVisAttributes(G4VisAttributes::Invisible);	//use above
+//  G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));
+  window_log->SetVisAttributes(visWindow);
+//  window_log->SetVisAttributes(G4VisAttributes::Invisible);	//use above
   window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
 
   // source foil coating
@@ -216,8 +198,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   for(int sd = 0; sd <= 1; sd++)
   {
     coating_log[sd] = new G4LogicalVolume(coating_tube, fSourceCoatingMat, Append(sd, "source_coating_log_"));
-//    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
-    coating_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// use above
+    coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
+//    coating_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// use above
 
     if(sd == 0)
     {
@@ -234,21 +216,17 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // source retaining ring
   G4Tubs* ring_tube = new G4Tubs("source_ring_tube",SourceWindowRadius,SourceRingRadius,SourceRingThickness/2,0.,2*M_PI);
   G4LogicalVolume* ring_log = new G4LogicalVolume(ring_tube,Al,"source_ring_log");
-//  ring_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
-  ring_log->SetVisAttributes(G4VisAttributes::Invisible);	// use above
+  ring_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
+//  ring_log->SetVisAttributes(G4VisAttributes::Invisible);	// use above
   ring_phys = new G4PVPlacement(NULL,G4ThreeVector(),ring_log,"source_ring_phys",container_log,false,0);
 
   // ----- end of source holder class code.
-
   source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
-
-
-  //----- geometry-dependent settings -----//
-  // Note: we only need geometry settings "thinFoil"
-
+*/
+  //----- geometry-dependent settings -----//	Only need "thinFoil"
 
   //----- Detector Decay Trap construction -----//
-
+/*
   fTrapWindowThick = 0.180*um;
   fTrapCoatingThick = 0.150*um;
   fTrapIRtrap = 2.45*inch;
@@ -267,18 +245,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double decayTube_Length = 3.0*m;
   G4Tubs* decayTube_tube = new G4Tubs("decayTube_tube",fTrapIRtrap, decayTube_OR, decayTube_Length/2.,0.,2*M_PI);
   decayTube_log = new G4LogicalVolume(decayTube_tube,Cu,"decayTube_log");
-//  decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
-  decayTube_log->SetVisAttributes(G4VisAttributes::Invisible);	// use above
+  decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
+//  decayTube_log->SetVisAttributes(G4VisAttributes::Invisible);	// use above
   new G4PVPlacement(NULL,G4ThreeVector(),decayTube_log,"decayTube",experimentalHall_log,false,0);
-
-  // plug - not sure if this is even used or what it is
-  if(false)
-  {
-    G4Tubs* plug_tube = new G4Tubs("plug_tube",fTrapIRtrap-1*mm, fTrapIRtrap, 2.*cm, -2*cm/fTrapIRtrap, 2*cm/fTrapIRtrap);
-    plug_log = new G4LogicalVolume(plug_tube,Cu,"plug_log");
-    plug_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
-    new G4PVPlacement(NULL,G4ThreeVector(),plug_log,"plug",experimentalHall_log,false,0);
-  }
 
   // trap windows, collimator, monitors
   G4double thicknessOfTrapWindow = fTrapWindowThick + fTrapCoatingThick;
@@ -304,8 +273,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   for(int sd = 0; sd <= 1; sd++)	// exact same "legend" as source holder loop
   {
     trap_win_log[sd] = new G4LogicalVolume(trap_win_tube,Vacuum,Append(sd,"trap_win_log_"));
-//    trap_win_log[sd]->SetVisAttributes(visWindow);
-    trap_win_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of, use above
+    trap_win_log[sd]->SetVisAttributes(visWindow);
+//    trap_win_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of, use above
 	// note the weird indexing because there is an if-else statement dependent on fCrinkleAngle
       if(sd == 0)
       {
@@ -342,14 +311,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4double collimatorPosZ = (decayTube_Length+collimator_thick)/2.;
     collimatorPosZ += (thicknessOfTrapWindow)/2.;
     collimator_log[sd] = new G4LogicalVolume(collimatorTube, fTrapCollimatorMat, Append(sd,"collimator_log_"));
-    collimator_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of
+//    collimator_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of
 
     G4double collimatorBackZ = decayTube_Length/2.-collimator_thick;
     collimatorBack_log[sd] = new G4LogicalVolume(collimatorBackTube, fTrapCollimatorMat, Append(sd,"collimatorBack_log_"));
-    collimatorBack_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of
+//    collimatorBack_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of
 
     trap_monitor_log[sd] = new G4LogicalVolume(trap_monitor_tube,Vacuum,Append(sd,"trap_monitor_log_"));
-    trap_monitor_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of
+//    trap_monitor_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of
 
     if(sd == 0)
     {
@@ -370,10 +339,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                 trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
     }
   }
-
-  //----- End of decay trap construction code. Return to detector construction -----//
-
-  //********** To do remaining geometry, need to import the ingredients for Detector Package Construction ****/////
+*/  //----- End of decay trap construction code. Return to detector construction -----//
 
   //----- Begin scintillator construction -----//
   fScint_Radius = 7.5*cm;	// initialize some constructor variables
@@ -388,10 +354,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fN2_volume_Z = fLightguide_thick+fBacking_thick; // length of N2 volume
   fScintFacePos = -fN2_volume_Z/2;
 
-	// -------------                                  
-	// This is important. Don't forget to change it/turn the variable into a loop counter.
+                                                                        
 //  int sd = 0;	// this will become a for-loop to take values 0 and 1.
-
   for(int sd = 0; sd <=1; sd++)
   {
 	// overall container
@@ -403,7 +367,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Tubs* Dscint_tube = new G4Tubs(Append(sd,"Dscint_tube_"),0.,fScint_Radius,fDead_thick/2,0.,2*M_PI);
   Dscint_log = new G4LogicalVolume(Dscint_tube,Sci,Append(sd,"Dscint_log_"));
   G4VisAttributes* visDScint= new G4VisAttributes(G4Colour(1.0,0.0,1.0,0.5));
-  Dscint_log->SetVisAttributes(visDScint);	// can't see anything cause didn't place it
+  Dscint_log->SetVisAttributes(visDScint);
+//  Dscint_log -> SetVisAttributes(G4VisAttributes::Invisible);
   Dscint_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-(fN2_volume_Z-fDead_thick)/2.),
   					Dscint_log,Append(sd,"Dscint_phys_"),N2_container_log,false,0);
 
@@ -412,6 +377,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   scint_log = new G4LogicalVolume(scint_tube,Sci,Append(sd,"scint_log_"));
   G4VisAttributes* visScint= new G4VisAttributes(G4Colour(0.0,1.0,1.0,0.2));
   scint_log->SetVisAttributes(visScint);
+//  scint_log -> SetVisAttributes(G4VisAttributes::Invisible);
   scint_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-fN2_volume_Z/2+fDead_thick+(fScint_thick-fDead_thick)/2.),
   					scint_log,Append(sd,"scint_phys_"),N2_container_log,false,0);
 
@@ -425,6 +391,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   lightguide_log = new G4LogicalVolume(lightguide_polycone,Sci,Append(sd,"lightguide_log_"));
   G4VisAttributes* visLG = new G4VisAttributes(G4Colour(0.0,1.0,0.5,0.2));
   lightguide_log->SetVisAttributes(visLG);
+//  lightguide_log -> SetVisAttributes(G4VisAttributes::Invisible);
   lightguide_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-fN2_volume_Z/2.),
   						lightguide_log,Append(sd,"scint_phys_"),N2_container_log,false,0);
 
@@ -433,11 +400,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   backing_log = new G4LogicalVolume(backing_tube,Sci,Append(sd,"backing_log_"));
   G4VisAttributes* visBacking= new G4VisAttributes(G4Colour(0.0,0.0,1,0.2));
   backing_log->SetVisAttributes(visBacking);
+//  backing_log -> SetVisAttributes(G4VisAttributes::Invisible);
   backing_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(fN2_volume_Z-fBacking_thick)/2.),
   					backing_log,Append(sd,"backing_phys_"),N2_container_log,false,0);
   //----- End scintillator construction -----//
-
-  // The sensible way to do this is to port as much code as possible before the detector package construction for loop
 
   //----- Begin Wire Volume Construction -----//
 
@@ -447,7 +413,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fSpacing = 2.54*mm;
   fNbOfWires = 64;
   fPlaneSpacing = 1*cm;
-
   fMWPCGas = WCPentane;	// NOTE: this is declared in WirechamberConstruction, not the volume constr.
 
   G4Material* fCathodeWireMaterial = Al;
@@ -492,10 +457,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   anodeSeg_log->SetVisAttributes(G4VisAttributes::Invisible);
   cathode_wire_log = new G4LogicalVolume(cathode_tube,fCathodeWireMaterial,Append(sd,"cathode_log_"));
   cathode_wire_log->SetVisAttributes(visCathWires);
+//  cathode_wire_log -> SetVisAttributes(G4VisAttributes::Invisible);
   cath_plate_log = new G4LogicalVolume(cathplate_tube,fCathodePlateMaterial,Append(sd,"cathplate_log_"));
   cath_plate_log->SetVisAttributes(visCathWires);
+//  cath_plate_log->SetVisAttributes(G4VisAttributes::Invisible);
   anode_wire_log = new G4LogicalVolume(anode_tube,fAnodeWireMaterial,Append(sd,"anode_log_"));
   anode_wire_log->SetVisAttributes(visAnodeWires);
+//  anode_wire_log -> SetVisAttributes(G4VisAttributes::Invisible);
 
   new G4PVPlacement(NULL,G4ThreeVector(),cathode_wire_log, Append(sd,"cathode_wire_phys_"),cathSeg_log,true,0);
   new G4PVPlacement(NULL,G4ThreeVector(),cath_plate_log,Append(sd,"cath_plate_phys_"),cathSeg_log,true,0);
@@ -527,7 +495,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fExitToCathodes = 5.0*mm;
   fMyBField = NULL;	// this is tricky. Need to deal with Field
   fE0 = 0;		// This initializes the field potential to 0
-// NOTE: fMWPCGas is already declared in the previous "block"
 
   // note the 2cm comes from calling GetWireVolWidth() on WireVolumeContruction.
   // Since it is a fixed value (method set to return 2cm), can just replace.
@@ -541,13 +508,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fMyTranslation = G4ThreeVector(0.,0.,(fEntranceToCathodes-fExitToCathodes)/2);
   new G4PVPlacement(NULL,fMyTranslation, gas_log,Append(sd,"mwpc_phys_"),WCham_container_log,false,0);
 
-//  d = fSpacing;	// Reminder that Michael uses these for wirechamber class
-//  L = fPlaneSpacing;	// not sure where - they never appeared at all in wirechamber
-//  r = fAnode_R;
-
-  // rectangular cross section strings with equal volume to nominal 140um cylinders
-  const G4double kevlar_R=0.07*mm;
-  const G4double kevlar_spacing=5.*mm;
+  const G4double kevlar_R=0.07*mm;			// rectangular cross section strings
+  const G4double kevlar_spacing=5.*mm;			// with equal volume to nominal 140um cylinders
   const G4int NbOfKevWires=32;
   const G4double kevLength=15.*cm;
   const G4double kev_AR = 16.; 				// aspect ratio, width:depth
@@ -566,7 +528,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   G4VisAttributes* visKevlar = new G4VisAttributes(G4Colour(1,1.0,0,1.0));
   kevStrip_log->SetVisAttributes(visKevlar);
-
+//  kevStrip_log -> SetVisAttributes(G4VisAttributes::Invisible);
   // place components and replicate array
   new G4PVPlacement(NULL,G4ThreeVector(0.,0.,kevlarPosZ), kevContainer_log,Append(sd,"kevContainer_phys_"),WCham_container_log,false,0);
   new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.), kevStrip_log,"kevStrip_phys",kevSeg_log,false,0);
@@ -577,22 +539,22 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Tubs* winOuter_tube = new G4Tubs("winOuter_tube",0.,fmwpc_exit_R,fWChamWindowThick/2,0.,2*M_PI);
   winIn_log = new G4LogicalVolume(winInner_tube,Mylar,Append(sd,"winIn_log_"));
   winIn_log->SetVisAttributes(visWindow);
+//  winIn_log -> SetVisAttributes(G4VisAttributes::Invisible);
   new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-fmwpcContainer_halfZ+kev_eff_t+fWChamWindowThick/2),winIn_log,
 					Append(sd,"winIn_"), WCham_container_log,false,0);
   winOut_log = new G4LogicalVolume(winOuter_tube,Mylar,Append(sd,"winOut_log_"));
   winOut_log->SetVisAttributes(visWindow);
+//  winOut_log -> SetVisAttributes(G4VisAttributes::Invisible);
   new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fmwpcContainer_halfZ-fWChamWindowThick/2),winOut_log,
 					Append(sd,"winOut_"),WCham_container_log,false,0);
 
   //----- Begin DetectorPackageConstruction class code -----//
-
   fDPC_detPackageRadius = 6.0*inch;		// initialize the DetectorPackageConstruction variables
   fDPC_mwpc_entrance_thickness = 0.375*inch;
   fDPC_mwpc_entrance_r = 3.0*inch;
   fDPC_mwpc_entrance_depth = 5.0*inch;
   fDPC_frontwin_frame_thick = 1.0*inch;
   fDPC_backwin_frame_thick = 0.5*inch;
-
   //Note: here in Michael's code an instance of mwpc and scint are declared given an input Side sd
   //These are instances of WirechamberConstruction and ScintillatorConstruction.
 
@@ -603,7 +565,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 						fDPC_detPackageRadius,0.5*fDPC_mwpc_entrance_thickness,0.,2*M_PI);
   G4Tubs* entrance_mid_tube = new G4Tubs("entrance_mid_tube",fDPC_mwpc_entrance_r,
 						fDPC_mwpc_entrance_r+fDPC_mwpc_entrance_thickness,0.5*fDPC_mwpc_entrance_depth,0.,2*M_PI);
-  // Careful. Below is first call to mwpc object. Must replace with our current member variables!
   G4Tubs* entrance_back_tube = new G4Tubs("entrance_back_tube",fmwpc_entrance_R,
 						fDPC_detPackageRadius,0.5*fDPC_frontwin_frame_thick,0.,2*M_PI);
 
@@ -616,6 +577,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fDPC_entrance_front_log->SetVisAttributes(visMWPCEntrance);
   fDPC_entrance_mid_log->SetVisAttributes(visMWPCEntrance);
   fDPC_entrance_back_log->SetVisAttributes(visMWPCEntrance);
+//  fDPC_entrance_front_log->SetVisAttributes(G4VisAttributes::Invisible);
+//  fDPC_entrance_mid_log->SetVisAttributes(G4VisAttributes::Invisible);
+//  fDPC_entrance_back_log->SetVisAttributes(G4VisAttributes::Invisible);
 
   fDPC_entrance_front_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-0.5*(entrance_section_length-fDPC_mwpc_entrance_thickness)),
 						fDPC_entrance_front_log,Append(sd,"entrance_front_"),fDPC_mwpc_entrance_log,false,0);
@@ -650,6 +614,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4VisAttributes* visMWPCExit = new G4VisAttributes(G4Colour(0.3,0.3,0.3,0.8));
   fDPC_mwpc_exit_log = new G4LogicalVolume(mwpc_exit_tube, Al, Append(sd,"mwpc_exit_log_"));
   fDPC_mwpc_exit_log->SetVisAttributes(visMWPCExit);
+//  fDPC_mwpc_exit_log->SetVisAttributes(G4VisAttributes::Invisible);	// get rid of this line
   fDPC_exit_frame_pos = mwpc_pos+((2*fmwpcContainer_halfZ)+fDPC_backwin_frame_thick)/2;
   fDPC_mwpc_exit_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fDPC_exit_frame_pos),
 					fDPC_mwpc_exit_log,Append(sd,"mwpc_exit_"),fDPC_container_log,false,0);
@@ -663,22 +628,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   const G4double backstuff_thick = 1.*inch;
   G4Tubs* backstuff_tube = new G4Tubs(Append(sd,"backstuff_tube"),0,fDPC_detPackageRadius,backstuff_thick*0.5,0.,2*M_PI);
   fDPC_backstuff_log = new G4LogicalVolume(backstuff_tube,SS304,Append(sd,"backstuff_log_"));
+//  fDPC_backstuff_log -> SetVisAttributes(G4VisAttributes::Invisible);	// Get rid of this line!
   fDPC_backstuff_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,detPackageHalfZ-0.5*backstuff_thick),
   						fDPC_backstuff_log,Append(sd,"backstuff_"),fDPC_container_log,false,0);
-//----- End of Detector Package Construction -----//
-
+  //----- End of Detector Package Construction -----//
 //----- Return to Detector Construction. Port the remainder of the code -----//
-
-/* The constructor in the for loop is only there to actually repeat all the previous code for a given sd value.
-So, if you ignore that part, you can just change the variables as desired from the class members you've already
-assigned and continue on. Again, first we are trying to get only one set of detector package to construct.*/
-
   fEntranceToCathodes += fMWPCBowing;	// nothing changes since defaults to 0
 
   G4RotationMatrix* sideFlip = new G4RotationMatrix();
   fDetOffset = G4ThreeVector();
   G4ThreeVector sideTrans;
-
   if(sd == 0)				// also doesn't seem to matter since fDetRot defaults to 0
   {
     sideFlip->rotateZ(fDetRot*(-1)*rad);
@@ -709,73 +668,9 @@ assigned and continue on. Again, first we are trying to get only one set of dete
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Get nist material manager
-  //G4NistManager* nist = G4NistManager::Instance();
-
-
-  // Set Shape2 as scoring volume
-  //
   fScoringVolume = experimentalHall_log;
 
-  //
-  //always return the physical World
-  //
   return experimentalHall_phys;
-
-
-
 }
 
 string DetectorConstruction::Append(int i, string str)
