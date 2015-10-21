@@ -1,6 +1,8 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
+#include "TrackerSD.hh"
+
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 
@@ -99,7 +101,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 //    G4double getScintFacePos() const { return fScintFacePos; }
 //    G4double GetScintWidth() const { return fN2_volume_Z; }
-
     G4double fScint_Radius; 			///< scintillator disc radius
     G4double fBacking_Radius; 			///< backing veto (and overall volume) radius
     G4double fScint_thick; 			///< scintillator disc thickness
@@ -131,12 +132,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 // ----- Below are public variables from Wirechamber construction
 //    G4double GetWChamWidth() const { return 2*fmwpcContainer_halfZ; }
-
     G4double fWChamWindowThick; 		///< mylar window thickness
     G4double fmwpc_entrance_R; 			///< entrance window radius
     G4double fmwpc_exit_R; 			///< exit window radius
-
-//    G4Material* fMWPCGas; 			///< MWPC fill gas 	// LIKELY SAME GAS AS USED BEFORE
     G4double fEntranceToCathodes; 		///< entrance-window-to-cathode distance
     G4double fExitToCathodes; 			///< exit-window-to-cathode distance
 
@@ -147,7 +145,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* kevSeg_log; 		///< one segment of kevlar strip array
     G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
 
-	/// electromagnetic field	- this is causing issues. Not sure why.
+	/// electromagnetic field
     void GetFieldValue(G4double Point[4], G4double* Bfield) const;
 	/// whether the field changes particle energy
 //    virtual G4bool DoesFieldChangeEnergy() const { return fE0 != 0; }
@@ -229,6 +227,26 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4ThreeVector fDetOffset;
 
 //    float fCrinkleAngle;		// Decay trap foil crinkle angle. NOT USING
+
+    TrackerSD* scint_SD[2];		// sensitive volumes
+    TrackerSD* Dscint_SD[2];
+    TrackerSD* backing_SD[2];
+
+    TrackerSD* winIn_SD[2];
+    TrackerSD* winOut_SD[2];
+    TrackerSD* trap_win_SD[2];
+    TrackerSD* kevlar_SD[2];
+
+    TrackerSD* mwpc_SD[2];
+    TrackerSD* mwpc_planes_SD[2];
+    TrackerSD* mwpcDead_SD[2];
+
+    TrackerSD* source_SD;
+    TrackerSD* trap_monitor_SD[2];
+
+    TrackerSD* hall_SD;
+
+
 
 };
 

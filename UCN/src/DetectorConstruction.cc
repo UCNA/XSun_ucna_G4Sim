@@ -42,7 +42,7 @@
 #include <Randomize.hh>			// Stolen from Analysis Manager
 #include <G4ios.hh>			// Pretty sure needed for TrackerSD
 #include <G4Run.hh>			// Leave them here since we use registerSD in DetectorConstruction
-#include <G4Event.hh>
+#include <G4Event.hh>			// And the registerSD is totally not working without it
 #include <G4Track.hh>
 #include <G4VVisManager.hh>
 #include <G4TrajectoryContainer.hh>
@@ -71,6 +71,14 @@ DetectorConstruction::DetectorConstruction()
 
 DetectorConstruction::~DetectorConstruction()
 { }
+
+TrackerSD* registerSD(G4String sdName)
+{
+  TrackerSD* sd = new TrackerSD(sdName);
+  G4SDManager::GetSDMpointer()->AddNewDetector(sd);
+//  gAnalysisManager->SaveSDName(sdName);       // We're not using Analysis Manager class yet
+  return sd;
+}
 
 void DetectorConstruction::DefineMaterials()
 {
@@ -354,6 +362,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*trap_monitor_posZ),
                                                 trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
     }
+
+    trap_win_log[sd] -> SetUserLimits(UserSolidLimits);
   }
   //----- End of decay trap construction code. Return to detector construction -----//
 
@@ -680,26 +690,20 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //  dets[sd].mwpc.myTranslation += sideTrans;   // So is everything placed in the geometry that is supposed to be or not??
 //  dets[sd].mwpc.setPotential(2700*volt);
 
-
+  WCham_container_log -> SetUserLimits(UserGasLimits);
+  winIn_log -> SetUserLimits(UserSolidLimits);
+  winOut_log -> SetUserLimits(UserSolidLimits);
+  kevStrip_log -> SetUserLimits(UserSolidLimits);
+  N2_container_log -> SetUserLimits(UserSolidLimits);
   }	// end of sd for loop which makes multiple detector packages
+                                                                
 
 
 
 
-
-
-
-  fScoringVolume = experimentalHall_log;	// unnecessary! Carryover from Example B1
+  fScoringVolume = experimentalHall_log;
 
   return experimentalHall_phys;
-}
-
-TrackerSD* registerSD(G4String sdName)
-{
-  TrackerSD* sd = new TrackerSD(sdName);
-  G4SDManager::GetSDMpointer()->AddNewDetector(sd);
-//  gAnalysisManager->SaveSDName(sdName);	// We're not using Analysis Manager class yet
-  return sd;
 }
 
 string DetectorConstruction::Append(int i, string str)

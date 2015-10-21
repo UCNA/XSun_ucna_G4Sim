@@ -1122,6 +1122,8 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Run.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/RunAction.hh
+ /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
+ /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/DualRand.h
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/JamesRandom.h
@@ -1199,6 +1201,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassificationOfNewTrack.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CollectionNameVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DCofThisEvent.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.icc
@@ -1289,6 +1292,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RunManager.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RunManagerKernel.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SandiaTable.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SensitiveVolumeList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartTrackStack.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartVoxelHeader.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartVoxelHeader.icc
@@ -1308,6 +1312,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SystemOfUnits.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4THitsCollection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Threading.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TouchableHandle.hh
@@ -1324,6 +1329,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrackingMessenger.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrajectoryContainer.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcmdWithADouble.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcommand.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIdirectory.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UImessenger.hh
@@ -1336,6 +1342,7 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserSteppingAction.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserTrackingAction.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VDigiCollection.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHit.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHitsCollection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VNotifier.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPVParameterisation.hh
@@ -1345,6 +1352,9 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPrimaryGenerator.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VProcess.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VReadOutGeometry.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSDFilter.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSensitiveDetector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSteppingVerbose.hh
@@ -1376,6 +1386,8 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/EventAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/SteppingAction.hh
+ /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
+ /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/DualRand.h
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/JamesRandom.h
@@ -1453,6 +1465,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassificationOfNewTrack.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CollectionNameVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DCofThisEvent.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DataVector.icc
@@ -1540,6 +1553,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RunManager.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RunManagerKernel.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SandiaTable.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SensitiveVolumeList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartTrackStack.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartVoxelHeader.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartVoxelHeader.icc
@@ -1559,6 +1573,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SystemOfUnits.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4THitsCollection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Threading.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TouchableHandle.hh
@@ -1575,6 +1590,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrackingMessenger.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrajectoryContainer.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcmdWithADouble.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcommand.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIdirectory.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UImessenger.hh
@@ -1585,6 +1601,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserSteppingAction.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserTrackingAction.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VDigiCollection.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHit.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHitsCollection.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPVParameterisation.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VParticleChange.hh
@@ -1592,6 +1609,9 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VProcess.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VReadOutGeometry.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSDFilter.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSensitiveDetector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSteppingVerbose.hh
@@ -1886,6 +1906,8 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/ActionInitialization.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PhysList495.hh
+ /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
+ /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/ucn.cc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Normal3D.h
@@ -1971,6 +1993,7 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassificationOfNewTrack.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CollectionNameVector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Color.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Colour.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DAWNFILE.hh
@@ -2090,6 +2113,7 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Scene.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SceneHandlerList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SceneList.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SensitiveVolumeList.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartTrackStack.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartVoxelHeader.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartVoxelHeader.icc
@@ -2132,6 +2156,7 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Transform3D.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIExecutive.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcmdWithADouble.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcommand.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcommandStatus.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIdirectory.hh
@@ -2167,8 +2192,11 @@ CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VProcess.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VRML1File.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VRML2File.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VReadOutGeometry.hh
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSDFilter.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSceneHandler.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSceneHandler.icc
+ /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSensitiveDetector.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.icc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VStateDependent.hh

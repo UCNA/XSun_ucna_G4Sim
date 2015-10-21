@@ -48,8 +48,8 @@ int main(int argc,char** argv)
   runManager->SetUserInitialization(new ActionInitialization());
 
   // Initialize visualization
-  G4VisManager* visManager = new G4VisExecutive;
-  // G4VisManager* visManager = new G4VisExecutive("Quiet");
+  //G4VisManager* visManager = new G4VisExecutive;
+  G4VisManager* visManager = new G4VisExecutive("Quiet");
   visManager->Initialize();
 
   // Get the pointer to the User Interface manager

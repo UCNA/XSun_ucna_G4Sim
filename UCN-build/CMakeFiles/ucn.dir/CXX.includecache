@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
+TrackerSD.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
 G4VUserDetectorConstruction.hh
 /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/G4VUserDetectorConstruction.hh
 globals.hh

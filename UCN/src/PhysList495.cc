@@ -31,7 +31,6 @@ PhysList495::~PhysList495() {
 }
 
 void PhysList495::setPhysicsList(const G4String& plname) {
-	G4cout << " \n \n \n \n Pay Attention! Which physics list??? \n \n \n " << G4endl;
 	emName = plname;
 	if(emPhysicsList) delete emPhysicsList;
 	emPhysicsList = NULL;
