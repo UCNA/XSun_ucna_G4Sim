@@ -12,6 +12,8 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/Run.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/RunAction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/TrackerHit.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/TrackerHit.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/TrackerSD.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/TrackerSD.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/ucn.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/ucn.cc.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")

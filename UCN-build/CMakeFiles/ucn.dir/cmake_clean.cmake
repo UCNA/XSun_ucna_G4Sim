@@ -1,8 +1,10 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/ucn.dir/ucn.cc.o"
   "CMakeFiles/ucn.dir/src/PhysList495.cc.o"
+  "CMakeFiles/ucn.dir/src/TrackerSD.cc.o"
   "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
   "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
+  "CMakeFiles/ucn.dir/src/TrackerHit.cc.o"
   "CMakeFiles/ucn.dir/src/Run.cc.o"
   "CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
   "CMakeFiles/ucn.dir/src/ActionInitialization.cc.o"

@@ -1,4 +1,5 @@
 #include "DetectorConstruction.hh"
+#include "TrackerSD.hh"
 
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
@@ -37,6 +38,21 @@
 #include <G4ChordFinder.hh>
 #include <G4EqMagElectricField.hh>
 #include <G4ClassicalRK4.hh>
+
+#include <Randomize.hh>			// Stolen from Analysis Manager
+#include <G4ios.hh>			// Pretty sure needed for TrackerSD
+#include <G4Run.hh>			// Leave them here since we use registerSD in DetectorConstruction
+#include <G4Event.hh>
+#include <G4Track.hh>
+#include <G4VVisManager.hh>
+#include <G4TrajectoryContainer.hh>
+#include <G4Trajectory.hh>
+#include <G4IonTable.hh>
+#include <G4SDManager.hh>
+#include <G4PrimaryVertex.hh>
+#include <G4PrimaryParticle.hh>
+#include <G4SDManager.hh>
+#include <G4EventManager.hh>
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
@@ -156,7 +172,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
   //----- source holder object -----//
-/*  fSourceWindowThick = 4.7*um;		// class initialization variables.
+  fSourceWindowThick = 4.7*um;		// class initialization variables.
   fSourceCoatingThick = 0.1*um;		// really should go in constructor, but
   fSourceWindowMat = Mylar;		// materials might be defined in wrong order
   fSourceCoatingMat = Al;
@@ -222,11 +238,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // ----- end of source holder class code.
   source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
-*/
+
   //----- geometry-dependent settings -----//	Only need "thinFoil"
 
   //----- Detector Decay Trap construction -----//
-/*
+
   fTrapWindowThick = 0.180*um;
   fTrapCoatingThick = 0.150*um;
   fTrapIRtrap = 2.45*inch;
@@ -339,7 +355,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                 trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
     }
   }
-*/  //----- End of decay trap construction code. Return to detector construction -----//
+  //----- End of decay trap construction code. Return to detector construction -----//
 
   //----- Begin scintillator construction -----//
   fScint_Radius = 7.5*cm;	// initialize some constructor variables
@@ -353,7 +369,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   assert(fLightguide_thick >= fScint_thick);
   fN2_volume_Z = fLightguide_thick+fBacking_thick; // length of N2 volume
   fScintFacePos = -fN2_volume_Z/2;
-
                                                                         
 //  int sd = 0;	// this will become a for-loop to take values 0 and 1.
   for(int sd = 0; sd <=1; sd++)
@@ -656,21 +671,35 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   detPackage_phys[sd] = new G4PVPlacement(sideFlip,sideTrans, fDPC_container_log,
 						Append(sd,"detPackage_phys_"),experimentalHall_log,false,0);
 
-  }
-//  dets[sd].mwpc.myRotation = sideFlip;	// don't understand. He has new definitions for rotations/translations
-//  dets[sd].mwpc.myTranslation = (*sideFlip)(dets[sd].mwpc.myTranslation);	// but he doesn't do a G4 placement?
-//  dets[sd].mwpc.myTranslation += sideTrans;	// So is everything placed in the geometry that is supposed to be or not??
+	// need to debug once things registered as SD's and check if this is actually doing anything.
+  fMyRotation = sideFlip;	// equivalent to dets[sd].mwpc.myRotation = sideFlip;
+  fMyTranslation = (*sideFlip)(fMyTranslation);	// don't understand this line at all
+  fMyTranslation += sideTrans;
+//  dets[sd].mwpc.myRotation = sideFlip;        // don't understand. He has new definitions for rotations/translations
+//  dets[sd].mwpc.myTranslation = (*sideFlip)(dets[sd].mwpc.myTranslation);     // but he doesn't do a G4 placement?
+//  dets[sd].mwpc.myTranslation += sideTrans;   // So is everything placed in the geometry that is supposed to be or not??
 //  dets[sd].mwpc.setPotential(2700*volt);
 
 
+  }	// end of sd for loop which makes multiple detector packages
 
 
 
 
 
-  fScoringVolume = experimentalHall_log;
+
+
+  fScoringVolume = experimentalHall_log;	// unnecessary! Carryover from Example B1
 
   return experimentalHall_phys;
+}
+
+TrackerSD* registerSD(G4String sdName)
+{
+  TrackerSD* sd = new TrackerSD(sdName);
+  G4SDManager::GetSDMpointer()->AddNewDetector(sd);
+//  gAnalysisManager->SaveSDName(sdName);	// We're not using Analysis Manager class yet
+  return sd;
 }
 
 string DetectorConstruction::Append(int i, string str)
