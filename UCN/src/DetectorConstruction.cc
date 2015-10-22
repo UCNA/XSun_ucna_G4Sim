@@ -72,14 +72,6 @@ DetectorConstruction::DetectorConstruction()
 DetectorConstruction::~DetectorConstruction()
 { }
 
-TrackerSD* registerSD(G4String sdName)
-{
-  TrackerSD* sd = new TrackerSD(sdName);
-  G4SDManager::GetSDMpointer()->AddNewDetector(sd);
-//  gAnalysisManager->SaveSDName(sdName);       // We're not using Analysis Manager class yet
-  return sd;
-}
-
 void DetectorConstruction::DefineMaterials()
 {
   Vacuum = NULL;		//This value is set later using the setVacuumPressure method.
@@ -177,7 +169,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   experimentalHall_log->SetVisAttributes(G4VisAttributes::Invisible);
   experimentalHall_log->SetUserLimits(UserCoarseLimits);
   experimentalHall_phys = new G4PVPlacement(NULL,G4ThreeVector(),"World_Phys", experimentalHall_log,0,false,0,checkOverlaps);
-
+  hall_SD = registerSD("hall_SD");
+  experimentalHall_log -> SetSensitiveDetector(hall_SD);
 
   //----- source holder object -----//
   fSourceWindowThick = 4.7*um;		// class initialization variables.
@@ -214,6 +207,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //  window_log->SetVisAttributes(G4VisAttributes::Invisible);	//use above
   window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
 
+  source_SD = registerSD("source_SD");
+  window_log -> SetSensitiveDetector(source_SD);
+
   // source foil coating
   G4Tubs* coating_tube = new G4Tubs("source_coating_tube", 0., SourceWindowRadius, fSourceCoatingThick*0.5, 0., 2*M_PI);
 	//	flag: 0 means EAST
@@ -224,7 +220,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     coating_log[sd] = new G4LogicalVolume(coating_tube, fSourceCoatingMat, Append(sd, "source_coating_log_"));
     coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
 //    coating_log[sd]->SetVisAttributes(G4VisAttributes::Invisible);	// use above
-
+    coating_log[sd] -> SetSensitiveDetector(source_SD);
     if(sd == 0)
     {
       coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
@@ -272,6 +268,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
 //  decayTube_log->SetVisAttributes(G4VisAttributes::Invisible);	// use above
   new G4PVPlacement(NULL,G4ThreeVector(),decayTube_log,"decayTube",experimentalHall_log,false,0);
+  decayTube_log -> SetSensitiveDetector(hall_SD);
 
   // trap windows, collimator, monitors
   G4double thicknessOfTrapWindow = fTrapWindowThick + fTrapCoatingThick;
@@ -362,6 +359,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*trap_monitor_posZ),
                                                 trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
     }
+
+    collimator_log[sd] -> SetSensitiveDetector(hall_SD);
+    collimatorBack_log[sd] -> SetSensitiveDetector(hall_SD);
+
+    trap_monitor_SD[sd] = registerSD(Append(sd, "trap_monitor_SD_"));
+    trap_monitor_log[sd] -> SetSensitiveDetector(trap_monitor_SD[sd]);
 
     trap_win_log[sd] -> SetUserLimits(UserSolidLimits);
   }
@@ -695,6 +698,51 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   winOut_log -> SetUserLimits(UserSolidLimits);
   kevStrip_log -> SetUserLimits(UserSolidLimits);
   N2_container_log -> SetUserLimits(UserSolidLimits);
+
+  // Registering logical volumes as SD's
+  // Except experimentalHall_log, (source) window_log/coating_log, (decay trap) monitor_log
+  // and (decay trap) collimator_log/collimatorBack_log.
+  // Those guys are done further up in the code to make sure the looping gets them correctly.
+  // It is confusing but it has to be done this way since I didn't use the object way of storing the log vol's
+
+  scint_SD[sd] = registerSD(Append(sd, "scint_SD_"));
+  scint_log -> SetSensitiveDetector(scint_SD[sd]);
+
+  Dscint_SD[sd] = registerSD(Append(sd, "DScint_SD_"));
+  Dscint_log -> SetSensitiveDetector(Dscint_SD[sd]);
+  N2_container_log -> SetSensitiveDetector(Dscint_SD[sd]);
+  lightguide_log -> SetSensitiveDetector(Dscint_SD[sd]);
+  fDPC_mwpc_exit_N2_log -> SetSensitiveDetector(Dscint_SD[sd]);
+
+  backing_SD[sd] = registerSD(Append(sd, "backing_SD_"));
+  backing_log -> SetSensitiveDetector(backing_SD[sd]);
+
+  winOut_SD[sd] = registerSD(Append(sd, "winOut_SD_"));
+  winOut_log -> SetSensitiveDetector(winOut_SD[sd]);
+
+  winIn_SD[sd] = registerSD(Append(sd, "winIn_SD_"));
+  winIn_log -> SetSensitiveDetector(winIn_SD[sd]);
+
+  trap_win_SD[sd] = registerSD(Append(sd, "trap_win_SD_"));
+  mylar_win_log[sd] -> SetSensitiveDetector(trap_win_SD[sd]);
+  be_win_log[sd] -> SetSensitiveDetector(trap_win_SD[sd]);
+  // no wiggle foils in this simulation yet.
+
+  mwpc_SD[sd] = registerSD(Append(sd, "mwpc_SD_"));
+  gas_log -> SetSensitiveDetector(mwpc_SD[sd]);
+  anodeSeg_log -> SetSensitiveDetector(mwpc_SD[sd]);
+  cathSeg_log -> SetSensitiveDetector(mwpc_SD[sd]);
+
+  mwpc_planes_SD[sd] = registerSD(Append(sd, "mwpc_planes_SD_"));
+  cathode_wire_log -> SetSensitiveDetector(mwpc_planes_SD[sd]);
+  cath_plate_log -> SetSensitiveDetector(mwpc_planes_SD[sd]);
+  anode_wire_log -> SetSensitiveDetector(mwpc_planes_SD[sd]);
+
+  mwpcDead_SD[sd] = registerSD(Append(sd, "mwpcDead_SD_"));
+  WCham_container_log -> SetSensitiveDetector(mwpcDead_SD[sd]);
+
+  kevlar_SD[sd] = registerSD(Append(sd, "kevlar_SD_"));
+  kevStrip_log -> SetSensitiveDetector(kevlar_SD[sd]);
   }	// end of sd for loop which makes multiple detector packages
                                                                 
 
@@ -705,6 +753,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   return experimentalHall_phys;
 }
+
+TrackerSD* DetectorConstruction::registerSD(G4String sdName)
+{
+  TrackerSD* sd = new TrackerSD(sdName);
+  G4SDManager::GetSDMpointer()->AddNewDetector(sd);
+//  gAnalysisManager->SaveSDName(sdName);       // We're not using Analysis Manager class yet
+  G4cout << "Registering " << sdName << " as a sensitive detector." << G4endl;
+  return sd;
+}
+
 
 string DetectorConstruction::Append(int i, string str)
 {

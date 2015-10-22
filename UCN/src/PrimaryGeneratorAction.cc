@@ -50,7 +50,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   G4double x0 = 0;
   G4double y0 = 0;
-  G4double z0 = +1*m;
+  G4double z0 = -3*m;
 
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 

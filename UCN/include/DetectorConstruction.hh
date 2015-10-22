@@ -98,9 +98,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* plug_log;
 
 // ---- Below are public variables from Scintillator Construction
-
-//    G4double getScintFacePos() const { return fScintFacePos; }
-//    G4double GetScintWidth() const { return fN2_volume_Z; }
     G4double fScint_Radius; 			///< scintillator disc radius
     G4double fBacking_Radius; 			///< backing veto (and overall volume) radius
     G4double fScint_thick; 			///< scintillator disc thickness
@@ -131,7 +128,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* anode_wire_log; 		///< anode wires logical volume
 
 // ----- Below are public variables from Wirechamber construction
-//    G4double GetWChamWidth() const { return 2*fmwpcContainer_halfZ; }
     G4double fWChamWindowThick; 		///< mylar window thickness
     G4double fmwpc_entrance_R; 			///< entrance window radius
     G4double fmwpc_exit_R; 			///< exit window radius
@@ -218,6 +214,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
   private:
     void DefineMaterials();
     string Append(int i, string str);
+    TrackerSD* registerSD(G4String sdName);
 
     float fScintStepLimit;
 
