@@ -39,11 +39,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //this function is called at the begining of ecah event
   //
 
-  G4double envSizeX = 0;
-  G4double envSizeY = 0;
-  G4double envSizeZ = 0;
+//  G4double envSizeX = 0;
+//  G4double envSizeY = 0;
+//  G4double envSizeZ = 0;
 
-  G4double size = 0.8;
+//  G4double size = 0.8;
 //  G4double x0 = size * envSizeX * (G4UniformRand()-0.5);
 //  G4double y0 = size * envSizeY * (G4UniformRand()-0.5);
 //  G4double z0 = -0.5 * envSizeZ;
@@ -57,3 +57,12 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
+void PrimaryGeneratorAction::diskRandom(G4double radius, G4double& x, G4double& y)
+{
+  while(true)
+  {
+    x = (2.0*G4UniformRand()-1.)*radius;
+    y = (2.0*G4UniformRand()-1.)*radius;
+    if(x*x+y*y<=radius*radius) break;
+  }
+}

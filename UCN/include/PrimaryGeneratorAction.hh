@@ -24,6 +24,8 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
     G4ParticleGun*  fParticleGun; // pointer a to G4 gun class
+    void diskRandom(G4double radius, G4double& x, G4double& y);
+
 };
 
 #endif

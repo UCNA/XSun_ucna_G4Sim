@@ -1,6 +1,9 @@
 #include "DetectorConstruction.hh"
 #include "PhysList495.hh"
-#include "ActionInitialization.hh"
+#include "PrimaryGeneratorAction.hh"
+#include "RunAction.hh"
+#include "EventAction.hh"
+#include "SteppingAction.hh"
 
 #ifdef G4MULTITHREADED
 #include "G4MTRunManager.hh"
@@ -9,7 +12,6 @@
 #endif
 
 #include "G4UImanager.hh"
-//#include "QBBC.hh"
 #include <G4UnitsTable.hh>
 
 #include "G4VisExecutive.hh"
@@ -35,17 +37,16 @@ int main(int argc,char** argv)
 
   // Set mandatory initialization classes
   runManager->SetUserInitialization(new DetectorConstruction());
-
-  // Physics list
-/*  G4VModularPhysicsList* physicsList = new QBBC;
-  physicsList->SetVerboseLevel(0);
-  runManager->SetUserInitialization(physicsList);
-*/
   runManager->SetUserInitialization(new PhysList495());
+  runManager->SetUserAction(new PrimaryGeneratorAction());
+  runManager->SetUserAction(new RunAction);
+  EventAction* eventAction = new EventAction;
+  runManager->SetUserAction(eventAction);
+  runManager->SetUserAction(new SteppingAction(eventAction));
 
   // User action initialization
   // Useful only in case of using Multithreaded (i.e. parallel)
-  runManager->SetUserInitialization(new ActionInitialization());
+//  runManager->SetUserInitialization(new ActionInitialization());
 
   // Initialize visualization
   //G4VisManager* visManager = new G4VisExecutive;

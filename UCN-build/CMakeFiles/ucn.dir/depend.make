@@ -1904,7 +1904,11 @@ CMakeFiles/ucn.dir/src/TrackerSD.cc.o: /home/xuansun/geant4/geant4-10.01.p02-ins
 
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/ActionInitialization.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/EventAction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PhysList495.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/RunAction.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/SteppingAction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/ucn.cc
@@ -2069,6 +2073,7 @@ CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/inclu
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleChange.icc
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleDefinition.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleDefinition.icc
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleGun.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleMomentum.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleTable.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleTable.icc
@@ -2165,6 +2170,8 @@ CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/inclu
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UItokenNum.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UnitsTable.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UnitsTable.icc
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserEventAction.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserRunAction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserStackingAction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserSteppingAction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserTrackingAction.hh
@@ -2188,6 +2195,7 @@ CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/inclu
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.icc
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicsConstructor.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPrimaryGenerator.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VProcess.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VRML1File.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VRML2File.hh
@@ -2211,6 +2219,7 @@ CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/inclu
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserDetectorConstruction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserEventInformation.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserPhysicsList.hh
+CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserTrackInformation.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VViewer.hh
 CMakeFiles/ucn.dir/ucn.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VViewer.icc
