@@ -10,9 +10,13 @@
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
 
-PrimaryGeneratorAction::PrimaryGeneratorAction()
+PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
-  fParticleGun(0)
+  fParticleGun(0),
+  fMyDetector(myDC),
+  fPosOffset(),
+  fSourceRadius(0),
+  fRelToSourceHolder(false)
 {
   G4int n_particle = 1;
   fParticleGun  = new G4ParticleGun(n_particle);
@@ -20,9 +24,10 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   // default particle kinematic
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4String particleName;
-  G4ParticleDefinition* particle
-    = particleTable->FindParticle(particleName="gamma");
+  G4ParticleDefinition* particle = particleTable->FindParticle(particleName="gamma"/*"e-"*/);
+
   fParticleGun->SetParticleDefinition(particle);
+  fParticleGun->SetParticleTime(0.0*ns);	// Michael's has this line. Idk why.
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,+1.));
   fParticleGun->SetParticleEnergy(6.*MeV);
 }
@@ -36,24 +41,14 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
-  //this function is called at the begining of ecah event
-  //
+// first line should be to set the random seed engine for Geant.
 
-//  G4double envSizeX = 0;
-//  G4double envSizeY = 0;
-//  G4double envSizeZ = 0;
-
-//  G4double size = 0.8;
-//  G4double x0 = size * envSizeX * (G4UniformRand()-0.5);
-//  G4double y0 = size * envSizeY * (G4UniformRand()-0.5);
-//  G4double z0 = -0.5 * envSizeZ;
-
-  G4double x0 = 0;
-  G4double y0 = 0;
-  G4double z0 = -3*m;
-
+  G4double x0 = 0;	// In Michael's code he doesn't set the particle position
+  G4double y0 = 0;	// unless he is throwing events from nuclear decay.
+  G4double z0 = -3*m;	// Idk what it should be. Ask Brad.
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 
+  displayGunStatus();
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
@@ -65,4 +60,16 @@ void PrimaryGeneratorAction::diskRandom(G4double radius, G4double& x, G4double& 
     y = (2.0*G4UniformRand()-1.)*radius;
     if(x*x+y*y<=radius*radius) break;
   }
+}
+
+void PrimaryGeneratorAction::displayGunStatus()
+{
+  G4cout
+  << fParticleGun->GetParticleDefinition()->GetParticleName()
+  << " gun from " << fParticleGun->GetParticlePosition()/m
+  << "m towards " << fParticleGun->GetParticleMomentumDirection()
+  << " at " << fParticleGun->GetParticleTime()/ns
+  << "ns : " << fParticleGun->GetParticleEnergy()/keV
+  << "keV" <<
+  G4endl;
 }

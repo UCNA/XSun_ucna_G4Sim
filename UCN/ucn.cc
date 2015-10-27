@@ -35,28 +35,22 @@ int main(int argc,char** argv)
   G4RunManager* runManager = new G4RunManager;
 #endif
 
-  // Set mandatory initialization classes
-  runManager->SetUserInitialization(new DetectorConstruction());
+  DetectorConstruction* detector = new DetectorConstruction();
+  runManager->SetUserInitialization(detector);
   runManager->SetUserInitialization(new PhysList495());
-  runManager->SetUserAction(new PrimaryGeneratorAction());
+
+  runManager->SetUserAction(new PrimaryGeneratorAction(detector));
   runManager->SetUserAction(new RunAction);
   EventAction* eventAction = new EventAction;
   runManager->SetUserAction(eventAction);
   runManager->SetUserAction(new SteppingAction(eventAction));
 
-  // User action initialization
-  // Useful only in case of using Multithreaded (i.e. parallel)
-//  runManager->SetUserInitialization(new ActionInitialization());
+  new G4UnitDefinition("torr", "torr", "Pressure", atmosphere/760.);
 
-  // Initialize visualization
-  //G4VisManager* visManager = new G4VisExecutive;
   G4VisManager* visManager = new G4VisExecutive("Quiet");
   visManager->Initialize();
-
-  // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
-  // Process macro or start UI session
   if ( ! ui ) {		// batch mode
     G4String command = "/control/execute ";
     G4String fileName = argv[1];

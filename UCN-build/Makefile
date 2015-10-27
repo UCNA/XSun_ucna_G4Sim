@@ -165,30 +165,6 @@ ucn/fast:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/build
 .PHONY : ucn/fast
 
-src/ActionInitialization.o: src/ActionInitialization.cc.o
-.PHONY : src/ActionInitialization.o
-
-# target to build an object file
-src/ActionInitialization.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.o
-.PHONY : src/ActionInitialization.cc.o
-
-src/ActionInitialization.i: src/ActionInitialization.cc.i
-.PHONY : src/ActionInitialization.i
-
-# target to preprocess a source file
-src/ActionInitialization.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.i
-.PHONY : src/ActionInitialization.cc.i
-
-src/ActionInitialization.s: src/ActionInitialization.cc.s
-.PHONY : src/ActionInitialization.s
-
-# target to generate assembly for a file
-src/ActionInitialization.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ActionInitialization.cc.s
-.PHONY : src/ActionInitialization.cc.s
-
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
 
@@ -236,6 +212,30 @@ src/EventAction.s: src/EventAction.cc.s
 src/EventAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.s
 .PHONY : src/EventAction.cc.s
+
+src/Field.o: src/Field.cc.o
+.PHONY : src/Field.o
+
+# target to build an object file
+src/Field.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Field.cc.o
+.PHONY : src/Field.cc.o
+
+src/Field.i: src/Field.cc.i
+.PHONY : src/Field.i
+
+# target to preprocess a source file
+src/Field.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Field.cc.i
+.PHONY : src/Field.cc.i
+
+src/Field.s: src/Field.cc.s
+.PHONY : src/Field.s
+
+# target to generate assembly for a file
+src/Field.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Field.cc.s
+.PHONY : src/Field.cc.s
 
 src/PhysList495.o: src/PhysList495.cc.o
 .PHONY : src/PhysList495.o
@@ -443,15 +443,15 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... ucn"
-	@echo "... src/ActionInitialization.o"
-	@echo "... src/ActionInitialization.i"
-	@echo "... src/ActionInitialization.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"
 	@echo "... src/EventAction.o"
 	@echo "... src/EventAction.i"
 	@echo "... src/EventAction.s"
+	@echo "... src/Field.o"
+	@echo "... src/Field.i"
+	@echo "... src/Field.s"
 	@echo "... src/PhysList495.o"
 	@echo "... src/PhysList495.i"
 	@echo "... src/PhysList495.s"

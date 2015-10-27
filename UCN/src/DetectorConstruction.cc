@@ -1,5 +1,6 @@
 #include "DetectorConstruction.hh"
 #include "TrackerSD.hh"
+#include "Field.hh"
 
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
@@ -54,9 +55,17 @@
 #include <G4SDManager.hh>
 #include <G4EventManager.hh>
 
+#include <G4MagneticField.hh>		// Bottom half of detector construction
+#include <G4FieldManager.hh>
+#include <G4ChordFinder.hh>
+#include <G4PropagatorInField.hh>
+#include <G4TransportationManager.hh>
+#include <G4UserLimits.hh>
+#include <G4PVParameterised.hh>
+
 DetectorConstruction::DetectorConstruction()
-: G4VUserDetectorConstruction(),
-  fScoringVolume(0), fScintStepLimit(1), fMWPCBowing(0*cm), fDetRot(0.)/*,	// note: fScintStepLimit initialized here
+: G4VUserDetectorConstruction(), fpMagField(NULL),
+  fScoringVolume(0), fScintStepLimit(1.0*mm), fMWPCBowing(0*cm), fDetRot(0.)/*,	// note: fScintStepLimit initialized here
   experimentalHall_log(0), experimentalHall_phys(0),
   container_log(0), holder_phys(0), ring_phys(0),
   window_log(0), window_phys(0),
@@ -382,6 +391,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   assert(fLightguide_thick >= fScint_thick);
   fN2_volume_Z = fLightguide_thick+fBacking_thick; // length of N2 volume
   fScintFacePos = -fN2_volume_Z/2;
+
+  ConstructField();	// called here because you need access to fpMagField before the sd loop
+
                                                                         
 //  int sd = 0;	// this will become a for-loop to take values 0 and 1.
   for(int sd = 0; sd <=1; sd++)
@@ -743,6 +755,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   kevlar_SD[sd] = registerSD(Append(sd, "kevlar_SD_"));
   kevStrip_log -> SetSensitiveDetector(kevlar_SD[sd]);
+
+  if(!fpMagField)
+  {
+    fMyBField = fpMagField;
+    ConstructMWPCField();
+  }
   }	// end of sd for loop which makes multiple detector packages
                                                                 
 
@@ -769,4 +787,70 @@ string DetectorConstruction::Append(int i, string str)
   stringstream newString;
   newString << str << i;
   return newString.str();
+}
+
+#include "G4MagIntegratorStepper.hh"
+#include "G4Mag_UsualEqRhs.hh"
+//#include "G4ClassicalRK4.hh"
+#include "G4SimpleHeum.hh"
+#include "G4HelixHeum.hh"
+#include "G4HelixImplicitEuler.hh"
+#include "G4HelixExplicitEuler.hh"
+#include "G4HelixSimpleRunge.hh"
+#include "G4HelixMixedStepper.hh"
+
+void DetectorConstruction::ConstructField()
+{
+  if(!fpMagField)
+  {
+    cout << "##### Constructing Detector Field #####" << endl;
+    fpMagField = new Field();
+    G4FieldManager* fieldMgr = G4TransportationManager::GetTransportationManager()->GetFieldManager();
+    fieldMgr -> SetDetectorField(fpMagField);
+    fieldMgr -> CreateChordFinder(fpMagField);
+
+    G4MagIntegratorStepper* pStepper;
+    G4Mag_UsualEqRhs* fEquation = new G4Mag_UsualEqRhs(fpMagField); // equation of motion in magnetic field
+    //pStepper = new G4ClassicalRK4 (fEquation); // general case for "smooth" EM fields
+    //pStepper = new G4SimpleHeum( fEquation ); // for slightly less smooth EM fields
+    //pStepper = new G4HelixHeum( fEquation ); // for "smooth" pure-B fields
+    //pStepper = new G4HelixImplicitEuler( fEquation ); // for less smooth pure-B fields; appears ~50% faster than above
+    //pStepper = new G4HelixSimpleRunge( fEquation ); // similar speed to above
+    //pStepper = new G4HelixExplicitEuler( fEquation ); // about twice as fast as above
+    pStepper = new G4HelixMixedStepper(fEquation,6); // avoids "Stepsize underflow in Stepper" errors
+    fieldMgr->GetChordFinder()->GetIntegrationDriver()->RenewStepperAndAdjust(pStepper);
+
+    fieldMgr->GetChordFinder()->SetDeltaChord(100.0*um);
+    fieldMgr->SetMinimumEpsilonStep(1e-6);
+    fieldMgr->SetMaximumEpsilonStep(1e-5);
+    fieldMgr->SetDeltaOneStep(0.1*um);
+    G4TransportationManager::GetTransportationManager()->GetPropagatorInField()->SetMaxLoopCount(INT_MAX);
+  }
+}
+
+void DetectorConstruction::ConstructMWPCField()
+{
+  G4cout << "Setting up wirechamber electromagnetic field...";
+
+  // local field manager
+  G4FieldManager* localFieldMgr = new G4FieldManager();
+  localFieldMgr->SetDetectorField(fMyBField);
+
+  // equation of motion, stepper for field
+  G4EqMagElectricField* pEquation = new G4EqMagElectricField(fMyBField);
+  G4ClassicalRK4* pStepper = new G4ClassicalRK4(pEquation,8);
+  G4MagInt_Driver* pIntgrDriver = new G4MagInt_Driver(0.01*um,pStepper,pStepper->GetNumberOfVariables());
+  G4ChordFinder* pChordFinder = new G4ChordFinder(pIntgrDriver);
+  localFieldMgr->SetChordFinder(pChordFinder);
+
+  // accuracy settings
+  localFieldMgr->GetChordFinder()->SetDeltaChord(10*um);
+  localFieldMgr->SetMinimumEpsilonStep(1e-6);
+  localFieldMgr->SetMaximumEpsilonStep(1e-5);
+  localFieldMgr->SetDeltaOneStep(0.1*um);
+
+  // apply field manager to wirechamber and all daughter volumes
+  WCham_container_log->SetFieldManager(localFieldMgr,true);
+
+  G4cout << " Done." << G4endl;
 }

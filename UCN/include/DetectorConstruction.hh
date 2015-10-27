@@ -2,6 +2,7 @@
 #define DetectorConstruction_h 1
 
 #include "TrackerSD.hh"
+#include "Field.hh"
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
@@ -142,13 +143,13 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
 
 	/// electromagnetic field
-    void GetFieldValue(G4double Point[4], G4double* Bfield) const;
+    void GetMWPCFieldValue(G4double Point[4], G4double* Bfield) const;
 	/// whether the field changes particle energy
-//    virtual G4bool DoesFieldChangeEnergy() const { return fE0 != 0; }
+    virtual G4bool DoesMWPCFieldChangeEnergy() const { return fE0 != 0; }
 	/// set up tracking in field
-//    void ConstructField();
+    void ConstructMWPCField();
 	/// set anode voltage
-//    void setPotential(G4double Vanode);
+//    void setMWPCPotential(G4double Vanode);
 
     G4MagneticField* fMyBField; 			///< Magnetic field pointer
     G4RotationMatrix* fMyRotation; 		///< rotation from global frame to local coordinates
@@ -212,11 +213,15 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* fDPC_backstuff_phys;
 
   private:
+    void ConstructField();
+
+    Field* fpMagField;
+
     void DefineMaterials();
     string Append(int i, string str);
     TrackerSD* registerSD(G4String sdName);
 
-    float fScintStepLimit;
+    G4double fScintStepLimit;
 
     G4ThreeVector fSourceHolderPos;	// here and below is returning to Mendenhall's DetectorConstruction class
     G4double fMWPCBowing;

@@ -1,6 +1,8 @@
 #ifndef PrimaryGeneratorAction_h
 #define PrimaryGeneratorAction_h 1
 
+#include "DetectorConstruction.hh"
+
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4ParticleGun.hh"
 #include "globals.hh"
@@ -13,7 +15,7 @@ class G4Event;
 class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
   public:
-    PrimaryGeneratorAction();
+    PrimaryGeneratorAction(DetectorConstruction*);
     virtual ~PrimaryGeneratorAction();
 
     // method from the base class
@@ -24,7 +26,14 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
     G4ParticleGun*  fParticleGun; // pointer a to G4 gun class
+    DetectorConstruction* fMyDetector;	// pointer to the detector geometry class
+
+    G4ThreeVector fPosOffset;
+    double fSourceRadius;
+    bool fRelToSourceHolder;
+
     void diskRandom(G4double radius, G4double& x, G4double& y);
+    void displayGunStatus();
 
 };
 
