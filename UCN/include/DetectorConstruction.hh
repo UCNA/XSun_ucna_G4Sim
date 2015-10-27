@@ -143,13 +143,13 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
 
 	/// electromagnetic field
-    void GetMWPCFieldValue(G4double Point[4], G4double* Bfield) const;
+    void GetMWPCFieldValue(G4double Point[4], G4double* Bfield);
 	/// whether the field changes particle energy
     virtual G4bool DoesMWPCFieldChangeEnergy() const { return fE0 != 0; }
 	/// set up tracking in field
     void ConstructMWPCField();
 	/// set anode voltage
-//    void setMWPCPotential(G4double Vanode);
+    void setMWPCPotential(G4double Vanode);
 
     G4MagneticField* fMyBField; 			///< Magnetic field pointer
     G4RotationMatrix* fMyRotation; 		///< rotation from global frame to local coordinates
@@ -200,6 +200,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 // ---- Below are protected variables from Wirechamber construction
     G4double fmwpcContainer_halfZ; 		///< half-width of wirechamber
     G4double fE0; 				///< field scaling constant
+    double fd;		// Used in getMWPCFieldValue
+    double fL;
+    double fr;
 
 // ---- Below are protected variables from DetectorPackageConstruction
     G4VPhysicalVolume* fDPC_scint_phys;
@@ -216,6 +219,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     void ConstructField();
 
     Field* fpMagField;
+    bool fCallFieldConstructor;
 
     void DefineMaterials();
     string Append(int i, string str);
