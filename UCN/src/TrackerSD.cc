@@ -149,6 +149,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
     const G4double eOrig = myTrack->second->originEnergy>0?myTrack->second->originEnergy:Ec;
     if(originEnergy.find(sTrack) != originEnergy.end())
     {
+	G4cout << "Some error related to duplicate secondaries. Triggered SMExcept instance." << G4endl;
 /*      SMExcept e("duplicateSecondary");
       e.insert("eOrig",eOrig);
       e.insert("pID",myTrack->second->GetPID());

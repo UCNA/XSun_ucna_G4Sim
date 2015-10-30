@@ -47,8 +47,10 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double y0 = 0;	// unless he is throwing events from nuclear decay.
   G4double z0 = -3*m;	// Idk what it should be. Ask Brad.
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
-
-  displayGunStatus();
+  if(anEvent -> GetEventID() == 0)
+  {
+    displayGunStatus();
+  }
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
