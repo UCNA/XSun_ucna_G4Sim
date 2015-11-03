@@ -1,0 +1,11 @@
+Need to:
+1) Add SMExcept classes to completed port TrackerSD. This means getting QFile.hh to include correctly.
+	This means downloading and installing Qt I believe on my computer.
+
+2) Add rad_src classes to simulate test sources easier.
+
+3) Design track level tracking and event by event printouts to track Type 0-4 events.
+	And to access things like deposited energies to produce a spectra.
+
+4) Fix SteppingAction so we can control when to kill trapped particles. 
+	Need ROOT stopwatch. TStopWatch. Have to replace with simpler C++ generic stuff.

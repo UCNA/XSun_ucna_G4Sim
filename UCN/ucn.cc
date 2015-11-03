@@ -27,7 +27,9 @@ int main(int argc,char** argv)
     ui = new G4UIExecutive(argc, argv);
   }
 
+  G4int seed = time(NULL);
   G4Random::setTheEngine(new CLHEP::RanecuEngine);	// Choose the Random engine
+  G4Random::setTheSeed(seed);
 
 #ifdef G4MULTITHREADED	// Construct the default run manager
   G4MTRunManager* runManager = new G4MTRunManager;
