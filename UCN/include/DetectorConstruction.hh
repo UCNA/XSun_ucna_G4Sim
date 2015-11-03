@@ -65,6 +65,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 // ---- Below are public variables from Source Holder class
     G4double getHolderThick() const { return fSourceHolderThickness; }
+    G4ThreeVector getHolderPos() const { return fSourceHolderPos; }
 
     G4double fSourceWindowThick; 			///< source foil window single-side thickness
     G4double fSourceCoatingThick; 			///< source foil coating thickness

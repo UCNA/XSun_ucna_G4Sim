@@ -15,7 +15,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
   fParticleGun(0),
   fMyDetector(myDC),
   fPosOffset(),
-  fSourceRadius(0),
+  fSourceRadius(3.*mm),
   fRelToSourceHolder(false)
 {
   G4int n_particle = 1;
@@ -31,20 +31,15 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
-// first line should be to set the random seed engine for Geant.
-
-  // default particle kinematic
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4String particleName;
   G4ParticleDefinition* particle;
 
+  //----- Setting species and energy of particle decided by CE random sampling from nndc
   int r1;
   r1 = rand() % 1007246 + 1;	// This bound is # of digits I want to produce
 				// NOTE	not set to 100 because on nndc we get 100.7% for 391 keV gammas.
-
   double percentage = r1/10000.;	// This gives us 0.001 precision.
-  G4cout << "random number: " << r1 << G4endl;
-  G4cout << "percentage: " << percentage << G4endl;
 
   if((percentage >= 0) && (percentage <= 64.97))
   {
@@ -83,12 +78,42 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);        // Michael's has this line. Idk why.
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,+1.));
 
+  //----- Setting isotropic particle momentum direction
+  G4double alphaMin = 0*deg;	// alpha is apex angle
+  G4double alphaMax = 180*deg;	// 180* ensures cone -> full sphere
+  G4double cosAlphaMin = cos(alphaMin);
+  G4double cosAlphaMax = cos(alphaMax);
+  G4double phiMin = 0*deg;	// phi in 0 to 2pi
+  G4double phiMax = 360.*deg;	// Presumably the rotation angle. 2pi makes it a cone.
 
-  G4double x0 = 0;	// In Michael's code he doesn't set the particle position
-  G4double y0 = 0;	// unless he is throwing events from nuclear decay.
-  G4double z0 = -1*m;	// Idk what it should be. Ask Brad.
+  G4double cosAlpha = cosAlphaMin-G4UniformRand()*(cosAlphaMin-cosAlphaMax);
+  G4double sinAlpha = sqrt(1. - cosAlpha*cosAlpha);
+  G4double phi = phiMin + G4UniformRand()*(phiMax - phiMin);
+
+  // NOTE: this is all centered around the z-axis. Usually more code is used to rotate to arbitrary axis.
+
+  G4double ux = sinAlpha*cos(phi);
+  G4double uy = sinAlpha*sin(phi);
+  G4double uz = cosAlpha;
+  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
+
+  //----- Setting the particle generation position
+  G4double x0 = 0;		// Says it is negligibly thin.
+  G4double y0 = 0;		// Brad told me the source radius
+  G4double z0 = 0;
+  if(fSourceRadius != 0)
+  {
+    diskRandom(fSourceRadius, x0, y0);
+  }
+  G4ThreeVector v0 = fPosOffset;
+  if(fRelToSourceHolder)
+  {
+    v0 += fMyDetector->getHolderPos();  // I checked and getHolderPos exists and the variable it calls
+  }                                     // namely fSourceHolderPos, has been initialized in DetectorConstruction
+  x0 = x0 + v0.x();
+  y0 = y0 + v0.y();
+  z0 = z0 + v0.z();
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 
   displayGunStatus();
