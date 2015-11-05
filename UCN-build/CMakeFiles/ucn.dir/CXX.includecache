@@ -6,151 +6,29 @@
 
 #IncludeRegexTransform: 
 
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
-TrackerSD.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
-Field.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
-G4VUserDetectorConstruction.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/G4VUserDetectorConstruction.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/EventAction.hh
+G4UserEventAction.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/G4UserEventAction.hh
 globals.hh
 /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/globals.hh
-G4Material.hh
--
-G4Element.hh
--
-G4SystemOfUnits.hh
--
-G4ThreeVector.hh
--
-G4ElectroMagneticField.hh
--
-G4MagneticField.hh
--
-G4RotationMatrix.hh
--
-string
--
-sstream
+G4Event.hh
 -
 
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
-vector
--
-globals.hh
--
-G4MagneticField.hh
--
-G4ThreeVector.hh
--
-
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
-DetectorConstruction.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
-G4VUserPrimaryGeneratorAction.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/G4VUserPrimaryGeneratorAction.hh
-G4ParticleGun.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/G4ParticleGun.hh
-globals.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/globals.hh
-
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
-G4VHit.hh
--
-G4THitsCollection.hh
--
-G4Allocator.hh
--
-G4ThreeVector.hh
--
-G4String.hh
--
-
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
-TrackerHit.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
-map
--
-G4VSensitiveDetector.hh
--
-G4HCofThisEvent.hh
--
-G4Step.hh
--
-G4UImessenger.hh
--
-G4UIcmdWithADouble.hh
--
-
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc
-PrimaryGeneratorAction.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.hh
-G4LogicalVolumeStore.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4LogicalVolumeStore.hh
-G4LogicalVolume.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4LogicalVolume.hh
-G4Box.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4Box.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc
+EventAction.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.hh
+G4Event.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4Event.hh
+G4EventManager.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4EventManager.hh
 G4RunManager.hh
 /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4RunManager.hh
-G4ParticleGun.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4ParticleGun.hh
-G4ParticleTable.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4ParticleTable.hh
-G4ParticleDefinition.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4ParticleDefinition.hh
-G4SystemOfUnits.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4SystemOfUnits.hh
-Randomize.hh
-/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Randomize.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
-iosfwd
--
-CLHEP/Vector/ThreeVector.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/ThreeVector.h
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Normal3D.h
-iosfwd
--
-CLHEP/Vector/ThreeVector.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/ThreeVector.h
-CLHEP/Geometry/BasicVector3D.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/BasicVector3D.h
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Point3D.h
-iosfwd
--
-CLHEP/Vector/ThreeVector.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/ThreeVector.h
-CLHEP/Geometry/BasicVector3D.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/BasicVector3D.h
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Transform3D.h
-CLHEP/Vector/ThreeVector.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/ThreeVector.h
-CLHEP/Geometry/Transform3D.icc
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/Transform3D.icc
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Transform3D.icc
-CLHEP/Vector/ThreeVector.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/ThreeVector.h
-CLHEP/Vector/Rotation.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/Rotation.h
-CLHEP/Geometry/Point3D.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/Point3D.h
-CLHEP/Geometry/Vector3D.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/Vector3D.h
-CLHEP/Geometry/Normal3D.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/Normal3D.h
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Vector3D.h
-iosfwd
--
-CLHEP/Vector/ThreeVector.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Vector/ThreeVector.h
-CLHEP/Geometry/BasicVector3D.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/CLHEP/Geometry/BasicVector3D.h
+G4TrajectoryContainer.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4TrajectoryContainer.hh
+G4Trajectory.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4Trajectory.hh
+G4ios.hh
+/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/G4ios.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/DualRand.h
 CLHEP/Random/RandomEngine.h
@@ -606,29 +484,7 @@ G4BlockingList.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4BlockingList.icc
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.hh
-G4UBox.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UBox.hh
-G4CSGSolid.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CSGSolid.hh
-G4Polyhedron.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Polyhedron.hh
-G4Box.icc
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.icc
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Box.icc
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CSGSolid.hh
-G4VSolid.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.hh
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ClassificationOfNewTrack.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CollectionNameVector.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-vector
--
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DCofThisEvent.hh
 globals.hh
@@ -679,10 +535,6 @@ G4DynamicParticle.icc
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4DynamicParticle.icc
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
-G4Field.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectronOccupancy.hh
 globals.hh
@@ -759,12 +611,6 @@ globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4FastVector.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
-G4Types.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
 
@@ -872,25 +718,11 @@ G4LogicalVolume.icc
 G4Threading.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Threading.hh
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolumeStore.hh
-vector
--
-G4LogicalVolume.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.hh
-G4VStoreNotifier.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VStoreNotifier.hh
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LorentzVector.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
 CLHEP/Vector/LorentzVector.h
 -
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagneticField.hh
-G4Types.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
-G4ElectroMagneticField.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Material.hh
 vector
@@ -1052,12 +884,6 @@ G4Navigator.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Navigator.icc
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Normal3D.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-CLHEP/Geometry/Normal3D.h
--
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4NormalNavigation.hh
 iomanip
 -
@@ -1156,20 +982,6 @@ G4ParticleDefinition.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleDefinition.icc
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleGun.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-G4VPrimaryGenerator.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPrimaryGenerator.hh
-G4ThreeVector.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
-G4ParticleDefinition.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleDefinition.hh
-G4PrimaryVertex.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PrimaryVertex.hh
-G4ParticleMomentum.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleMomentum.hh
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleMomentum.hh
 G4ThreeVector.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
@@ -1249,20 +1061,6 @@ G4PhysicsVector.icc
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PhysicsVector.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PhysicsVectorType.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Point3D.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-CLHEP/Geometry/Point3D.h
--
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Polyhedron.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-HepPolyhedron.h
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/HepPolyhedron.h
-G4Visible.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Visible.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4PrimaryParticle.hh
 globals.hh
@@ -1423,14 +1221,6 @@ vector
 -
 CLHEP/Units/PhysicalConstants.h
 -
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SensitiveVolumeList.hh
-vector
--
-G4LogicalVolume.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4LogicalVolume.hh
-G4VPhysicalVolume.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SmartTrackStack.hh
 G4StackedTrack.hh
@@ -1614,20 +1404,6 @@ G4String.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.icc
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SystemOfUnits.hh
-CLHEP/Units/SystemOfUnits.h
--
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4THitsCollection.hh
-G4VHitsCollection.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHitsCollection.hh
-G4Allocator.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Allocator.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-vector
--
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Threading.hh
 G4Types.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
@@ -1756,6 +1532,30 @@ G4VTrajectory.hh
 G4UImessenger.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UImessenger.hh
 
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Trajectory.hh
+stdlib.h
+-
+vector
+-
+trkgdefs.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkgdefs.hh
+G4VTrajectory.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VTrajectory.hh
+G4Allocator.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Allocator.hh
+G4ios.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ios.hh
+globals.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
+G4ParticleDefinition.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ParticleDefinition.hh
+G4TrajectoryPoint.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrajectoryPoint.hh
+G4Track.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Track.hh
+G4Step.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Step.hh
+
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrajectoryContainer.hh
 vector
 -
@@ -1768,29 +1568,23 @@ G4VTrajectory.hh
 G4Allocator.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Allocator.hh
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Transform3D.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TrajectoryPoint.hh
+trkgdefs.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkgdefs.hh
+G4VTrajectoryPoint.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VTrajectoryPoint.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-CLHEP/Geometry/Transform3D.h
--
+G4ThreeVector.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
+G4Allocator.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Allocator.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
 complex
 -
 tls.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/tls.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UBox.hh
-G4USolid.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4USolid.hh
-UBox.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UBox.hh
-G4Polyhedron.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Polyhedron.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcmdWithADouble.hh
-G4UIcommand.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcommand.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UIcommand.hh
 G4UIparameter.hh
@@ -1828,11 +1622,7 @@ G4UItokenNum.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4USolid.hh
-G4VSolid.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.hh
-VUSolid.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/VUSolid.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserEventAction.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserStackingAction.hh
 G4ClassificationOfNewTrack.hh
@@ -1846,19 +1636,9 @@ G4ClassificationOfNewTrack.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHit.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-vector
--
-map
--
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHitsCollection.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VNotifier.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPVParameterisation.hh
 G4Types.hh
@@ -1906,10 +1686,6 @@ G4VPhysicalVolume.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPhysicalVolume.icc
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VPrimaryGenerator.hh
-G4ThreeVector.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VProcess.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
@@ -1931,34 +1707,6 @@ G4ProcessType.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ProcessType.hh
 Randomize.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/Randomize.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VReadOutGeometry.hh
-G4SensitiveVolumeList.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SensitiveVolumeList.hh
-G4Step.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Step.hh
-G4TouchableHistory.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TouchableHistory.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSDFilter.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSensitiveDetector.hh
-G4VHit.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VHit.hh
-G4Step.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Step.hh
-G4HCofThisEvent.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4HCofThisEvent.hh
-G4VReadOutGeometry.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VReadOutGeometry.hh
-G4TouchableHistory.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4TouchableHistory.hh
-G4CollectionNameVector.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4CollectionNameVector.hh
-G4VSDFilter.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSDFilter.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VSolid.hh
 G4Types.hh
@@ -1994,10 +1742,6 @@ G4ForceCondition.hh
 G4GPILSelection.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4GPILSelection.hh
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VStoreNotifier.hh
-G4VNotifier.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VNotifier.hh
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VTouchable.hh
 G4Types.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
@@ -2020,31 +1764,23 @@ map
 G4ThreeVector.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserDetectorConstruction.hh
-vector
--
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VTrajectoryPoint.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
+vector
+-
+map
+-
+G4ThreeVector.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserEventInformation.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VUserTrackInformation.hh
 globals.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VVolumeMaterialScanner.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Visible.hh
-globals.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-iostream
--
-G4Visible.icc
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Visible.icc
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Visible.icc
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4VoxelNavigation.hh
 geomdefs.hh
@@ -2086,16 +1822,6 @@ G4Types.hh
 iostream
 -
 
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/HepPolyhedron.h
-G4Types.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
-G4Point3D.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Point3D.hh
-G4Normal3D.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Normal3D.hh
-G4Transform3D.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Transform3D.hh
-
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/Randomize.hh
 CLHEP/Random/Randomize.h
 -
@@ -2129,56 +1855,6 @@ CLHEP/Random/RandExponential.h
 -
 CLHEP/Random/RandGeneral.h
 -
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UBox.hh
-VUSolid.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/VUSolid.hh
-UUtils.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UUtils.hh
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTypes.hh
-UVector3.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UVector3.hh
-iostream
--
-string
--
-vector
--
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UUtils.hh
-UVector3.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UVector3.hh
-iostream
--
-fstream
--
-limits
--
-cmath
--
-cfloat
--
-vector
--
-algorithm
--
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UVector3.hh
-cmath
--
-iostream
--
-fstream
--
-
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/VUSolid.hh
-UTypes.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UTypes.hh
-UVector3.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UVector3.hh
-UUtils.hh
-/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/UUtils.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/evmandefs.hh
 trajectoryControl.hh
@@ -2225,6 +1901,10 @@ climits
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trajectoryControl.hh
 
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkdefs.hh
+G4Types.hh
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
+
+/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkgdefs.hh
 G4Types.hh
 /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
 

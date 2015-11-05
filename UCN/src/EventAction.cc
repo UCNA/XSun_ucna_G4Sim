@@ -1,5 +1,4 @@
 #include "EventAction.hh"
-#include "Run.hh"
 
 #include "G4Event.hh"
 #include "G4EventManager.hh"
@@ -35,13 +34,4 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 //  gAnalysisManager -> FillTrackerData(evt);
 //  gAnalysisManager -> FillEventTree();
   // Need to examine Analysis Manager class and check what these do/ recreate it.
-
-
-
-
-  // accumulate statistics in B1Run
-  Run* run	// All this stuff related to B1Example.
-    = static_cast<Run*>(
-        G4RunManager::GetRunManager()->GetNonConstCurrentRun());
-  run->AddEdep(fEdep);
 }

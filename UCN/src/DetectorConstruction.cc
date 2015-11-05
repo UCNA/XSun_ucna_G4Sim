@@ -65,7 +65,7 @@
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(), fpMagField(NULL),
-  fScoringVolume(0), fScintStepLimit(1.0*mm), fMWPCBowing(0*cm), fDetRot(0.),	// note: fScintStepLimit initialized here
+  fScintStepLimit(1.0*mm), fMWPCBowing(0*cm), fDetRot(0.),	// note: fScintStepLimit initialized here
   fCallFieldConstructor(false)
 {
   coating_log[0] = NULL;	// source holder member variables should go here or in line above
@@ -173,8 +173,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   experimentalHall_log->SetVisAttributes(G4VisAttributes::Invisible);
   experimentalHall_log->SetUserLimits(UserCoarseLimits);
   experimentalHall_phys = new G4PVPlacement(NULL,G4ThreeVector(),"World_Phys", experimentalHall_log,0,false,0,checkOverlaps);
-  hall_SD = registerSD("hall_SD");
-  experimentalHall_log -> SetSensitiveDetector(hall_SD);
+//  hall_SD = registerSD("hall_SD");
+//  experimentalHall_log -> SetSensitiveDetector(hall_SD);
 
   //----- source holder object -----//
   fSourceWindowThick = 4.7*um;		// class initialization variables.
@@ -209,8 +209,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   window_log->SetVisAttributes(visWindow);
   window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
 
-  source_SD = registerSD("source_SD");
-  window_log -> SetSensitiveDetector(source_SD);
+//  source_SD = registerSD("source_SD");
+//  window_log -> SetSensitiveDetector(source_SD);
 
   // source foil coating
   G4Tubs* coating_tube = new G4Tubs("source_coating_tube", 0., SourceWindowRadius, fSourceCoatingThick*0.5, 0., 2*M_PI);
@@ -352,8 +352,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     collimator_log[sd] -> SetSensitiveDetector(hall_SD);
     collimatorBack_log[sd] -> SetSensitiveDetector(hall_SD);
 
-    trap_monitor_SD[sd] = registerSD(Append(sd, "trap_monitor_SD_"));
-    trap_monitor_log[sd] -> SetSensitiveDetector(trap_monitor_SD[sd]);
+//    trap_monitor_SD[sd] = registerSD(Append(sd, "trap_monitor_SD_"));
+//    trap_monitor_log[sd] -> SetSensitiveDetector(trap_monitor_SD[sd]);
 
     trap_win_log[sd] -> SetUserLimits(UserSolidLimits);
   }
@@ -686,7 +686,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // Those guys are done further up in the code to make sure the looping gets them correctly.
   // It is confusing but it has to be done this way since I didn't use the object way of storing the log vol's
 
-  scint_SD[sd] = registerSD(Append(sd, "scint_SD_"));
+/*  scint_SD[sd] = registerSD(Append(sd, "scint_SD_"));
   scint_log -> SetSensitiveDetector(scint_SD[sd]);
 
   Dscint_SD[sd] = registerSD(Append(sd, "DScint_SD_"));
@@ -723,7 +723,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   WCham_container_log -> SetSensitiveDetector(mwpcDead_SD[sd]);
 
   kevlar_SD[sd] = registerSD(Append(sd, "kevlar_SD_"));
-  kevStrip_log -> SetSensitiveDetector(kevlar_SD[sd]);
+  kevStrip_log -> SetSensitiveDetector(kevlar_SD[sd]); */
 
   if(fCallFieldConstructor)
   {
@@ -736,7 +736,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
 
-  fScoringVolume = experimentalHall_log;
+//  fScoringVolume = experimentalHall_log;
 
   return experimentalHall_phys;
 }

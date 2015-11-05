@@ -380,7 +380,6 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/windefs.hh
 
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/EventAction.hh
-CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Run.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/DualRand.h
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/JamesRandom.h
@@ -539,7 +538,6 @@ CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-i
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ReplicaNavigation.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ReplicaNavigation.icc
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RotationMatrix.hh
-CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Run.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RunManager.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4RunManagerKernel.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SandiaTable.hh
@@ -1123,22 +1121,9 @@ CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: /home/xuansun/geant4/geant4-
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkdefs.hh
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/windefs.hh
 
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Run.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Run.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.icc
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ios.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/templates.hh
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/tls.hh
-
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
-CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Run.hh
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/RunAction.hh
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerHit.hh
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/TrackerSD.hh
