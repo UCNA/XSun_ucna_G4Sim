@@ -1,8 +1,8 @@
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "DetectorConstruction.hh"
+#include "Run.hh"
 
-#include "G4Run.hh"
 #include "G4RunManager.hh"
 #include "G4LogicalVolumeStore.hh"
 #include "G4LogicalVolume.hh"
@@ -17,10 +17,18 @@ RunAction::RunAction()
 RunAction::~RunAction()
 {}
 
+G4Run* RunAction::GenerateRun()
+{
+  return new Run;
+}
+
+
 void RunAction::BeginOfRunAction(const G4Run* run)
 {
   //inform the runManager to save random number seed
   G4RunManager::GetRunManager()->SetRandomNumberStore(false);
+
+  G4cout <<" Not a problem in begin of run action " << G4endl;
 }
 
 

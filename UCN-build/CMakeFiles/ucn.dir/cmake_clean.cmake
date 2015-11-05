@@ -5,6 +5,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
   "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
   "CMakeFiles/ucn.dir/src/TrackerHit.cc.o"
+  "CMakeFiles/ucn.dir/src/Run.cc.o"
   "CMakeFiles/ucn.dir/src/Field.cc.o"
   "CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
   "CMakeFiles/ucn.dir/src/EventAction.cc.o"

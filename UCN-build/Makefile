@@ -285,6 +285,30 @@ src/PrimaryGeneratorAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s
 .PHONY : src/PrimaryGeneratorAction.cc.s
 
+src/Run.o: src/Run.cc.o
+.PHONY : src/Run.o
+
+# target to build an object file
+src/Run.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.o
+.PHONY : src/Run.cc.o
+
+src/Run.i: src/Run.cc.i
+.PHONY : src/Run.i
+
+# target to preprocess a source file
+src/Run.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.i
+.PHONY : src/Run.cc.i
+
+src/Run.s: src/Run.cc.s
+.PHONY : src/Run.s
+
+# target to generate assembly for a file
+src/Run.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.s
+.PHONY : src/Run.cc.s
+
 src/RunAction.o: src/RunAction.cc.o
 .PHONY : src/RunAction.o
 
@@ -434,6 +458,9 @@ help:
 	@echo "... src/PrimaryGeneratorAction.o"
 	@echo "... src/PrimaryGeneratorAction.i"
 	@echo "... src/PrimaryGeneratorAction.s"
+	@echo "... src/Run.o"
+	@echo "... src/Run.i"
+	@echo "... src/Run.s"
 	@echo "... src/RunAction.o"
 	@echo "... src/RunAction.i"
 	@echo "... src/RunAction.s"

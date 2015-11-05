@@ -37,7 +37,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     virtual G4VPhysicalVolume* Construct();
 
-//    G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
+    G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
 
     G4Material* Be; 		///< Beryllium for trap windows
     G4Material* Al; 		///< Aluminum
@@ -179,7 +179,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 
   protected:
-//    G4LogicalVolume*  fScoringVolume;	// from B1 example
+    G4LogicalVolume*  fScoringVolume;	// from B1 example
 
 // ---- Below are private variables from Source Holder class
     G4VPhysicalVolume* window_phys;

@@ -221,7 +221,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   {
     coating_log[sd] = new G4LogicalVolume(coating_tube, fSourceCoatingMat, Append(sd, "source_coating_log_"));
     coating_log[sd]->SetVisAttributes(new G4VisAttributes(G4Colour(0,1,0,0.5)));
-    coating_log[sd] -> SetSensitiveDetector(source_SD);
+//    coating_log[sd] -> SetSensitiveDetector(source_SD);
     if(sd == 0)
     {
       coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
@@ -264,7 +264,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   decayTube_log = new G4LogicalVolume(decayTube_tube,Cu,"decayTube_log");
   decayTube_log->SetVisAttributes(new G4VisAttributes(G4Colour(1,1,0,0.5)));
   new G4PVPlacement(NULL,G4ThreeVector(),decayTube_log,"decayTube",experimentalHall_log,false,0);
-  decayTube_log -> SetSensitiveDetector(hall_SD);
+//  decayTube_log -> SetSensitiveDetector(hall_SD);
 
   // trap windows, collimator, monitors
   G4double thicknessOfTrapWindow = fTrapWindowThick + fTrapCoatingThick;
@@ -349,8 +349,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                 trap_monitor_log[sd],Append(sd,"trap_monitor_"),experimentalHall_log,false,0);
     }
 
-    collimator_log[sd] -> SetSensitiveDetector(hall_SD);
-    collimatorBack_log[sd] -> SetSensitiveDetector(hall_SD);
+//    collimator_log[sd] -> SetSensitiveDetector(hall_SD);
+//    collimatorBack_log[sd] -> SetSensitiveDetector(hall_SD);
 
 //    trap_monitor_SD[sd] = registerSD(Append(sd, "trap_monitor_SD_"));
 //    trap_monitor_log[sd] -> SetSensitiveDetector(trap_monitor_SD[sd]);
