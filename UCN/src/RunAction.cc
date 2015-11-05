@@ -1,13 +1,21 @@
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "DetectorConstruction.hh"
-#include "Run.hh"
 
+#include "G4Run.hh"
 #include "G4RunManager.hh"
 #include "G4LogicalVolumeStore.hh"
 #include "G4LogicalVolume.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
+
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <cmath>
+using   namespace       std;
+
+#define	OUTPUT_FILE	"EnergyOutput.txt"
 
 RunAction::RunAction()
 : G4UserRunAction()
@@ -17,18 +25,15 @@ RunAction::RunAction()
 RunAction::~RunAction()
 {}
 
-G4Run* RunAction::GenerateRun()
-{
-  return new Run;
-}
-
-
 void RunAction::BeginOfRunAction(const G4Run* run)
 {
+  ofstream outfile;
+  outfile.open(OUTPUT_FILE, ios::app);
+  outfile << "Particle species \t Energy Deposited (keV): East Scint \t West Scint \t East MWPC \t West MWPC \n";
+  outfile.close();
+
   //inform the runManager to save random number seed
   G4RunManager::GetRunManager()->SetRandomNumberStore(false);
-
-  G4cout <<" Not a problem in begin of run action " << G4endl;
 }
 
 
@@ -37,8 +42,6 @@ void RunAction::EndOfRunAction(const G4Run* run)
   G4int nofEvents = run->GetNumberOfEvent();
   if (nofEvents == 0) return;
 
-  // Print
-  //
   if (IsMaster()) {
     G4cout
      << G4endl
@@ -49,5 +52,10 @@ void RunAction::EndOfRunAction(const G4Run* run)
      << G4endl
      << "--------------------End of Local Run------------------------";
   }
+
+  ofstream outfile;
+  outfile.open(OUTPUT_FILE, ios::app);
+  outfile << "Total number of simulated events during this run: " << run -> GetNumberOfEvent() << "\n";
+  outfile.close();
 
 }

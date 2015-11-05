@@ -6,10 +6,20 @@
 #include "G4TrajectoryContainer.hh"
 #include "G4Trajectory.hh"
 #include "G4ios.hh"
+#include "G4UnitsTable.hh"
+#include "G4SystemOfUnits.hh"
+
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <cmath>
+using   namespace       std;
+
+#define	OUTPUT_FILE	"EnergyOutput.txt"
 
 EventAction::EventAction()
 : G4UserEventAction(),
-  fEdep(0.)
+  fEdep_East_Scint(0.), fEdep_West_Scint(0.), fEdep_East_MWPC(0.), fEdep_West_MWPC(0.)
 {}
 
 
@@ -19,9 +29,10 @@ EventAction::~EventAction()
 
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
-  G4cout << "First action in begin event action. " << G4endl;
-
-  fEdep = 0.;	// reset value for B1Example.
+  fEdep_East_Scint = 0;	// Ensuring these values are reset.
+  fEdep_West_Scint = 0;
+  fEdep_East_MWPC = 0;
+  fEdep_West_MWPC = 0;
 
   if((evt->GetEventID())%100 == 0)
   {
@@ -32,10 +43,48 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
 
 void EventAction::EndOfEventAction(const G4Event* evt)
 {
-  G4cout << "Clearly, I don't make it to end of event action. " << G4endl;
-
   // Here Michael uses his analysis manager class
 //  gAnalysisManager -> FillTrackerData(evt);
 //  gAnalysisManager -> FillEventTree();
   // Need to examine Analysis Manager class and check what these do/ recreate it.
+
+  ofstream outfile;
+  outfile.open(OUTPUT_FILE, ios::app);
+  outfile << fEdep_East_Scint/keV << "\t" << fEdep_West_Scint/keV << "\t"
+	  << fEdep_East_MWPC/keV << "\t" << fEdep_West_MWPC/keV << "\n";
+  outfile.close();
+}
+
+// typeFlag = 0 -> Scint
+//	      1 -> MWPC
+void EventAction::AddEdep(G4double edep, int typeFlag, int locFlag)
+{
+  if(locFlag == 0)
+  {
+    if(typeFlag == 0)
+    {
+      fEdep_East_Scint = fEdep_East_Scint + edep;
+    }
+    else if(typeFlag == 1)
+    {
+      fEdep_East_MWPC = fEdep_East_MWPC + edep;
+    }
+  }
+  else if(locFlag == 1)
+  {
+    if(typeFlag == 0)
+    {
+      fEdep_West_Scint = fEdep_West_Scint + edep;
+    }
+    else if(typeFlag == 1)
+    {
+      fEdep_West_MWPC = fEdep_West_MWPC + edep;
+    }
+  }
+
+
+
+
+  G4cout << "Call to event action edep" << G4endl;
+
 }

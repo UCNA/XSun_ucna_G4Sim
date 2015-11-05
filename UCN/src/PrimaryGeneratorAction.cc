@@ -10,6 +10,14 @@
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
 
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <cmath>
+using   namespace       std;
+
+#define	OUTPUT_FILE	"EnergyOutput.txt"
+
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
   fParticleGun(0),
@@ -78,6 +86,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);        // Michael's has this line. Idk why.
+
+  ofstream outfile;
+  outfile.open(OUTPUT_FILE, ios::app);
+  outfile << particleName << "\t";
+  outfile.close();
 
   //----- Setting isotropic particle momentum direction
   G4double alphaMin = 0*deg;	// alpha is apex angle

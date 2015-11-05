@@ -187,32 +187,9 @@ CMakeFiles/ucn.dir/src/TrackerHit.cc.o.provides: CMakeFiles/ucn.dir/src/TrackerH
 
 CMakeFiles/ucn.dir/src/TrackerHit.cc.o.provides.build: CMakeFiles/ucn.dir/src/TrackerHit.cc.o
 
-CMakeFiles/ucn.dir/src/Run.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/Run.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/Run.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/Run.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc
-
-CMakeFiles/ucn.dir/src/Run.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/Run.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc > CMakeFiles/ucn.dir/src/Run.cc.i
-
-CMakeFiles/ucn.dir/src/Run.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/Run.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Run.cc -o CMakeFiles/ucn.dir/src/Run.cc.s
-
-CMakeFiles/ucn.dir/src/Run.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/Run.cc.o.requires
-
-CMakeFiles/ucn.dir/src/Run.cc.o.provides: CMakeFiles/ucn.dir/src/Run.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Run.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/Run.cc.o.provides
-
-CMakeFiles/ucn.dir/src/Run.cc.o.provides.build: CMakeFiles/ucn.dir/src/Run.cc.o
-
 CMakeFiles/ucn.dir/src/Field.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/Field.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Field.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/Field.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/Field.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Field.cc
 
@@ -235,7 +212,7 @@ CMakeFiles/ucn.dir/src/Field.cc.o.provides.build: CMakeFiles/ucn.dir/src/Field.c
 
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/SteppingAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc
 
@@ -258,7 +235,7 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides.build: CMakeFiles/ucn.dir/sr
 
 CMakeFiles/ucn.dir/src/EventAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/EventAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/EventAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc
 
@@ -281,7 +258,7 @@ CMakeFiles/ucn.dir/src/EventAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/E
 
 CMakeFiles/ucn.dir/src/RunAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/RunAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/RunAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc
 
@@ -310,7 +287,6 @@ ucn_OBJECTS = \
 "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o" \
 "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/ucn.dir/src/TrackerHit.cc.o" \
-"CMakeFiles/ucn.dir/src/Run.cc.o" \
 "CMakeFiles/ucn.dir/src/Field.cc.o" \
 "CMakeFiles/ucn.dir/src/SteppingAction.cc.o" \
 "CMakeFiles/ucn.dir/src/EventAction.cc.o" \
@@ -325,7 +301,6 @@ ucn: CMakeFiles/ucn.dir/src/TrackerSD.cc.o
 ucn: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
 ucn: CMakeFiles/ucn.dir/src/TrackerHit.cc.o
-ucn: CMakeFiles/ucn.dir/src/Run.cc.o
 ucn: CMakeFiles/ucn.dir/src/Field.cc.o
 ucn: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/EventAction.cc.o
@@ -403,7 +378,6 @@ CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/TrackerSD.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/TrackerHit.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/Run.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/Field.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/EventAction.cc.o.requires

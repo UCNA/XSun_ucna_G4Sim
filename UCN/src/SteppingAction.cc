@@ -19,6 +19,5 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
-  G4cout << "Do we reach this?" << G4endl;
 }
 
