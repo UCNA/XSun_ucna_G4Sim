@@ -89,7 +89,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << particleName << "\t";
+  outfile << particleName << "\t \t";
   outfile.close();
 
   //----- Setting isotropic particle momentum direction
@@ -110,6 +110,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double uy = sinAlpha*sin(phi);
   G4double uz = cosAlpha;
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
+//  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0, 0, 1));
 
   //----- Setting the particle generation position
   G4double x0 = 0;		// Says it is negligibly thin.
@@ -129,7 +130,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   z0 = z0 + v0.z();
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 
-  displayGunStatus();
+//  displayGunStatus();
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
@@ -146,11 +147,11 @@ void PrimaryGeneratorAction::diskRandom(G4double radius, G4double& x, G4double& 
 void PrimaryGeneratorAction::displayGunStatus()
 {
   G4cout
-  << fParticleGun->GetParticleDefinition()->GetParticleName()
-  << " gun from " << fParticleGun->GetParticlePosition()/m
+  << fParticleGun->GetParticleDefinition()->GetParticleName() << " gun firing at energy: "
+/*  << " gun from " << fParticleGun->GetParticlePosition()/m
   << "m towards " << fParticleGun->GetParticleMomentumDirection()
   << " at " << fParticleGun->GetParticleTime()/ns
-  << "ns : " << fParticleGun->GetParticleEnergy()/keV
+  << "ns : "*/ << fParticleGun->GetParticleEnergy()/keV
   << "keV" <<
   G4endl;
 }

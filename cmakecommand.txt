@@ -1,0 +1,1 @@
+cmake -DGEANT4_DIR=/home/xuansun/geant4/geant4.10.1.p02-install/lib/Geant4-10.1.2 ~/Documents/Caltech/UCNA_Sim/B1Example/UCN/

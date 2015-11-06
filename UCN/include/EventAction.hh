@@ -18,8 +18,8 @@ class EventAction : public G4UserEventAction
 
   private:
     G4double  fEdep_East_Scint;
-    G4double  fEdep_West_Scint;
     G4double  fEdep_East_MWPC;
+    G4double  fEdep_West_Scint;
     G4double  fEdep_West_MWPC;
 
 };

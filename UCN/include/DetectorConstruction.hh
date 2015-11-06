@@ -34,8 +34,14 @@ class DetectorConstruction : public G4VUserDetectorConstruction
   public:
     DetectorConstruction();
     virtual ~DetectorConstruction();
-
     virtual G4VPhysicalVolume* Construct();
+
+    G4LogicalVolume* GetScoringVolume1() const { return fScoreVol1; }
+    G4LogicalVolume* GetScoringVolume2() const { return fScoreVol2; }
+    G4LogicalVolume* GetScoringVolume3() const { return fScoreVol3; }
+    G4LogicalVolume* GetScoringVolume4() const { return fScoreVol4; }
+
+    void SetScoringVolumes(G4LogicalVolume* vol, int type, int location);
 
 //    G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
 
@@ -252,6 +258,11 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     TrackerSD* trap_monitor_SD[2];
 
     TrackerSD* hall_SD;
+
+    G4LogicalVolume* fScoreVol1;	// These are the East/West Scint/MWPC
+    G4LogicalVolume* fScoreVol2;
+    G4LogicalVolume* fScoreVol3;
+    G4LogicalVolume* fScoreVol4;
 
 
 

@@ -18,8 +18,7 @@ using   namespace       std;
 #define	OUTPUT_FILE	"EnergyOutput.txt"
 
 EventAction::EventAction()
-: G4UserEventAction(),
-  fEdep_East_Scint(0.), fEdep_West_Scint(0.), fEdep_East_MWPC(0.), fEdep_West_MWPC(0.)
+: G4UserEventAction()
 {}
 
 
@@ -50,8 +49,8 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << fEdep_East_Scint/keV << "\t" << fEdep_West_Scint/keV << "\t"
-	  << fEdep_East_MWPC/keV << "\t" << fEdep_West_MWPC/keV << "\n";
+  outfile << fEdep_East_Scint/keV << "\t \t" << fEdep_East_MWPC/keV << "\t \t"
+	  << fEdep_West_Scint/keV << "\t \t" << fEdep_West_MWPC/keV << "\n";
   outfile.close();
 }
 
@@ -81,10 +80,4 @@ void EventAction::AddEdep(G4double edep, int typeFlag, int locFlag)
       fEdep_West_MWPC = fEdep_West_MWPC + edep;
     }
   }
-
-
-
-
-  G4cout << "Call to event action edep" << G4endl;
-
 }

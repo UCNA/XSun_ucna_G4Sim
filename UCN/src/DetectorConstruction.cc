@@ -725,6 +725,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   kevlar_SD[sd] = registerSD(Append(sd, "kevlar_SD_"));
   kevStrip_log -> SetSensitiveDetector(kevlar_SD[sd]); */
 
+  SetScoringVolumes(scint_log, 0, sd);
+  SetScoringVolumes(gas_log, 1, sd);	// for now, this is the MWPC SD. Will be modified later.
+
+
   if(fCallFieldConstructor)
   {
     fMyBField = fpMagField;
@@ -734,7 +738,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                                 
 
 
-
+  G4cout << "Print check that we registered correctly: fScoreVol1 = " << fScoreVol1 -> GetName()
+         << ", fScoreVol2 = " << fScoreVol2 -> GetName()
+         << ", fScoreVol3 = " << fScoreVol3 -> GetName()
+         << ", fScoreVol4 = " << fScoreVol4 -> GetName() << G4endl;
 
 //  fScoringVolume = experimentalHall_log;
 
@@ -865,4 +872,40 @@ void DetectorConstruction::setMWPCPotential(G4double Vanode)
 {
   fE0 = M_PI*Vanode/fd/log(sinh(M_PI*fL/fd)/sinh(M_PI*fr/fd));
   G4cout << "Wirechamber voltage set to " << Vanode/volt <<" V => fE0 = " << fE0/(volt/cm) << " V/cm" << G4endl;
+}
+
+void DetectorConstruction::SetScoringVolumes(G4LogicalVolume* vol, int type, int location)
+{
+  G4cout << "Setting scoring volume using " << vol->GetName()
+	 << " i.e. of type " << type << " and location " << location << G4endl;
+
+  if(location == 0)
+  {
+    if(type == 0)
+    {
+      fScoreVol1 = vol;
+    }
+    else if(type == 1)
+    {
+      fScoreVol2 = vol;
+    }
+  }
+  else if(location == 1)
+  {
+    if(type == 0)
+    {
+      fScoreVol3 = vol;
+    }
+    else if(type == 1)
+    {
+      fScoreVol4 = vol;
+    }
+  }
+  else if((location != 0) || (location != 1) || (type != 0) || (type != 1))
+  {
+    G4cout << "Yabai. Input flags make no sense" << G4endl;
+  }
+
+
+
 }

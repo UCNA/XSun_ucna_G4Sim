@@ -21,6 +21,12 @@ class SteppingAction : public G4UserSteppingAction
 
   private:
     EventAction*  fEventAction;
+    G4LogicalVolume* fSV1;
+    G4LogicalVolume* fSV2;
+    G4LogicalVolume* fSV3;
+    G4LogicalVolume* fSV4;
+
+
 };
 
 #endif
