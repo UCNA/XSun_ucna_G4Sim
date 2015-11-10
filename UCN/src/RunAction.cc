@@ -29,7 +29,7 @@ void RunAction::BeginOfRunAction(const G4Run* run)
 {
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << "Particle species \t Energy Deposited (keV): East Scint \t East MWPC \t West Scint \t West MWPC \n";
+  outfile << "Particle species \t Momentum Direction \t Energy Deposited (keV): East Scint \t East MWPC \t West Scint \t West MWPC \n";
   outfile.close();
 
   //inform the runManager to save random number seed

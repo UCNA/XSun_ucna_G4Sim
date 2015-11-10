@@ -53,6 +53,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   {
     fParticleGun -> SetParticleEnergy(391.698*keV);
     particle = particleTable->FindParticle(particleName="gamma");
+    fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,1,0));
   }
   else if((percentage > 64.97) && (percentage <= 93.77))
   {
@@ -74,14 +75,30 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     fParticleGun -> SetParticleEnergy(391.576*keV);
     particle = particleTable -> FindParticle(particleName="e-");
   }
-  else if((percentage > 100.712) && (percentage >= 100.7246))
+  else if((percentage > 100.712) && (percentage <= 100.7246))
   {
     fParticleGun -> SetParticleEnergy(391.697*keV);
     particle = particleTable -> FindParticle(particleName="e-");
   }
-  else
+  else if((percentage > 100.7246) || (percentage < 0))
   {
     G4cout << "Random number sampled beyond the scope of the decay." << G4endl;
+  }
+//fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,1));
+  if(particleName == "e-")
+  {
+    G4double x = G4UniformRand();
+G4cout << "Random number generated is: " << x << G4endl;
+    if(x < 0.5)
+    {
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,1));
+G4cout << "Firing towards +z" << G4endl;
+    }
+    if(x >= 0.5)
+    {
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,-1));
+G4cout << "Firing towards -z" << G4endl;
+    }
   }
 
   fParticleGun->SetParticleDefinition(particle);
@@ -89,7 +106,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << particleName << "\t \t";
+  outfile << particleName << "\t \t" << fParticleGun -> GetParticleMomentumDirection() << "\t\t";
   outfile.close();
 
   //----- Setting isotropic particle momentum direction
@@ -108,7 +125,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double uy = sinAlpha*sin(phi);
   G4double uz = cosAlpha;
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
-*/
+
   G4ThreeVector newUz;
   G4double theta, phi, apex;
 
@@ -130,7 +147,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   dir.rotateUz(newUz);
 
   fParticleGun->SetParticleMomentumDirection(dir);
-
+*/
 
 
   //----- Setting the particle generation position
