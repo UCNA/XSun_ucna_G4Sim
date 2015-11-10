@@ -93,7 +93,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   outfile.close();
 
   //----- Setting isotropic particle momentum direction
-  G4double alphaMin = 0*deg;	// alpha is apex angle
+/*  G4double alphaMin = 0*deg;	// alpha is apex angle
   G4double alphaMax = 180*deg;	// 180* ensures cone -> full sphere
   G4double cosAlphaMin = cos(alphaMin);
   G4double cosAlphaMax = cos(alphaMax);
@@ -104,13 +104,34 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double sinAlpha = sqrt(1. - cosAlpha*cosAlpha);
   G4double phi = phiMin + G4UniformRand()*(phiMax - phiMin);
 
-  // NOTE: this is all centered around the z-axis. Usually more code is used to rotate to arbitrary axis.
-
   G4double ux = sinAlpha*cos(phi);
   G4double uy = sinAlpha*sin(phi);
   G4double uz = cosAlpha;
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
-//  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0, 0, 1));
+*/
+  G4ThreeVector newUz;
+  G4double theta, phi, apex;
+
+  G4double xCentre = 0*cm;
+  G4double yCentre = 0*cm;
+  G4double zCentre = -1*cm;
+
+  phi = (180 + atan(yCentre/xCentre)*(180.0/3.1416))*deg; // basic geometry and then converted to degrees.
+  theta = acos(zCentre/sqrt(xCentre*xCentre + yCentre*yCentre + zCentre*zCentre))*(180.0/3.1416)*deg;
+
+  apex = 180*deg;
+
+  newUz = G4ThreeVector(std::sin(theta)*std::cos(phi), std::sin(theta)*std::sin(phi), std::cos(theta));
+
+  G4double cosAlpha = 1. - G4UniformRand()*(1.- std::cos(apex));
+  G4double sinAlpha = std::sqrt(1. - cosAlpha*cosAlpha);
+  G4double psi      = 2*3.1416*G4UniformRand();  //psi uniform in [0, 2*pi]
+  G4ThreeVector dir(sinAlpha*std::cos(psi), sinAlpha*std::sin(psi), cosAlpha);
+  dir.rotateUz(newUz);
+
+  fParticleGun->SetParticleMomentumDirection(dir);
+
+
 
   //----- Setting the particle generation position
   G4double x0 = 0;		// Says it is negligibly thin.

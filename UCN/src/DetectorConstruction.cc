@@ -200,14 +200,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4SubtractionSolid* holder = new G4SubtractionSolid("source_holder", holder_box, holder_hole);
   G4LogicalVolume* holder_log = new G4LogicalVolume(holder,Brass,"source_holder_log");
   holder_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0,0.5)));
-  holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0);
+//  holder_phys = new G4PVPlacement(NULL,G4ThreeVector(),holder_log,"source_holder_phys",container_log,false,0);
 
   // sealed source foil
   G4Tubs* window_tube = new G4Tubs("window_tube",0.,SourceWindowRadius,fSourceWindowThick,0.,2*M_PI);
   window_log = new G4LogicalVolume(window_tube,fSourceWindowMat,"source_window_log");
   G4VisAttributes* visWindow = new G4VisAttributes(G4Colour(0,1.0,0,1));
   window_log->SetVisAttributes(visWindow);
-  window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
+//  window_phys = new G4PVPlacement(NULL,G4ThreeVector(),window_log,"source_window_phys",container_log,false,0);
 
 //  source_SD = registerSD("source_SD");
 //  window_log -> SetSensitiveDetector(source_SD);
@@ -224,13 +224,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //    coating_log[sd] -> SetSensitiveDetector(source_SD);
     if(sd == 0)
     {
-      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
-				coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
+//      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(-1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
+//				coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
     }
     if(sd == 1)
     {
-      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
-                                coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
+//      coating_phys[sd] = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,(1)*(fSourceWindowThick+fSourceCoatingThick*0.5)),
+//                                coating_log[sd],Append(sd,"source_coating_phys_"),container_log,false,0);
     }
   }
 
@@ -238,10 +238,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Tubs* ring_tube = new G4Tubs("source_ring_tube",SourceWindowRadius,SourceRingRadius,SourceRingThickness/2,0.,2*M_PI);
   G4LogicalVolume* ring_log = new G4LogicalVolume(ring_tube,Al,"source_ring_log");
   ring_log->SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
-  ring_phys = new G4PVPlacement(NULL,G4ThreeVector(),ring_log,"source_ring_phys",container_log,false,0);
+//  ring_phys = new G4PVPlacement(NULL,G4ThreeVector(),ring_log,"source_ring_phys",container_log,false,0);
 
   // ----- end of source holder class code.
-  source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
+//  source_phys = new G4PVPlacement(NULL,fSourceHolderPos,container_log,"source_container_phys",experimentalHall_log,false,0);
 
   //----- Detector Decay Trap construction -----//
   fTrapWindowThick = 0.180*um;
