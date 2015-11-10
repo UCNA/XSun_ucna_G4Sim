@@ -1,7 +1,7 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
-#include "TrackerSD.hh"
+//#include "TrackerSD.hh"
 #include "Field.hh"
 
 #include "G4VUserDetectorConstruction.hh"
@@ -230,7 +230,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     void DefineMaterials();
     string Append(int i, string str);
-    TrackerSD* registerSD(G4String sdName);
+//    TrackerSD* registerSD(G4String sdName);
 
     G4double fScintStepLimit;
 
@@ -241,7 +241,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 //    float fCrinkleAngle;		// Decay trap foil crinkle angle. NOT USING
 
-    TrackerSD* scint_SD[2];		// sensitive volumes
+/*    TrackerSD* scint_SD[2];		// sensitive volumes
     TrackerSD* Dscint_SD[2];
     TrackerSD* backing_SD[2];
 
@@ -258,7 +258,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     TrackerSD* trap_monitor_SD[2];
 
     TrackerSD* hall_SD;
-
+*/
     G4LogicalVolume* fScoreVol1;	// These are the East/West Scint/MWPC
     G4LogicalVolume* fScoreVol2;
     G4LogicalVolume* fScoreVol3;

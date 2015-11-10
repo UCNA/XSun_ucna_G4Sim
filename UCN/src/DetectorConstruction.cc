@@ -1,5 +1,5 @@
 #include "DetectorConstruction.hh"
-#include "TrackerSD.hh"
+//#include "TrackerSD.hh"
 #include "Field.hh"
 
 #include "G4RunManager.hh"
@@ -747,7 +747,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   return experimentalHall_phys;
 }
-
+/*
 TrackerSD* DetectorConstruction::registerSD(G4String sdName)
 {
   TrackerSD* sd = new TrackerSD(sdName);
@@ -755,7 +755,7 @@ TrackerSD* DetectorConstruction::registerSD(G4String sdName)
 //  gAnalysisManager->SaveSDName(sdName);       // We're not using Analysis Manager class yet
   G4cout << "Registering " << sdName << " as a sensitive detector." << G4endl;
   return sd;
-}
+}*/
 
 
 string DetectorConstruction::Append(int i, string str)
