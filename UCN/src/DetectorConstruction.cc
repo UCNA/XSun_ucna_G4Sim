@@ -665,14 +665,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   detPackage_phys[sd] = new G4PVPlacement(sideFlip,sideTrans, fDPC_container_log,
 						Append(sd,"detPackage_phys_"),experimentalHall_log,false,0);
 
-	// need to debug once things registered as SD's and check if this is actually doing anything.
+	// these lines below redefine these rotations/translations for the second iteration of sd
   fMyRotation = sideFlip;	// equivalent to dets[sd].mwpc.myRotation = sideFlip;
   fMyTranslation = (*sideFlip)(fMyTranslation);	// don't understand this line at all
   fMyTranslation += sideTrans;
-//  dets[sd].mwpc.myRotation = sideFlip;        // don't understand. He has new definitions for rotations/translations
-//  dets[sd].mwpc.myTranslation = (*sideFlip)(dets[sd].mwpc.myTranslation);     // but he doesn't do a G4 placement?
-//  dets[sd].mwpc.myTranslation += sideTrans;   // So is everything placed in the geometry that is supposed to be or not??
-//  dets[sd].mwpc.setPotential(2700*volt);
 
   WCham_container_log -> SetUserLimits(UserGasLimits);
   winIn_log -> SetUserLimits(UserSolidLimits);
@@ -728,7 +724,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   SetScoringVolumes(scint_log, 0, sd);
   SetScoringVolumes(gas_log, 1, sd);	// for now, this is the MWPC SD. Will be modified later.
 
-
   if(fCallFieldConstructor)
   {
     fMyBField = fpMagField;
@@ -742,8 +737,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
          << ", fScoreVol2 = " << fScoreVol2 -> GetName()
          << ", fScoreVol3 = " << fScoreVol3 -> GetName()
          << ", fScoreVol4 = " << fScoreVol4 -> GetName() << G4endl;
-
-//  fScoringVolume = experimentalHall_log;
 
   return experimentalHall_phys;
 }
@@ -777,10 +770,27 @@ string DetectorConstruction::Append(int i, string str)
 
 void DetectorConstruction::ConstructField()
 {
+  G4double BfieldArray[3] = {0, 0, 0};
+
   if(!fpMagField)
   {
     cout << "##### Constructing Detector Field #####" << endl;
     fpMagField = new Field();
+
+    ofstream fieldprint;
+    fieldprint.open("fieldValues.txt", ios::app);
+
+    G4double location[3] = {1*cm, 1*cm, 0*cm};
+    for(int i = 0; i < 1000; i++)
+    {
+      G4double zValue = (i-500)*cm;
+      location[2] = zValue;
+      fpMagField -> GetFieldValue(location, BfieldArray);
+      fieldprint << "B(" << location[0]/cm << ", " << location[1]/cm << ", " << location[2]/cm << ") cm  = ("
+	<< BfieldArray[0]/tesla << ", " << BfieldArray[1]/tesla << ", " << BfieldArray[2]/tesla << ") tesla \n";
+    }
+    fieldprint.close();
+
     G4FieldManager* fieldMgr = G4TransportationManager::GetTransportationManager()->GetFieldManager();
     fieldMgr -> SetDetectorField(fpMagField);
     fieldMgr -> CreateChordFinder(fpMagField);
@@ -834,10 +844,25 @@ void DetectorConstruction::ConstructMWPCField()
   // apply field manager to wirechamber and all daughter volumes
   WCham_container_log->SetFieldManager(localFieldMgr,true);
 
+  G4double BfieldArray[6];
+  G4double location[4] = {1*cm, 1*cm, 0*cm, 0*s};
+
+  ofstream mwpcfield;
+  mwpcfield.open("mwpcfield.txt", ios::app);
+
+  for(int zPos = 0; zPos <= 600; zPos++)
+  {
+    location[2] = (zPos - 300)*cm;
+    fMyBField -> GetFieldValue(location, BfieldArray);
+          mwpcfield << "B(" << location[0]/cm << ", " << location[1]/cm << ", " << location[2]/cm << ") cm  = ("
+        << BfieldArray[0]/tesla << ", " << BfieldArray[1]/tesla << ", " << BfieldArray[2]/tesla << ") tesla \n";
+  }
+
+  mwpcfield.close();
   G4cout << " Done." << G4endl;
 }
 
-void DetectorConstruction::GetMWPCFieldValue(G4double Point[4], G4double* Bfield)
+void DetectorConstruction::GetFieldValue(G4double Point[4], G4double* Bfield)
 {
   // set magnetic field
   if(fMyBField) fMyBField->GetFieldValue(Point,Bfield);

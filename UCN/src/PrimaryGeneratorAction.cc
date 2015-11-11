@@ -84,20 +84,17 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   {
     G4cout << "Random number sampled beyond the scope of the decay." << G4endl;
   }
-//fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,1));
+
   if(particleName == "e-")
   {
     G4double x = G4UniformRand();
-G4cout << "Random number generated is: " << x << G4endl;
     if(x < 0.5)
     {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,1));
-G4cout << "Firing towards +z" << G4endl;
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,1,1));
     }
     if(x >= 0.5)
     {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,-1));
-G4cout << "Firing towards -z" << G4endl;
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,1,-1));
     }
   }
 
@@ -106,7 +103,9 @@ G4cout << "Firing towards -z" << G4endl;
 
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << particleName << "\t \t" << fParticleGun -> GetParticleMomentumDirection() << "\t\t";
+  outfile << particleName << "\t \t" << fParticleGun -> GetParticleMomentumDirection().x() << "\t\t"
+	<< fParticleGun -> GetParticleMomentumDirection().y() << "\t\t"
+	<< fParticleGun -> GetParticleMomentumDirection().z() << "\t\t";
   outfile.close();
 
   //----- Setting isotropic particle momentum direction

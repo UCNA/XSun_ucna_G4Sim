@@ -150,7 +150,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
 
 	/// electromagnetic field
-    void GetMWPCFieldValue(G4double Point[4], G4double* Bfield);
+    void GetFieldValue(G4double Point[4], G4double* Bfield);
 	/// whether the field changes particle energy
     virtual G4bool DoesMWPCFieldChangeEnergy() const { return fE0 != 0; }
 	/// set up tracking in field

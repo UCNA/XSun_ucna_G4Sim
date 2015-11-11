@@ -11,19 +11,20 @@ Field::Field(const G4String& filename):rmax2(20*20*cm2), fieldScale(1.0), afp_m(
 
 void Field::LoadFieldMap(const G4String& filename)
 {
+cout << "We have entered basic constructor for field object. Input file name: " << filename << endl;
   Bpoints.clear();
   Zpoints.clear();
 
   if(filename=="")
   {
     addPoint(-3.0*m,0.6*tesla);	//default field profile
-    addPoint(-2.2*m,0.6*tesla);
+    addPoint(-2.4*m,1.0*tesla);
     addPoint(-1.5*m,1.0*tesla);
     addPoint(1.5*m,1.0*tesla);
-    addPoint(2.2*m,0.6*tesla);
-    addPoint(3.0*m,0.6*tesla);
+    addPoint(2.0*m,1.0*tesla);
+    addPoint(3.0*m,2.0*tesla);
   }
-  else
+/*  else
   {
     string buf;
     ifstream infile;
@@ -53,7 +54,9 @@ void Field::LoadFieldMap(const G4String& filename)
       }
     }
   infile.close();
-  }
+  }*/
+
+cout << "Default field has been set. Option to read file name was commented out." << endl;
 }
 
 void Field::addAFPFringeField(const G4double Point[3], G4double *Bfield) const
