@@ -42,11 +42,6 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
 
 void EventAction::EndOfEventAction(const G4Event* evt)
 {
-  // Here Michael uses his analysis manager class
-//  gAnalysisManager -> FillTrackerData(evt);
-//  gAnalysisManager -> FillEventTree();
-  // Need to examine Analysis Manager class and check what these do/ recreate it.
-
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
   outfile << fEdep_East_Scint/keV << "\t \t" << fEdep_East_MWPC/keV << "\t \t"

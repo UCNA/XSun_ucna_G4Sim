@@ -20,7 +20,8 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
-  const DetectorConstruction* detectorConstruction =
+  return;
+/*  const DetectorConstruction* detectorConstruction =
         static_cast<const DetectorConstruction*>
         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
   fSV1 = detectorConstruction -> GetScoringVolume1();
@@ -53,6 +54,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   {
     fEventAction -> AddEdep(edepStep, 1, 1);
   }
-
+*/
 }
 

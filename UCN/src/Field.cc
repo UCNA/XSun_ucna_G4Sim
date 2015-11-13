@@ -18,11 +18,11 @@ cout << "We have entered basic constructor for field object. Input file name: " 
   if(filename=="")
   {
     addPoint(-3.0*m,0.6*tesla);	//default field profile
-    addPoint(-2.4*m,1.0*tesla);
+    addPoint(-2.2*m,0.6*tesla);
     addPoint(-1.5*m,1.0*tesla);
     addPoint(1.5*m,1.0*tesla);
-    addPoint(2.0*m,1.0*tesla);
-    addPoint(3.0*m,2.0*tesla);
+    addPoint(2.2*m,0.6*tesla);
+    addPoint(3.0*m,0.6*tesla);
   }
 /*  else
   {

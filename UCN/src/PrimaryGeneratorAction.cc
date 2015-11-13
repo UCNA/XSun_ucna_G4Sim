@@ -160,7 +160,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4ThreeVector v0 = fPosOffset;
   if(fRelToSourceHolder)
   {
-    v0 += fMyDetector->getHolderPos();  // I checked and getHolderPos exists and the variable it calls
+//    v0 += fMyDetector->getHolderPos();  // I checked and getHolderPos exists and the variable it calls
   }                                     // namely fSourceHolderPos, has been initialized in DetectorConstruction
   x0 = x0 + v0.x();
   y0 = y0 + v0.y();

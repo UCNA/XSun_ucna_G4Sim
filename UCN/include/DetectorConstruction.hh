@@ -1,7 +1,6 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
-//#include "TrackerSD.hh"
 #include "Field.hh"
 
 #include "G4VUserDetectorConstruction.hh"
@@ -32,18 +31,18 @@ class G4LogicalVolume;
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
   public:
-    DetectorConstruction();
+    DetectorConstruction();		// Constructor/destructors
     virtual ~DetectorConstruction();
     virtual G4VPhysicalVolume* Construct();
 
-    G4LogicalVolume* GetScoringVolume1() const { return fScoreVol1; }
-    G4LogicalVolume* GetScoringVolume2() const { return fScoreVol2; }
+    void setVacuumPressure(G4double pressure);
+
+    G4LogicalVolume* GetScoringVolume1() const { return fScoreVol1; }	// SteppingAction needs access
+    G4LogicalVolume* GetScoringVolume2() const { return fScoreVol2; }	// to scoring volumes.
     G4LogicalVolume* GetScoringVolume3() const { return fScoreVol3; }
     G4LogicalVolume* GetScoringVolume4() const { return fScoreVol4; }
 
     void SetScoringVolumes(G4LogicalVolume* vol, int type, int location);
-
-//    G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
 
     G4Material* Be; 		///< Beryllium for trap windows
     G4Material* Al; 		///< Aluminum
@@ -62,104 +61,86 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4Material* WCNitrogen; 	///< Wirechamber fill: Nitrogen @ 100torr
     G4Material* Sci; 		///< scintillator material
 
-    void setVacuumPressure(G4double pressure);
-
     G4LogicalVolume* experimentalHall_log;
-    G4VPhysicalVolume* experimentalHall_phys;
+    G4LogicalVolume* source_container_log;
+    G4LogicalVolume* source_window_log;
+    G4LogicalVolume* source_coating_log[2];
+    G4LogicalVolume* decayTrap_tube_log;
+    G4LogicalVolume* decayTrap_window_log[2];
+    G4LogicalVolume* decayTrap_mylarWindow_log[2];
+    G4LogicalVolume* decayTrap_beWindow_log[2];
+    G4LogicalVolume* decayTrap_collimator_log[2];
+    G4LogicalVolume* decayTrap_collimatorBack_log[2];
+    G4LogicalVolume* decayTrap_innerMonitors_log[2];
+    G4LogicalVolume* scint_container_log;
+    G4LogicalVolume* scint_deadLayer_log;
+    G4LogicalVolume* scint_scintillator_log;
+    G4LogicalVolume* scint_lightGuide_log;
+    G4LogicalVolume* scint_backing_log;
+    G4LogicalVolume* wireVol_gas_log;
+    G4LogicalVolume* wireVol_cathSeg_log;
+    G4LogicalVolume* wireVol_anodeSeg_log;
+    G4LogicalVolume* wireVol_cathodeWire_log;
+    G4LogicalVolume* wireVol_cathPlate_log;
+    G4LogicalVolume* wireVol_anodeWire_log;
+    G4LogicalVolume* mwpc_container_log;
+    G4LogicalVolume* mwpc_kevContainer_log;
+    G4LogicalVolume* mwpc_kevSeg_log;
+    G4LogicalVolume* mwpc_kevStrip_log;
+    G4LogicalVolume* mwpc_winIn_log;
+    G4LogicalVolume* mwpc_winOut_log;
+    G4LogicalVolume* frame_mwpcEntrance_log;
+    G4LogicalVolume* frame_entranceFront_log;
+    G4LogicalVolume* frame_entranceMid_log;
+    G4LogicalVolume* frame_entranceBack_log;
+    G4LogicalVolume* frame_container_log;
+    G4LogicalVolume* frame_mwpcExit_log;
+    G4LogicalVolume* frame_mwpcExitGasN2_log;
+    G4LogicalVolume* frame_backStuff_log;
 
+  protected:
+    G4VPhysicalVolume* experimentalHall_phys;
+    G4VPhysicalVolume* source_holder_phys;
+    G4VPhysicalVolume* source_window_phys;
+    G4VPhysicalVolume* source_coating_phys[2];
+    G4VPhysicalVolume* source_ring_phys;
+    G4VPhysicalVolume* source_phys;
+    G4VPhysicalVolume* scint_deadLayer_phys;
+    G4VPhysicalVolume* scint_scintillator_phys;
+    G4VPhysicalVolume* scint_lightGuide_phys;
+    G4VPhysicalVolume* scint_backing_phys;
+    G4VPhysicalVolume* frame_entranceFront_phys;
+    G4VPhysicalVolume* frame_entranceMid_phys;
+    G4VPhysicalVolume* frame_entranceBack_phys;
+    G4VPhysicalVolume* frame_mwpcExit_phys;
+    G4VPhysicalVolume* frame_mwpcExitGasN2_phys;
+    G4VPhysicalVolume* frame_backStuff_phys;
+
+  private:
+
+
+
+
+  public:
     G4VPhysicalVolume* detPackage_phys[2];	// Will be an array later
 
 // ---- Below are public variables from Source Holder class
     G4double getHolderThick() const { return fSourceHolderThickness; }
-    G4ThreeVector getHolderPos() const { return fSourceHolderPos; }
-
-    G4double fSourceWindowThick; 			///< source foil window single-side thickness
-    G4double fSourceCoatingThick; 			///< source foil coating thickness
-    G4Material* fSourceWindowMat; 			///< source foil window material
-    G4Material* fSourceCoatingMat; 			///< source foil coating material
-
-    G4LogicalVolume* container_log;
-    G4LogicalVolume* window_log;
-    G4LogicalVolume* coating_log[2];
-
-    G4VPhysicalVolume* source_phys;
-
-//  ---- Below are the public variables from Decay Trap
-    G4double fTrapWindowThick;
-    G4double fTrapCoatingThick;
-    G4double fTrapIRtrap; 				///< decay trap IR
-    G4double fTrapDecayTube_Wall; 			///< decay trap wall thickness
-    G4double fTrapIRcollimator; 			///< collimator IR
-
-    G4Material* fTrapTubeMat; 			///< decay tube material
-    G4Material* fTrapCollimatorMat; 		///< collimator material
-    G4Material* fTrapWindowMat; 			///< decay tube window material
-    G4Material* fTrapCoatingMat; 			///< decay tube coating material
-
-    G4LogicalVolume* decayTube_log; 		///< decay trap tube
-    G4LogicalVolume* trap_win_log[2]; 		///< trap window volume
-    G4LogicalVolume* mylar_win_log[2]; 		///< mylar layer of window
-    G4LogicalVolume* be_win_log[2]; 		///< berillium layer of window
-    G4LogicalVolume* trap_monitor_log[2]; 	///< extra event monitoring region
-    G4LogicalVolume* collimator_log[2]; 	///< collimator
-    G4LogicalVolume* collimatorBack_log[2]; 	///< bracket behind collimator
-    G4LogicalVolume* plug_log;
-
-// ---- Below are public variables from Scintillator Construction
-    G4double fScint_Radius; 			///< scintillator disc radius
-    G4double fBacking_Radius; 			///< backing veto (and overall volume) radius
-    G4double fScint_thick; 			///< scintillator disc thickness
-    G4double fDead_thick; 			///< dead scintillator thickness, 3 um according to Junhua's thesis
-    G4double fBacking_thick; 			///< backing vecto thickness (guess)
-    G4double fLightguide_thick; 		///< light guide thickness at scintillator edge (guess), sets scintillator to backing distance
-
-    G4LogicalVolume* N2_container_log; 		///< overall container (nitrogen volume)
-    G4LogicalVolume* Dscint_log; 		///< scintillator dead layer logical volume
-    G4LogicalVolume* scint_log; 		///< scintillator logical volume
-    G4LogicalVolume* backing_log; 		///< backing veto logical volume
-    G4LogicalVolume* lightguide_log; 		///< lightguide material logical volume
-
-// ----- Below are public variables from Wire Volume Construction
-    G4Material* fMWPCGas; 			///< MWPC fill gas
-    G4double fAnode_R; 				///< anode wire radius
-    G4double fCathode_R; 			///< cathode wire radius
-    G4double fPlating_thick; 			///< thickness of gold plating on wires
-    G4double fSpacing; 				///< wire spacing
-    G4int fNbOfWires; 				///< number of wires
-    G4double fPlaneSpacing; 			///< spacing between wireplanes
-
-    G4LogicalVolume* gas_log; 			///< constructed logical volume containing wireplanes
-    G4LogicalVolume* cathSeg_log; 		///< cathode "segment" containing one wire in gas
-    G4LogicalVolume* anodeSeg_log; 		///< anode "segment" containing one wire in gas
-    G4LogicalVolume* cathode_wire_log; 		///< cathode wires logical volume
-    G4LogicalVolume* cath_plate_log; 		///< gold plating on cathode segment
-    G4LogicalVolume* anode_wire_log; 		///< anode wires logical volume
 
 // ----- Below are public variables from Wirechamber construction
-    G4double fWChamWindowThick; 		///< mylar window thickness
-    G4double fmwpc_entrance_R; 			///< entrance window radius
-    G4double fmwpc_exit_R; 			///< exit window radius
-    G4double fEntranceToCathodes; 		///< entrance-window-to-cathode distance
-    G4double fExitToCathodes; 			///< exit-window-to-cathode distance
-
-    G4LogicalVolume* WCham_container_log; 	///< overall gas box
-    G4LogicalVolume* winIn_log; 		///< inner window
-    G4LogicalVolume* winOut_log; 		///< outer window
-    G4LogicalVolume* kevContainer_log; 		///< container volume for kevlar strip array
-    G4LogicalVolume* kevSeg_log; 		///< one segment of kevlar strip array
-    G4LogicalVolume* kevStrip_log; 		///< kevlar strip in one segment
 
 	/// electromagnetic field
-    void GetFieldValue(G4double Point[4], G4double* Bfield);
+//    void GetFieldValue(G4double Point[4], G4double* Bfield);
 	/// whether the field changes particle energy
     virtual G4bool DoesMWPCFieldChangeEnergy() const { return fE0 != 0; }
 	/// set up tracking in field
     void ConstructMWPCField();
 	/// set anode voltage
-    void setMWPCPotential(G4double Vanode);
+//    void setMWPCPotential(G4double Vanode);
 
     G4MagneticField* fMyBField; 			///< Magnetic field pointer
     G4RotationMatrix* fMyRotation; 		///< rotation from global frame to local coordinates
+
     G4ThreeVector fMyTranslation; 		///< translation from global coordinates to center of anode plane
 
 // ---- Below are public variables from the Detector Package Construction
@@ -185,31 +166,11 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
 
   protected:
-//    G4LogicalVolume*  fScoringVolume;	// from B1 example
-
 // ---- Below are private variables from Source Holder class
-    G4VPhysicalVolume* window_phys;
-    G4VPhysicalVolume* coating_phys[2];
-    G4VPhysicalVolume* holder_phys;
-    G4VPhysicalVolume* ring_phys;
-
     G4double fSourceHolderThickness;
 
-// ---- Below are protected variables from Scintillator Construction
-    G4double fScintFacePos; 			///< position of scintillator face in container
-    G4double fN2_volume_Z; 			///< z width of N2 volume
-
-    G4VPhysicalVolume* Dscint_phys; 		///< dead layer physical volume
-    G4VPhysicalVolume* scint_phys; 		///< scintillator physical volume
-    G4VPhysicalVolume* backing_phys; 		///< backing veto physical volume
-    G4VPhysicalVolume* lightguide_phys; 	///< lightguide material physical volume
-
 // ---- Below are protected variables from Wirechamber construction
-    G4double fmwpcContainer_halfZ; 		///< half-width of wirechamber
     G4double fE0; 				///< field scaling constant
-    double fd;		// Used in getMWPCFieldValue
-    double fL;
-    double fr;
 
 // ---- Below are protected variables from DetectorPackageConstruction
     G4VPhysicalVolume* fDPC_scint_phys;
@@ -230,36 +191,13 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     void DefineMaterials();
     string Append(int i, string str);
-//    TrackerSD* registerSD(G4String sdName);
 
     G4double fScintStepLimit;
 
-    G4ThreeVector fSourceHolderPos;	// here and below is returning to Mendenhall's DetectorConstruction class
-    G4double fMWPCBowing;
     G4double fDetRot;
     G4ThreeVector fDetOffset;
 
-//    float fCrinkleAngle;		// Decay trap foil crinkle angle. NOT USING
-
-/*    TrackerSD* scint_SD[2];		// sensitive volumes
-    TrackerSD* Dscint_SD[2];
-    TrackerSD* backing_SD[2];
-
-    TrackerSD* winIn_SD[2];
-    TrackerSD* winOut_SD[2];
-    TrackerSD* trap_win_SD[2];
-    TrackerSD* kevlar_SD[2];
-
-    TrackerSD* mwpc_SD[2];
-    TrackerSD* mwpc_planes_SD[2];
-    TrackerSD* mwpcDead_SD[2];
-
-    TrackerSD* source_SD;
-    TrackerSD* trap_monitor_SD[2];
-
-    TrackerSD* hall_SD;
-*/
-    G4LogicalVolume* fScoreVol1;	// These are the East/West Scint/MWPC
+    G4LogicalVolume* fScoreVol1;
     G4LogicalVolume* fScoreVol2;
     G4LogicalVolume* fScoreVol3;
     G4LogicalVolume* fScoreVol4;
