@@ -287,7 +287,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                         "be_win_1", decayTrap_window_log[1], false, 0);
 
   G4double decayTrap_collimator_PosZ = (decayTrap_tube_length + decayTrap_collimatorThick)/2.;
-  decayTrap_collimator_PosZ = decayTrap_collimator_PosZ + (decayTrap_totalWindowThickness)/2.;
+  decayTrap_collimator_PosZ += (decayTrap_totalWindowThickness)/2.;
   G4double decayTrap_collimatorBack_PosZ = decayTrap_tube_length/2. - decayTrap_collimatorThick;
   for(int i = 0; i <= 1; i++)
   {
@@ -330,7 +330,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   if((scint_scintBackingRadius < scint_scintRadius) || (scint_lightGuideThick < scint_scintThick))
 	G4cout << "\n\nMajor geometry error! Scintillator measurements don't make sense! \n \n" << G4endl;
 
-  ConstructField(); // since you need access to fpMagField
+//  ConstructField(); // since you need access to fpMagField
 
   // Here, in your old code, you'd loop over sd to create EAST and WEST objects.
   // Now, you'll build the East first (for debugging) scint, mwpc and frame.
@@ -377,10 +377,14 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   scint_backing_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, (scint_N2Volume_Z - scint_scintBackingThick)/2.),
 				scint_backing_log, "backing_phys_EAST", scint_container_log, false, 0);
 
-  G4cout << "PAST THE SCINTILLATOR CODE" << G4endl;
+  G4ThreeVector sideTransScint = G4ThreeVector(0., 0., (-1)*(2.2*m - scint_face_PosZ));
+  G4RotationMatrix* sideRot = new G4RotationMatrix();
+  sideRot -> rotateY(M_PI*rad);
 
-  //****** YOU NEED TO FIGURE OUT WHERE TO PLACE THESE SCINTILLATORS! CHECK NOTEBOOK. ******//
-  // Here should be code to place 1 scintillator container phys (taking scint_container_log, in World log)
+  // This places correctly on the EAST side!
+  scint_container_phys = new G4PVPlacement(sideRot, sideTransScint, scint_container_log, "N2_vol_phys_EAST", experimentalHall_log, false, 0, true);
+
+  G4cout << "PAST THE SCINTILLATOR CODE" << G4endl;
 
   //----- Begin Wire volume construction. Active region inside wire chamber.
   G4double wireVol_anodeRadius = 5*um;
@@ -458,8 +462,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   new G4PVReplica("CathodeArray2_EAST", wireVol_cathSeg_log, wireVol_cathContainer2_log, kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
   new G4PVReplica("AnodeArray_EAST", wireVol_anodeSeg_log, wireVol_anodeContainer_log, kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
 
-  //NOTE: wireVol_gas_log hasn't been placed at this point. Want to put it inside MWPC.
-
   G4cout << "PAST THE WIRE CHAMBER ACTIVE VOLUME CODE" << G4endl;
 
   //----- Begin wirechamber construction. MWPC used in front of Scintillator.
@@ -482,6 +484,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // MWPC active gas volume placement with  wireplane, relative to MWPC container volume
   G4ThreeVector mwpc_activeRegionTrans(0, 0, (mwpc_entranceToCathodes - mwpc_exitToCathodes)/2.);
+  // Note: this line places wireVol inside mwpc.
   new G4PVPlacement(NULL, mwpc_activeRegionTrans, wireVol_gas_log, "mwpc_phys_EAST", mwpc_container_log, false, 0);
 
   // construct kevlay string. Rectangular cross section strings with equal volume to nominal 140um cylinders.
@@ -520,6 +523,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   new G4PVPlacement(NULL, G4ThreeVector(0,0, mwpc_containerHalf_Z - mwpc_windowThick/2.),
 	mwpc_winOut_log," winOut_phys_EAST", mwpc_container_log, false, 0);
 
+  G4double frame_backWinFrameThick = 0.5*inch;	// originally placed further down but needed here
+  G4double mwpc_PosZ = -mwpc_containerHalf_Z - frame_backWinFrameThick - (scint_N2Volume_Z/2. + scint_face_PosZ);
+  G4ThreeVector sideTransMWPC = G4ThreeVector(0,0, (-1)*(2.2*m + mwpc_PosZ));
+
+  mwpc_container_phys = new G4PVPlacement(sideRot, sideTransMWPC, mwpc_container_log, "mwpc_container_phys_EAST", experimentalHall_log, false, 0, true);
+
+
   G4cout << "PAST THE WIRECHAMBER CONSTRUCTION CODE." << G4endl;
 
 
@@ -531,7 +541,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double frame_mwpcEntranceRadius = 3.0*inch;	// not the same value as mwpc_entranceRadius
   G4double frame_mwpcEntranceDepth = 5.0*inch;
   G4double frame_frontWinFrameThick = 1.0*inch;
-  G4double frame_backWinFrameThick = 0.5*inch;
+//  G4double frame_backWinFrameThick = 0.5*inch;	// moved a few lines up since needed for mwpc placement
 
   // aluminum entrance collimator to detector package
   G4double frame_entranceSectionLength = frame_mwpcEntranceDepth + frame_frontWinFrameThick;
@@ -553,12 +563,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   frame_entranceMid_log -> SetVisAttributes(visMWPCEntrance);
   frame_entranceBack_log -> SetVisAttributes(visMWPCEntrance);
 
-  frame_entranceFront_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*(frame_entranceSectionLength - frame_mwpcEntranceThick)),
-				frame_entranceFront_log, "entrance_front_phys_EAST", frame_mwpcEntrance_log, false, 0);
-  frame_entranceMid_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*frame_frontWinFrameThick),
-				frame_entranceMid_log, "entrance_mid_phys_EAST", frame_mwpcEntrance_log, false, 0);
-  frame_entranceBack_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, 0.5*(frame_entranceSectionLength - frame_frontWinFrameThick)),
-				frame_entranceBack_log, "entrance_back_phys_EAST", frame_mwpcEntrance_log, false, 0);
+//  frame_entranceFront_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*(frame_entranceSectionLength - frame_mwpcEntranceThick)),
+//				frame_entranceFront_log, "entrance_front_phys_EAST", frame_mwpcEntrance_log, false, 0);
+//  frame_entranceMid_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*frame_frontWinFrameThick),
+//				frame_entranceMid_log, "entrance_mid_phys_EAST", frame_mwpcEntrance_log, false, 0);
+//  frame_entranceBack_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, 0.5*(frame_entranceSectionLength - frame_frontWinFrameThick)),
+//				frame_entranceBack_log, "entrance_back_phys_EAST", frame_mwpcEntrance_log, false, 0);
 
   // create overall detector package frame.
   G4double frame_detFrameHalf_Z = frame_mwpcEntranceDepth + 2*mwpc_containerHalf_Z + 1.0*inch;
@@ -578,21 +588,21 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   //****** You need to fix this z position! It is defined relative to the internal placement of mwpc in detector package. *****//
   G4double frame_exitWin_PosZ = 0;	// can't fill this variable w/o dealing with relative placement of mwpc
 					// ignore for now. Will do TOMORROW.
-  frame_mwpcExit_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExit_log,
-				"mwpc_exit_EAST", frame_container_log, false, 0);
+//  frame_mwpcExit_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExit_log,
+//				"mwpc_exit_EAST", frame_container_log, false, 0);
 
   G4Tubs* frame_mwpcExitGasN2Tube = new G4Tubs("mwpc_exit_N2_tube", 0, mwpc_exitRadius, 0.5*frame_backWinFrameThick, 0., 2*M_PI);
   frame_mwpcExitGasN2_log = new G4LogicalVolume(frame_mwpcExitGasN2Tube, WCNitrogen, "mwpc_exit_N2_log_EAST");
   frame_mwpcExitGasN2_log -> SetVisAttributes(G4VisAttributes::Invisible);
-  frame_mwpcExitGasN2_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExitGasN2_log,
-				"mwpc_exit_N2_phys_EAST", frame_container_log, false, 0);
+//  frame_mwpcExitGasN2_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExitGasN2_log,
+//				"mwpc_exit_N2_phys_EAST", frame_container_log, false, 0);
 
   // material behind the detector. Misc stuff that can cause back scattering events.
   G4double frame_backStuffThick = 1.0*inch;
   G4Tubs* frame_backStuffTube = new G4Tubs("backstuff_tube_EAST", 0, 0.5*frame_packageRadius, frame_backStuffThick, 0., 2*M_PI);
   frame_backStuff_log = new G4LogicalVolume(frame_backStuffTube, SS304, "backStuff_log_EAST");
-  frame_backStuff_phys = new G4PVPlacement(NULL, G4ThreeVector(0, 0, frame_detFrameHalf_Z - 0.5*frame_backStuffThick),
-				frame_backStuff_log, "backStuff_phys_EAST", frame_container_log, false, 0);
+//  frame_backStuff_phys = new G4PVPlacement(NULL, G4ThreeVector(0, 0, frame_detFrameHalf_Z - 0.5*frame_backStuffThick),
+//				frame_backStuff_log, "backStuff_phys_EAST", frame_container_log, false, 0);
 
                                                                         
   for(int sd = 0; sd <=1; sd++)

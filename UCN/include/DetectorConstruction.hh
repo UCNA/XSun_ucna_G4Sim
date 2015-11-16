@@ -109,6 +109,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* scint_scintillator_phys;
     G4VPhysicalVolume* scint_lightGuide_phys;
     G4VPhysicalVolume* scint_backing_phys;
+    G4VPhysicalVolume* scint_container_phys;
+    G4VPhysicalVolume* mwpc_container_phys;
     G4VPhysicalVolume* frame_entranceFront_phys;
     G4VPhysicalVolume* frame_entranceMid_phys;
     G4VPhysicalVolume* frame_entranceBack_phys;
