@@ -1,5 +1,5 @@
 #include "DetectorConstruction.hh"
-#include "Field.hh"
+//#include "Field.hh"
 
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
@@ -61,11 +61,9 @@
 #include <G4PVParameterised.hh>
 
 DetectorConstruction::DetectorConstruction()
-: G4VUserDetectorConstruction(), fpMagField(NULL),
-  fScintStepLimit(1.0*mm), fDetRot(0.)	// note: fScintStepLimit initialized here
-{
-  fCallFieldConstructor = false;
-}
+: G4VUserDetectorConstruction(),
+  fScintStepLimit(1.0*mm)	// note: fScintStepLimit initialized here
+{ }
 
 
 DetectorConstruction::~DetectorConstruction()
@@ -223,8 +221,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   source_ring_phys = new G4PVPlacement(NULL, G4ThreeVector(), source_ring_log, "source_ring_phys", source_container_log, false, 0);
 
   // place entire source holder object
-  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log,"source_container_phys", experimentalHall_log, false, 0, true);
-
+//  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log,"source_container_phys", experimentalHall_log, false, 0, true);
 
   //----- Decay Trap object (length 3m, main tube)
   G4double decayTrap_windowThick = 0.180*um;
@@ -315,8 +312,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   decayTrap_window_log[0] -> SetUserLimits(UserSolidLimits);
   decayTrap_window_log[1] -> SetUserLimits(UserSolidLimits);
 
-  G4cout << "PAST DECAY TRAP CODE" << G4endl;
-
   //----- Scintillator construction. Used as Sensitive Volume
   G4double scint_scintRadius = 7.5*cm;
   G4double scint_scintBackingRadius = 10*cm;
@@ -330,31 +325,17 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   if((scint_scintBackingRadius < scint_scintRadius) || (scint_lightGuideThick < scint_scintThick))
 	G4cout << "\n\nMajor geometry error! Scintillator measurements don't make sense! \n \n" << G4endl;
 
-//  ConstructField(); // since you need access to fpMagField
-
-  // Here, in your old code, you'd loop over sd to create EAST and WEST objects.
-  // Now, you'll build the East first (for debugging) scint, mwpc and frame.
-
+  // Create the shapes used in the scintillator object and (to be applied later) visualizations
   // Overall container layer for the scintillator
   G4Tubs* scint_N2VolTube = new G4Tubs("N2_vol_tube", 0., scint_scintBackingRadius, scint_N2Volume_Z/2., 0., 2*M_PI);
-  scint_container_log = new G4LogicalVolume(scint_N2VolTube, WCNitrogen, "N2_Vol_log_EAST");
-  scint_container_log -> SetVisAttributes(G4VisAttributes::Invisible);
 
   // dead layer in scint
   G4Tubs* scint_deadLayerTube = new G4Tubs("Dead_scint_tube", 0, scint_scintRadius, scint_deadLayerThick/2., 0., 2*M_PI);
-  scint_deadLayer_log = new G4LogicalVolume(scint_deadLayerTube, Sci, "Dead_scint_log_EAST");
   G4VisAttributes* visDScint= new G4VisAttributes(G4Colour(1.0,0.0,1.0,0.5));
-  scint_deadLayer_log -> SetVisAttributes(visDScint);
-  scint_deadLayer_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -(scint_N2Volume_Z - scint_deadLayerThick)/2.),
-				scint_deadLayer_log, "Dead_scint_phys_EAST", scint_container_log, false, 0);
 
   // scintillator
   G4Tubs* scint_scintTube = new G4Tubs("scint_tube", 0, scint_scintRadius, (scint_scintThick - scint_deadLayerThick)/2., 0., 2*M_PI);
-  scint_scintillator_log = new G4LogicalVolume(scint_scintTube, Sci, "scint_log_EAST");
   G4VisAttributes* visScint= new G4VisAttributes(G4Colour(0.0,1.0,1.0,0.2));
-  scint_scintillator_log -> SetVisAttributes(visScint);
-  scint_scintillator_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -scint_N2Volume_Z/2. + scint_deadLayerThick + (scint_scintThick - scint_deadLayerThick)/2.),
-				scint_scintillator_log, "scint_phys_EAST", scint_container_log, false, 0);
 
   // light guides around and behind detector
   G4double scint_zPlane[] = {0., scint_scintThick, scint_scintThick, scint_lightGuideThick};
@@ -363,28 +344,52 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double scint_outerRad[] = {scint_scintBackingRadius, scint_scintBackingRadius, scint_scintBackingRadius, scint_scintBackingRadius};
 
   G4Polycone* scint_lightGuidePoly = new G4Polycone("lightguide_polycone", 0., 2*M_PI, 4, scint_zPlane, scint_innerRad, scint_outerRad);
-  scint_lightGuide_log = new G4LogicalVolume(scint_lightGuidePoly, Sci, "light_guide_log_EAST");
   G4VisAttributes* visLG = new G4VisAttributes(G4Colour(0.0,1.0,0.5,0.2));
-  scint_lightGuide_log -> SetVisAttributes(visLG);
-  scint_lightGuide_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, scint_N2Volume_Z/2.), scint_lightGuide_log, "light_guide_phys_EAST",
-				scint_container_log, false, 0);
 
   // backing veto
   G4Tubs* scint_backingTube = new G4Tubs("backing_tube", 0., scint_scintBackingRadius, scint_scintBackingThick/2., 0., 2*M_PI);
-  scint_backing_log = new G4LogicalVolume(scint_backingTube, Sci, "backing_log_EAST");
   G4VisAttributes* visBacking= new G4VisAttributes(G4Colour(0.0,0.0,1,0.2));
-  scint_backing_log->SetVisAttributes(visBacking);
-  scint_backing_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, (scint_N2Volume_Z - scint_scintBackingThick)/2.),
-				scint_backing_log, "backing_phys_EAST", scint_container_log, false, 0);
 
-  G4ThreeVector sideTransScint = G4ThreeVector(0., 0., (-1)*(2.2*m - scint_face_PosZ));
-  G4RotationMatrix* sideRot = new G4RotationMatrix();
-  sideRot -> rotateY(M_PI*rad);
+  // create and assign the logical volumes and their visualizations
+  for(int i = 0; i <= 1; i++)
+  {
+    scint_container_log[i] = new G4LogicalVolume(scint_N2VolTube, WCNitrogen, Append(i, "N2_Vol_log_"));
+    scint_container_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+    scint_deadLayer_log[i] = new G4LogicalVolume(scint_deadLayerTube, Sci, Append(i, "Dead_scint_log_"));
+    scint_deadLayer_log[i] -> SetVisAttributes(visDScint);
+    scint_scintillator_log[i] = new G4LogicalVolume(scint_scintTube, Sci, Append(i, "scint_log_"));
+    scint_scintillator_log[i] -> SetVisAttributes(visScint);
+    scint_lightGuide_log[i] = new G4LogicalVolume(scint_lightGuidePoly, Sci, Append(i, "light_guide_log_"));
+    scint_lightGuide_log[i] -> SetVisAttributes(visLG);
+    scint_backing_log[i] = new G4LogicalVolume(scint_backingTube, Sci, Append(i, "backing_log_"));
+    scint_backing_log[i] -> SetVisAttributes(visBacking);
+  }
 
-  // This places correctly on the EAST side!
-  scint_container_phys = new G4PVPlacement(sideRot, sideTransScint, scint_container_log, "N2_vol_phys_EAST", experimentalHall_log, false, 0, true);
+  // place the physical volumes inside the scint container.
+  // No need to change z entries of G4ThreeVector positions since overall container will be rotated.
+  for(int i = 0; i <= 1; i++)
+  {
+    scint_deadLayer_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, -(scint_N2Volume_Z - scint_deadLayerThick)/2.),
+                                scint_deadLayer_log[i], Append(i, "Dead_scint_phys_"), scint_container_log[i], false, 0);
+    scint_scintillator_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, -scint_N2Volume_Z/2. + scint_deadLayerThick + 
+                                (scint_scintThick - scint_deadLayerThick)/2.),
+                                scint_scintillator_log[i], Append(i, "scint_crystal_phys_"), scint_container_log[i], false, 0);
+    scint_lightGuide_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, scint_N2Volume_Z/2.), scint_lightGuide_log[i],
+				Append(i, "light_guide_phys_"), scint_container_log[i], false, 0);
+    scint_backing_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, (scint_N2Volume_Z - scint_scintBackingThick)/2.),
+                                scint_backing_log[i], Append(i, "backing_phys_"), scint_container_log[i], false, 0);
+  }
 
-  G4cout << "PAST THE SCINTILLATOR CODE" << G4endl;
+  G4ThreeVector sideTransScintEast = G4ThreeVector(0., 0., (-1)*(2.2*m - scint_face_PosZ));
+  G4ThreeVector sideTransScintWest = G4ThreeVector(0., 0., (2.2*m - scint_face_PosZ));
+  G4RotationMatrix* EastSideRot = new G4RotationMatrix();
+  EastSideRot -> rotateY(M_PI*rad);
+
+  // Place the two scintillator containers. Rotate the EAST one so they both face towards the center.
+  scint_container_phys[0] = new G4PVPlacement(EastSideRot, sideTransScintEast, scint_container_log[0],
+				"scint_container_phys_EAST", experimentalHall_log, false, 0, true);
+  scint_container_phys[1] = new G4PVPlacement(NULL, sideTransScintWest, scint_container_log[1],
+				"scint_container_phys_WEST", experimentalHall_log, false, 0, true);
 
   //----- Begin Wire volume construction. Active region inside wire chamber.
   G4double wireVol_anodeRadius = 5*um;
@@ -401,10 +406,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   G4double wireVol_wirePlaneWidth = wireVol_NbOfWires*wireVol_wireSpacing;
 
+  // Create shapes and visualizations to be set later.
   // effective mwpc gas volume containing the cathodes and anodes
   G4Box* wireVol_mwpcGasBox = new G4Box("mpwc_gas_box", wireVol_wirePlaneWidth/2., wireVol_wirePlaneWidth/2., wireVol_planeSpacing);
-  wireVol_gas_log = new G4LogicalVolume(wireVol_mwpcGasBox, wireVol_activeGas, "mwpc_gas_log_EAST");
-  wireVol_gas_log -> SetVisAttributes(G4VisAttributes::Invisible);
 
   // anode, cathode wire containers. These are "on their side" to allow wireplane parametrization. Rotated later.
   G4Box* wireVol_cathContainerBox = new G4Box("cathContainer_Box", wireVol_wirePlaneWidth/2., wireVol_cathodeRadius, wireVol_wirePlaneWidth/2.);
@@ -419,50 +423,60 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4Box* wireVol_cathSegBox = new G4Box("cathodeSegmentBox", wireVol_wireSpacing/2., wireVol_cathodeRadius, wireVol_wirePlaneWidth/2.);
   G4Box* wireVol_anodeSegBox = new G4Box("anodeSegmentBox", wireVol_wireSpacing/2., wireVol_anodeRadius, wireVol_wirePlaneWidth/2.);
 
-  // Rotate 90 degrees around X axis
-  G4RotationMatrix* xRot90 = new G4RotationMatrix;
+  G4RotationMatrix* xRot90 = new G4RotationMatrix;	// rotate 90 degrees around X axis
   xRot90->rotateX(M_PI/2.*rad);
-  // Rotate 90 degrees around X then Z axis (Y axis in object coordinates)
-  G4RotationMatrix* xzRot90 = new G4RotationMatrix;
+  G4RotationMatrix* xzRot90 = new G4RotationMatrix;	// rotate 90 deg around X then Z (Y axis in local coordinates)
   xzRot90->rotateX(M_PI/2.*rad);
   xzRot90->rotateY(M_PI/2.*rad);
 
   G4VisAttributes* visCathWires = new G4VisAttributes(G4Colour(1,0.7,0,0.8));
   G4VisAttributes* visAnodeWires = new G4VisAttributes(G4Colour(1,0.3,0,0.8));
 
-  // make anode, cathode segments
-  wireVol_cathSeg_log = new G4LogicalVolume(wireVol_cathSegBox, wireVol_activeGas, "cathSeg_log_EAST");
-  wireVol_anodeSeg_log = new G4LogicalVolume(wireVol_anodeSegBox, wireVol_activeGas, "anodeSeg_log_EAST");
-  wireVol_cathodeWire_log = new G4LogicalVolume(wireVol_cathodeTube, wireVol_cathodeWireMat, "cathode_log_EAST");
-  wireVol_cathPlate_log = new G4LogicalVolume(wireVol_cathPlateTube, wireVol_cathodePlateMat, "cathode_plate_log_EAST");
-  wireVol_anodeWire_log = new G4LogicalVolume(wireVol_anodeTube, wireVol_anodeWireMat, "anode_log_EAST");
-  wireVol_cathSeg_log -> SetVisAttributes(G4VisAttributes::Invisible);
-  wireVol_anodeSeg_log -> SetVisAttributes(G4VisAttributes::Invisible);
-  wireVol_cathodeWire_log -> SetVisAttributes(visCathWires);
-  wireVol_cathPlate_log -> SetVisAttributes(visCathWires);
-  wireVol_anodeWire_log -> SetVisAttributes(visAnodeWires);
+  // Create logical volume arrays. Below: active region container, anode, cathode segments
+  for(int i = 0; i <= 1; i++)
+  {
+    wireVol_gas_log[i] = new G4LogicalVolume(wireVol_mwpcGasBox, wireVol_activeGas, Append(i, "mwpc_gas_log_"));
+    wireVol_gas_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+    wireVol_cathSeg_log[i] = new G4LogicalVolume(wireVol_cathSegBox, wireVol_activeGas, Append(i, "cathSeg_log_"));
+    wireVol_anodeSeg_log[i] = new G4LogicalVolume(wireVol_anodeSegBox, wireVol_activeGas, Append(i, "anodeSeg_log_"));
+    wireVol_cathodeWire_log[i] = new G4LogicalVolume(wireVol_cathodeTube, wireVol_cathodeWireMat, Append(i, "cathode_log_"));
+    wireVol_cathPlate_log[i] = new G4LogicalVolume(wireVol_cathPlateTube, wireVol_cathodePlateMat, Append(i, "cathode_plate_log_"));
+    wireVol_anodeWire_log[i] = new G4LogicalVolume(wireVol_anodeTube, wireVol_anodeWireMat, Append(i, "anode_log_"));
+    wireVol_cathSeg_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+    wireVol_anodeSeg_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+    wireVol_cathodeWire_log[i] -> SetVisAttributes(visCathWires);
+    wireVol_cathPlate_log[i] -> SetVisAttributes(visCathWires);
+    wireVol_anodeWire_log[i] -> SetVisAttributes(visAnodeWires);
+  }
+  // make anode and cathode plane container volumes
+  G4LogicalVolume* wireVol_cathContainer1_log[2];
+  G4LogicalVolume* wireVol_cathContainer2_log[2];
+  G4LogicalVolume* wireVol_anodeContainer_log[2];
+  for(int i = 0; i <= 1; i++)
+  {
+    wireVol_cathContainer1_log[i] = new G4LogicalVolume(wireVol_cathContainerBox, wireVol_activeGas, Append(i, "cathContainer1_log_"));
+    wireVol_cathContainer2_log[i] = new G4LogicalVolume(wireVol_cathContainerBox, wireVol_activeGas, Append(i, "cathContainer2_log_"));
+    wireVol_anodeContainer_log[i] = new G4LogicalVolume(wireVol_anodeContainerBox, wireVol_activeGas, Append(i, "anodeContainer_log_"));
+  }
+  // place all the objects sequentially. So far, keep positions same since we will attempt to rotate
+  // ------ IF THE ROTATION METHOD FAILS, NEED TO START HERE AND EDIT ALL Z POSITIONS ------ //
+  for(int i = 0; i <= 1; i++)
+  {
+    new G4PVPlacement(NULL, G4ThreeVector(), wireVol_cathodeWire_log[i], Append(i, "cathode_wire_phys_"), wireVol_cathSeg_log[i], true, 0);
+    new G4PVPlacement(NULL, G4ThreeVector(), wireVol_cathPlate_log[i], Append(i, "cathode_plate_phys_"), wireVol_cathSeg_log[i], true, 0);
+    new G4PVPlacement(NULL, G4ThreeVector(), wireVol_anodeWire_log[i], Append(i, "anode_wire_phys_"), wireVol_anodeSeg_log[i], true, 0);
 
-  new G4PVPlacement(NULL, G4ThreeVector(), wireVol_cathodeWire_log, "cathode_wire_phys_EAST", wireVol_cathSeg_log, true, 0);
-  new G4PVPlacement(NULL, G4ThreeVector(), wireVol_cathPlate_log, "cathode_plate_phys_EAST", wireVol_cathSeg_log, true, 0);
-  new G4PVPlacement(NULL, G4ThreeVector(), wireVol_anodeWire_log, "anode_wire_phys_EAST", wireVol_anodeSeg_log, true, 0);
+    new G4PVPlacement(xRot90, G4ThreeVector(0., 0., wireVol_cathodeRadius - wireVol_planeSpacing),
+	wireVol_cathContainer1_log[i], Append(i, "cathContainer1_phys_"), wireVol_gas_log[i], false, 0);
+    new G4PVPlacement(xzRot90, G4ThreeVector(0., 0., (-1)*(wireVol_cathodeRadius - wireVol_planeSpacing)),
+	wireVol_cathContainer2_log[i], Append(i, "cathContainer2_phys_"), wireVol_gas_log[i], false, 0);
+    new G4PVPlacement(xRot90, G4ThreeVector(0,0,0), wireVol_anodeContainer_log[i], Append(i, "anodeContainer_phys_"), wireVol_gas_log[i], false,0);
 
-  // make and place anode and cathode plane container volumes
-  G4LogicalVolume* wireVol_cathContainer1_log = new G4LogicalVolume(wireVol_cathContainerBox, wireVol_activeGas, "cathContainer1_log_EAST");
-  G4LogicalVolume* wireVol_cathContainer2_log = new G4LogicalVolume(wireVol_cathContainerBox, wireVol_activeGas, "cathContainer2_log_EAST");
-  G4LogicalVolume* wireVol_anodeContainer_log = new G4LogicalVolume(wireVol_anodeContainerBox, wireVol_activeGas, "anodeContainer_log_EAST");
-
-  new G4PVPlacement(xRot90, G4ThreeVector(0., 0., wireVol_cathodeRadius - wireVol_planeSpacing),
-	wireVol_cathContainer1_log, "cathContainer1_phys_EAST", wireVol_gas_log, false, 0);
-  new G4PVPlacement(xzRot90, G4ThreeVector(0., 0., (-1)*(wireVol_cathodeRadius - wireVol_planeSpacing)),
-	wireVol_cathContainer2_log, "cathContainer2_phys_EAST", wireVol_gas_log, false, 0);
-  new G4PVPlacement(xRot90, G4ThreeVector(0,0,0), wireVol_anodeContainer_log, "anodeContainer_phys_EAST", wireVol_gas_log, false,0);
-
-  // replicate the segments defined above into cathode, anode arrays
-  new G4PVReplica("CathodeArray1_EAST", wireVol_cathSeg_log, wireVol_cathContainer1_log, kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
-  new G4PVReplica("CathodeArray2_EAST", wireVol_cathSeg_log, wireVol_cathContainer2_log, kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
-  new G4PVReplica("AnodeArray_EAST", wireVol_anodeSeg_log, wireVol_anodeContainer_log, kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
-
-  G4cout << "PAST THE WIRE CHAMBER ACTIVE VOLUME CODE" << G4endl;
+    // replicate the segments defined above into cathode, anode arrays
+    new G4PVReplica(Append(i, "CathodeArray1_"), wireVol_cathSeg_log[i], wireVol_cathContainer1_log[i], kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
+    new G4PVReplica(Append(i, "CathodeArray2_"), wireVol_cathSeg_log[i], wireVol_cathContainer2_log[i], kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
+    new G4PVReplica(Append(i, "AnodeArray_"), wireVol_anodeSeg_log[i], wireVol_anodeContainer_log[i], kXAxis, wireVol_NbOfWires, wireVol_wireSpacing);
+  }
 
   //----- Begin wirechamber construction. MWPC used in front of Scintillator.
   G4double mwpc_windowThick = 6*um;
@@ -470,7 +484,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double mwpc_exitRadius = 7.5*cm;
   G4double mwpc_entranceToCathodes = 5.0*mm;
   G4double mwpc_exitToCathodes = 5.0*mm;
-  G4MagneticField* mwpc_internalBfield = NULL;	// this is tricky. Need to figure out.
+//  G4MagneticField* mwpc_internalBfield = NULL;	// this is tricky. Need to figure out.
   G4double mwpc_fieldE0 = 0;	// initialize field potential to 0. Also tricky.
   G4Material* mwpc_fillGas = wireVol_activeGas;	// want it to be WCPentane
 
@@ -479,13 +493,17 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // container volume for all MWPC
   G4Box* mwpc_containerBox = new G4Box("mwpc_container_box", mwpc_gasVolumeWidth/2., mwpc_gasVolumeWidth/2., mwpc_containerHalf_Z);
-  mwpc_container_log = new G4LogicalVolume(mwpc_containerBox, mwpc_fillGas, "mwpc_container_log_EAST");
-  mwpc_container_log -> SetVisAttributes(G4VisAttributes::Invisible);
+
+  mwpc_container_log[0] = new G4LogicalVolume(mwpc_containerBox, mwpc_fillGas, "mwpc_container_log_EAST");
+  mwpc_container_log[0] -> SetVisAttributes(G4VisAttributes::Invisible);
+  mwpc_container_log[1] = new G4LogicalVolume(mwpc_containerBox, mwpc_fillGas, "mwpc_container_log_WEST");
+  mwpc_container_log[1] -> SetVisAttributes(G4VisAttributes::Invisible);
 
   // MWPC active gas volume placement with  wireplane, relative to MWPC container volume
   G4ThreeVector mwpc_activeRegionTrans(0, 0, (mwpc_entranceToCathodes - mwpc_exitToCathodes)/2.);
-  // Note: this line places wireVol inside mwpc.
-  new G4PVPlacement(NULL, mwpc_activeRegionTrans, wireVol_gas_log, "mwpc_phys_EAST", mwpc_container_log, false, 0);
+  // Note: these lines place wireVol inside mwpc.
+  new G4PVPlacement(NULL, mwpc_activeRegionTrans, wireVol_gas_log[0], "mwpc_activeReg_phys_EAST", mwpc_container_log[0], false, 0);
+  new G4PVPlacement(NULL, mwpc_activeRegionTrans, wireVol_gas_log[1], "mwpc_activeReg_phys_WEST", mwpc_container_log[1], false, 0);
 
   // construct kevlay string. Rectangular cross section strings with equal volume to nominal 140um cylinders.
   G4double mwpc_kevRadius = 0.07*mm;
@@ -498,41 +516,55 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double mwpc_kevEffThick = sqrt(mwpc_kevArea/mwpc_kevAspectRatio);
   G4double mwpc_kev_PosZ = -mwpc_containerHalf_Z + mwpc_kevEffThick/2.;
 
+  // create shapes for kevlar strings. Will be replicated into an array
   G4Box* mwpc_kevContainerBox = new G4Box("kevContainer_box", mwpc_NbKevWires*mwpc_kevSpacing/2., mwpc_kevLength/2., mwpc_kevEffThick/2.);
   G4Box* mwpc_kevSegBox = new G4Box("kevSeg_box", mwpc_kevSpacing/2., mwpc_kevLength/2., mwpc_kevEffThick/2.);
   G4Box* mwpc_kevStripBox = new G4Box("kevStrip_box", mwpc_kevEffWidth/2., mwpc_kevLength/2., mwpc_kevEffThick/2.);
-  mwpc_kevContainer_log = new G4LogicalVolume(mwpc_kevContainerBox, Vacuum, "kevContainer_log_EAST");
-  mwpc_kevSeg_log = new G4LogicalVolume(mwpc_kevSegBox, Vacuum, "kevSeg_log_EAST");
-  mwpc_kevStrip_log = new G4LogicalVolume(mwpc_kevStripBox, Kevlar, "kevStrip_log_EAST");
 
-  // place components of kevlar strings. Replicate the array
-  new G4PVPlacement(NULL, G4ThreeVector(0,0, mwpc_kev_PosZ), mwpc_kevContainer_log, "kevContainer_phys_EAST", mwpc_container_log, false, 0);
-  new G4PVPlacement(NULL, G4ThreeVector(0,0,0), mwpc_kevStrip_log, "kevStrip_phys_EAST", mwpc_kevSeg_log, false, 0);
-  new G4PVReplica("kevlar_place_EAST", mwpc_kevSeg_log, mwpc_kevContainer_log, kXAxis, mwpc_NbKevWires, mwpc_kevSpacing);
-
-  // Make the Mylar windows in the MWPC.
+  // Shapes for the Mylar windows in the MWPC
   G4Tubs* mwpc_winInnerTube = new G4Tubs("winInnerTube", 0., mwpc_entranceRadius, mwpc_windowThick/2., 0., 2*M_PI);
   G4Tubs* mwpc_winOuterTube = new G4Tubs("winOuterTube", 0., mwpc_exitRadius, mwpc_windowThick/2., 0., 2*M_PI);
-  mwpc_winIn_log = new G4LogicalVolume(mwpc_winInnerTube, Mylar, "winIn_log_EAST");
-  mwpc_winIn_log -> SetVisAttributes(visWindow);
-  mwpc_winOut_log = new G4LogicalVolume(mwpc_winOuterTube, Mylar, "winOut_log_EAST");
-  mwpc_winOut_log -> SetVisAttributes(visWindow);
 
-  new G4PVPlacement(NULL, G4ThreeVector(0,0, -mwpc_containerHalf_Z + mwpc_kevEffThick + mwpc_windowThick/2.),
-	mwpc_winIn_log, "winIn_phys_EAST", mwpc_container_log, false, 0);
-  new G4PVPlacement(NULL, G4ThreeVector(0,0, mwpc_containerHalf_Z - mwpc_windowThick/2.),
-	mwpc_winOut_log," winOut_phys_EAST", mwpc_container_log, false, 0);
+  for(int i = 0; i <= 1; i++)
+  {
+    mwpc_kevContainer_log[i] = new G4LogicalVolume(mwpc_kevContainerBox, Vacuum, Append(i, "kevContainer_log_"));
+    mwpc_kevSeg_log[i] = new G4LogicalVolume(mwpc_kevSegBox, Vacuum, Append(i, "kevSeg_log_"));
+    mwpc_kevStrip_log[i] = new G4LogicalVolume(mwpc_kevStripBox, Kevlar, Append(i, "kevStrip_log_"));
+
+    mwpc_winIn_log[i] = new G4LogicalVolume(mwpc_winInnerTube, Mylar, Append(i, "winIn_log_"));
+    mwpc_winIn_log[i] -> SetVisAttributes(visWindow);
+    mwpc_winOut_log[i] = new G4LogicalVolume(mwpc_winOuterTube, Mylar, Append(i, "winOut_log_"));
+    mwpc_winOut_log[i] -> SetVisAttributes(visWindow);
+
+    new G4PVPlacement(NULL, G4ThreeVector(0,0, mwpc_kev_PosZ), mwpc_kevContainer_log[i], Append(i, "kevContainer_phys_"),
+			mwpc_container_log[i], false, 0);
+    new G4PVPlacement(NULL, G4ThreeVector(0,0,0), mwpc_kevStrip_log[i], Append(i, "kevStrip_phys_"), mwpc_kevSeg_log[i], false, 0);
+    new G4PVReplica(Append(i, "kevlar_place_"), mwpc_kevSeg_log[i], mwpc_kevContainer_log[i], kXAxis, mwpc_NbKevWires, mwpc_kevSpacing);
+
+    new G4PVPlacement(NULL, G4ThreeVector(0,0, -mwpc_containerHalf_Z + mwpc_kevEffThick + mwpc_windowThick/2.),
+        mwpc_winIn_log[i], Append(i, "winIn_phys_"), mwpc_container_log[i], false, 0);
+    new G4PVPlacement(NULL, G4ThreeVector(0,0, mwpc_containerHalf_Z - mwpc_windowThick/2.),
+        mwpc_winOut_log[i], Append(i, "winOut_phys_"), mwpc_container_log[i], false, 0);
+  }
 
   G4double frame_backWinFrameThick = 0.5*inch;	// originally placed further down but needed here
   G4double mwpc_PosZ = -mwpc_containerHalf_Z - frame_backWinFrameThick - (scint_N2Volume_Z/2. + scint_face_PosZ);
-  G4ThreeVector sideTransMWPC = G4ThreeVector(0,0, (-1)*(2.2*m + mwpc_PosZ));
+  G4ThreeVector sideTransMWPCEast = G4ThreeVector(0,0, (-1)*(2.2*m + mwpc_PosZ));
+  G4ThreeVector sideTransMWPCWest = G4ThreeVector(0, 0, (2.2*m + mwpc_PosZ));
 
-  mwpc_container_phys = new G4PVPlacement(sideRot, sideTransMWPC, mwpc_container_log, "mwpc_container_phys_EAST", experimentalHall_log, false, 0, true);
+  // place the two wire chambers in experimentalHall. Rotate the East one (same as scint) so they both point towards center.
+  mwpc_container_phys[0] = new G4PVPlacement(EastSideRot, sideTransMWPCEast, mwpc_container_log[0],
+				"mwpc_container_phys_EAST", experimentalHall_log, false, 0, true);
+  mwpc_container_phys[1] = new G4PVPlacement(NULL, sideTransMWPCWest, mwpc_container_log[1],
+				"mwpc_container_phys_West", experimentalHall_log, false, 0, true);
 
-
-  G4cout << "PAST THE WIRECHAMBER CONSTRUCTION CODE." << G4endl;
-
-
+  for(int i = 0; i <= 1; i++)
+  {
+    mwpc_container_log[i] -> SetUserLimits(UserGasLimits);
+    mwpc_winIn_log[i] -> SetUserLimits(UserSolidLimits);
+    mwpc_winOut_log[i] -> SetUserLimits(UserSolidLimits);
+    mwpc_kevStrip_log[i] -> SetUserLimits(UserSolidLimits);
+  }
 
   //----- Begin DetectorPackageConstruction. This is the frame that holds the scintillator and MWPC.
 
@@ -604,147 +636,20 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //  frame_backStuff_phys = new G4PVPlacement(NULL, G4ThreeVector(0, 0, frame_detFrameHalf_Z - 0.5*frame_backStuffThick),
 //				frame_backStuff_log, "backStuff_phys_EAST", frame_container_log, false, 0);
 
-                                                                        
-  for(int sd = 0; sd <=1; sd++)
-  {
 
-  G4double fN2_volume_Z = scint_N2Volume_Z;
-  G4double fScintFacePos = scint_face_PosZ;
-//  G4Material* fMWPCGas = WCPentane;
-  G4double fmwpc_entrance_R = mwpc_entranceRadius;
-  G4double fmwpc_exit_R = mwpc_exitRadius;
-  G4double fmwpcContainer_halfZ = mwpc_containerHalf_Z;
-
-  G4cout << "Begin detector package construction" << G4endl;
-  //----- Begin DetectorPackageConstruction class code -----//
-  fDPC_detPackageRadius = 6.0*inch;		// initialize the DetectorPackageConstruction variables
-  fDPC_mwpc_entrance_thickness = 0.375*inch;
-  fDPC_mwpc_entrance_r = 3.0*inch;
-  fDPC_mwpc_entrance_depth = 5.0*inch;
-  fDPC_frontwin_frame_thick = 1.0*inch;
-  fDPC_backwin_frame_thick = 0.5*inch;
-  //Note: here in Michael's code an instance of mwpc and scint are declared given an input Side sd
-  //These are instances of WirechamberConstruction and ScintillatorConstruction.
-
-  // aluminum entrance collimator to detector package
-  const G4double entrance_section_length = fDPC_mwpc_entrance_depth+fDPC_frontwin_frame_thick;
-  G4Tubs* mwpc_entrance_tube = new G4Tubs("mwpc_entrance_tube",0,fDPC_detPackageRadius,0.5*entrance_section_length,0.,2*M_PI);
-  G4Tubs* entrance_front_tube = new G4Tubs("entrance_front_tube",fDPC_mwpc_entrance_r+fDPC_mwpc_entrance_thickness,
-						fDPC_detPackageRadius,0.5*fDPC_mwpc_entrance_thickness,0.,2*M_PI);
-  G4Tubs* entrance_mid_tube = new G4Tubs("entrance_mid_tube",fDPC_mwpc_entrance_r,
-						fDPC_mwpc_entrance_r+fDPC_mwpc_entrance_thickness,0.5*fDPC_mwpc_entrance_depth,0.,2*M_PI);
-  G4Tubs* entrance_back_tube = new G4Tubs("entrance_back_tube",fmwpc_entrance_R,
-						fDPC_detPackageRadius,0.5*fDPC_frontwin_frame_thick,0.,2*M_PI);
-
-  fDPC_mwpc_entrance_log = new G4LogicalVolume(mwpc_entrance_tube, Vacuum, Append(sd,"mwpc_entrance_log_"));
-  fDPC_mwpc_entrance_log->SetVisAttributes(G4VisAttributes::Invisible);
-  fDPC_entrance_front_log = new G4LogicalVolume(entrance_front_tube, Al, Append(sd,"entrance_front_log_"));
-  fDPC_entrance_mid_log = new G4LogicalVolume(entrance_mid_tube, Al, Append(sd,"entrance_mid_log_"));
-  fDPC_entrance_back_log = new G4LogicalVolume(entrance_back_tube, Al, Append(sd,"entrance_back_log_"));
-  fDPC_entrance_front_log->SetVisAttributes(visMWPCEntrance);
-  fDPC_entrance_mid_log->SetVisAttributes(visMWPCEntrance);
-  fDPC_entrance_back_log->SetVisAttributes(visMWPCEntrance);
-
-//  fDPC_entrance_front_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-0.5*(entrance_section_length-fDPC_mwpc_entrance_thickness)),
-//						fDPC_entrance_front_log,Append(sd,"entrance_front_"),fDPC_mwpc_entrance_log,false,0);
-//  fDPC_entrance_mid_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-0.5*fDPC_frontwin_frame_thick),
-//						fDPC_entrance_mid_log,Append(sd,"entrance_mid_"),fDPC_mwpc_entrance_log,false,0);
-//  fDPC_entrance_back_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,0.5*(entrance_section_length-fDPC_frontwin_frame_thick)),
-//						fDPC_entrance_back_log,Append(sd,"entrance_back_"),fDPC_mwpc_entrance_log,false,0);
-
-  // overall detector package
-  const G4double detPackageHalfZ = fDPC_mwpc_entrance_depth+(2*fmwpcContainer_halfZ)+1.0*inch;
-  G4Tubs* detPackage_tube = new G4Tubs(Append(sd,"detPackage_tube_"),0,fDPC_detPackageRadius,detPackageHalfZ,0.,2*M_PI);
-  fDPC_container_log = new G4LogicalVolume(detPackage_tube,Vacuum,Append(sd,"container_log_"));
-  fDPC_container_log->SetVisAttributes(G4VisAttributes::Invisible);
-
-  // place components relative to scintillator face at 0
-//  fDPC_scint_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,-fScintFacePos),
-//				N2_container_log,Append(sd,"N2_vol_phys_"),fDPC_container_log,false,0);
-
-  const G4double mwpc_pos = -(2*fmwpcContainer_halfZ)/2.-fDPC_backwin_frame_thick-(fN2_volume_Z/2.+fScintFacePos);
-//  fDPC_mwpc_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,mwpc_pos),
-//  					WCham_container_log,Append(sd,"mwpcContainer_"),fDPC_container_log,false,0);
-  fMyTranslation[2] += mwpc_pos;	// I literally don't understand this syntax at all.
-					// But Michael had it and causes no errors so it must work.
-  const G4double entrance_pos = mwpc_pos-((2*fmwpcContainer_halfZ)+entrance_section_length)/2;
-  fDPC_entrance_face_pos = entrance_pos - 0.5*entrance_section_length;
-  fDPC_entrance_win_pos = entrance_pos + 0.5*entrance_section_length;
-//  fDPC_mwpc_entrance_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,entrance_pos),
- // 						fDPC_mwpc_entrance_log,Append(sd,"mwpc_entrance"),fDPC_container_log,false,0);
-
-  // aluminum exit window and N2 volume at back of gas box
-  G4Tubs* mwpc_exit_tube = new G4Tubs("mwpc_exit_tube",fmwpc_exit_R,fDPC_detPackageRadius,0.5*fDPC_backwin_frame_thick,0.,2*M_PI);
-  fDPC_mwpc_exit_log = new G4LogicalVolume(mwpc_exit_tube, Al, Append(sd,"mwpc_exit_log_"));
-  fDPC_mwpc_exit_log->SetVisAttributes(visMWPCExit);
-  fDPC_exit_frame_pos = mwpc_pos+((2*fmwpcContainer_halfZ)+fDPC_backwin_frame_thick)/2;
-//  fDPC_mwpc_exit_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fDPC_exit_frame_pos),
-//					fDPC_mwpc_exit_log,Append(sd,"mwpc_exit_"),fDPC_container_log,false,0);
-
-  G4Tubs* mwpc_exit_N2_tube = new G4Tubs("mwpc_exit_N2_tube",0,fmwpc_exit_R,0.5*fDPC_backwin_frame_thick,0.,2*M_PI);
-  fDPC_mwpc_exit_N2_log = new G4LogicalVolume(mwpc_exit_N2_tube, WCNitrogen, Append(sd,"mwpc_exit_N2_log_"));
-  fDPC_mwpc_exit_N2_log->SetVisAttributes(G4VisAttributes::Invisible);
-//  fDPC_mwpc_exit_N2_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,fDPC_exit_frame_pos),
-//					fDPC_mwpc_exit_N2_log,Append(sd,"mwpc_exit_"),fDPC_container_log,false,0);
-  // material behind detector
-  const G4double backstuff_thick = 1.*inch;
-  G4Tubs* backstuff_tube = new G4Tubs(Append(sd,"backstuff_tube"),0,fDPC_detPackageRadius,backstuff_thick*0.5,0.,2*M_PI);
-  fDPC_backstuff_log = new G4LogicalVolume(backstuff_tube,SS304,Append(sd,"backstuff_log_"));
-//  fDPC_backstuff_phys = new G4PVPlacement(NULL,G4ThreeVector(0.,0.,detPackageHalfZ-0.5*backstuff_thick),
-  //						fDPC_backstuff_log,Append(sd,"backstuff_"),fDPC_container_log,false,0);
-  //----- End of Detector Package Construction -----//
-//----- Return to Detector Construction. Port the remainder of the code -----//
-//  fEntranceToCathodes += fMWPCBowing;	// nothing changes since defaults to 0
-
-  G4cout << "Complete construction of components. Begin placement of final DPC" << G4endl;
-
-  G4RotationMatrix* sideFlip = new G4RotationMatrix();
-  fDetOffset = G4ThreeVector();
-  G4ThreeVector sideTrans;
-  if(sd == 0)				// also doesn't seem to matter since fDetRot defaults to 0
-  {
-    sideFlip->rotateZ(fDetRot*(-1)*rad);
-    sideTrans = G4ThreeVector(0.,0.,(-1)*(2.2*m-0))+fDetOffset*(-1);
-  }							// there are two getScintFacePos() methods
-  else if(sd == 1)					// One in DetectorPackageConstruction
-  {							// One in ScintillatorConstruction
-    sideFlip->rotateZ(fDetRot*(+1)*rad);
-    sideTrans = G4ThreeVector(0.,0.,(+1)*(2.2*m-0))+fDetOffset*(+1);
-  }
-  if(sd == 0)
-  {
-    sideFlip->rotateY(M_PI*rad);
-  }
-
-//  detPackage_phys[sd] = new G4PVPlacement(sideFlip,sideTrans, fDPC_container_log,
-//						Append(sd,"detPackage_phys_"),experimentalHall_log,false,0);
-
-	// these lines below redefine these rotations/translations for the second iteration of sd
-  fMyRotation = sideFlip;	// equivalent to dets[sd].mwpc.myRotation = sideFlip;
-  fMyTranslation = (*sideFlip)(fMyTranslation);	// don't understand this line at all
-  fMyTranslation += sideTrans;
-
-//  WCham_container_log -> SetUserLimits(UserGasLimits);
-//  winIn_log -> SetUserLimits(UserSolidLimits);
-//  winOut_log -> SetUserLimits(UserSolidLimits);
-//  kevStrip_log -> SetUserLimits(UserSolidLimits);
-
-//  SetScoringVolumes(scint_log, 0, sd);
-//  SetScoringVolumes(gas_log, 1, sd);	// for now, this is the MWPC SD. Will be modified later.
-
-/*  if(fCallFieldConstructor)
-  {
-    fMyBField = fpMagField;
-    ConstructMWPCField();
-  } */
-  }	// end of sd for loop which makes multiple detector packages
-                                                                
+  fScoreVol1 = scint_scintillator_log[0];       // set scoring volumes for SteppingAction
+  fScoreVol2 = mwpc_container_log[0];
+  fScoreVol3 = scint_scintillator_log[1];
+  fScoreVol4 = mwpc_container_log[1];
 
 
-//  G4cout << "Print check that we registered correctly: fScoreVol1 = " << fScoreVol1 -> GetName()
-//         << ", fScoreVol2 = " << fScoreVol2 -> GetName()
-//         << ", fScoreVol3 = " << fScoreVol3 -> GetName()
-//         << ", fScoreVol4 = " << fScoreVol4 -> GetName() << G4endl;
+/*  fpMagField = new Field();
+  mwpc_internalBfield_EAST = fpMagField;
+  mwpc_internalBfield_WEST = fpMagField;
+  ConstructGlobalField();
+  ConstructLocalField(0);	// flag = 0 means EAST
+  ConstructLocalField(1);	//        1 is WEST
+*/
 
   return experimentalHall_phys;
 }
@@ -766,29 +671,10 @@ string DetectorConstruction::Append(int i, string str)
 #include "G4HelixSimpleRunge.hh"
 #include "G4HelixMixedStepper.hh"
 
-void DetectorConstruction::ConstructField()
+/*void DetectorConstruction::ConstructGlobalField()
 {
-  G4double BfieldArray[3] = {0, 0, 0};
-
-  if(!fpMagField)
-  {
     cout << "##### Constructing Detector Field #####" << endl;
     fpMagField = new Field();
-
-    ofstream fieldprint;
-    fieldprint.open("fieldValues.txt", ios::app);
-
-    G4double location[3] = {1*cm, 1*cm, 0*cm};
-    for(int i = 0; i < 1000; i++)
-    {
-      G4double zValue = (i-500)*cm;
-      location[2] = zValue;
-      fpMagField -> GetFieldValue(location, BfieldArray);
-      fieldprint << "B(" << location[0]/cm << ", " << location[1]/cm << ", " << location[2]/cm << ") cm  = ("
-	<< BfieldArray[0]/tesla << ", " << BfieldArray[1]/tesla << ", " << BfieldArray[2]/tesla << ") tesla \n";
-    }
-    fieldprint.close();
-
     G4FieldManager* fieldMgr = G4TransportationManager::GetTransportationManager()->GetFieldManager();
     fieldMgr -> SetDetectorField(fpMagField);
     fieldMgr -> CreateChordFinder(fpMagField);
@@ -810,24 +696,29 @@ void DetectorConstruction::ConstructField()
     fieldMgr->SetDeltaOneStep(0.1*um);
     G4TransportationManager::GetTransportationManager()->GetPropagatorInField()->SetMaxLoopCount(INT_MAX);
 
-    fCallFieldConstructor = true;
-  }
-  else
-  {
-    fCallFieldConstructor = false;
-  }
+    G4cout << "Completed construction of global field" << G4endl;
 }
 
-void DetectorConstruction::ConstructMWPCField()
+void DetectorConstruction::ConstructLocalField(int flag)
 {
-  G4cout << "Setting up wirechamber electromagnetic field...";
+  G4cout << "Setting up wirechamber electromagnetic field..." << G4endl;
 
   // local field manager
   G4FieldManager* localFieldMgr = new G4FieldManager();
-  localFieldMgr->SetDetectorField(fMyBField);
+  G4EqMagElectricField* pEquation;
 
-  // equation of motion, stepper for field
-  G4EqMagElectricField* pEquation = new G4EqMagElectricField(fMyBField);
+  if(flag == 0)
+  {
+    localFieldMgr->SetDetectorField(mwpc_internalBfield_EAST);
+    // equation of motion, stepper for field
+    pEquation = new G4EqMagElectricField(mwpc_internalBfield_EAST);
+  }
+  if(flag == 1)
+  {
+    localFieldMgr->SetDetectorField(mwpc_internalBfield_WEST);
+    // equation of motion, stepper for field
+    pEquation = new G4EqMagElectricField(mwpc_internalBfield_WEST);
+  }
   G4ClassicalRK4* pStepper = new G4ClassicalRK4(pEquation,8);
   G4MagInt_Driver* pIntgrDriver = new G4MagInt_Driver(0.01*um,pStepper,pStepper->GetNumberOfVariables());
   G4ChordFinder* pChordFinder = new G4ChordFinder(pIntgrDriver);
@@ -839,12 +730,10 @@ void DetectorConstruction::ConstructMWPCField()
   localFieldMgr->SetMaximumEpsilonStep(1e-5);
   localFieldMgr->SetDeltaOneStep(0.1*um);
 
-  // apply field manager to wirechamber and all daughter volumes
-//  WCham_container_log->SetFieldManager(localFieldMgr,true);
-
-  G4cout << " Done." << G4endl;
+  mwpc_container_log[1] -> SetFieldManager(localFieldMgr, true);
+  mwpc_container_log[0] -> SetFieldManager(localFieldMgr, true);
 }
-
+*/
 /*void DetectorConstruction::GetFieldValue(G4double Point[4], G4double* Bfield)
 {
   // set magnetic field

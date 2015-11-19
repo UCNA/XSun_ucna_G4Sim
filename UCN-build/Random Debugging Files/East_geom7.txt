@@ -1,0 +1,14 @@
+Pre step volume is: World_phys		 at position (0.07,0.07,0)m 
+Pre step volume is: kevlar_place_0		 at position (0.07,0.07,-2.1573)m 
+Pre step volume is: kevlar_place_0		 at position (0.07,0.07,-2.1573)m 
+Pre step volume is: mwpc_container_phys_EAST		 at position (0.07,0.07,-2.15733)m 
+Pre step volume is: CathodeArray1_0		 at position (0.07,0.07,-2.1623)m 
+Pre step volume is: mwpc_activeReg_phys_EAST		 at position (0.07,0.07,-2.16235)m 
+Pre step volume is: AnodeArray_0		 at position (0.07,0.07,-2.1723)m 
+Pre step volume is: mwpc_activeReg_phys_EAST		 at position (0.07,0.07,-2.17231)m 
+Pre step volume is: CathodeArray2_0		 at position (0.07,0.07,-2.18225)m 
+Pre step volume is: mwpc_container_phys_EAST		 at position (0.07,0.07,-2.1823)m 
+Pre step volume is: World_phys		 at position (0.07,0.07,-2.1873)m 
+Pre step volume is: scint_container_phys_EAST		 at position (0.07,0.07,-2.2)m 
+Pre step volume is: backing_phys_0		 at position (0.07,0.07,-2.21)m 
+Pre step volume is: World_phys		 at position (0.07,0.07,-2.2354)m 

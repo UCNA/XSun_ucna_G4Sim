@@ -3,7 +3,6 @@
 
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/Normal3D.h
@@ -620,26 +619,6 @@ CMakeFiles/ucn.dir/src/EventAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkdefs.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/trkgdefs.hh
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/windefs.hh
-CMakeFiles/ucn.dir/src/Field.cc.o
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/Field.cc
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Units/SystemOfUnits.h
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Utility/defs.h
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Vector/ThreeVector.h
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Vector/ThreeVector.icc
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ElectroMagneticField.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ExceptionSeverity.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Field.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4MagneticField.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4String.icc
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4SystemOfUnits.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ThreeVector.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4Types.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4ios.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/globals.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/templates.hh
- /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/tls.hh
 CMakeFiles/ucn.dir/src/PhysList495.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PhysList495.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PhysList495.cc
@@ -839,7 +818,6 @@ CMakeFiles/ucn.dir/src/PhysList495.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/windefs.hh
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
@@ -1112,7 +1090,6 @@ CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/windefs.hh
 CMakeFiles/ucn.dir/src/RunAction.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/RunAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc
@@ -1368,7 +1345,6 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/EventAction.hh
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/SteppingAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc
  /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/DualRand.h
@@ -1614,7 +1590,6 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o
 CMakeFiles/ucn.dir/ucn.cc.o
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/DetectorConstruction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/EventAction.hh
- /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/Field.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PhysList495.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/PrimaryGeneratorAction.hh
  /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include/RunAction.hh

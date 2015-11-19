@@ -49,21 +49,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 				// NOTE	not set to 100 because on nndc we get 100.7% for 391 keV gammas.
   double percentage = r1/10000.;	// This gives us 0.001 precision.
 
-  fParticleGun->SetParticleEnergy(400*keV);
-  particle = particleTable->FindParticle(particleName="geantino");
-    G4double x = G4UniformRand();
-    if(x < 0.5)
-    {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,1));
-	G4cout << "going +z " << G4endl;
-    }
-    if(x >= 0.5)
-    {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,-1));
-	G4cout << "going -z" << G4endl;
-    }
-
-/*  if((percentage >= 0) && (percentage <= 64.97))
+  if((percentage >= 0) && (percentage <= 64.97))
   {
     fParticleGun -> SetParticleEnergy(391.698*keV);
     particle = particleTable->FindParticle(particleName="gamma");
@@ -104,23 +90,16 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     G4double x = G4UniformRand();
     if(x < 0.5)
     {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,1,1));
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,-1,1));
     }
     if(x >= 0.5)
     {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,1,-1));
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,-1,-1));
     }
   }
-*/
+
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);        // Michael's has this line. Idk why.
-
-  ofstream outfile;
-  outfile.open(OUTPUT_FILE, ios::app);
-  outfile << particleName << "\t \t" << fParticleGun -> GetParticleMomentumDirection().x() << "\t\t"
-	<< fParticleGun -> GetParticleMomentumDirection().y() << "\t\t"
-	<< fParticleGun -> GetParticleMomentumDirection().z() << "\t\t";
-  outfile.close();
 
   //----- Setting isotropic particle momentum direction
 /*  G4double alphaMin = 0*deg;	// alpha is apex angle
@@ -179,9 +158,22 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   x0 = x0 + v0.x();
   y0 = y0 + v0.y();
   z0 = z0 + v0.z();
+
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 
 //  displayGunStatus();
+
+  ofstream outfile;
+  outfile.open(OUTPUT_FILE, ios::app);
+  outfile << particleName << "\t" << fParticleGun -> GetParticleMomentumDirection().x() << "\t"
+        << fParticleGun -> GetParticleMomentumDirection().y() << "\t"
+        << fParticleGun -> GetParticleMomentumDirection().z() << "\t"
+	<< x0/cm << "cm \t"
+	<< y0/cm << "cm \t"
+	<< z0/cm << "cm \t";
+  outfile.close();
+
+
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 

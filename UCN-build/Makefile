@@ -213,30 +213,6 @@ src/EventAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.s
 .PHONY : src/EventAction.cc.s
 
-src/Field.o: src/Field.cc.o
-.PHONY : src/Field.o
-
-# target to build an object file
-src/Field.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Field.cc.o
-.PHONY : src/Field.cc.o
-
-src/Field.i: src/Field.cc.i
-.PHONY : src/Field.i
-
-# target to preprocess a source file
-src/Field.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Field.cc.i
-.PHONY : src/Field.cc.i
-
-src/Field.s: src/Field.cc.s
-.PHONY : src/Field.s
-
-# target to generate assembly for a file
-src/Field.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/Field.cc.s
-.PHONY : src/Field.cc.s
-
 src/PhysList495.o: src/PhysList495.cc.o
 .PHONY : src/PhysList495.o
 
@@ -377,9 +353,6 @@ help:
 	@echo "... src/EventAction.o"
 	@echo "... src/EventAction.i"
 	@echo "... src/EventAction.s"
-	@echo "... src/Field.o"
-	@echo "... src/Field.i"
-	@echo "... src/Field.s"
 	@echo "... src/PhysList495.o"
 	@echo "... src/PhysList495.i"
 	@echo "... src/PhysList495.s"

@@ -20,7 +20,7 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
-
+/*
   G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
   G4ThreeVector preStepPosition = step->GetPreStepPoint()->GetPosition();
 
@@ -29,13 +29,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   outfile << "Pre step volume is: " << preStepName <<"\t\t at position " << preStepPosition/m << "m \n";
   outfile.close();
 
-
-
-
-  return;
-/*  const DetectorConstruction* detectorConstruction =
+*/
+  const DetectorConstruction* detectorConstruction =
         static_cast<const DetectorConstruction*>
         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+
   fSV1 = detectorConstruction -> GetScoringVolume1();
   fSV2 = detectorConstruction -> GetScoringVolume2();
   fSV3 = detectorConstruction -> GetScoringVolume3();
@@ -66,6 +64,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   {
     fEventAction -> AddEdep(edepStep, 1, 1);
   }
-*/
+
 }
 
