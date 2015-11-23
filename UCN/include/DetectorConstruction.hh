@@ -42,8 +42,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* GetScoringVolume3() const { return fScoreVol3; }
     G4LogicalVolume* GetScoringVolume4() const { return fScoreVol4; }
 
-    void SetScoringVolumes(G4LogicalVolume* vol, int type, int location);
-
     G4Material* Be; 		///< Beryllium for trap windows
     G4Material* Al; 		///< Aluminum
     G4Material* Si; 		///< Silicon
@@ -89,14 +87,14 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* mwpc_kevStrip_log[2];
     G4LogicalVolume* mwpc_winIn_log[2];
     G4LogicalVolume* mwpc_winOut_log[2];
-    G4LogicalVolume* frame_mwpcEntrance_log;
-    G4LogicalVolume* frame_entranceFront_log;
-    G4LogicalVolume* frame_entranceMid_log;
-    G4LogicalVolume* frame_entranceBack_log;
-    G4LogicalVolume* frame_container_log;
-    G4LogicalVolume* frame_mwpcExit_log;
-    G4LogicalVolume* frame_mwpcExitGasN2_log;
-    G4LogicalVolume* frame_backStuff_log;
+    G4LogicalVolume* frame_mwpcEntrance_log[2];
+    G4LogicalVolume* frame_entranceFront_log[2];
+    G4LogicalVolume* frame_entranceMid_log[2];
+    G4LogicalVolume* frame_entranceBack_log[2];
+    G4LogicalVolume* frame_container_log[2];
+    G4LogicalVolume* frame_mwpcExit_log[2];
+    G4LogicalVolume* frame_mwpcExitGasN2_log[2];
+    G4LogicalVolume* frame_backStuff_log[2];
 
   protected:
     G4VPhysicalVolume* experimentalHall_phys;
@@ -111,12 +109,14 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* scint_backing_phys[2];
     G4VPhysicalVolume* scint_container_phys[2];
     G4VPhysicalVolume* mwpc_container_phys[2];
-    G4VPhysicalVolume* frame_entranceFront_phys;
-    G4VPhysicalVolume* frame_entranceMid_phys;
-    G4VPhysicalVolume* frame_entranceBack_phys;
-    G4VPhysicalVolume* frame_mwpcExit_phys;
-    G4VPhysicalVolume* frame_mwpcExitGasN2_phys;
-    G4VPhysicalVolume* frame_backStuff_phys;
+    G4VPhysicalVolume* frame_entranceFront_phys[2];
+    G4VPhysicalVolume* frame_entranceMid_phys[2];
+    G4VPhysicalVolume* frame_entranceBack_phys[2];
+    G4VPhysicalVolume* frame_mwpcExit_phys[2];
+    G4VPhysicalVolume* frame_mwpcExitGasN2_phys[2];
+    G4VPhysicalVolume* frame_backStuff_phys[2];
+    G4VPhysicalVolume* frame_mwpcEntrance_phys[2];
+    G4VPhysicalVolume* frame_container_phys[2];
 
   private:
 //    void ConstructGlobalField();

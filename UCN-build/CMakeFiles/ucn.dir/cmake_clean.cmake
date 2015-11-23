@@ -1,6 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/ucn.dir/ucn.cc.o"
   "CMakeFiles/ucn.dir/src/PhysList495.cc.o"
+  "CMakeFiles/ucn.dir/src/FieldSetup.cc.o"
   "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
   "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
   "CMakeFiles/ucn.dir/src/SteppingAction.cc.o"

@@ -1,5 +1,5 @@
 #include "DetectorConstruction.hh"
-//#include "Field.hh"
+#include "FieldSetup.hh"
 
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
@@ -11,6 +11,7 @@
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4AutoDelete.hh"
 
 #include <G4UserLimits.hh>		// stole from Michael Mendenhall's code.
 
@@ -309,9 +310,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   new G4PVPlacement(NULL, G4ThreeVector(0,0, decayTrap_monitor_PosZ), decayTrap_innerMonitors_log[1],
                         "trap_monitor_1", experimentalHall_log, false, 0);
 
-  decayTrap_window_log[0] -> SetUserLimits(UserSolidLimits);
-  decayTrap_window_log[1] -> SetUserLimits(UserSolidLimits);
-
   //----- Scintillator construction. Used as Sensitive Volume
   G4double scint_scintRadius = 7.5*cm;
   G4double scint_scintBackingRadius = 10*cm;
@@ -459,7 +457,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     wireVol_anodeContainer_log[i] = new G4LogicalVolume(wireVol_anodeContainerBox, wireVol_activeGas, Append(i, "anodeContainer_log_"));
   }
   // place all the objects sequentially. So far, keep positions same since we will attempt to rotate
-  // ------ IF THE ROTATION METHOD FAILS, NEED TO START HERE AND EDIT ALL Z POSITIONS ------ //
   for(int i = 0; i <= 1; i++)
   {
     new G4PVPlacement(NULL, G4ThreeVector(), wireVol_cathodeWire_log[i], Append(i, "cathode_wire_phys_"), wireVol_cathSeg_log[i], true, 0);
@@ -484,7 +481,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double mwpc_exitRadius = 7.5*cm;
   G4double mwpc_entranceToCathodes = 5.0*mm;
   G4double mwpc_exitToCathodes = 5.0*mm;
-//  G4MagneticField* mwpc_internalBfield = NULL;	// this is tricky. Need to figure out.
   G4double mwpc_fieldE0 = 0;	// initialize field potential to 0. Also tricky.
   G4Material* mwpc_fillGas = wireVol_activeGas;	// want it to be WCPentane
 
@@ -498,6 +494,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   mwpc_container_log[0] -> SetVisAttributes(G4VisAttributes::Invisible);
   mwpc_container_log[1] = new G4LogicalVolume(mwpc_containerBox, mwpc_fillGas, "mwpc_container_log_WEST");
   mwpc_container_log[1] -> SetVisAttributes(G4VisAttributes::Invisible);
+//  mwpc_container_log[0] -> SetVisAttributes(new G4VisAttributes(G4Colour(1,0,1,1.0)));
+//  mwpc_container_log[1] -> SetVisAttributes(new G4VisAttributes(G4Colour(1,0,1,1.0)));
 
   // MWPC active gas volume placement with  wireplane, relative to MWPC container volume
   G4ThreeVector mwpc_activeRegionTrans(0, 0, (mwpc_entranceToCathodes - mwpc_exitToCathodes)/2.);
@@ -558,14 +556,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   mwpc_container_phys[1] = new G4PVPlacement(NULL, sideTransMWPCWest, mwpc_container_log[1],
 				"mwpc_container_phys_West", experimentalHall_log, false, 0, true);
 
-  for(int i = 0; i <= 1; i++)
-  {
-    mwpc_container_log[i] -> SetUserLimits(UserGasLimits);
-    mwpc_winIn_log[i] -> SetUserLimits(UserSolidLimits);
-    mwpc_winOut_log[i] -> SetUserLimits(UserSolidLimits);
-    mwpc_kevStrip_log[i] -> SetUserLimits(UserSolidLimits);
-  }
-
   //----- Begin DetectorPackageConstruction. This is the frame that holds the scintillator and MWPC.
 
   G4double frame_packageRadius = 6.0*inch;
@@ -575,6 +565,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double frame_frontWinFrameThick = 1.0*inch;
 //  G4double frame_backWinFrameThick = 0.5*inch;	// moved a few lines up since needed for mwpc placement
 
+  // create the shapes that will be used for geometric objects below
   // aluminum entrance collimator to detector package
   G4double frame_entranceSectionLength = frame_mwpcEntranceDepth + frame_frontWinFrameThick;
   G4Tubs* frame_mwpcEntranceTube = new G4Tubs("mwpc_entrance_tube", 0., frame_packageRadius, 0.5*frame_entranceSectionLength, 0., 2*M_PI);
@@ -586,56 +577,100 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 					0.5*frame_frontWinFrameThick, 0., 2*M_PI);
   G4VisAttributes* visMWPCEntrance = new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.8));
 
-  frame_mwpcEntrance_log = new G4LogicalVolume(frame_mwpcEntranceTube, Vacuum, "mwpc_entrance_log_EAST");
-  frame_entranceFront_log = new G4LogicalVolume(frame_entranceFrontTube, Al, "entrance_front_log_EAST");
-  frame_entranceMid_log = new G4LogicalVolume(frame_entranceMidTube, Al, "entrance_mid_log_EAST");
-  frame_entranceBack_log = new G4LogicalVolume(frame_entranceBackTube, Al, "entrance_back_log_EAST");
-  frame_mwpcEntrance_log -> SetVisAttributes(G4VisAttributes::Invisible);
-  frame_entranceFront_log -> SetVisAttributes(visMWPCEntrance);
-  frame_entranceMid_log -> SetVisAttributes(visMWPCEntrance);
-  frame_entranceBack_log -> SetVisAttributes(visMWPCEntrance);
-
-//  frame_entranceFront_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*(frame_entranceSectionLength - frame_mwpcEntranceThick)),
-//				frame_entranceFront_log, "entrance_front_phys_EAST", frame_mwpcEntrance_log, false, 0);
-//  frame_entranceMid_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*frame_frontWinFrameThick),
-//				frame_entranceMid_log, "entrance_mid_phys_EAST", frame_mwpcEntrance_log, false, 0);
-//  frame_entranceBack_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, 0.5*(frame_entranceSectionLength - frame_frontWinFrameThick)),
-//				frame_entranceBack_log, "entrance_back_phys_EAST", frame_mwpcEntrance_log, false, 0);
-
-  // create overall detector package frame.
+  // create overall detector package frame tube.
   G4double frame_detFrameHalf_Z = frame_mwpcEntranceDepth + 2*mwpc_containerHalf_Z + 1.0*inch;
   G4Tubs* frame_framePackageTube = new G4Tubs("detPackage_tube_EAST", 0, frame_packageRadius, frame_detFrameHalf_Z, 0, 2*M_PI);
-  frame_container_log = new G4LogicalVolume(frame_framePackageTube, Vacuum, "frame_container_log_EAST");
-  frame_container_log -> SetVisAttributes(G4VisAttributes::Invisible);
 
-  // HERE BE CODE THAT PLACES THE COMPONENTS i.e. scint and mwpc INSIDE THE DETECTOR PACKAGE.
-  // Ignore this shit and place it yourself in experimental hall. Use these measurements to find centre!
+  // subtract off the scintillator container volume. Not rotated (since frame will be made and then rotated).
+  // But displaced by -scint_face_PosZ relative to the local coordinates of the detector package frame.
+  G4SubtractionSolid* frame_frameMinusScint = new G4SubtractionSolid("DPC_frame_minus_scint_container_log", frame_framePackageTube,
+					scint_N2VolTube, NULL, G4ThreeVector(0., 0., -scint_face_PosZ));
+  // subtract off the mwpc container volume. Not rotated (since frame will be made then rotated).
+  G4SubtractionSolid* frame_containerShape = new G4SubtractionSolid("frame_container_minus_Scint_MWPC", frame_frameMinusScint,
+					mwpc_containerBox, NULL, G4ThreeVector(0., 0., mwpc_PosZ));
+
+  // "place componenets relative to scintillator face at 0" is what old code says.
+  // Already successfully placed the scint and the mwpc in experimentalHall_log. This code is remaining geom that wasn't done
+  G4double frame_entrance_PosZ = mwpc_PosZ - (2*mwpc_containerHalf_Z + frame_entranceSectionLength)/2.;
 
   // aluminum exit window and N2 volume at back of gas box
   G4Tubs* frame_mwpcExitTube = new G4Tubs("mwpc_exit_tube", mwpc_exitRadius, frame_packageRadius, 0.5*frame_backWinFrameThick, 0., 2*M_PI);
   G4VisAttributes* visMWPCExit = new G4VisAttributes(G4Colour(0.3,0.3,0.3,0.8));
-  frame_mwpcExit_log = new G4LogicalVolume(frame_mwpcExitTube, Al, "mwpc_exit_log_EAST");
-  frame_mwpcExit_log -> SetVisAttributes(visMWPCExit);
 
-  //****** You need to fix this z position! It is defined relative to the internal placement of mwpc in detector package. *****//
-  G4double frame_exitWin_PosZ = 0;	// can't fill this variable w/o dealing with relative placement of mwpc
-					// ignore for now. Will do TOMORROW.
-//  frame_mwpcExit_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExit_log,
-//				"mwpc_exit_EAST", frame_container_log, false, 0);
-
+  G4double frame_exitWin_PosZ = mwpc_PosZ + (2*mwpc_containerHalf_Z + frame_backWinFrameThick)/2.;
   G4Tubs* frame_mwpcExitGasN2Tube = new G4Tubs("mwpc_exit_N2_tube", 0, mwpc_exitRadius, 0.5*frame_backWinFrameThick, 0., 2*M_PI);
-  frame_mwpcExitGasN2_log = new G4LogicalVolume(frame_mwpcExitGasN2Tube, WCNitrogen, "mwpc_exit_N2_log_EAST");
-  frame_mwpcExitGasN2_log -> SetVisAttributes(G4VisAttributes::Invisible);
-//  frame_mwpcExitGasN2_phys = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExitGasN2_log,
-//				"mwpc_exit_N2_phys_EAST", frame_container_log, false, 0);
 
   // material behind the detector. Misc stuff that can cause back scattering events.
   G4double frame_backStuffThick = 1.0*inch;
   G4Tubs* frame_backStuffTube = new G4Tubs("backstuff_tube_EAST", 0, 0.5*frame_packageRadius, frame_backStuffThick, 0., 2*M_PI);
-  frame_backStuff_log = new G4LogicalVolume(frame_backStuffTube, SS304, "backStuff_log_EAST");
-//  frame_backStuff_phys = new G4PVPlacement(NULL, G4ThreeVector(0, 0, frame_detFrameHalf_Z - 0.5*frame_backStuffThick),
-//				frame_backStuff_log, "backStuff_phys_EAST", frame_container_log, false, 0);
 
+  // create logical volumes from all the shapes defined above. As always, array of 2 for East/West (0/1)
+  for(int i = 0; i <= 1; i++)
+  {
+    frame_mwpcEntrance_log[i] = new G4LogicalVolume(frame_mwpcEntranceTube, Vacuum, Append(i, "mwpc_entrance_log_"));
+    frame_entranceFront_log[i] = new G4LogicalVolume(frame_entranceFrontTube, Al, Append(i, "entrance_front_log_"));
+    frame_entranceMid_log[i] = new G4LogicalVolume(frame_entranceMidTube, Al, Append(i, "entrance_mid_log_EAST"));
+    frame_entranceBack_log[i] = new G4LogicalVolume(frame_entranceBackTube, Al, Append(i, "entrance_back_log_EAST"));
+    frame_mwpcEntrance_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+    frame_entranceFront_log[i] -> SetVisAttributes(visMWPCEntrance);
+    frame_entranceMid_log[i] -> SetVisAttributes(visMWPCEntrance);
+    frame_entranceBack_log[i] -> SetVisAttributes(visMWPCEntrance);
+
+    frame_container_log[i] = new G4LogicalVolume(frame_containerShape, Vacuum, Append(i, "frame_container_log_"));
+//    frame_container_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+    frame_container_log[i] -> SetVisAttributes(new G4VisAttributes(G4Color(1, 0, 1, 1)));
+
+    frame_mwpcExit_log[i] = new G4LogicalVolume(frame_mwpcExitTube, Al, Append(i, "mwpc_exit_log_EAST"));
+    frame_mwpcExit_log[i] -> SetVisAttributes(visMWPCExit);
+    frame_mwpcExitGasN2_log[i] = new G4LogicalVolume(frame_mwpcExitGasN2Tube, WCNitrogen, Append(i, "mwpc_exit_N2_log_EAST"));
+    frame_mwpcExitGasN2_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+
+    frame_backStuff_log[i] = new G4LogicalVolume(frame_backStuffTube, SS304, Append(i, "backStuff_log_EAST"));
+  }
+
+  // place all the physical volumes (class members) in their respective mother volumes.
+  for(int i = 0; i <= 1; i++)
+  {  // These three are placed in the logical vol. mwpcEntrance.
+    frame_entranceFront_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*(frame_entranceSectionLength - frame_mwpcEntranceThick)),
+                                  frame_entranceFront_log[i], Append(i, "entrance_front_phys_"), frame_mwpcEntrance_log[i], false, 0);
+    frame_entranceMid_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, -0.5*frame_frontWinFrameThick),
+                                  frame_entranceMid_log[i], Append(i, "entrance_mid_phys_"), frame_mwpcEntrance_log[i], false, 0);
+    frame_entranceBack_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, 0.5*(frame_entranceSectionLength - frame_frontWinFrameThick)),
+                                  frame_entranceBack_log[i], Append(i, "entrance_back_phys_"), frame_mwpcEntrance_log[i], false, 0);
+
+    // All this stuff makes up the frame "container_log" i.e. the overall frame logical.
+    frame_mwpcEntrance_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0., 0., frame_entrance_PosZ),
+                                  frame_mwpcEntrance_log[i], Append(i, "frame_mwpc_entrance_"), frame_container_log[i], false, 0);
+    frame_mwpcExit_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExit_log[i],
+                                  Append(i, "mwpc_exit_EAST"), frame_container_log[i], false, 0);
+    frame_mwpcExitGasN2_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExitGasN2_log[i],
+                                  Append(i, "mwpc_exit_N2_phys_EAST"), frame_container_log[i], false, 0);
+    frame_backStuff_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0, 0, frame_detFrameHalf_Z - 0.5*frame_backStuffThick),
+                                  frame_backStuff_log[i], Append(i, "backStuff_phys_EAST"), frame_container_log[i], false, 0);
+  }
+
+
+
+  // need to now place frame_container_log in experimentalHall.
+  G4ThreeVector frameTransEast = G4ThreeVector(0., 0., (-1)*(2.2*m));	// note: scint face position is 0 in local coord.
+									// Also there's no offset. So it's just -2.2m
+  G4ThreeVector frameTransWest = G4ThreeVector(0., 0., 2.2*m);
+
+  frame_container_phys[0] = new G4PVPlacement(EastSideRot, frameTransEast, frame_container_log[0],
+				"Detector_Package_Frame_EAST", experimentalHall_log, false, 0, true);
+  frame_container_phys[1] = new G4PVPlacement(NULL, frameTransWest, frame_container_log[1],
+				"Detector_Package_Frame_WEST", experimentalHall_log, false, 0, true);
+
+
+
+  for(int i = 0; i <= 1; i++)			// set user limits in specific volumes
+  {
+    decayTrap_window_log[i] -> SetUserLimits(UserSolidLimits);
+    mwpc_container_log[i] -> SetUserLimits(UserGasLimits);
+    mwpc_winIn_log[i] -> SetUserLimits(UserSolidLimits);
+    mwpc_winOut_log[i] -> SetUserLimits(UserSolidLimits);
+    mwpc_kevStrip_log[i] -> SetUserLimits(UserSolidLimits);
+  }
 
   fScoreVol1 = scint_scintillator_log[0];       // set scoring volumes for SteppingAction
   fScoreVol2 = mwpc_container_log[0];
@@ -643,13 +678,30 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fScoreVol4 = mwpc_container_log[1];
 
 
-/*  fpMagField = new Field();
+  FieldSetup* globalMagField = new FieldSetup();
+  G4AutoDelete::Register(globalMagField);	// informs the kernel to delete
+  globalMagField -> SetFieldValue(1.0*tesla);
+  mwpc_container_log[0] -> SetFieldManager(globalMagField -> GetLocalFieldManager(), true);
+
+
+
+
+
+
+
+
+
+
+
+
+/*  fpMagField = new Field();			// incorrectly construct EM fields
   mwpc_internalBfield_EAST = fpMagField;
   mwpc_internalBfield_WEST = fpMagField;
   ConstructGlobalField();
   ConstructLocalField(0);	// flag = 0 means EAST
   ConstructLocalField(1);	//        1 is WEST
 */
+
 
   return experimentalHall_phys;
 }
@@ -670,8 +722,8 @@ string DetectorConstruction::Append(int i, string str)
 #include "G4HelixExplicitEuler.hh"
 #include "G4HelixSimpleRunge.hh"
 #include "G4HelixMixedStepper.hh"
-
-/*void DetectorConstruction::ConstructGlobalField()
+/*
+void DetectorConstruction::ConstructGlobalField()
 {
     cout << "##### Constructing Detector Field #####" << endl;
     fpMagField = new Field();
@@ -695,8 +747,6 @@ string DetectorConstruction::Append(int i, string str)
     fieldMgr->SetMaximumEpsilonStep(1e-5);
     fieldMgr->SetDeltaOneStep(0.1*um);
     G4TransportationManager::GetTransportationManager()->GetPropagatorInField()->SetMaxLoopCount(INT_MAX);
-
-    G4cout << "Completed construction of global field" << G4endl;
 }
 
 void DetectorConstruction::ConstructLocalField(int flag)
@@ -730,8 +780,7 @@ void DetectorConstruction::ConstructLocalField(int flag)
   localFieldMgr->SetMaximumEpsilonStep(1e-5);
   localFieldMgr->SetDeltaOneStep(0.1*um);
 
-  mwpc_container_log[1] -> SetFieldManager(localFieldMgr, true);
-  mwpc_container_log[0] -> SetFieldManager(localFieldMgr, true);
+  mwpc_container_log[flag] -> SetFieldManager(localFieldMgr, true);
 }
 */
 /*void DetectorConstruction::GetFieldValue(G4double Point[4], G4double* Bfield)
@@ -771,38 +820,3 @@ void DetectorConstruction::ConstructLocalField(int flag)
   G4cout << "Wirechamber voltage set to " << Vanode/volt <<" V => fE0 = " << fE0/(volt/cm) << " V/cm" << G4endl;
 }*/
 
-void DetectorConstruction::SetScoringVolumes(G4LogicalVolume* vol, int type, int location)
-{
-  G4cout << "Setting scoring volume using " << vol->GetName()
-	 << " i.e. of type " << type << " and location " << location << G4endl;
-
-  if(location == 0)
-  {
-    if(type == 0)
-    {
-      fScoreVol1 = vol;
-    }
-    else if(type == 1)
-    {
-      fScoreVol2 = vol;
-    }
-  }
-  else if(location == 1)
-  {
-    if(type == 0)
-    {
-      fScoreVol3 = vol;
-    }
-    else if(type == 1)
-    {
-      fScoreVol4 = vol;
-    }
-  }
-  else if((location != 0) || (location != 1) || (type != 0) || (type != 1))
-  {
-    G4cout << "Yabai. Input flags make no sense" << G4endl;
-  }
-
-
-
-}

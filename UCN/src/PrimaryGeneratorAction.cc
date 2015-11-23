@@ -49,6 +49,22 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 				// NOTE	not set to 100 because on nndc we get 100.7% for 391 keV gammas.
   double percentage = r1/10000.;	// This gives us 0.001 precision.
 
+
+	fParticleGun->SetParticlePosition(G4ThreeVector(0,0,0));
+	fParticleGun->SetParticleEnergy(400*keV);
+	particle = particleTable->FindParticle(particleName="geantino");
+    G4double x = G4UniformRand();
+    if(x < 0.5)
+    {
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,1));
+    }
+    if(x >= 0.5)
+    {
+      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,-1));
+    }
+
+
+/*
   if((percentage >= 0) && (percentage <= 64.97))
   {
     fParticleGun -> SetParticleEnergy(391.698*keV);
@@ -97,7 +113,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,-1,-1));
     }
   }
-
+*/
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);        // Michael's has this line. Idk why.
 
@@ -159,7 +175,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   y0 = y0 + v0.y();
   z0 = z0 + v0.z();
 
-  fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
+//  fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
+
 
 //  displayGunStatus();
 
