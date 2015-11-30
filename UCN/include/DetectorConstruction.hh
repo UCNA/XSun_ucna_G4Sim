@@ -35,7 +35,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     virtual ~DetectorConstruction();
     virtual G4VPhysicalVolume* Construct();
 
-    void setVacuumPressure(G4double pressure);
+    void SetVacuumPressure(G4double pressure);
 
     G4LogicalVolume* GetScoringVolume1() const { return fScoreVol1; }	// SteppingAction needs access
     G4LogicalVolume* GetScoringVolume2() const { return fScoreVol2; }	// to scoring volumes.
@@ -119,13 +119,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* frame_container_phys[2];
 
   private:
-//    void ConstructGlobalField();
-//    void ConstructLocalField(int flag);
-
-//    Field* fpMagField;
-//    Field* mwpc_internalBfield_EAST;
-//    Field* mwpc_internalBfield_WEST;
-
     void DefineMaterials();
     string Append(int i, string str);
 
@@ -136,18 +129,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* fScoreVol3;
     G4LogicalVolume* fScoreVol4;
 
-
-
-  public:
-// ----- Below are public variables from Wirechamber construction
-	/// whether the field changes particle energy
-    virtual G4bool DoesMWPCFieldChangeEnergy() const { return fE0 != 0; }
-	/// set anode voltage
-//    void setMWPCPotential(G4double Vanode);
-
-  protected:
-// ---- Below are protected variables from Wirechamber construction
-    G4double fE0; 				///< field scaling constant
 };
 
 #endif

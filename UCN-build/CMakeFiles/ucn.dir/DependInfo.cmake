@@ -6,7 +6,8 @@ SET(CMAKE_DEPENDS_LANGUAGES
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/EventAction.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/FieldSetup.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/FieldSetup.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/GlobalField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/GlobalField.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/MWPCField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/MWPCField.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PhysList495.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/PhysList495.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/RunAction.cc.o"

@@ -1,5 +1,6 @@
 #include "DetectorConstruction.hh"
-#include "FieldSetup.hh"
+#include "GlobalField.hh"
+#include "MWPCField.hh"
 
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
@@ -60,6 +61,16 @@
 #include <G4TransportationManager.hh>
 #include <G4UserLimits.hh>
 #include <G4PVParameterised.hh>
+
+#include "G4MagIntegratorStepper.hh"
+#include "G4Mag_UsualEqRhs.hh"
+#include "G4SimpleHeum.hh"
+#include "G4HelixHeum.hh"
+#include "G4HelixImplicitEuler.hh"
+#include "G4HelixExplicitEuler.hh"
+#include "G4HelixSimpleRunge.hh"
+#include "G4HelixMixedStepper.hh"
+
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
@@ -139,7 +150,7 @@ void DetectorConstruction::DefineMaterials()
   Sci->AddElement(G4Element::GetElement("H"),nAtoms=5.15);
 }
 
-void DetectorConstruction::setVacuumPressure(G4double pressure)
+void DetectorConstruction::SetVacuumPressure(G4double pressure)
 {
   // our slightly crappy vacuum: low-pressure air (density @20c; 1.290*mg/cm3 @STP)
   G4cout<<"------------- Detector vacuum is set at "<<pressure/torr<<" Torr"<<G4endl;
@@ -151,7 +162,7 @@ void DetectorConstruction::setVacuumPressure(G4double pressure)
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   DefineMaterials();	// immediate call to define all materials used as class properties (so ~global access)
-  setVacuumPressure(0);	// this is the set vacuum pressure that was warned about in DefineMaterials()
+  SetVacuumPressure(0);	// this is the set vacuum pressure that was warned about in DefineMaterials()
 
   // user step limits
   G4UserLimits* UserCoarseLimits = new G4UserLimits();
@@ -649,9 +660,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                   frame_backStuff_log[i], Append(i, "backStuff_phys_"), frame_container_log[i], false, 0);
   }
 
-
-
-  // need to now place frame_container_log in experimentalHall.
+  //----- Finish up detector construction. Need to place frame_container_log in experimentalHall
   G4ThreeVector frameTransEast = G4ThreeVector(0., 0., (-1)*(2.2*m));	// note: scint face position is 0 in local coord.
 									// Also there's no offset. So it's just -2.2m
   G4ThreeVector frameTransWest = G4ThreeVector(0., 0., 2.2*m);
@@ -660,8 +669,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 				"Detector_Package_Frame_EAST", experimentalHall_log, false, 0, true);
   frame_container_phys[1] = new G4PVPlacement(NULL, frameTransWest, frame_container_log[1],
 				"Detector_Package_Frame_WEST", experimentalHall_log, false, 0, true);
-
-
 
   for(int i = 0; i <= 1; i++)			// set user limits in specific volumes
   {
@@ -677,12 +684,65 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fScoreVol3 = scint_scintillator_log[1];
   fScoreVol4 = mwpc_container_log[1];
 
+  // constructing magnetic field globally and assign separate propagation locally (E/W mwpc)
+  GlobalField* magField = new GlobalField();
+  G4FieldManager* globalFieldManager = G4TransportationManager::GetTransportationManager()->GetFieldManager();
+  globalFieldManager -> SetDetectorField(magField);
+  globalFieldManager -> CreateChordFinder(magField);
 
-  FieldSetup* globalMagField = new FieldSetup();
-  G4AutoDelete::Register(globalMagField);	// informs the kernel to delete
-  globalMagField -> SetFieldValue(1.0*tesla);
-//  mwpc_container_log[0] -> SetFieldManager(globalMagField -> GetEastLocalFieldManager(), true);
-  mwpc_container_log[1] -> SetFieldManager(globalMagField -> GetWestLocalFieldManager(), true);
+  G4MagIntegratorStepper* pStepper;
+  G4Mag_UsualEqRhs* equationOfMotion = new G4Mag_UsualEqRhs(magField);
+  //pStepper = new G4ClassicalRK4 (fEquation); // general case for "smooth" EM fields
+  //pStepper = new G4SimpleHeum( fEquation ); // for slightly less smooth EM fields
+  //pStepper = new G4HelixHeum( fEquation ); // for "smooth" pure-B fields
+  //pStepper = new G4HelixImplicitEuler( fEquation ); // for less smooth pure-B fields; appears ~50% faster than above
+  //pStepper = new G4HelixSimpleRunge( fEquation ); // similar speed to above
+  //pStepper = new G4HelixExplicitEuler( fEquation ); // about twice as fast as above
+  pStepper = new G4HelixMixedStepper(equationOfMotion,6); // avoids "Stepsize underflow in Stepper" errors
+  globalFieldManager -> GetChordFinder() -> GetIntegrationDriver() -> RenewStepperAndAdjust(pStepper);
+
+  globalFieldManager -> GetChordFinder() -> SetDeltaChord(100.0*um);
+  globalFieldManager -> SetMinimumEpsilonStep(1e-6);
+  globalFieldManager -> SetMaximumEpsilonStep(1e-5);
+  globalFieldManager -> SetDeltaOneStep(0.1*um);
+  G4TransportationManager::GetTransportationManager()->GetPropagatorInField()->SetMaxLoopCount(INT_MAX);
+
+
+  G4cout << "Setting up East wirechamber electromagnetic field." << G4endl;
+  MWPCField* eastLocalField = new MWPCField();
+  G4FieldManager* eastLocalFieldManager = new G4FieldManager();
+  eastLocalFieldManager -> SetDetectorField(eastLocalField);
+
+  G4EqMagElectricField* eastlocalEquation = new G4EqMagElectricField(eastLocalField);
+  G4ClassicalRK4* eastlocalStepper = new G4ClassicalRK4(eastlocalEquation,8);
+  G4MagInt_Driver* eastlocalIntgrDriver = new G4MagInt_Driver(0.01*um,eastlocalStepper,eastlocalStepper->GetNumberOfVariables());
+  G4ChordFinder* eastlocalChordFinder = new G4ChordFinder(eastlocalIntgrDriver);
+  eastLocalFieldManager -> SetChordFinder(eastlocalChordFinder);
+
+  eastLocalFieldManager -> GetChordFinder() -> SetDeltaChord(10*um);
+  eastLocalFieldManager -> SetMinimumEpsilonStep(1e-6);
+  eastLocalFieldManager -> SetMaximumEpsilonStep(1e-5);
+  eastLocalFieldManager -> SetDeltaOneStep(0.1*um);
+
+  G4cout << "Setting up West wirechamber electromagnetic field." << G4endl;
+  MWPCField* westLocalField = new MWPCField();
+  G4FieldManager* westLocalFieldManager = new G4FieldManager();
+  westLocalFieldManager -> SetDetectorField(westLocalField);
+
+  G4EqMagElectricField* westlocalEquation = new G4EqMagElectricField(westLocalField);
+  G4ClassicalRK4* westlocalStepper = new G4ClassicalRK4(westlocalEquation,8);
+  G4MagInt_Driver* westlocalIntgrDriver = new G4MagInt_Driver(0.01*um,westlocalStepper,westlocalStepper->GetNumberOfVariables());
+  G4ChordFinder* westlocalChordFinder = new G4ChordFinder(westlocalIntgrDriver);
+  westLocalFieldManager -> SetChordFinder(westlocalChordFinder);
+
+  westLocalFieldManager -> GetChordFinder() -> SetDeltaChord(10*um);
+  westLocalFieldManager -> SetMinimumEpsilonStep(1e-6);
+  westLocalFieldManager -> SetMaximumEpsilonStep(1e-5);
+  westLocalFieldManager -> SetDeltaOneStep(0.1*um);
+
+
+  mwpc_container_log[0] -> SetFieldManager(eastLocalFieldManager, true);
+  mwpc_container_log[1] -> SetFieldManager(westLocalFieldManager, true);
 
 
 
@@ -693,14 +753,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
 
 
-
-/*  fpMagField = new Field();			// incorrectly construct EM fields
-  mwpc_internalBfield_EAST = fpMagField;
-  mwpc_internalBfield_WEST = fpMagField;
-  ConstructGlobalField();
-  ConstructLocalField(0);	// flag = 0 means EAST
-  ConstructLocalField(1);	//        1 is WEST
-*/
 
 
   return experimentalHall_phys;
@@ -712,111 +764,3 @@ string DetectorConstruction::Append(int i, string str)
   newString << str << i;
   return newString.str();
 }
-
-#include "G4MagIntegratorStepper.hh"
-#include "G4Mag_UsualEqRhs.hh"
-//#include "G4ClassicalRK4.hh"
-#include "G4SimpleHeum.hh"
-#include "G4HelixHeum.hh"
-#include "G4HelixImplicitEuler.hh"
-#include "G4HelixExplicitEuler.hh"
-#include "G4HelixSimpleRunge.hh"
-#include "G4HelixMixedStepper.hh"
-/*
-void DetectorConstruction::ConstructGlobalField()
-{
-    cout << "##### Constructing Detector Field #####" << endl;
-    fpMagField = new Field();
-    G4FieldManager* fieldMgr = G4TransportationManager::GetTransportationManager()->GetFieldManager();
-    fieldMgr -> SetDetectorField(fpMagField);
-    fieldMgr -> CreateChordFinder(fpMagField);
-
-    G4MagIntegratorStepper* pStepper;
-    G4Mag_UsualEqRhs* fEquation = new G4Mag_UsualEqRhs(fpMagField); // equation of motion in magnetic field
-    //pStepper = new G4ClassicalRK4 (fEquation); // general case for "smooth" EM fields
-    //pStepper = new G4SimpleHeum( fEquation ); // for slightly less smooth EM fields
-    //pStepper = new G4HelixHeum( fEquation ); // for "smooth" pure-B fields
-    //pStepper = new G4HelixImplicitEuler( fEquation ); // for less smooth pure-B fields; appears ~50% faster than above
-    //pStepper = new G4HelixSimpleRunge( fEquation ); // similar speed to above
-    //pStepper = new G4HelixExplicitEuler( fEquation ); // about twice as fast as above
-    pStepper = new G4HelixMixedStepper(fEquation,6); // avoids "Stepsize underflow in Stepper" errors
-    fieldMgr->GetChordFinder()->GetIntegrationDriver()->RenewStepperAndAdjust(pStepper);
-
-    fieldMgr->GetChordFinder()->SetDeltaChord(100.0*um);
-    fieldMgr->SetMinimumEpsilonStep(1e-6);
-    fieldMgr->SetMaximumEpsilonStep(1e-5);
-    fieldMgr->SetDeltaOneStep(0.1*um);
-    G4TransportationManager::GetTransportationManager()->GetPropagatorInField()->SetMaxLoopCount(INT_MAX);
-}
-
-void DetectorConstruction::ConstructLocalField(int flag)
-{
-  G4cout << "Setting up wirechamber electromagnetic field..." << G4endl;
-
-  // local field manager
-  G4FieldManager* localFieldMgr = new G4FieldManager();
-  G4EqMagElectricField* pEquation;
-
-  if(flag == 0)
-  {
-    localFieldMgr->SetDetectorField(mwpc_internalBfield_EAST);
-    // equation of motion, stepper for field
-    pEquation = new G4EqMagElectricField(mwpc_internalBfield_EAST);
-  }
-  if(flag == 1)
-  {
-    localFieldMgr->SetDetectorField(mwpc_internalBfield_WEST);
-    // equation of motion, stepper for field
-    pEquation = new G4EqMagElectricField(mwpc_internalBfield_WEST);
-  }
-  G4ClassicalRK4* pStepper = new G4ClassicalRK4(pEquation,8);
-  G4MagInt_Driver* pIntgrDriver = new G4MagInt_Driver(0.01*um,pStepper,pStepper->GetNumberOfVariables());
-  G4ChordFinder* pChordFinder = new G4ChordFinder(pIntgrDriver);
-  localFieldMgr->SetChordFinder(pChordFinder);
-
-  // accuracy settings
-  localFieldMgr->GetChordFinder()->SetDeltaChord(10*um);
-  localFieldMgr->SetMinimumEpsilonStep(1e-6);
-  localFieldMgr->SetMaximumEpsilonStep(1e-5);
-  localFieldMgr->SetDeltaOneStep(0.1*um);
-
-  mwpc_container_log[flag] -> SetFieldManager(localFieldMgr, true);
-}
-*/
-/*void DetectorConstruction::GetFieldValue(G4double Point[4], G4double* Bfield)
-{
-  // set magnetic field
-  if(fMyBField) fMyBField->GetFieldValue(Point,Bfield);
-  else Bfield[0]=Bfield[1]=Bfield[2]=0;
-
-  if(!fE0) { Bfield[3]=Bfield[4]=Bfield[5]=0; return; }
-
-  // local position
-  G4ThreeVector localPos = G4ThreeVector(Point[0],Point[1],Point[2])-fMyTranslation;
-  if(fMyRotation) localPos = (*fMyRotation)(localPos);
-
-  // electric field components
-  G4ThreeVector E(0,0,0);
-  double l = localPos[2];
-  if(fabs(l)<fL)
-  {
-    double a = localPos[0]/fd;
-    a = (a-floor(a)-0.5)*fd;
-    if(a*a+l*l > fr*fr)
-    {
-      double denom = cosh(2*M_PI*l/fd)-cos(2*M_PI*a/fd);
-      E[2] = fE0*sinh(2*M_PI*l/fd)/denom;
-      E[0] = fE0*sin(2*M_PI*a/fd)/denom;
-    }
-  }
-  // return to global coordinates
-  if(fMyRotation) E = fMyRotation->inverse()(E);
-  for(unsigned int i=0; i<3; i++) Bfield[3+i] = E[i];
-} */
-
-/*void DetectorConstruction::setMWPCPotential(G4double Vanode)
-{
-  fE0 = M_PI*Vanode/fd/log(sinh(M_PI*fL/fd)/sinh(M_PI*fr/fd));
-  G4cout << "Wirechamber voltage set to " << Vanode/volt <<" V => fE0 = " << fE0/(volt/cm) << " V/cm" << G4endl;
-}*/
-

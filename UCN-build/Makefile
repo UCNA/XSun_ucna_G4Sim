@@ -213,29 +213,53 @@ src/EventAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/EventAction.cc.s
 .PHONY : src/EventAction.cc.s
 
-src/FieldSetup.o: src/FieldSetup.cc.o
-.PHONY : src/FieldSetup.o
+src/GlobalField.o: src/GlobalField.cc.o
+.PHONY : src/GlobalField.o
 
 # target to build an object file
-src/FieldSetup.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/FieldSetup.cc.o
-.PHONY : src/FieldSetup.cc.o
+src/GlobalField.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/GlobalField.cc.o
+.PHONY : src/GlobalField.cc.o
 
-src/FieldSetup.i: src/FieldSetup.cc.i
-.PHONY : src/FieldSetup.i
+src/GlobalField.i: src/GlobalField.cc.i
+.PHONY : src/GlobalField.i
 
 # target to preprocess a source file
-src/FieldSetup.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/FieldSetup.cc.i
-.PHONY : src/FieldSetup.cc.i
+src/GlobalField.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/GlobalField.cc.i
+.PHONY : src/GlobalField.cc.i
 
-src/FieldSetup.s: src/FieldSetup.cc.s
-.PHONY : src/FieldSetup.s
+src/GlobalField.s: src/GlobalField.cc.s
+.PHONY : src/GlobalField.s
 
 # target to generate assembly for a file
-src/FieldSetup.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/FieldSetup.cc.s
-.PHONY : src/FieldSetup.cc.s
+src/GlobalField.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/GlobalField.cc.s
+.PHONY : src/GlobalField.cc.s
+
+src/MWPCField.o: src/MWPCField.cc.o
+.PHONY : src/MWPCField.o
+
+# target to build an object file
+src/MWPCField.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/MWPCField.cc.o
+.PHONY : src/MWPCField.cc.o
+
+src/MWPCField.i: src/MWPCField.cc.i
+.PHONY : src/MWPCField.i
+
+# target to preprocess a source file
+src/MWPCField.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/MWPCField.cc.i
+.PHONY : src/MWPCField.cc.i
+
+src/MWPCField.s: src/MWPCField.cc.s
+.PHONY : src/MWPCField.s
+
+# target to generate assembly for a file
+src/MWPCField.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/MWPCField.cc.s
+.PHONY : src/MWPCField.cc.s
 
 src/PhysList495.o: src/PhysList495.cc.o
 .PHONY : src/PhysList495.o
@@ -377,9 +401,12 @@ help:
 	@echo "... src/EventAction.o"
 	@echo "... src/EventAction.i"
 	@echo "... src/EventAction.s"
-	@echo "... src/FieldSetup.o"
-	@echo "... src/FieldSetup.i"
-	@echo "... src/FieldSetup.s"
+	@echo "... src/GlobalField.o"
+	@echo "... src/GlobalField.i"
+	@echo "... src/GlobalField.s"
+	@echo "... src/MWPCField.o"
+	@echo "... src/MWPCField.i"
+	@echo "... src/MWPCField.s"
 	@echo "... src/PhysList495.o"
 	@echo "... src/PhysList495.i"
 	@echo "... src/PhysList495.s"
