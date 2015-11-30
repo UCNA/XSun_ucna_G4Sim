@@ -21,15 +21,15 @@ SteppingAction::~SteppingAction()
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
 
-  G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
+/*  G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
   G4ThreeVector preStepPosition = step->GetPreStepPoint()->GetPosition();
 
   ofstream outfile;
   outfile.open("DebuggingGeometry.txt", ios::app);
   outfile << "Pre step volume is: " << preStepName <<"\t\t at position " << preStepPosition/m << "m \n";
   outfile.close();
+*/
 
-/*
   const DetectorConstruction* detectorConstruction =
         static_cast<const DetectorConstruction*>
         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
@@ -64,6 +64,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   {
     fEventAction -> AddEdep(edepStep, 1, 1);
   }
-*/
+
 }
 

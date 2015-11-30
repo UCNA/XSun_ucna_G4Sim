@@ -28,9 +28,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4ParticleGun*  fParticleGun; // pointer a to G4 gun class
     DetectorConstruction* fMyDetector;	// pointer to the detector geometry class
 
-    G4ThreeVector fPosOffset;
     double fSourceRadius;
-    bool fRelToSourceHolder;
 
     void diskRandom(G4double radius, G4double& x, G4double& y);
     void displayGunStatus();

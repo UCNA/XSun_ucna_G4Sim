@@ -537,7 +537,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     new G4PVPlacement(NULL, G4ThreeVector(0,0, mwpc_kev_PosZ), mwpc_kevContainer_log[i], Append(i, "kevContainer_phys_"),
 			mwpc_container_log[i], false, 0);
     new G4PVPlacement(NULL, G4ThreeVector(0,0,0), mwpc_kevStrip_log[i], Append(i, "kevStrip_phys_"), mwpc_kevSeg_log[i], false, 0);
-    new G4PVReplica(Append(i, "kevlar_place_"), mwpc_kevSeg_log[i], mwpc_kevContainer_log[i], kXAxis, mwpc_NbKevWires, mwpc_kevSpacing);
+    new G4PVReplica(Append(i, "kevlar_plane_"), mwpc_kevSeg_log[i], mwpc_kevContainer_log[i], kXAxis, mwpc_NbKevWires, mwpc_kevSpacing);
 
     new G4PVPlacement(NULL, G4ThreeVector(0,0, -mwpc_containerHalf_Z + mwpc_kevEffThick + mwpc_windowThick/2.),
         mwpc_winIn_log[i], Append(i, "winIn_phys_"), mwpc_container_log[i], false, 0);
@@ -609,23 +609,23 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   {
     frame_mwpcEntrance_log[i] = new G4LogicalVolume(frame_mwpcEntranceTube, Vacuum, Append(i, "mwpc_entrance_log_"));
     frame_entranceFront_log[i] = new G4LogicalVolume(frame_entranceFrontTube, Al, Append(i, "entrance_front_log_"));
-    frame_entranceMid_log[i] = new G4LogicalVolume(frame_entranceMidTube, Al, Append(i, "entrance_mid_log_EAST"));
-    frame_entranceBack_log[i] = new G4LogicalVolume(frame_entranceBackTube, Al, Append(i, "entrance_back_log_EAST"));
+    frame_entranceMid_log[i] = new G4LogicalVolume(frame_entranceMidTube, Al, Append(i, "entrance_mid_log_"));
+    frame_entranceBack_log[i] = new G4LogicalVolume(frame_entranceBackTube, Al, Append(i, "entrance_back_log_"));
     frame_mwpcEntrance_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
     frame_entranceFront_log[i] -> SetVisAttributes(visMWPCEntrance);
     frame_entranceMid_log[i] -> SetVisAttributes(visMWPCEntrance);
     frame_entranceBack_log[i] -> SetVisAttributes(visMWPCEntrance);
 
     frame_container_log[i] = new G4LogicalVolume(frame_containerShape, Vacuum, Append(i, "frame_container_log_"));
-//    frame_container_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
-    frame_container_log[i] -> SetVisAttributes(new G4VisAttributes(G4Color(1, 0, 1, 1)));
+    frame_container_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
+//    frame_container_log[i] -> SetVisAttributes(new G4VisAttributes(G4Color(1, 0, 1, 1)));
 
-    frame_mwpcExit_log[i] = new G4LogicalVolume(frame_mwpcExitTube, Al, Append(i, "mwpc_exit_log_EAST"));
+    frame_mwpcExit_log[i] = new G4LogicalVolume(frame_mwpcExitTube, Al, Append(i, "mwpc_exit_log_"));
     frame_mwpcExit_log[i] -> SetVisAttributes(visMWPCExit);
-    frame_mwpcExitGasN2_log[i] = new G4LogicalVolume(frame_mwpcExitGasN2Tube, WCNitrogen, Append(i, "mwpc_exit_N2_log_EAST"));
+    frame_mwpcExitGasN2_log[i] = new G4LogicalVolume(frame_mwpcExitGasN2Tube, WCNitrogen, Append(i, "mwpc_exit_N2_log_"));
     frame_mwpcExitGasN2_log[i] -> SetVisAttributes(G4VisAttributes::Invisible);
 
-    frame_backStuff_log[i] = new G4LogicalVolume(frame_backStuffTube, SS304, Append(i, "backStuff_log_EAST"));
+    frame_backStuff_log[i] = new G4LogicalVolume(frame_backStuffTube, SS304, Append(i, "backStuff_log_"));
   }
 
   // place all the physical volumes (class members) in their respective mother volumes.
@@ -642,11 +642,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     frame_mwpcEntrance_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0., 0., frame_entrance_PosZ),
                                   frame_mwpcEntrance_log[i], Append(i, "frame_mwpc_entrance_"), frame_container_log[i], false, 0);
     frame_mwpcExit_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExit_log[i],
-                                  Append(i, "mwpc_exit_EAST"), frame_container_log[i], false, 0);
+                                  Append(i, "mwpc_exit_"), frame_container_log[i], false, 0);
     frame_mwpcExitGasN2_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0,0, frame_exitWin_PosZ), frame_mwpcExitGasN2_log[i],
-                                  Append(i, "mwpc_exit_N2_phys_EAST"), frame_container_log[i], false, 0);
+                                  Append(i, "mwpc_exit_N2_phys_"), frame_container_log[i], false, 0);
     frame_backStuff_phys[i] = new G4PVPlacement(NULL, G4ThreeVector(0, 0, frame_detFrameHalf_Z - 0.5*frame_backStuffThick),
-                                  frame_backStuff_log[i], Append(i, "backStuff_phys_EAST"), frame_container_log[i], false, 0);
+                                  frame_backStuff_log[i], Append(i, "backStuff_phys_"), frame_container_log[i], false, 0);
   }
 
 
@@ -681,8 +681,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   FieldSetup* globalMagField = new FieldSetup();
   G4AutoDelete::Register(globalMagField);	// informs the kernel to delete
   globalMagField -> SetFieldValue(1.0*tesla);
-  mwpc_container_log[0] -> SetFieldManager(globalMagField -> GetLocalFieldManager(), true);
-
+//  mwpc_container_log[0] -> SetFieldManager(globalMagField -> GetEastLocalFieldManager(), true);
+  mwpc_container_log[1] -> SetFieldManager(globalMagField -> GetWestLocalFieldManager(), true);
 
 
 

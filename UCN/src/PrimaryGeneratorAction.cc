@@ -22,9 +22,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
   fParticleGun(0),
   fMyDetector(myDC),
-  fPosOffset(),
-  fSourceRadius(3.*mm),
-  fRelToSourceHolder(false)
+  fSourceRadius(3.*mm)
 {
   G4int n_particle = 1;
   fParticleGun  = new G4ParticleGun(n_particle);
@@ -50,8 +48,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   double percentage = r1/10000.;	// This gives us 0.001 precision.
 
 
-	fParticleGun->SetParticlePosition(G4ThreeVector(0,0,0));
-	fParticleGun->SetParticleEnergy(400*keV);
+/*	fParticleGun->SetParticleEnergy(400*keV);
 	particle = particleTable->FindParticle(particleName="geantino");
     G4double x = G4UniformRand();
     if(x < 0.5)
@@ -62,9 +59,9 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     {
       fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0,0,-1));
     }
+*/
 
 
-/*
   if((percentage >= 0) && (percentage <= 64.97))
   {
     fParticleGun -> SetParticleEnergy(391.698*keV);
@@ -113,7 +110,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,-1,-1));
     }
   }
-*/
+
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);        // Michael's has this line. Idk why.
 
@@ -166,17 +163,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   {
     diskRandom(fSourceRadius, x0, y0);
   }
-  G4ThreeVector v0 = fPosOffset;
-  if(fRelToSourceHolder)
-  {
-//    v0 += fMyDetector->getHolderPos();  // I checked and getHolderPos exists and the variable it calls
-  }                                     // namely fSourceHolderPos, has been initialized in DetectorConstruction
-  x0 = x0 + v0.x();
-  y0 = y0 + v0.y();
-  z0 = z0 + v0.z();
 
-//  fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
-
+  fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 
 //  displayGunStatus();
 
@@ -189,7 +177,6 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	<< y0/cm << "cm \t"
 	<< z0/cm << "cm \t";
   outfile.close();
-
 
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }

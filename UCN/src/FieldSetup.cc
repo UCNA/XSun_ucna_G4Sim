@@ -23,28 +23,33 @@
 #include "G4SystemOfUnits.hh"
 
 FieldSetup::FieldSetup()
- : fFieldManager(0), fLocalFieldManager(0),
-   fChordFinder(0), fLocalChordFinder(0),
-   fEquation(0), fLocalEquation(0),
-   fMagneticField(0), fLocalMagneticField(0),
-   fStepper(0), fLocalStepper(0)
+ : fFieldManager(0), fEastMWPCFieldManager(0), fWestMWPCFieldManager(0),
+   fChordFinder(0), fEastMWPCChordFinder(0), fWestMWPCChordFinder(0),
+   fEquation(0), fEastMWPCEquation(0), fWestMWPCEquation(0),
+   fMagneticField(0), fEastMWPCMagneticField(0), fWestMWPCMagneticField(0),
+   fStepper(0), fEastMWPCStepper(0), fWestMWPCStepper(0)
 {
   G4cout << "Entering field constructor" << G4endl;
 
   fMagneticField = new G4UniformMagField(G4ThreeVector(0.0*tesla,
                                                        0.0*tesla, // 0.5*tesla,
                                                        1.0*tesla));
-  fLocalMagneticField = new G4UniformMagField(G4ThreeVector(0*tesla,
-                                                            0*tesla, // 0.5*tesla,
-                                                            1.0*tesla));
+  fEastMWPCMagneticField = new G4UniformMagField(G4ThreeVector(0.0*tesla,
+                                                               0.0*tesla, // 0.5*tesla,
+                                                               1.0*tesla));
+  fWestMWPCMagneticField = new G4UniformMagField(G4ThreeVector(0.0,
+							       0.0,
+							       1.0*tesla));
 
   fEquation = new G4Mag_UsualEqRhs(fMagneticField);
-  fLocalEquation = new G4Mag_UsualEqRhs(fLocalMagneticField);
+  fEastMWPCEquation = new G4Mag_UsualEqRhs(fEastMWPCMagneticField);
+  fWestMWPCEquation = new G4Mag_UsualEqRhs(fWestMWPCMagneticField);
 
   fMinStep     = 0.25*mm ; // minimal step of 1 mm is default
 
   fFieldManager = GetGlobalFieldManager();
-  fLocalFieldManager = new G4FieldManager();
+  fEastMWPCFieldManager = new G4FieldManager();
+  fWestMWPCFieldManager = new G4FieldManager();
 
   UpdateField();
 }
@@ -61,21 +66,25 @@ void FieldSetup::UpdateField()
   if (fStepper) delete fStepper;
   // These are the steppers (not really) used in Michael's code. Go with it.
   fStepper = new G4HelixSimpleRunge(fEquation);	 	// this needs to be HelixMixedStepper, apparently second argument 6
-  fLocalStepper = new G4ClassicalRK4(fLocalEquation);	// I don't understand this local stepper.
-							// In Michael's code, it's object type G4ClassicalRK4*
+  fEastMWPCStepper = new G4ClassicalRK4(fEastMWPCEquation);	// I don't understand this local stepper.
+  fWestMWPCStepper = new G4ClassicalRK4(fWestMWPCEquation);	// In Michael's code, it's object type G4ClassicalRK4*
 							// Which doesn't match. And I don't know if EoM works the same.
 
   fFieldManager -> SetDetectorField(fMagneticField);	// set some field managers
-  fLocalFieldManager -> SetDetectorField(fLocalMagneticField);
+  fEastMWPCFieldManager -> SetDetectorField(fEastMWPCMagneticField);
+  fWestMWPCFieldManager -> SetDetectorField(fWestMWPCMagneticField);
 
   if (fChordFinder) delete fChordFinder;	// check to see if these objects exist on update
-  if (fLocalChordFinder) delete fLocalChordFinder;
+  if (fEastMWPCChordFinder) delete fEastMWPCChordFinder;
+  if (fWestMWPCChordFinder) delete fWestMWPCChordFinder;
 
   fChordFinder = new G4ChordFinder(fMagneticField, fMinStep, fStepper);	// Instead of chord finder, need to use create chord
-  fLocalChordFinder = new G4ChordFinder(fLocalMagneticField, fMinStep,fLocalStepper);
+  fEastMWPCChordFinder = new G4ChordFinder(fEastMWPCMagneticField, fMinStep, fEastMWPCStepper);
+  fWestMWPCChordFinder = new G4ChordFinder(fWestMWPCMagneticField, fMinStep, fWestMWPCStepper);
 
   fFieldManager->SetChordFinder(fChordFinder);
-  fLocalFieldManager->SetChordFinder(fLocalChordFinder);
+  fEastMWPCFieldManager->SetChordFinder(fEastMWPCChordFinder);
+  fWestMWPCFieldManager->SetChordFinder(fWestMWPCChordFinder);
 
   G4cout << "Field has been updated." << G4endl;
 }

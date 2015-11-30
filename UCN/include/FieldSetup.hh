@@ -18,20 +18,27 @@ public:
   void UpdateField();
   void SetFieldValue(G4double fieldStrength);
 
-  G4FieldManager* GetLocalFieldManager() { return fLocalFieldManager;}
+  G4FieldManager* GetEastLocalFieldManager() { return fEastMWPCFieldManager;}
+  G4FieldManager* GetWestLocalFieldManager() { return fWestMWPCFieldManager;}
 protected:
   G4FieldManager* GetGlobalFieldManager();	// a method set to return the global field manager
 
   G4FieldManager* fFieldManager;
-  G4FieldManager* fLocalFieldManager;
+  G4FieldManager* fEastMWPCFieldManager;
+  G4FieldManager* fWestMWPCFieldManager;	// Idk if I need the remaining objects to be East/West
+						// So for safety's sake, I'll have duplicates of all.
   G4ChordFinder* fChordFinder;
-  G4ChordFinder* fLocalChordFinder;
+  G4ChordFinder* fEastMWPCChordFinder;
+  G4ChordFinder* fWestMWPCChordFinder;
   G4Mag_UsualEqRhs* fEquation;
-  G4Mag_UsualEqRhs* fLocalEquation;
+  G4Mag_UsualEqRhs* fEastMWPCEquation;
+  G4Mag_UsualEqRhs* fWestMWPCEquation;
   G4MagneticField* fMagneticField;
-  G4MagneticField* fLocalMagneticField;
+  G4MagneticField* fEastMWPCMagneticField;
+  G4MagneticField* fWestMWPCMagneticField;
   G4MagIntegratorStepper* fStepper;
-  G4MagIntegratorStepper* fLocalStepper;
+  G4MagIntegratorStepper* fEastMWPCStepper;
+  G4MagIntegratorStepper* fWestMWPCStepper;
 
   G4double fMinStep;
 
