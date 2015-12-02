@@ -1,4 +1,4 @@
-# Install script for directory: /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN
+# Install script for directory: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ucn"
          RPATH "")
   ENDIF()
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/ucn")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/ucn")
   IF(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ucn" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/ucn")
     FILE(RPATH_REMOVE
@@ -56,7 +56,7 @@ ELSE(CMAKE_INSTALL_COMPONENT)
   SET(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 ENDIF(CMAKE_INSTALL_COMPONENT)
 
-FILE(WRITE "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/${CMAKE_INSTALL_MANIFEST}" "")
+FILE(WRITE "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  FILE(APPEND "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  FILE(APPEND "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 ENDFOREACH(file)

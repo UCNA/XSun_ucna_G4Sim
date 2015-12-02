@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN
+CMAKE_SOURCE_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build
+CMAKE_BINARY_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build
 
 # Utility rule file for UCN.
 
@@ -60,6 +60,6 @@ CMakeFiles/UCN.dir/clean:
 .PHONY : CMakeFiles/UCN.dir/clean
 
 CMakeFiles/UCN.dir/depend:
-	cd /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/UCN.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/UCN.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/UCN.dir/depend
 

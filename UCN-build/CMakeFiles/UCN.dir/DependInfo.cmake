@@ -22,7 +22,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

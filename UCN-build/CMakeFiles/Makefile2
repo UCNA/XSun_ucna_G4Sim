@@ -47,10 +47,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN
+CMAKE_SOURCE_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build
+CMAKE_BINARY_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build
 
 #=============================================================================
 # Target rules for target CMakeFiles/UCN.dir
@@ -59,15 +59,15 @@ CMAKE_BINARY_DIR = /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build
 CMakeFiles/UCN.dir/all: CMakeFiles/ucn.dir/all
 	$(MAKE) -f CMakeFiles/UCN.dir/build.make CMakeFiles/UCN.dir/depend
 	$(MAKE) -f CMakeFiles/UCN.dir/build.make CMakeFiles/UCN.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles 
 	@echo "Built target UCN"
 .PHONY : CMakeFiles/UCN.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/UCN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/UCN.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles 0
 .PHONY : CMakeFiles/UCN.dir/rule
 
 # Convenience name for target.
@@ -90,7 +90,7 @@ clean: CMakeFiles/UCN.dir/clean
 CMakeFiles/ucn.dir/all:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/depend
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles  1 2 3 4 5 6 7 8 9
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles  1 2 3 4 5 6 7 8 9
 	@echo "Built target ucn"
 .PHONY : CMakeFiles/ucn.dir/all
 
@@ -100,9 +100,9 @@ all: CMakeFiles/ucn.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ucn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ucn.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles 0
 .PHONY : CMakeFiles/ucn.dir/rule
 
 # Convenience name for target.

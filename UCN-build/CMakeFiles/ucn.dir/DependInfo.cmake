@@ -4,15 +4,15 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/DetectorConstruction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/EventAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/EventAction.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/GlobalField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/GlobalField.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/MWPCField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/MWPCField.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PhysList495.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/PhysList495.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/PrimaryGeneratorAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/RunAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/RunAction.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/src/SteppingAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/ucn.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN-build/CMakeFiles/ucn.dir/ucn.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/DetectorConstruction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/EventAction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/GlobalField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/GlobalField.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/MWPCField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/MWPCField.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PhysList495.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/PhysList495.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PrimaryGeneratorAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/RunAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/RunAction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/SteppingAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/ucn.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/ucn.cc.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -35,7 +35,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/B1Example/UCN/include"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
