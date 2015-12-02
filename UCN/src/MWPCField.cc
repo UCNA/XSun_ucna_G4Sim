@@ -25,10 +25,12 @@
 #include "G4SystemOfUnits.hh"
 
 MWPCField::MWPCField()
- : fE0(0), 
-   fSqOfMaxRadius((20*cm)*(20*cm)), fFieldScale(1.0)
+ : fE0(0), fSqOfMaxRadius((20*cm)*(20*cm)), fFieldScale(1.0)
 {
   G4cout << "Creating MWPC electromagnetic field objects." << G4endl;
+  fChamberRot = NULL;	// initialize some class members
+  fChamberTrans = G4ThreeVector(0,0,0);
+
   LoadFieldMap();
 }
 
@@ -52,8 +54,15 @@ void MWPCField::AddPoint(G4double zPositions, G4double BValues)
   Bpoints.push_back(BValues);
 }
 
+void MWPCField::SetPotential(G4double Vanode)
+{
+  fE0 = M_PI*Vanode/d/log(sinh(M_PI*L/d)/sinh(M_PI*r/d));
+  G4cout << "Wirechamber voltage set to " << Vanode/volt <<" V => fE0 = " << fE0/(volt/cm) << " V/cm" << G4endl;
+}
+
 void MWPCField::GetFieldValue(const G4double Point[4], G4double *Bfield) const
 {
+  // magnetic field components computed below. Same code as in the GlobalField GetFieldValue(...)
   G4double z = Point[2]; // point z
   unsigned int zindex = int(lower_bound(Zpoints.begin(), Zpoints.end(), z)-Zpoints.begin()); // location in points list
 
@@ -95,6 +104,36 @@ void MWPCField::GetFieldValue(const G4double Point[4], G4double *Bfield) const
     Bfield[5] = 0;
     return;
   }
+
+  // create a local position vector to avoid offsets in computation
+  G4ThreeVector localPos = G4ThreeVector(Point[0], Point[1], Point[2]) - fChamberTrans;
+  if(fChamberRot != NULL)
+  {
+    localPos = (*fChamberRot)(localPos);
+  }
+
+  // compute the electric field components
+  G4ThreeVector E(0,0,0);
+  double l = localPos[2];
+  if(fabs(l)<L)
+  {
+    double a = localPos[0]/d;
+    a = (a-floor(a)-0.5)*d;
+    if(a*a+l*l > r*r)
+    {
+      double denom = cosh(2*M_PI*l/d)-cos(2*M_PI*a/d);
+      E[2] = fE0*sinh(2*M_PI*l/d)/denom;
+      E[0] = fE0*sin(2*M_PI*a/d)/denom;
+    }
+  }
+
+  if(fChamberRot != NULL)	// rotate back to global coordinate frame
+  {
+    E = fChamberRot->inverse()(E);
+  }
+  Bfield[3] = E[0];	// setting the 4,5,6th components of Bfield, which is a 6 entry array
+  Bfield[4] = E[1];	// to the electric field values. This needs to be done for GEANT4 EM field.
+  Bfield[5] = E[2];
 
 }
 

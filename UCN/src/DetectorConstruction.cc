@@ -233,7 +233,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   source_ring_phys = new G4PVPlacement(NULL, G4ThreeVector(), source_ring_log, "source_ring_phys", source_container_log, false, 0);
 
   // place entire source holder object
-//  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log,"source_container_phys", experimentalHall_log, false, 0, true);
+  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log,"source_container_phys", experimentalHall_log, false, 0, true);
 
   //----- Decay Trap object (length 3m, main tube)
   G4double decayTrap_windowThick = 0.180*um;
@@ -684,7 +684,27 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fScoreVol3 = scint_scintillator_log[1];
   fScoreVol4 = mwpc_container_log[1];
 
-  // constructing magnetic field globally and assign separate propagation locally (E/W mwpc)
+  G4ThreeVector East_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCEast;
+  G4ThreeVector West_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCWest;
+
+  ConstructGlobalField();			// make magnetic and EM fields.
+  ConstructEastMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius, EastSideRot, East_EMFieldLocation);
+  ConstructWestMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius, NULL, West_EMFieldLocation);
+
+  return experimentalHall_phys;
+}
+
+string DetectorConstruction::Append(int i, string str)
+{
+  stringstream newString;
+  newString << str << i;
+  return newString.str();
+}
+
+void DetectorConstruction::ConstructGlobalField()
+{
+  G4cout << "Setting up global magnetic field. Call to global field object." << G4endl;
+
   GlobalField* magField = new GlobalField();
   G4FieldManager* globalFieldManager = G4TransportationManager::GetTransportationManager()->GetFieldManager();
   globalFieldManager -> SetDetectorField(magField);
@@ -707,9 +727,20 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   globalFieldManager -> SetDeltaOneStep(0.1*um);
   G4TransportationManager::GetTransportationManager()->GetPropagatorInField()->SetMaxLoopCount(INT_MAX);
 
+  return;
+}
 
+void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* d, G4ThreeVector e)
+{
   G4cout << "Setting up East wirechamber electromagnetic field." << G4endl;
   MWPCField* eastLocalField = new MWPCField();
+  eastLocalField -> SetActiveReg_d(a);
+  eastLocalField -> SetActiveReg_L(b);
+  eastLocalField -> SetActiveReg_r(c);
+  eastLocalField -> SetSideRot(d);
+  eastLocalField -> SetSideTrans(e);
+  eastLocalField -> SetPotential(2700*volt);
+
   G4FieldManager* eastLocalFieldManager = new G4FieldManager();
   eastLocalFieldManager -> SetDetectorField(eastLocalField);
 
@@ -724,8 +755,21 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   eastLocalFieldManager -> SetMaximumEpsilonStep(1e-5);
   eastLocalFieldManager -> SetDeltaOneStep(0.1*um);
 
+  mwpc_container_log[0] -> SetFieldManager(eastLocalFieldManager, true);
+  return;
+}
+
+void DetectorConstruction::ConstructWestMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* d, G4ThreeVector e)
+{
   G4cout << "Setting up West wirechamber electromagnetic field." << G4endl;
   MWPCField* westLocalField = new MWPCField();
+  westLocalField -> SetActiveReg_d(a);
+  westLocalField -> SetActiveReg_L(b);
+  westLocalField -> SetActiveReg_r(c);
+  westLocalField -> SetSideRot(d);
+  westLocalField -> SetSideTrans(e);
+  westLocalField -> SetPotential(2700*volt);
+
   G4FieldManager* westLocalFieldManager = new G4FieldManager();
   westLocalFieldManager -> SetDetectorField(westLocalField);
 
@@ -740,27 +784,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   westLocalFieldManager -> SetMaximumEpsilonStep(1e-5);
   westLocalFieldManager -> SetDeltaOneStep(0.1*um);
 
-
-  mwpc_container_log[0] -> SetFieldManager(eastLocalFieldManager, true);
   mwpc_container_log[1] -> SetFieldManager(westLocalFieldManager, true);
-
-
-
-
-
-
-
-
-
-
-
-
-  return experimentalHall_phys;
-}
-
-string DetectorConstruction::Append(int i, string str)
-{
-  stringstream newString;
-  newString << str << i;
-  return newString.str();
+  return;
 }

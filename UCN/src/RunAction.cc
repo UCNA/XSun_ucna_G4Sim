@@ -15,7 +15,7 @@
 #include <cmath>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"EnergyOutput.txt"
+#define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
 
 RunAction::RunAction()
 : G4UserRunAction()
