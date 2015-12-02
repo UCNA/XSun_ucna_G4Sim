@@ -16,7 +16,7 @@
 #include <cmath>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"EnergyOutput.txt"
+#define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
@@ -47,8 +47,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 				// NOTE	not set to 100 because on nndc we get 100.7% for 391 keV gammas.
   double percentage = r1/10000.;	// This gives us 0.001 precision.
 
-
-/*	fParticleGun->SetParticleEnergy(400*keV);
+/*	// debugging via stepping action.
+	fParticleGun->SetParticleEnergy(400*keV);
 	particle = particleTable->FindParticle(particleName="geantino");
     G4double x = G4UniformRand();
     if(x < 0.5)
@@ -98,24 +98,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     G4cout << "Random number sampled beyond the scope of the decay." << G4endl;
   }
 
-  if(particleName == "e-")
-  {
-    G4double x = G4UniformRand();
-    if(x < 0.5)
-    {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,-1,1));
-    }
-    if(x >= 0.5)
-    {
-      fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,-1,-1));
-    }
-  }
-
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleTime(0.0*ns);        // Michael's has this line. Idk why.
 
   //----- Setting isotropic particle momentum direction
-/*  G4double alphaMin = 0*deg;	// alpha is apex angle
+  G4double alphaMin = 0*deg;	// alpha is apex angle
   G4double alphaMax = 180*deg;	// 180* ensures cone -> full sphere
   G4double cosAlphaMin = cos(alphaMin);
   G4double cosAlphaMax = cos(alphaMax);
@@ -131,7 +118,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double uz = cosAlpha;
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(ux,uy,uz));
 
-  G4ThreeVector newUz;
+/*  G4ThreeVector newUz;	// fires isotropic cone where cone axis can be rotated.
   G4double theta, phi, apex;
 
   G4double xCentre = 0*cm;
@@ -153,7 +140,6 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   fParticleGun->SetParticleMomentumDirection(dir);
 */
-
 
   //----- Setting the particle generation position
   G4double x0 = 0;		// Says it is negligibly thin.

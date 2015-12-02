@@ -22,3 +22,11 @@ In essence, the UCNA simulation will attempt to move all classes into the follow
 	3. Primary generator action
 	4. End of run/event data processing and management.
 	5. Track and step level cuts and data recording.
+
+
+Update: November 30th, 2015.
+
+Completed the basic functions of the simulation. Geometry and magnetic fields reproduced.
+Physics list matches Michael's and the particle generation is my own.
+Information I/O is done via simple C++ I/O, not compiling with ROOT.
+

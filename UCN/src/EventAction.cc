@@ -15,7 +15,7 @@
 #include <cmath>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"EnergyOutput.txt"
+#define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
 
 EventAction::EventAction()
 : G4UserEventAction()
@@ -33,9 +33,9 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
   fEdep_East_MWPC = 0;
   fEdep_West_MWPC = 0;
 
-  if((evt->GetEventID())%100 == 0)
+  if((evt->GetEventID())%1000 == 0)
   {
-    G4cout << "/n -------------- Begin of event: " << evt->GetEventID() << G4endl;
+    G4cout << "\n -------------- Begin of event: " << evt->GetEventID() << G4endl;
   }
 }
 
