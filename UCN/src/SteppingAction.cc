@@ -9,8 +9,7 @@
 
 SteppingAction::SteppingAction(EventAction* eventAction)
 : G4UserSteppingAction(),
-  fEventAction(eventAction),
-  fSV1(0),fSV2(0),fSV3(0),fSV4(0)
+  fEventAction(eventAction)
 {}
 
 
@@ -20,8 +19,8 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
-
-/*  G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
+/*
+  G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
   G4ThreeVector preStepPosition = step->GetPreStepPoint()->GetPosition();
 
   ofstream outfile;
@@ -34,33 +33,24 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         static_cast<const DetectorConstruction*>
         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 
-  fSV1 = detectorConstruction -> GetScoringVolume1();
-  fSV2 = detectorConstruction -> GetScoringVolume2();
-  fSV3 = detectorConstruction -> GetScoringVolume3();
-  fSV4 = detectorConstruction -> GetScoringVolume4();
-
   G4LogicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
-
-  if((volume != fSV1) && (volume != fSV2) && (volume != fSV3) && (volume != fSV4))
-  {
-    return;	// if not scoring volume, GTFO
-  }
 
   G4double edepStep = step->GetTotalEnergyDeposit();
 
-  if(volume == fSV1)
+  // check if the volume we are in is one of the logical volumes we're interested in
+  if(volume == (*detectorConstruction).scint_scintillator_log[0])
   {
     fEventAction -> AddEdep(edepStep, 0, 0);
   }
-  else if(volume == fSV2)
+  if(volume == (*detectorConstruction).mwpc_container_log[0])
   {
     fEventAction -> AddEdep(edepStep, 1, 0);
   }
-  else if(volume == fSV3)
+  if(volume == (*detectorConstruction).scint_scintillator_log[1])
   {
     fEventAction -> AddEdep(edepStep, 0, 1);
   }
-  else if(volume == fSV4)
+  if(volume == (*detectorConstruction).mwpc_container_log[1])
   {
     fEventAction -> AddEdep(edepStep, 1, 1);
   }

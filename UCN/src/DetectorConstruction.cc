@@ -679,10 +679,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     mwpc_kevStrip_log[i] -> SetUserLimits(UserSolidLimits);
   }
 
-  fScoreVol1 = scint_scintillator_log[0];       // set scoring volumes for SteppingAction
-  fScoreVol2 = mwpc_container_log[0];
-  fScoreVol3 = scint_scintillator_log[1];
-  fScoreVol4 = mwpc_container_log[1];
+  // HERE IS WHERE I WOULD SET SCORING VOLUMES.
+  // But as of right now, all tracking and accumulation is done via SteppingAction.
 
   G4ThreeVector East_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCEast;
   G4ThreeVector West_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCWest;

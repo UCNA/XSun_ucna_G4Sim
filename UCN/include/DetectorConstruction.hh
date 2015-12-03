@@ -1,8 +1,6 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
-//#include "Field.hh"
-
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 
@@ -36,11 +34,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     virtual G4VPhysicalVolume* Construct();
 
     void SetVacuumPressure(G4double pressure);
-
-    G4LogicalVolume* GetScoringVolume1() const { return fScoreVol1; }	// SteppingAction needs access
-    G4LogicalVolume* GetScoringVolume2() const { return fScoreVol2; }	// to scoring volumes.
-    G4LogicalVolume* GetScoringVolume3() const { return fScoreVol3; }
-    G4LogicalVolume* GetScoringVolume4() const { return fScoreVol4; }
 
     G4Material* Be; 		///< Beryllium for trap windows
     G4Material* Al; 		///< Aluminum
@@ -126,12 +119,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     void ConstructWestMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* sideRot, G4ThreeVector sideTrans);
 
     G4double fScintStepLimit;
-
-    G4LogicalVolume* fScoreVol1;
-    G4LogicalVolume* fScoreVol2;
-    G4LogicalVolume* fScoreVol3;
-    G4LogicalVolume* fScoreVol4;
-
 };
 
 #endif
