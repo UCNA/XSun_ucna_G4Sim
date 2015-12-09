@@ -152,29 +152,269 @@ ucn/fast:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/build
 .PHONY : ucn/fast
 
-src/BetaSpectrum.o: src/BetaSpectrum.cc.o
-.PHONY : src/BetaSpectrum.o
+EventGenTools/src/BetaSpectrum.o: EventGenTools/src/BetaSpectrum.cc.o
+.PHONY : EventGenTools/src/BetaSpectrum.o
 
 # target to build an object file
-src/BetaSpectrum.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o
-.PHONY : src/BetaSpectrum.cc.o
+EventGenTools/src/BetaSpectrum.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/BetaSpectrum.cc.o
+.PHONY : EventGenTools/src/BetaSpectrum.cc.o
 
-src/BetaSpectrum.i: src/BetaSpectrum.cc.i
-.PHONY : src/BetaSpectrum.i
+EventGenTools/src/BetaSpectrum.i: EventGenTools/src/BetaSpectrum.cc.i
+.PHONY : EventGenTools/src/BetaSpectrum.i
 
 # target to preprocess a source file
-src/BetaSpectrum.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.i
-.PHONY : src/BetaSpectrum.cc.i
+EventGenTools/src/BetaSpectrum.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/BetaSpectrum.cc.i
+.PHONY : EventGenTools/src/BetaSpectrum.cc.i
 
-src/BetaSpectrum.s: src/BetaSpectrum.cc.s
-.PHONY : src/BetaSpectrum.s
+EventGenTools/src/BetaSpectrum.s: EventGenTools/src/BetaSpectrum.cc.s
+.PHONY : EventGenTools/src/BetaSpectrum.s
 
 # target to generate assembly for a file
-src/BetaSpectrum.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.s
-.PHONY : src/BetaSpectrum.cc.s
+EventGenTools/src/BetaSpectrum.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/BetaSpectrum.cc.s
+.PHONY : EventGenTools/src/BetaSpectrum.cc.s
+
+EventGenTools/src/ElectronBindingEnergy.o: EventGenTools/src/ElectronBindingEnergy.cc.o
+.PHONY : EventGenTools/src/ElectronBindingEnergy.o
+
+# target to build an object file
+EventGenTools/src/ElectronBindingEnergy.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/ElectronBindingEnergy.cc.o
+.PHONY : EventGenTools/src/ElectronBindingEnergy.cc.o
+
+EventGenTools/src/ElectronBindingEnergy.i: EventGenTools/src/ElectronBindingEnergy.cc.i
+.PHONY : EventGenTools/src/ElectronBindingEnergy.i
+
+# target to preprocess a source file
+EventGenTools/src/ElectronBindingEnergy.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/ElectronBindingEnergy.cc.i
+.PHONY : EventGenTools/src/ElectronBindingEnergy.cc.i
+
+EventGenTools/src/ElectronBindingEnergy.s: EventGenTools/src/ElectronBindingEnergy.cc.s
+.PHONY : EventGenTools/src/ElectronBindingEnergy.s
+
+# target to generate assembly for a file
+EventGenTools/src/ElectronBindingEnergy.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/ElectronBindingEnergy.cc.s
+.PHONY : EventGenTools/src/ElectronBindingEnergy.cc.s
+
+EventGenTools/src/Enums.o: EventGenTools/src/Enums.cc.o
+.PHONY : EventGenTools/src/Enums.o
+
+# target to build an object file
+EventGenTools/src/Enums.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/Enums.cc.o
+.PHONY : EventGenTools/src/Enums.cc.o
+
+EventGenTools/src/Enums.i: EventGenTools/src/Enums.cc.i
+.PHONY : EventGenTools/src/Enums.i
+
+# target to preprocess a source file
+EventGenTools/src/Enums.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/Enums.cc.i
+.PHONY : EventGenTools/src/Enums.cc.i
+
+EventGenTools/src/Enums.s: EventGenTools/src/Enums.cc.s
+.PHONY : EventGenTools/src/Enums.s
+
+# target to generate assembly for a file
+EventGenTools/src/Enums.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/Enums.cc.s
+.PHONY : EventGenTools/src/Enums.cc.s
+
+EventGenTools/src/FloatErr.o: EventGenTools/src/FloatErr.cc.o
+.PHONY : EventGenTools/src/FloatErr.o
+
+# target to build an object file
+EventGenTools/src/FloatErr.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/FloatErr.cc.o
+.PHONY : EventGenTools/src/FloatErr.cc.o
+
+EventGenTools/src/FloatErr.i: EventGenTools/src/FloatErr.cc.i
+.PHONY : EventGenTools/src/FloatErr.i
+
+# target to preprocess a source file
+EventGenTools/src/FloatErr.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/FloatErr.cc.i
+.PHONY : EventGenTools/src/FloatErr.cc.i
+
+EventGenTools/src/FloatErr.s: EventGenTools/src/FloatErr.cc.s
+.PHONY : EventGenTools/src/FloatErr.s
+
+# target to generate assembly for a file
+EventGenTools/src/FloatErr.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/FloatErr.cc.s
+.PHONY : EventGenTools/src/FloatErr.cc.s
+
+EventGenTools/src/GraphUtils.o: EventGenTools/src/GraphUtils.cc.o
+.PHONY : EventGenTools/src/GraphUtils.o
+
+# target to build an object file
+EventGenTools/src/GraphUtils.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/GraphUtils.cc.o
+.PHONY : EventGenTools/src/GraphUtils.cc.o
+
+EventGenTools/src/GraphUtils.i: EventGenTools/src/GraphUtils.cc.i
+.PHONY : EventGenTools/src/GraphUtils.i
+
+# target to preprocess a source file
+EventGenTools/src/GraphUtils.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/GraphUtils.cc.i
+.PHONY : EventGenTools/src/GraphUtils.cc.i
+
+EventGenTools/src/GraphUtils.s: EventGenTools/src/GraphUtils.cc.s
+.PHONY : EventGenTools/src/GraphUtils.s
+
+# target to generate assembly for a file
+EventGenTools/src/GraphUtils.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/GraphUtils.cc.s
+.PHONY : EventGenTools/src/GraphUtils.cc.s
+
+EventGenTools/src/NuclEvtGen.o: EventGenTools/src/NuclEvtGen.cc.o
+.PHONY : EventGenTools/src/NuclEvtGen.o
+
+# target to build an object file
+EventGenTools/src/NuclEvtGen.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/NuclEvtGen.cc.o
+.PHONY : EventGenTools/src/NuclEvtGen.cc.o
+
+EventGenTools/src/NuclEvtGen.i: EventGenTools/src/NuclEvtGen.cc.i
+.PHONY : EventGenTools/src/NuclEvtGen.i
+
+# target to preprocess a source file
+EventGenTools/src/NuclEvtGen.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/NuclEvtGen.cc.i
+.PHONY : EventGenTools/src/NuclEvtGen.cc.i
+
+EventGenTools/src/NuclEvtGen.s: EventGenTools/src/NuclEvtGen.cc.s
+.PHONY : EventGenTools/src/NuclEvtGen.s
+
+# target to generate assembly for a file
+EventGenTools/src/NuclEvtGen.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/NuclEvtGen.cc.s
+.PHONY : EventGenTools/src/NuclEvtGen.cc.s
+
+EventGenTools/src/PathUtils.o: EventGenTools/src/PathUtils.cc.o
+.PHONY : EventGenTools/src/PathUtils.o
+
+# target to build an object file
+EventGenTools/src/PathUtils.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/PathUtils.cc.o
+.PHONY : EventGenTools/src/PathUtils.cc.o
+
+EventGenTools/src/PathUtils.i: EventGenTools/src/PathUtils.cc.i
+.PHONY : EventGenTools/src/PathUtils.i
+
+# target to preprocess a source file
+EventGenTools/src/PathUtils.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/PathUtils.cc.i
+.PHONY : EventGenTools/src/PathUtils.cc.i
+
+EventGenTools/src/PathUtils.s: EventGenTools/src/PathUtils.cc.s
+.PHONY : EventGenTools/src/PathUtils.s
+
+# target to generate assembly for a file
+EventGenTools/src/PathUtils.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/PathUtils.cc.s
+.PHONY : EventGenTools/src/PathUtils.cc.s
+
+EventGenTools/src/QFile.o: EventGenTools/src/QFile.cc.o
+.PHONY : EventGenTools/src/QFile.o
+
+# target to build an object file
+EventGenTools/src/QFile.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/QFile.cc.o
+.PHONY : EventGenTools/src/QFile.cc.o
+
+EventGenTools/src/QFile.i: EventGenTools/src/QFile.cc.i
+.PHONY : EventGenTools/src/QFile.i
+
+# target to preprocess a source file
+EventGenTools/src/QFile.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/QFile.cc.i
+.PHONY : EventGenTools/src/QFile.cc.i
+
+EventGenTools/src/QFile.s: EventGenTools/src/QFile.cc.s
+.PHONY : EventGenTools/src/QFile.s
+
+# target to generate assembly for a file
+EventGenTools/src/QFile.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/QFile.cc.s
+.PHONY : EventGenTools/src/QFile.cc.s
+
+EventGenTools/src/SMExcept.o: EventGenTools/src/SMExcept.cc.o
+.PHONY : EventGenTools/src/SMExcept.o
+
+# target to build an object file
+EventGenTools/src/SMExcept.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/SMExcept.cc.o
+.PHONY : EventGenTools/src/SMExcept.cc.o
+
+EventGenTools/src/SMExcept.i: EventGenTools/src/SMExcept.cc.i
+.PHONY : EventGenTools/src/SMExcept.i
+
+# target to preprocess a source file
+EventGenTools/src/SMExcept.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/SMExcept.cc.i
+.PHONY : EventGenTools/src/SMExcept.cc.i
+
+EventGenTools/src/SMExcept.s: EventGenTools/src/SMExcept.cc.s
+.PHONY : EventGenTools/src/SMExcept.s
+
+# target to generate assembly for a file
+EventGenTools/src/SMExcept.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/SMExcept.cc.s
+.PHONY : EventGenTools/src/SMExcept.cc.s
+
+EventGenTools/src/TChainScanner.o: EventGenTools/src/TChainScanner.cc.o
+.PHONY : EventGenTools/src/TChainScanner.o
+
+# target to build an object file
+EventGenTools/src/TChainScanner.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/TChainScanner.cc.o
+.PHONY : EventGenTools/src/TChainScanner.cc.o
+
+EventGenTools/src/TChainScanner.i: EventGenTools/src/TChainScanner.cc.i
+.PHONY : EventGenTools/src/TChainScanner.i
+
+# target to preprocess a source file
+EventGenTools/src/TChainScanner.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/TChainScanner.cc.i
+.PHONY : EventGenTools/src/TChainScanner.cc.i
+
+EventGenTools/src/TChainScanner.s: EventGenTools/src/TChainScanner.cc.s
+.PHONY : EventGenTools/src/TChainScanner.s
+
+# target to generate assembly for a file
+EventGenTools/src/TChainScanner.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/TChainScanner.cc.s
+.PHONY : EventGenTools/src/TChainScanner.cc.s
+
+EventGenTools/src/strutils.o: EventGenTools/src/strutils.cc.o
+.PHONY : EventGenTools/src/strutils.o
+
+# target to build an object file
+EventGenTools/src/strutils.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/strutils.cc.o
+.PHONY : EventGenTools/src/strutils.cc.o
+
+EventGenTools/src/strutils.i: EventGenTools/src/strutils.cc.i
+.PHONY : EventGenTools/src/strutils.i
+
+# target to preprocess a source file
+EventGenTools/src/strutils.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/strutils.cc.i
+.PHONY : EventGenTools/src/strutils.cc.i
+
+EventGenTools/src/strutils.s: EventGenTools/src/strutils.cc.s
+.PHONY : EventGenTools/src/strutils.s
+
+# target to generate assembly for a file
+EventGenTools/src/strutils.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/EventGenTools/src/strutils.cc.s
+.PHONY : EventGenTools/src/strutils.cc.s
 
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
@@ -199,30 +439,6 @@ src/DetectorConstruction.s: src/DetectorConstruction.cc.s
 src/DetectorConstruction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s
 .PHONY : src/DetectorConstruction.cc.s
-
-src/ElectronBindingEnergy.o: src/ElectronBindingEnergy.cc.o
-.PHONY : src/ElectronBindingEnergy.o
-
-# target to build an object file
-src/ElectronBindingEnergy.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o
-.PHONY : src/ElectronBindingEnergy.cc.o
-
-src/ElectronBindingEnergy.i: src/ElectronBindingEnergy.cc.i
-.PHONY : src/ElectronBindingEnergy.i
-
-# target to preprocess a source file
-src/ElectronBindingEnergy.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.i
-.PHONY : src/ElectronBindingEnergy.cc.i
-
-src/ElectronBindingEnergy.s: src/ElectronBindingEnergy.cc.s
-.PHONY : src/ElectronBindingEnergy.s
-
-# target to generate assembly for a file
-src/ElectronBindingEnergy.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.s
-.PHONY : src/ElectronBindingEnergy.cc.s
 
 src/EventAction.o: src/EventAction.cc.o
 .PHONY : src/EventAction.o
@@ -296,30 +512,6 @@ src/MWPCField.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/MWPCField.cc.s
 .PHONY : src/MWPCField.cc.s
 
-src/PathUtils.o: src/PathUtils.cc.o
-.PHONY : src/PathUtils.o
-
-# target to build an object file
-src/PathUtils.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.o
-.PHONY : src/PathUtils.cc.o
-
-src/PathUtils.i: src/PathUtils.cc.i
-.PHONY : src/PathUtils.i
-
-# target to preprocess a source file
-src/PathUtils.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.i
-.PHONY : src/PathUtils.cc.i
-
-src/PathUtils.s: src/PathUtils.cc.s
-.PHONY : src/PathUtils.s
-
-# target to generate assembly for a file
-src/PathUtils.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.s
-.PHONY : src/PathUtils.cc.s
-
 src/PhysList495.o: src/PhysList495.cc.o
 .PHONY : src/PhysList495.o
 
@@ -367,30 +559,6 @@ src/PrimaryGeneratorAction.s: src/PrimaryGeneratorAction.cc.s
 src/PrimaryGeneratorAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s
 .PHONY : src/PrimaryGeneratorAction.cc.s
-
-src/QFile.o: src/QFile.cc.o
-.PHONY : src/QFile.o
-
-# target to build an object file
-src/QFile.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.o
-.PHONY : src/QFile.cc.o
-
-src/QFile.i: src/QFile.cc.i
-.PHONY : src/QFile.i
-
-# target to preprocess a source file
-src/QFile.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.i
-.PHONY : src/QFile.cc.i
-
-src/QFile.s: src/QFile.cc.s
-.PHONY : src/QFile.s
-
-# target to generate assembly for a file
-src/QFile.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.s
-.PHONY : src/QFile.cc.s
 
 src/RunAction.o: src/RunAction.cc.o
 .PHONY : src/RunAction.o
@@ -440,30 +608,6 @@ src/SteppingAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.s
 .PHONY : src/SteppingAction.cc.s
 
-src/strutils.o: src/strutils.cc.o
-.PHONY : src/strutils.o
-
-# target to build an object file
-src/strutils.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.o
-.PHONY : src/strutils.cc.o
-
-src/strutils.i: src/strutils.cc.i
-.PHONY : src/strutils.i
-
-# target to preprocess a source file
-src/strutils.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.i
-.PHONY : src/strutils.cc.i
-
-src/strutils.s: src/strutils.cc.s
-.PHONY : src/strutils.s
-
-# target to generate assembly for a file
-src/strutils.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.s
-.PHONY : src/strutils.cc.s
-
 ucn.o: ucn.cc.o
 .PHONY : ucn.o
 
@@ -501,15 +645,42 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... ucn"
-	@echo "... src/BetaSpectrum.o"
-	@echo "... src/BetaSpectrum.i"
-	@echo "... src/BetaSpectrum.s"
+	@echo "... EventGenTools/src/BetaSpectrum.o"
+	@echo "... EventGenTools/src/BetaSpectrum.i"
+	@echo "... EventGenTools/src/BetaSpectrum.s"
+	@echo "... EventGenTools/src/ElectronBindingEnergy.o"
+	@echo "... EventGenTools/src/ElectronBindingEnergy.i"
+	@echo "... EventGenTools/src/ElectronBindingEnergy.s"
+	@echo "... EventGenTools/src/Enums.o"
+	@echo "... EventGenTools/src/Enums.i"
+	@echo "... EventGenTools/src/Enums.s"
+	@echo "... EventGenTools/src/FloatErr.o"
+	@echo "... EventGenTools/src/FloatErr.i"
+	@echo "... EventGenTools/src/FloatErr.s"
+	@echo "... EventGenTools/src/GraphUtils.o"
+	@echo "... EventGenTools/src/GraphUtils.i"
+	@echo "... EventGenTools/src/GraphUtils.s"
+	@echo "... EventGenTools/src/NuclEvtGen.o"
+	@echo "... EventGenTools/src/NuclEvtGen.i"
+	@echo "... EventGenTools/src/NuclEvtGen.s"
+	@echo "... EventGenTools/src/PathUtils.o"
+	@echo "... EventGenTools/src/PathUtils.i"
+	@echo "... EventGenTools/src/PathUtils.s"
+	@echo "... EventGenTools/src/QFile.o"
+	@echo "... EventGenTools/src/QFile.i"
+	@echo "... EventGenTools/src/QFile.s"
+	@echo "... EventGenTools/src/SMExcept.o"
+	@echo "... EventGenTools/src/SMExcept.i"
+	@echo "... EventGenTools/src/SMExcept.s"
+	@echo "... EventGenTools/src/TChainScanner.o"
+	@echo "... EventGenTools/src/TChainScanner.i"
+	@echo "... EventGenTools/src/TChainScanner.s"
+	@echo "... EventGenTools/src/strutils.o"
+	@echo "... EventGenTools/src/strutils.i"
+	@echo "... EventGenTools/src/strutils.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"
-	@echo "... src/ElectronBindingEnergy.o"
-	@echo "... src/ElectronBindingEnergy.i"
-	@echo "... src/ElectronBindingEnergy.s"
 	@echo "... src/EventAction.o"
 	@echo "... src/EventAction.i"
 	@echo "... src/EventAction.s"
@@ -519,27 +690,18 @@ help:
 	@echo "... src/MWPCField.o"
 	@echo "... src/MWPCField.i"
 	@echo "... src/MWPCField.s"
-	@echo "... src/PathUtils.o"
-	@echo "... src/PathUtils.i"
-	@echo "... src/PathUtils.s"
 	@echo "... src/PhysList495.o"
 	@echo "... src/PhysList495.i"
 	@echo "... src/PhysList495.s"
 	@echo "... src/PrimaryGeneratorAction.o"
 	@echo "... src/PrimaryGeneratorAction.i"
 	@echo "... src/PrimaryGeneratorAction.s"
-	@echo "... src/QFile.o"
-	@echo "... src/QFile.i"
-	@echo "... src/QFile.s"
 	@echo "... src/RunAction.o"
 	@echo "... src/RunAction.i"
 	@echo "... src/RunAction.s"
 	@echo "... src/SteppingAction.o"
 	@echo "... src/SteppingAction.i"
 	@echo "... src/SteppingAction.s"
-	@echo "... src/strutils.o"
-	@echo "... src/strutils.i"
-	@echo "... src/strutils.s"
 	@echo "... ucn.o"
 	@echo "... ucn.i"
 	@echo "... ucn.s"

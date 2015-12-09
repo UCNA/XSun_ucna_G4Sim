@@ -4,10 +4,12 @@
 #include "ElectronBindingEnergy.hh"
 #include "BetaSpectrum.hh"
 #include "QFile.hh"
-//#include "FloatErr.hh"
-//#include "GraphUtils.hh"
-//#include "TChainScanner.hh"
+#include "FloatErr.hh"
+#include "GraphUtils.hh"
 #include <TF1.h>
+
+#include "TChainScanner.hh"
+//#include <TF1.h>
 #include <vector>
 #include <map>
 #include <set>

@@ -2,8 +2,6 @@
 #include "GlobalField.hh"
 #include "MWPCField.hh"
 
-#include <TH1F.h>
-
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
 #include "G4Box.hh"
