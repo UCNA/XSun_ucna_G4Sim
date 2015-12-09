@@ -140,19 +140,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named UCN
-
-# Build rule for target.
-UCN: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 UCN
-.PHONY : UCN
-
-# fast build rule for target.
-UCN/fast:
-	$(MAKE) -f CMakeFiles/UCN.dir/build.make CMakeFiles/UCN.dir/build
-.PHONY : UCN/fast
-
-#=============================================================================
 # Target rules for targets named ucn
 
 # Build rule for target.
@@ -164,6 +151,30 @@ ucn: cmake_check_build_system
 ucn/fast:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/build
 .PHONY : ucn/fast
+
+src/BetaSpectrum.o: src/BetaSpectrum.cc.o
+.PHONY : src/BetaSpectrum.o
+
+# target to build an object file
+src/BetaSpectrum.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o
+.PHONY : src/BetaSpectrum.cc.o
+
+src/BetaSpectrum.i: src/BetaSpectrum.cc.i
+.PHONY : src/BetaSpectrum.i
+
+# target to preprocess a source file
+src/BetaSpectrum.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.i
+.PHONY : src/BetaSpectrum.cc.i
+
+src/BetaSpectrum.s: src/BetaSpectrum.cc.s
+.PHONY : src/BetaSpectrum.s
+
+# target to generate assembly for a file
+src/BetaSpectrum.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.s
+.PHONY : src/BetaSpectrum.cc.s
 
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
@@ -188,6 +199,30 @@ src/DetectorConstruction.s: src/DetectorConstruction.cc.s
 src/DetectorConstruction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/DetectorConstruction.cc.s
 .PHONY : src/DetectorConstruction.cc.s
+
+src/ElectronBindingEnergy.o: src/ElectronBindingEnergy.cc.o
+.PHONY : src/ElectronBindingEnergy.o
+
+# target to build an object file
+src/ElectronBindingEnergy.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o
+.PHONY : src/ElectronBindingEnergy.cc.o
+
+src/ElectronBindingEnergy.i: src/ElectronBindingEnergy.cc.i
+.PHONY : src/ElectronBindingEnergy.i
+
+# target to preprocess a source file
+src/ElectronBindingEnergy.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.i
+.PHONY : src/ElectronBindingEnergy.cc.i
+
+src/ElectronBindingEnergy.s: src/ElectronBindingEnergy.cc.s
+.PHONY : src/ElectronBindingEnergy.s
+
+# target to generate assembly for a file
+src/ElectronBindingEnergy.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.s
+.PHONY : src/ElectronBindingEnergy.cc.s
 
 src/EventAction.o: src/EventAction.cc.o
 .PHONY : src/EventAction.o
@@ -261,6 +296,30 @@ src/MWPCField.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/MWPCField.cc.s
 .PHONY : src/MWPCField.cc.s
 
+src/PathUtils.o: src/PathUtils.cc.o
+.PHONY : src/PathUtils.o
+
+# target to build an object file
+src/PathUtils.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.o
+.PHONY : src/PathUtils.cc.o
+
+src/PathUtils.i: src/PathUtils.cc.i
+.PHONY : src/PathUtils.i
+
+# target to preprocess a source file
+src/PathUtils.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.i
+.PHONY : src/PathUtils.cc.i
+
+src/PathUtils.s: src/PathUtils.cc.s
+.PHONY : src/PathUtils.s
+
+# target to generate assembly for a file
+src/PathUtils.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.s
+.PHONY : src/PathUtils.cc.s
+
 src/PhysList495.o: src/PhysList495.cc.o
 .PHONY : src/PhysList495.o
 
@@ -308,6 +367,30 @@ src/PrimaryGeneratorAction.s: src/PrimaryGeneratorAction.cc.s
 src/PrimaryGeneratorAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.s
 .PHONY : src/PrimaryGeneratorAction.cc.s
+
+src/QFile.o: src/QFile.cc.o
+.PHONY : src/QFile.o
+
+# target to build an object file
+src/QFile.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.o
+.PHONY : src/QFile.cc.o
+
+src/QFile.i: src/QFile.cc.i
+.PHONY : src/QFile.i
+
+# target to preprocess a source file
+src/QFile.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.i
+.PHONY : src/QFile.cc.i
+
+src/QFile.s: src/QFile.cc.s
+.PHONY : src/QFile.s
+
+# target to generate assembly for a file
+src/QFile.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.s
+.PHONY : src/QFile.cc.s
 
 src/RunAction.o: src/RunAction.cc.o
 .PHONY : src/RunAction.o
@@ -357,6 +440,30 @@ src/SteppingAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.s
 .PHONY : src/SteppingAction.cc.s
 
+src/strutils.o: src/strutils.cc.o
+.PHONY : src/strutils.o
+
+# target to build an object file
+src/strutils.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.o
+.PHONY : src/strutils.cc.o
+
+src/strutils.i: src/strutils.cc.i
+.PHONY : src/strutils.i
+
+# target to preprocess a source file
+src/strutils.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.i
+.PHONY : src/strutils.cc.i
+
+src/strutils.s: src/strutils.cc.s
+.PHONY : src/strutils.s
+
+# target to generate assembly for a file
+src/strutils.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.s
+.PHONY : src/strutils.cc.s
+
 ucn.o: ucn.cc.o
 .PHONY : ucn.o
 
@@ -387,7 +494,6 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... UCN"
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
@@ -395,9 +501,15 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... ucn"
+	@echo "... src/BetaSpectrum.o"
+	@echo "... src/BetaSpectrum.i"
+	@echo "... src/BetaSpectrum.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"
+	@echo "... src/ElectronBindingEnergy.o"
+	@echo "... src/ElectronBindingEnergy.i"
+	@echo "... src/ElectronBindingEnergy.s"
 	@echo "... src/EventAction.o"
 	@echo "... src/EventAction.i"
 	@echo "... src/EventAction.s"
@@ -407,18 +519,27 @@ help:
 	@echo "... src/MWPCField.o"
 	@echo "... src/MWPCField.i"
 	@echo "... src/MWPCField.s"
+	@echo "... src/PathUtils.o"
+	@echo "... src/PathUtils.i"
+	@echo "... src/PathUtils.s"
 	@echo "... src/PhysList495.o"
 	@echo "... src/PhysList495.i"
 	@echo "... src/PhysList495.s"
 	@echo "... src/PrimaryGeneratorAction.o"
 	@echo "... src/PrimaryGeneratorAction.i"
 	@echo "... src/PrimaryGeneratorAction.s"
+	@echo "... src/QFile.o"
+	@echo "... src/QFile.i"
+	@echo "... src/QFile.s"
 	@echo "... src/RunAction.o"
 	@echo "... src/RunAction.i"
 	@echo "... src/RunAction.s"
 	@echo "... src/SteppingAction.o"
 	@echo "... src/SteppingAction.i"
 	@echo "... src/SteppingAction.s"
+	@echo "... src/strutils.o"
+	@echo "... src/strutils.i"
+	@echo "... src/strutils.s"
 	@echo "... ucn.o"
 	@echo "... ucn.i"
 	@echo "... ucn.s"

@@ -17,6 +17,8 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2/Geant4ConfigVersion.cmake"
   "/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2/Geant4LibraryDepends-release.cmake"
   "/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2/Geant4LibraryDepends.cmake"
+  "/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2/Modules/CMakeMacroParseArguments.cmake"
+  "/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2/Modules/FindROOT.cmake"
   "/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2/UseGeant4.cmake"
   "/usr/share/cmake-2.8/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c"
@@ -44,6 +46,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-2.8/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-2.8/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-2.8/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-2.8/Modules/FindGCCXML.cmake"
   "/usr/share/cmake-2.8/Modules/MultiArchCross.cmake"
   "/usr/share/cmake-2.8/Modules/Platform/Linux-CXX.cmake"
   "/usr/share/cmake-2.8/Modules/Platform/Linux-GNU-C.cmake"
@@ -73,6 +76,5 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/UCN.dir/DependInfo.cmake"
   "CMakeFiles/ucn.dir/DependInfo.cmake"
   )

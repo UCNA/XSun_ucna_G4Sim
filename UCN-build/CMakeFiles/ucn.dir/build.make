@@ -72,9 +72,32 @@ CMakeFiles/ucn.dir/ucn.cc.o.provides: CMakeFiles/ucn.dir/ucn.cc.o.requires
 
 CMakeFiles/ucn.dir/ucn.cc.o.provides.build: CMakeFiles/ucn.dir/ucn.cc.o
 
+CMakeFiles/ucn.dir/src/strutils.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/strutils.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/strutils.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/strutils.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/strutils.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/strutils.cc
+
+CMakeFiles/ucn.dir/src/strutils.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/strutils.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/strutils.cc > CMakeFiles/ucn.dir/src/strutils.cc.i
+
+CMakeFiles/ucn.dir/src/strutils.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/strutils.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/strutils.cc -o CMakeFiles/ucn.dir/src/strutils.cc.s
+
+CMakeFiles/ucn.dir/src/strutils.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/strutils.cc.o.requires
+
+CMakeFiles/ucn.dir/src/strutils.cc.o.provides: CMakeFiles/ucn.dir/src/strutils.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/strutils.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/strutils.cc.o.provides
+
+CMakeFiles/ucn.dir/src/strutils.cc.o.provides.build: CMakeFiles/ucn.dir/src/strutils.cc.o
+
 CMakeFiles/ucn.dir/src/PhysList495.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/PhysList495.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PhysList495.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/PhysList495.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/PhysList495.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PhysList495.cc
 
@@ -95,9 +118,32 @@ CMakeFiles/ucn.dir/src/PhysList495.cc.o.provides: CMakeFiles/ucn.dir/src/PhysLis
 
 CMakeFiles/ucn.dir/src/PhysList495.cc.o.provides.build: CMakeFiles/ucn.dir/src/PhysList495.cc.o
 
+CMakeFiles/ucn.dir/src/QFile.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/QFile.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/QFile.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/QFile.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/QFile.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/QFile.cc
+
+CMakeFiles/ucn.dir/src/QFile.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/QFile.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/QFile.cc > CMakeFiles/ucn.dir/src/QFile.cc.i
+
+CMakeFiles/ucn.dir/src/QFile.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/QFile.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/QFile.cc -o CMakeFiles/ucn.dir/src/QFile.cc.s
+
+CMakeFiles/ucn.dir/src/QFile.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/QFile.cc.o.requires
+
+CMakeFiles/ucn.dir/src/QFile.cc.o.provides: CMakeFiles/ucn.dir/src/QFile.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/QFile.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/QFile.cc.o.provides
+
+CMakeFiles/ucn.dir/src/QFile.cc.o.provides.build: CMakeFiles/ucn.dir/src/QFile.cc.o
+
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PrimaryGeneratorAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PrimaryGeneratorAction.cc
 
@@ -120,7 +166,7 @@ CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.provides.build: CMakeFiles/uc
 
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/DetectorConstruction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/DetectorConstruction.cc
 
@@ -143,7 +189,7 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides.build: CMakeFiles/ucn.
 
 CMakeFiles/ucn.dir/src/GlobalField.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/GlobalField.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/GlobalField.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/GlobalField.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/GlobalField.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/GlobalField.cc
 
@@ -166,7 +212,7 @@ CMakeFiles/ucn.dir/src/GlobalField.cc.o.provides.build: CMakeFiles/ucn.dir/src/G
 
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/SteppingAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/SteppingAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/SteppingAction.cc
 
@@ -187,9 +233,55 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides: CMakeFiles/ucn.dir/src/Step
 
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
 
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/BetaSpectrum.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/BetaSpectrum.cc
+
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/BetaSpectrum.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/BetaSpectrum.cc > CMakeFiles/ucn.dir/src/BetaSpectrum.cc.i
+
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/BetaSpectrum.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/BetaSpectrum.cc -o CMakeFiles/ucn.dir/src/BetaSpectrum.cc.s
+
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.requires
+
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.provides: CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.provides
+
+CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.provides.build: CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o
+
+CMakeFiles/ucn.dir/src/PathUtils.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/PathUtils.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PathUtils.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/PathUtils.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/PathUtils.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PathUtils.cc
+
+CMakeFiles/ucn.dir/src/PathUtils.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/PathUtils.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PathUtils.cc > CMakeFiles/ucn.dir/src/PathUtils.cc.i
+
+CMakeFiles/ucn.dir/src/PathUtils.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/PathUtils.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PathUtils.cc -o CMakeFiles/ucn.dir/src/PathUtils.cc.s
+
+CMakeFiles/ucn.dir/src/PathUtils.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/PathUtils.cc.o.requires
+
+CMakeFiles/ucn.dir/src/PathUtils.cc.o.provides: CMakeFiles/ucn.dir/src/PathUtils.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/PathUtils.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/PathUtils.cc.o.provides
+
+CMakeFiles/ucn.dir/src/PathUtils.cc.o.provides.build: CMakeFiles/ucn.dir/src/PathUtils.cc.o
+
 CMakeFiles/ucn.dir/src/MWPCField.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/MWPCField.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/MWPCField.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/MWPCField.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/MWPCField.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/MWPCField.cc
 
@@ -210,9 +302,32 @@ CMakeFiles/ucn.dir/src/MWPCField.cc.o.provides: CMakeFiles/ucn.dir/src/MWPCField
 
 CMakeFiles/ucn.dir/src/MWPCField.cc.o.provides.build: CMakeFiles/ucn.dir/src/MWPCField.cc.o
 
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o: CMakeFiles/ucn.dir/flags.make
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/ElectronBindingEnergy.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_12)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/ElectronBindingEnergy.cc
+
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/ElectronBindingEnergy.cc > CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.i
+
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/ElectronBindingEnergy.cc -o CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.s
+
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.requires:
+.PHONY : CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.requires
+
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.provides: CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.requires
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.provides.build
+.PHONY : CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.provides
+
+CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.provides.build: CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o
+
 CMakeFiles/ucn.dir/src/EventAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/EventAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/EventAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc
 
@@ -235,7 +350,7 @@ CMakeFiles/ucn.dir/src/EventAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/E
 
 CMakeFiles/ucn.dir/src/RunAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/RunAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/RunAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/RunAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/RunAction.cc
 
@@ -259,12 +374,17 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/Run
 # Object files for target ucn
 ucn_OBJECTS = \
 "CMakeFiles/ucn.dir/ucn.cc.o" \
+"CMakeFiles/ucn.dir/src/strutils.cc.o" \
 "CMakeFiles/ucn.dir/src/PhysList495.cc.o" \
+"CMakeFiles/ucn.dir/src/QFile.cc.o" \
 "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o" \
 "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/ucn.dir/src/GlobalField.cc.o" \
 "CMakeFiles/ucn.dir/src/SteppingAction.cc.o" \
+"CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o" \
+"CMakeFiles/ucn.dir/src/PathUtils.cc.o" \
 "CMakeFiles/ucn.dir/src/MWPCField.cc.o" \
+"CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o" \
 "CMakeFiles/ucn.dir/src/EventAction.cc.o" \
 "CMakeFiles/ucn.dir/src/RunAction.cc.o"
 
@@ -272,12 +392,17 @@ ucn_OBJECTS = \
 ucn_EXTERNAL_OBJECTS =
 
 ucn: CMakeFiles/ucn.dir/ucn.cc.o
+ucn: CMakeFiles/ucn.dir/src/strutils.cc.o
 ucn: CMakeFiles/ucn.dir/src/PhysList495.cc.o
+ucn: CMakeFiles/ucn.dir/src/QFile.cc.o
 ucn: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
 ucn: CMakeFiles/ucn.dir/src/GlobalField.cc.o
 ucn: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
+ucn: CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o
+ucn: CMakeFiles/ucn.dir/src/PathUtils.cc.o
 ucn: CMakeFiles/ucn.dir/src/MWPCField.cc.o
+ucn: CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o
 ucn: CMakeFiles/ucn.dir/src/EventAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/RunAction.cc.o
 ucn: CMakeFiles/ucn.dir/build.make
@@ -348,12 +473,17 @@ CMakeFiles/ucn.dir/build: ucn
 .PHONY : CMakeFiles/ucn.dir/build
 
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/ucn.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/strutils.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PhysList495.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/QFile.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/GlobalField.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/BetaSpectrum.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PathUtils.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/MWPCField.cc.o.requires
+CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/ElectronBindingEnergy.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/EventAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/RunAction.cc.o.requires
 .PHONY : CMakeFiles/ucn.dir/requires

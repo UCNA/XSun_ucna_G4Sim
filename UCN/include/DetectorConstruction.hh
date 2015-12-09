@@ -16,7 +16,7 @@
 #include <string>
 #include <sstream>
 
-using 	namespace	std;
+//using 	namespace	std;
 
 const G4double inch = 2.54*cm;
 const G4double torr = atmosphere/760.;
@@ -113,7 +113,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
   private:
     void DefineMaterials();
-    string Append(int i, string str);
+    std::string Append(int i, std::string str);
     void ConstructGlobalField();		// a,b,c don't mean anything significant
     void ConstructEastMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* sideRot, G4ThreeVector sideTrans);
     void ConstructWestMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* sideRot, G4ThreeVector sideTrans);

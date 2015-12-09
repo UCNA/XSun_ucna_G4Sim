@@ -1,5 +1,5 @@
 #include "NuclEvtGen.hh"
-#include "SMExcept.hh"
+//#include "SMExcept.hh"
 #include "strutils.hh"
 #include "PathUtils.hh"
 #include <math.h>

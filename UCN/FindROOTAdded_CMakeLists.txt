@@ -18,6 +18,8 @@ endif()
 #----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
 #
+# **** IMPORTANT: This needs to come before Find ROOT or else it doesn't work
+
 include(${Geant4_USE_FILE})
 
 #----------------------------------------------------------------------------
@@ -29,7 +31,7 @@ find_package(ROOT REQUIRED)
 # Locate sources and headers for this project
 #
 include_directories(${PROJECT_SOURCE_DIR}/include 
-                    ${Geant4_INCLUDE_DIR}
+#                    ${Geant4_INCLUDE_DIR}
                     ${ROOT_INCLUDE_DIR})
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
@@ -46,7 +48,8 @@ target_link_libraries(ucn ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(AnaEx02_SCRIPTS
-    init_vis.mac vis.mac
+    init_vis.mac
+    vis.mac
   )
 
 foreach(_script ${AnaEx02_SCRIPTS})

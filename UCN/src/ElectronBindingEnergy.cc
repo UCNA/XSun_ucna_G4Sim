@@ -14,16 +14,17 @@ BindingEnergyTable::BindingEnergyTable(const Stringmap& m): Z(m.getDefault("Z",0
 		}
 		if(v.size()) eBinding.push_back(v);
 		else break;
-	}	
+	}
 }
 
 const std::vector<double>& BindingEnergyTable::getShellBinding(unsigned int n) const {
 	if(n>=eBinding.size()) {
-		SMExcept e("MissingShellInfo");
+/*		SMExcept e("MissingShellInfo");
 		e.insert("Z",Z);
 		e.insert("name",nm);
 		e.insert("shell",n);
-		throw(e);
+		throw(e);	*/
+		std::cout << "Missing shell info. In getShellBinding method of ElectronBindingEnergy.cc. " << std::endl;
 	}
 	return eBinding[n];
 }
@@ -31,12 +32,13 @@ const std::vector<double>& BindingEnergyTable::getShellBinding(unsigned int n) c
 double BindingEnergyTable::getSubshellBinding(unsigned int n, unsigned int m) const {
 	const std::vector<double>& v = getShellBinding(n);
 	if(m>=v.size()) {
-		SMExcept e("MissingSubshellInfo");
+/*		SMExcept e("MissingSubshellInfo");
 		e.insert("Z",Z);
 		e.insert("name",nm);
 		e.insert("shell",n);
 		e.insert("subshell",m);
-		throw(e);
+		throw(e);	*/
+		std::cout << "Missing subshell info. In getSubshellBinding method of ElectronBindingEnergy.cc." << std::endl;
 	}
 	return v[m];
 }
@@ -67,9 +69,10 @@ BindingEnergyLibrary::~BindingEnergyLibrary() {
 const BindingEnergyTable* BindingEnergyLibrary::getBindingTable(unsigned int Z) const {
 	std::map<unsigned int,BindingEnergyTable*>::const_iterator it =  tables.find(Z);
 	if(it==tables.end()) {
-		SMExcept e("MissingElement");
+/*		SMExcept e("MissingElement");
 		e.insert("Z",Z);
-		throw(e);		
+		throw(e);	*/
+		std::cout << "Missing element error. In getBindingTable method of ElectronBindingEnergy.cc." << std::endl;
 	}
 	return it->second;
 }

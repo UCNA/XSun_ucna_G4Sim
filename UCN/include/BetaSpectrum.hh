@@ -9,7 +9,7 @@
 // [3] Wilkinson, Evaluation of Beta-Decay III, NIM A 335 (1995) 305-309
 // [4] Wilkinson, Evaluation of Beta-Decay IV,  NIM A 365 (1995) 203-207
 // [5] Wilkinson, Evaluation of Beta-Decay V,   NIM A 365 (1995) 497-507
-	
+
 #include <math.h>
 // useful physics constants; several in hbar=m_e=c=1 "natural units"
 const double neutronBetaEp = 782.347;			///< neutron beta decay endpoint, keV

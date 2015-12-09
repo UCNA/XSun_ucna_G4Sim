@@ -2,6 +2,8 @@
 #include "GlobalField.hh"
 #include "MWPCField.hh"
 
+#include <TH1F.h>
+
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
 #include "G4Box.hh"
@@ -492,7 +494,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double mwpc_exitRadius = 7.5*cm;
   G4double mwpc_entranceToCathodes = 5.0*mm;
   G4double mwpc_exitToCathodes = 5.0*mm;
-  G4double mwpc_fieldE0 = 0;	// initialize field potential to 0. Also tricky.
+  G4double mwpc_fieldE0 = 0;	// This field potential should get passed to MWPC fields and used in SetPotential
   G4Material* mwpc_fillGas = wireVol_activeGas;	// want it to be WCPentane
 
   G4double mwpc_containerHalf_Z = 0.5*(mwpc_entranceToCathodes + mwpc_exitToCathodes + 2*cm);
