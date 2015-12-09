@@ -492,7 +492,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double mwpc_exitRadius = 7.5*cm;
   G4double mwpc_entranceToCathodes = 5.0*mm;
   G4double mwpc_exitToCathodes = 5.0*mm;
-  G4double mwpc_fieldE0 = 0;	// This field potential should get passed to MWPC fields and used in SetPotential
+  G4double mwpc_fieldE0 = 2700*volt;		// gets passed to MWPC fields and used in SetPotential
   G4Material* mwpc_fillGas = wireVol_activeGas;	// want it to be WCPentane
 
   G4double mwpc_containerHalf_Z = 0.5*(mwpc_entranceToCathodes + mwpc_exitToCathodes + 2*cm);
@@ -686,8 +686,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4ThreeVector West_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCWest;
 
   ConstructGlobalField();			// make magnetic and EM fields.
-  ConstructEastMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius, EastSideRot, East_EMFieldLocation);
-  ConstructWestMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius, NULL, West_EMFieldLocation);
+  ConstructEastMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius,
+			mwpc_fieldE0, EastSideRot, East_EMFieldLocation);
+  ConstructWestMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius,
+			mwpc_fieldE0, NULL, West_EMFieldLocation);
 
   return experimentalHall_phys;
 }
@@ -728,16 +730,16 @@ void DetectorConstruction::ConstructGlobalField()
   return;
 }
 
-void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* d, G4ThreeVector e)
+void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4double c, G4double d, G4RotationMatrix* e, G4ThreeVector f)
 {
   G4cout << "Setting up East wirechamber electromagnetic field." << G4endl;
   MWPCField* eastLocalField = new MWPCField();
   eastLocalField -> SetActiveReg_d(a);
   eastLocalField -> SetActiveReg_L(b);
   eastLocalField -> SetActiveReg_r(c);
-  eastLocalField -> SetSideRot(d);
-  eastLocalField -> SetSideTrans(e);
-  eastLocalField -> SetPotential(2700*volt);
+  eastLocalField -> SetSideRot(e);
+  eastLocalField -> SetSideTrans(f);
+  eastLocalField -> SetPotential(d);
 
   G4FieldManager* eastLocalFieldManager = new G4FieldManager();
   eastLocalFieldManager -> SetDetectorField(eastLocalField);
@@ -757,16 +759,16 @@ void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4doub
   return;
 }
 
-void DetectorConstruction::ConstructWestMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* d, G4ThreeVector e)
+void DetectorConstruction::ConstructWestMWPCField(G4double a, G4double b, G4double c, G4double d, G4RotationMatrix* e, G4ThreeVector f)
 {
   G4cout << "Setting up West wirechamber electromagnetic field." << G4endl;
   MWPCField* westLocalField = new MWPCField();
   westLocalField -> SetActiveReg_d(a);
   westLocalField -> SetActiveReg_L(b);
   westLocalField -> SetActiveReg_r(c);
-  westLocalField -> SetSideRot(d);
-  westLocalField -> SetSideTrans(e);
-  westLocalField -> SetPotential(2700*volt);
+  westLocalField -> SetSideRot(e);
+  westLocalField -> SetSideTrans(f);
+  westLocalField -> SetPotential(d);
 
   G4FieldManager* westLocalFieldManager = new G4FieldManager();
   westLocalFieldManager -> SetDetectorField(westLocalField);

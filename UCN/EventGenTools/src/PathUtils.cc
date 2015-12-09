@@ -1,6 +1,6 @@
 #include "PathUtils.hh"
 #include "strutils.hh"
-//#include "SMExcept.hh"
+#include "SMExcept.hh"
 #include <dirent.h>
 #include <algorithm>
 #include <sys/stat.h>
@@ -32,12 +32,12 @@ void makePath(std::string p, bool forFile) {
 			std::string cmd = "mkdir -p '"+thepath+"'";
 			int err = system(cmd.c_str());
 			if(err || !dirExists(thepath)) {
-/*				SMExcept e("badPath");
+				SMExcept e("badPath");
 				e.insert("pathName",thepath);
 				e.insert("errnum",errno);
 				e.insert("errname",strerror(errno));
-				throw(e); */
-			std::cout << "Error. Bad path. Located in makePath method of PathUtils.cc." << std::endl;
+				throw(e);
+//			std::cout << "Error. Bad path. Located in makePath method of PathUtils.cc." << std::endl;
 			}
 		}
 	}
@@ -70,10 +70,10 @@ std::string getEnvSafe(const std::string& v, const std::string& dflt) {
 	const char* envv = getenv(v.c_str());
 	if(!envv) {
 		if(dflt == "FAIL_IF_MISSING") {
-/*			SMExcept e("missingEnv");
+			SMExcept e("missingEnv");
 			e.insert("var",v);
-			throw(e);	*/
-			std::cout << "Error. Missing env (?) due to FAIL_IF_MISSING flag. In getEnvSafe method of PathUtils.cc." << std::endl;
+			throw(e);
+//			std::cout << "Error. Missing env (?) due to FAIL_IF_MISSING flag. In getEnvSafe method of PathUtils.cc." << std::endl;
 		}
 		return dflt;
 	}

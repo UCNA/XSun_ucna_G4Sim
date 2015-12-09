@@ -1,11 +1,19 @@
 #ifndef PrimaryGeneratorAction_h
 #define PrimaryGeneratorAction_h 1
 
+#include "ElectronBindingEnergy.hh"
+#include "NuclEvtGen.hh"
 #include "DetectorConstruction.hh"
 
-#include "G4VUserPrimaryGeneratorAction.hh"
+#include "G4VUserPrimaryGeneratorAction.hh"	// original example used these 3
 #include "G4ParticleGun.hh"
 #include "globals.hh"
+
+#include <G4String.hh>
+#include <G4ThreeVector.hh>
+#include <G4ParticleGun.hh>
+#include <G4Event.hh>
+#include <G4VUserEventInformation.hh>
 
 class G4ParticleGun;
 class G4Event;
@@ -30,8 +38,9 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
     double fSourceRadius;
 
-    void diskRandom(G4double radius, G4double& x, G4double& y);
-    void displayGunStatus();
+    void DiskRandom(G4double radius, G4double& x, G4double& y);
+    void DisplayGunStatus();
+    void Set_113SnSource();
 
 };
 

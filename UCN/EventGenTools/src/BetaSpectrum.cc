@@ -1,9 +1,10 @@
 #include "BetaSpectrum.hh"
+#include "SMExcept.hh"
+
 #include <stdio.h>
-//#include <TH1.h>
-//#include <TMath.h>	// Used for TMath::Gamma (gamma function). Found out how to link ROOT so leave.
-//#include <math.h>	// not needed since this is located in the header file
-#include <iostream>	// ^^ otherwise would be needed for tgamma
+#include <TH1.h>
+#include <TMath.h>	// Used for TMath::Gamma (gamma function). Found out how to link ROOT so leave.
+#include <iostream>
 #include <vector>
 #include <cassert>
 #include <map>
@@ -85,8 +86,8 @@ double WilkinsonF_PowerSeries(double Z, double W, double R) {
 	
 	double p = sqrt(W*W-1);
 	double gm = WilkinsonGamma(Z);
-//	double z = TMath::Gamma(2.*gm+1.);
-	double z = tgamma(2.*gm+1);
+	double z = TMath::Gamma(2.*gm+1.);
+//	double z = tgamma(2.*gm+1);
 	return 2.*(gm+1.)/(z*z)*pow(2*R,2*(gm-1))*sumCoeffs(coeffs,fs_alpha*Z,W/p,log(p));
 }
 
@@ -125,8 +126,8 @@ double F_approx(double W, double Z, double R, bool fullterms) {
 double WilkinsonF0(double Z, double W, double R, unsigned int N) {
 	if(W<=1) return 0;
 	double gm = WilkinsonGamma(Z);
-//	double GMi = 1./TMath::Gamma(2*gm+1);
-	double GMi = 1./tgamma(2*gm+1);
+	double GMi = 1./TMath::Gamma(2*gm+1);
+//	double GMi = 1./tgamma(2*gm+1);
 	double p = sqrt(W*W-1.);
 	double F0 = 4.*pow(2.*p*R,2.*gm-2.)*GMi*GMi*exp(M_PI*Z*fs_alpha*W/p)*WilkinsonGammaMagSquaredApprox(Z,W,N);
 	return F0<1e3?F0:0;
@@ -261,12 +262,12 @@ double WilkinsonQ(double, double W, double W0, double M) {
 
 
 double SpenceL(double x, unsigned int N=20) {
-	if((-1. < x) && (x <= 1))
+/*	if((-1. < x) && (x <= 1))
 	{
 		cout << "Potentially fatal error in call to SpenceL method. Passed value of x out of bounds." << endl;
 	}
-
-//	smassert(-1.<x && x<=1.);
+*/
+	smassert(-1.<x && x<=1.);
 	double s = 0;
 	double xk = x;
 	for(unsigned int k=1; k<=N; k++) {
@@ -339,14 +340,14 @@ double Davidson_C1T(double W, double W0, double Z, double R) {
 	double a2Z2 = fs_alpha*fs_alpha*Z*Z;
 	double S0 = sqrt(1-a2Z2);
 	double S1 = sqrt(4-a2Z2);
-//	const double C = pow(TMath::Gamma(0.25),2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
-	const double C = pow(tgamma(0.25), 2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
+	const double C = pow(TMath::Gamma(0.25),2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
+//	const double C = pow(tgamma(0.25), 2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
 	double sm = 0;
 	for(unsigned int n=1; n<10; n++) sm += 1/(n*(n*n+y*y));
-//	double A = ( (S1+2)/(2*S0+2) * pow(12*TMath::Gamma(2.*S0+1.)/TMath::Gamma(2.*S1+1.),2) *
-//			  pow(2*p*R,a2Z2/2) * (pow(1-a2Z2/4,2)+y*y) * (1-a2Z2*C/2+a2Z2*y*y*sm/2) );
-	double A = ( (S1+2)/(2*S0+2) * pow(12*tgamma(2.*S0+1.)/tgamma(2.*S1+1.), 2) *
-			pow(2*p*R, a2Z2/2.) * (pow(1-a2Z2/4, 2.) + y*y) * (1-a2Z2*C/2. + a2Z2*y*y*sm/2.) );
+	double A = ( (S1+2)/(2*S0+2) * pow(12*TMath::Gamma(2.*S0+1.)/TMath::Gamma(2.*S1+1.),2) *
+			  pow(2*p*R,a2Z2/2) * (pow(1-a2Z2/4,2)+y*y) * (1-a2Z2*C/2+a2Z2*y*y*sm/2) );
+//	double A = ( (S1+2)/(2*S0+2) * pow(12*tgamma(2.*S0+1.)/tgamma(2.*S1+1.), 2) *
+//			pow(2*p*R, a2Z2/2.) * (pow(1-a2Z2/4, 2.) + y*y) * (1-a2Z2*C/2. + a2Z2*y*y*sm/2.) );
 
 	return (1+S0)*((W0-W)*(W0-W)+A*(W*W-1))/24;
 }
@@ -364,14 +365,14 @@ double Behrens_lambda_2(double W, double W0, double Z, double R) {
 	double a2Z2 = fs_alpha*fs_alpha*Z*Z;
 	double S0 = sqrt(1-a2Z2);
 	double S1 = sqrt(4-a2Z2);
-//	const double C = pow(TMath::Gamma(0.25),2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
-	const double C = pow(tgamma(0.25), 2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
+	const double C = pow(TMath::Gamma(0.25),2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
+//	const double C = pow(tgamma(0.25), 2)/sqrt(8*M_PI*M_PI*M_PI); // "Gauss number"
 	double sm = 0;
 	for(unsigned int n=1; n<10; n++) sm += 1/(n*(n*n+y*y));
-//	return ( (S1+2)/(2*S0+2) * pow(12*TMath::Gamma(2.*S0+1.)/TMath::Gamma(2.*S1+1.),2) *
-//		   pow(2*p*R,a2Z2/2) * (pow(1-a2Z2/4,2)+y*y) * (1-a2Z2*C/2+a2Z2*y*y*sm/2) );
-	return ( (S1+2)/(2*S0+2) * pow(12*tgamma(2.*S0+1.)/tgamma(2.*S1+1.), 2) *
-		pow(2*p*R, a2Z2/2.) * (pow(1-a2Z2/4., 2) + y*y) * (1-a2Z2*C/2.+a2Z2*y*y*sm/2.) );
+	return ( (S1+2)/(2*S0+2) * pow(12*TMath::Gamma(2.*S0+1.)/TMath::Gamma(2.*S1+1.),2) *
+		   pow(2*p*R,a2Z2/2) * (pow(1-a2Z2/4,2)+y*y) * (1-a2Z2*C/2+a2Z2*y*y*sm/2) );
+//	return ( (S1+2)/(2*S0+2) * pow(12*tgamma(2.*S0+1.)/tgamma(2.*S1+1.), 2) *
+//		pow(2*p*R, a2Z2/2.) * (pow(1-a2Z2/4., 2) + y*y) * (1-a2Z2*C/2.+a2Z2*y*y*sm/2.) );
 }
 
 // Equation 4 from H. Berens and P. CHristmas, "The Beta Decay of 137Cs," Nucl. Phys. A 399, 1983, p.131--140
