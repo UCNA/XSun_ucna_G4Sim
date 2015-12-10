@@ -6,6 +6,8 @@
 #include <TFile.h>
 #include <TTree.h>
 
+#define	DIR_STRING	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools"
+
 using namespace ROOT::Math;
 
 void mi_evtgen(StreamInteractor* S) {
@@ -19,8 +21,8 @@ void mi_evtgen(StreamInteractor* S) {
 	const std::string genName = S->popString();
 	
 	// load generators
-	std::string majorDir= "~/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim";
-	static NucDecayLibrary NDL(majorDir+"/ExtraFiles/",1e-6);
+	std::string majorDir= DIR_STRING;
+	static NucDecayLibrary NDL(majorDir+"/NuclearDecayGenerators/",1e-6);
 //	static NucDecayLibrary NDL(getEnvSafe("UCNA_AUX")+"/NuclearDecays/",1e-6);
 	NucDecaySystem& NDS = NDL.getGenerator(genName);
 	NDS.display();
@@ -117,7 +119,7 @@ int main(int argc, char *argv[]) {
 	InputRequester run_evt_gen("Run event generator",&mi_evtgen);
 	run_evt_gen.addArg("Generator name");
 //	run_evt_gen.addArg("Output path",getEnvSafe("G4EVTDIR"));
-	run_evt_gen.addArg("Output path", "~/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/");
+	run_evt_gen.addArg("Output path", DIR_STRING);
 	run_evt_gen.addArg(&selectVertexPos);
 	run_evt_gen.addArg(&selectRandomType);
 	run_evt_gen.addArg("Events per TTree","10000");
