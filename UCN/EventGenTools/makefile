@@ -2,29 +2,18 @@
 # Makefile template for ROOT programs
 #####################################
 
-PATH_USED	= ~/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools
+#didn't use CC or LDFLAGS. Don't understand why not or what's happening
 CC		= g++
 CXX		= `root-config --cxx`
 CXXFLAGS	= `root-config --cflags`
-LDFLAGS		= `root-config --ldflags` -lMathMore
+LDFLAGS		= `root-config --ldflags`
 LDLIBS		= `root-config --glibs`
 
-CFLAGS 		= $(CXX) $(CXXFLAGS) -W -Wall -o $@ $^ $(LDLIBS) $(LDFLAGS) -I $(PATH_USED)/include/
+CFLAGS 		= $(CXX) $(CXXFLAGS) -W -Wall -o $@ $^ $(LDLIBS)
 
 #These variables need to be changed to the name of the executable/source
-SOURCE		= MC_EventGen.cc $(PATH_USED)/src/BetaSpectrum.cc\
-				 $(PATH_USED)/src/ControlMenu.cc\
-				 $(PATH_USED)/src/ElectronBindingEnergy.cc\
-				 $(PATH_USED)/src/Enums.cc\
-				 $(PATH_USED)/src/FloatErr.cc\
-				 $(PATH_USED)/src/GraphUtils.cc\
-				 $(PATH_USED)/src/NuclEvtGen.cc\
-				 $(PATH_USED)/src/PathUtils.cc\
-				 $(PATH_USED)/src/QFile.cc\
-				 $(PATH_USED)/src/SMExcept.cc\
-				 $(PATH_USED)/src/strutils.cc\
-				 $(PATH_USED)/src/TChainScanner.cc
-EXECUTABLE 	= MC_EventGen
+SOURCE		= readAndPrint.cc
+EXECUTABLE 	= readAndPrint
 
 all:	$(EXECUTABLE)
 

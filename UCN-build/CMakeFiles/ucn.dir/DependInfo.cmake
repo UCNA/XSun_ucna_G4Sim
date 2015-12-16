@@ -4,17 +4,6 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/BetaSpectrum.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/BetaSpectrum.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/ElectronBindingEnergy.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/ElectronBindingEnergy.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/Enums.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/Enums.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/FloatErr.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/FloatErr.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/GraphUtils.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/GraphUtils.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/NuclEvtGen.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/NuclEvtGen.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/PathUtils.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/PathUtils.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/QFile.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/QFile.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/SMExcept.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/SMExcept.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/TChainScanner.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/TChainScanner.cc.o"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/src/strutils.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/EventGenTools/src/strutils.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/DetectorConstruction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/EventAction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/GlobalField.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/GlobalField.cc.o"
@@ -47,7 +36,6 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include"
-  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/include"
   "/home/xuansun/root/root-build/include"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

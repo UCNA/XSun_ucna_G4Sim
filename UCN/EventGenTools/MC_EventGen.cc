@@ -22,7 +22,7 @@ void mi_evtgen(StreamInteractor* S) {
 	
 	// load generators
 	std::string majorDir= DIR_STRING;
-	static NucDecayLibrary NDL(majorDir+"/NuclearDecayGenerators/",1e-6);
+	static NucDecayLibrary NDL(majorDir+"/NuclearDecaysGenerators",1e-6);
 //	static NucDecayLibrary NDL(getEnvSafe("UCNA_AUX")+"/NuclearDecays/",1e-6);
 	NucDecaySystem& NDS = NDL.getGenerator(genName);
 	NDS.display();

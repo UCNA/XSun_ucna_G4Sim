@@ -1,8 +1,4 @@
 #include "PrimaryGeneratorAction.hh"
-#include "BetaSpectrum.hh"
-#include "Enums.hh"
-#include "PathUtils.hh"
-#include "SMExcept.hh"
 
 #include "G4LogicalVolumeStore.hh"
 #include "G4LogicalVolume.hh"
@@ -18,18 +14,25 @@
 #include <fstream>
 #include <math.h>
 #include <cmath>
+#include <string>
 using   namespace       std;
 
 #define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
+#define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/initPtclInfo_0.txt"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
   fParticleGun(0),
   fMyDetector(myDC),
-  fSourceRadius(3.*mm)
+//  fSourceRadius(3.*mm),	// this is default set. If you aren't using DiskRandom, don't care.
+  fSourceRadius(0),
+  fPosOffset(G4ThreeVector(0,0,0))	// if it's not a source, then set to 0
 {
-  G4int n_particle = 1;
-  fParticleGun  = new G4ParticleGun(n_particle);
+  G4int nPtcls = 1;
+  fParticleGun = new G4ParticleGun(nPtcls);
+
+  LoadFile(INIT_PARTICLE_INFO_FILE);
+  // At the end of constructor, GEANT4 default calls GeneratePrimaries method
 }
 
 
@@ -41,23 +44,75 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
+  // use GEANT4 event id to track which part of fEvtsArray we will use for generated event
+  int nID = anEvent -> GetEventID();
 
-  Set_113SnSource();	// Set all variables for an isotropic 113Sn source run
+  // use the particle species flag to set particle type
+  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+  G4ParticleDefinition* particle = particleTable->FindParticle("geantino");
+  if(fEvtsArray[nID].event_speciesFlag == 11)
+  {
+    particle = particleTable->FindParticle("e-");
+  }
+  else if(fEvtsArray[nID].event_speciesFlag == 22)
+  {
+    particle = particleTable->FindParticle("gamma");
+  }
+  else
+  {
+    G4cout << "No matching particle species definition." << G4endl;
+  }
+  fParticleGun -> SetParticleDefinition(particle);
 
-//  DisplayGunStatus();
+  fParticleGun -> SetParticleEnergy(fEvtsArray[nID].event_energy*keV);
 
-  ofstream outfile;
-  outfile.open(OUTPUT_FILE, ios::app);
-  outfile << fParticleGun -> GetParticleDefinition() -> GetParticleName() << "\t"
-	<< fParticleGun -> GetParticleMomentumDirection().x() << "\t"
-        << fParticleGun -> GetParticleMomentumDirection().y() << "\t"
-        << fParticleGun -> GetParticleMomentumDirection().z() << "\t"
-	<< fParticleGun -> GetParticlePosition().x()/cm << "cm /t"
-        << fParticleGun -> GetParticlePosition().y()/cm << "cm /t"
-        << fParticleGun -> GetParticlePosition().z()/cm << "cm /t";
-  outfile.close();
+  fParticleGun -> SetParticlePosition(G4ThreeVector(fEvtsArray[nID].event_xPos*m,
+						fEvtsArray[nID].event_yPos*m,
+						fEvtsArray[nID].event_zPos*m));
 
-  fParticleGun->GeneratePrimaryVertex(anEvent);
+  fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(fEvtsArray[nID].event_xMo,
+						fEvtsArray[nID].event_yMo,
+						fEvtsArray[nID].event_zMo));
+
+
+  fParticleGun -> SetParticleTime(fEvtsArray[nID].event_time*s);
+
+
+  PrintPtclInfo();
+  fParticleGun -> GeneratePrimaryVertex(anEvent);
+}
+
+void PrimaryGeneratorAction::LoadFile(char fileName[])
+{
+  event eRead;
+  int i = 0;
+
+  string buf;
+  ifstream infile;
+  infile.open(fileName);
+
+  //a check to make sure the file is open
+  if(!infile.is_open())
+    cout << "Problem opening " << fileName << endl;
+
+  while(getline(infile, buf))
+  {
+    istringstream bufstream(buf);
+    if(!bufstream.eof())
+    {
+      bufstream >> eRead.event_id
+		>> eRead.event_speciesFlag
+		>> eRead.event_energy
+		>> eRead.event_xPos >> eRead.event_yPos >> eRead.event_zPos
+		>> eRead.event_xMo >> eRead.event_yMo >> eRead.event_zMo
+		>> eRead.event_time
+		>> eRead.event_weight;
+
+      fEvtsArray[i] = eRead;
+      i++;
+    }
+  }
+
 }
 
 void PrimaryGeneratorAction::DiskRandom(G4double radius, G4double& x, G4double& y)
@@ -73,14 +128,59 @@ void PrimaryGeneratorAction::DiskRandom(G4double radius, G4double& x, G4double& 
 void PrimaryGeneratorAction::DisplayGunStatus()
 {
   G4cout
-  << fParticleGun->GetParticleDefinition()->GetParticleName() << " gun firing at energy: "
+  << fParticleGun->GetParticleDefinition()->GetParticleName()
   << " gun from " << fParticleGun->GetParticlePosition()/m
   << "m towards " << fParticleGun->GetParticleMomentumDirection()
   << " at " << fParticleGun->GetParticleTime()/ns
-  << "ns : " << fParticleGun->GetParticleEnergy()/keV
+  << "ns : gun firing at energy " << fParticleGun->GetParticleEnergy()/keV
   << "keV" <<
   G4endl;
 }
+
+void PrimaryGeneratorAction::PrintPtclInfo()
+{
+  ofstream outfile;     // output initial particle information
+  outfile.open(OUTPUT_FILE, ios::app);
+  outfile << fParticleGun -> GetParticleDefinition() -> GetParticleName() << "\t"
+        << fParticleGun -> GetParticleMomentumDirection().x() << "\t"
+        << fParticleGun -> GetParticleMomentumDirection().y() << "\t"
+        << fParticleGun -> GetParticleMomentumDirection().z() << "\t"
+        << fParticleGun -> GetParticlePosition().x()/cm << "cm \t"
+        << fParticleGun -> GetParticlePosition().y()/cm << "cm \t"
+        << fParticleGun -> GetParticlePosition().z()/cm << "cm \t";
+  outfile.close();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//***** OLD CODE I WROTE EARLIER TO "TEST" 113SN SOURCE *****//
 
 void PrimaryGeneratorAction::Set_113SnSource()	// don't need additional arguments since we set the particle gun.
 {

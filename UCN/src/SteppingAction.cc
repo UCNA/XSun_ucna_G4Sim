@@ -7,10 +7,14 @@
 #include "G4RunManager.hh"
 #include "G4LogicalVolume.hh"
 
+#include <time.h>
+
 SteppingAction::SteppingAction(EventAction* eventAction)
 : G4UserSteppingAction(),
   fEventAction(eventAction)
-{}
+{
+  fTrappedFlag = false;
+}
 
 
 SteppingAction::~SteppingAction()
@@ -28,6 +32,18 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   outfile << "Pre step volume is: " << preStepName <<"\t\t at position " << preStepPosition/m << "m \n";
   outfile.close();
 */
+
+  G4int stepNo = step -> GetTrack() -> GetCurrentStepNumber();
+  clock_t timeSpentSoFar = clock() - ((EventAction*)G4EventManager::GetEventManager()->GetUserEventAction())->GetStartTime();
+
+  double time = ((double)timeSpentSoFar)/CLOCKS_PER_SEC;
+
+  if(stepNo >= 2000000 || time > 60)
+  {
+    G4cout << "----> Tracking killed by computation time limit." << G4endl;
+    step -> GetTrack() -> SetTrackStatus(fStopAndKill);
+    fTrappedFlag = true;
+  }
 
   const DetectorConstruction* detectorConstruction =
         static_cast<const DetectorConstruction*>

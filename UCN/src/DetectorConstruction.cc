@@ -232,8 +232,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   source_ring_log -> SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
   source_ring_phys = new G4PVPlacement(NULL, G4ThreeVector(), source_ring_log, "source_ring_phys", source_container_log, false, 0);
 
-  // place entire source holder object
-  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log,"source_container_phys", experimentalHall_log, false, 0, true);
+  // place entire source holder object. Comment these two lines out if don't want to use the source holder geom.
+//  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log, "source_container_phys",
+//				 experimentalHall_log, false, 0, true);
 
   //----- Decay Trap object (length 3m, main tube)
   G4double decayTrap_windowThick = 0.180*um;

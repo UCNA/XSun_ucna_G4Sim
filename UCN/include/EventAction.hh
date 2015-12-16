@@ -5,6 +5,8 @@
 #include "globals.hh"
 #include <G4Event.hh>
 
+#include <time.h>
+
 class EventAction : public G4UserEventAction
 {
   public:
@@ -16,12 +18,15 @@ class EventAction : public G4UserEventAction
 
     void AddEdep(G4double edep, int typeFlag, int locFlag);
 
+    clock_t GetStartTime() { return fStartTime; };
+
   private:
     G4double  fEdep_East_Scint;
     G4double  fEdep_East_MWPC;
     G4double  fEdep_West_Scint;
     G4double  fEdep_West_MWPC;
 
+    clock_t fStartTime;		// time.h uses to define 'trapped' ptcl's & kill them
 };
 
 #endif

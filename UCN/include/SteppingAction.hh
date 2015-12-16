@@ -21,6 +21,7 @@ class SteppingAction : public G4UserSteppingAction
 
   private:
     EventAction*  fEventAction;
+    int fTrappedFlag;
 
 };
 

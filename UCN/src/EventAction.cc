@@ -18,7 +18,7 @@ using   namespace       std;
 #define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
 
 EventAction::EventAction()
-: G4UserEventAction()
+: G4UserEventAction(), fStartTime(0)
 {}
 
 
@@ -35,8 +35,11 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
 
   if((evt->GetEventID())%1000 == 0)
   {
-    G4cout << "\n -------------- Begin of event: " << evt->GetEventID() << G4endl;
+    G4cout << "\n -------------- Begin of event: " << evt->GetEventID() << "\n" << G4endl;
   }
+
+  // Sets the start of the C++ 'clock' used for tracking trapped ptcl's
+  fStartTime = clock();
 }
 
 
