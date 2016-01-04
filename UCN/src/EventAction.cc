@@ -1,4 +1,5 @@
 #include "EventAction.hh"
+#include "RunAction.hh"
 
 #include "G4Event.hh"
 #include "G4EventManager.hh"
@@ -28,6 +29,7 @@ EventAction::~EventAction()
 
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
+  fTrapped = false;
   fEdep_East_Scint = 0;	// Ensuring these values are reset.
   fEdep_West_Scint = 0;
   fEdep_East_MWPC = 0;
@@ -45,6 +47,12 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
 
 void EventAction::EndOfEventAction(const G4Event* evt)
 {
+  if(fTrapped == true)
+  {
+    G4cout << "Trapped particle flag triggered. Incrementing kill count." << G4endl;
+    ((RunAction*)G4RunManager::GetRunManager()->GetUserRunAction()) -> IncrementKillCount();
+  }
+
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
   outfile << fEdep_East_Scint/keV << "\t \t" << fEdep_East_MWPC/keV << "\t \t"

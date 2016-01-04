@@ -1,7 +1,0 @@
-Pre step volume is: World_phys		 at position (0.1,0.1,0)m 
-Pre step volume is: frame_mwpc_entrance_1		 at position (0.1,0.1,2.0176)m 
-Pre step volume is: entrance_back_phys_1		 at position (0.1,0.1,2.1319)m 
-Pre step volume is: mwpc_container_phys_West		 at position (0.1,0.1,2.1573)m 
-Pre step volume is: mwpc_exit_1		 at position (0.1,0.1,2.1873)m 
-Pre step volume is: Detector_Package_Frame_WEST		 at position (0.1,0.1,2.2)m 
-Pre step volume is: World_phys		 at position (0.1,0.1,2.3824)m 

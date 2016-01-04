@@ -382,6 +382,7 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/windefs.hh
 
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include/EventAction.hh
+CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include/RunAction.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/DualRand.h
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/CLHEP/Random/JamesRandom.h
@@ -588,6 +589,7 @@ CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-i
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UnitsTable.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UnitsTable.icc
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserEventAction.hh
+CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserRunAction.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserStackingAction.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserSteppingAction.hh
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4/G4UserTrackingAction.hh

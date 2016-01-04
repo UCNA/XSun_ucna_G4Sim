@@ -27,6 +27,7 @@ RunAction::~RunAction()
 
 void RunAction::BeginOfRunAction(const G4Run* run)
 {
+  fKillCount = 0;
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
   outfile << "Particle species \t Momentum Direction: x \t y \t z \t Initial placement: x \t y \t z \t Energy Deposited (keV): East Scint \t East MWPC \t West Scint \t West MWPC \n";
@@ -45,17 +46,20 @@ void RunAction::EndOfRunAction(const G4Run* run)
   if (IsMaster()) {
     G4cout
      << G4endl
-     << "--------------------End of Global Run-----------------------";
+     << "--------------------End of Global Run----------------------- \n";
   }
   else {
     G4cout
      << G4endl
-     << "--------------------End of Local Run------------------------";
+     << "--------------------End of Local Run------------------------ \n";
   }
+
+  G4cout << "Number of trapped events killed: " << fKillCount << G4endl;
 
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << "Total number of simulated events during this run: " << run -> GetNumberOfEvent() << "\n";
+  outfile << "Total number events: " << run -> GetNumberOfEvent()
+	  << " || Final kill count: " << fKillCount << "\n";
   outfile.close();
 
 }

@@ -12,13 +12,11 @@
 SteppingAction::SteppingAction(EventAction* eventAction)
 : G4UserSteppingAction(),
   fEventAction(eventAction)
-{
-  fTrappedFlag = false;
-}
+{ }
 
 
 SteppingAction::~SteppingAction()
-{}
+{ }
 
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
@@ -42,7 +40,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   {
     G4cout << "----> Tracking killed by computation time limit." << G4endl;
     step -> GetTrack() -> SetTrackStatus(fStopAndKill);
-    fTrappedFlag = true;
+    fEventAction -> SetTrappedTrue();	// sets the event action flag as true.
   }
 
   const DetectorConstruction* detectorConstruction =

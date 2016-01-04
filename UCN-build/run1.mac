@@ -1,2 +1,5 @@
+# initialize kernel
 /run/initialize
-/run/beamOn 10000
+# this number ideally need to be the same size
+# as the number of events in the input tree.
+/run/beamOn 1000000

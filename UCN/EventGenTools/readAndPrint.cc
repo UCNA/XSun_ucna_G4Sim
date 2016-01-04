@@ -32,8 +32,8 @@
 #include	 <TChain.h>
 using		 namespace std;
 
-#define		INPUT_DATA_FILE			"n1_10000/Evts_1.root"
-#define		OUTPUT_FILE			"initPtclInfo_1.txt"
+#define		INPUT_DATA_FILE			"n1_1000000/Evts_0.root"
+#define		OUTPUT_FILE			"big_initPtclInfo.txt"
 
 //required later for plot_program
 TApplication plot_program("FADC_readin",0,0,0,0);

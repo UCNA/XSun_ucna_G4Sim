@@ -18,6 +18,8 @@ class EventAction : public G4UserEventAction
 
     void AddEdep(G4double edep, int typeFlag, int locFlag);
 
+    void SetTrappedTrue() { fTrapped = true; };
+
     clock_t GetStartTime() { return fStartTime; };
 
   private:
@@ -25,6 +27,8 @@ class EventAction : public G4UserEventAction
     G4double  fEdep_East_MWPC;
     G4double  fEdep_West_Scint;
     G4double  fEdep_West_MWPC;
+
+    bool  fTrapped;             // check if event was killed due to being trapped
 
     clock_t fStartTime;		// time.h uses to define 'trapped' ptcl's & kill them
 };
