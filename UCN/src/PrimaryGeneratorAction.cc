@@ -18,7 +18,7 @@
 using   namespace       std;
 
 #define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
-#define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/big_initPtclInfo.txt"
+#define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/initPtclInfo_1.txt"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),

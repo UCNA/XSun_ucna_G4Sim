@@ -1,14 +1,33 @@
 #ifndef TrackerHit_h
 #define TrackerHit_h
 
-//#include "TrackInfo.hh"
-
 #include <G4VHit.hh>
 #include <G4THitsCollection.hh>
 #include <G4Allocator.hh>
 #include <G4ThreeVector.hh>
 #include <G4String.hh>
 
+struct TrackInfo
+{
+  int trackID;          // ID number for this track
+  int hcID;             // SD ID number for this track
+  double hitTime;       // time of track start [ns]
+  double KE;            // KE at start of track [keV]
+  double Edep;          // accumulated deposited energy along track (not countrying secondaries) [keV]
+  double EdepQuenched;  // accumulated "quenched" energy along track [keV]
+  double pIn[3];        // momentum at entry to volume
+  double pOut[3];       // momentum at exit to volume
+
+  double edepPos[3];    // hit position weighted by deposited energy [keV*cm]
+  double edepPos2[3];   // hit position^2 weighted by deposited energy [keV*cm]
+
+  double inPos[3];	// entry position to volume [cm]
+  double vertexPos[3];	// track vertex position [cm]
+
+  int pID;              // particle creating this track (PDG code)
+  bool isEntering;      // whether this is initial track entering a volume
+
+};
 
 /// accumuates segment-by-segment information for a track in an SD
 class TrackerHit : public G4VHit {
@@ -19,13 +38,13 @@ public:
 	inline void* operator new(size_t);
 	/// special delete()
 	inline void  operator delete(void*);
-	
+
 	/// print out info about this hit
 	void Print();
-	
+
 	/// copy info into ROOT-friendly TrackInfo
-//	void fillTrackInfo(TrackInfo& h) const;
-	
+	void fillTrackInfo(TrackInfo h) const;
+
 	void SetTrackID(G4int track) { trackID = track; }
 	void SetIncidentEnergy (G4double energy) { incidentEnergy = energy; }
 	void SetPos (G4ThreeVector xyz) { hitPosition = xyz; }
@@ -44,9 +63,9 @@ public:
 	void SetVolumeName(G4String svol) { volumeName = svol; }
 	void SetVertex(G4ThreeVector xyz) { vertex = xyz; };
 	void SetCreatorVolumeName(G4String sname) { creatorVolumeName = sname; }
-	
+
 	G4int GetTrackID() const { return trackID; };
-	G4double GetIncidentEnergy() const { return incidentEnergy; };      
+	G4double GetIncidentEnergy() const { return incidentEnergy; };
 	G4ThreeVector GetPos() const { return hitPosition; };
 	G4double GetEdep() const { return eDepSoFar; };
 	G4double GetEdepQuenched() const { return eDepQuenchedSoFar; };
@@ -60,11 +79,11 @@ public:
 	G4String GetVolumeName() const { return volumeName; }
 	G4ThreeVector GetVertex() const { return vertex; };
 	G4String GetCreatorVolumeName() const { return creatorVolumeName; }
-	
+
 	G4double		originEnergy;			///< energy at split from "originating" track for EdepQ tracking
 	unsigned int	nSecondaries;			///< number of secondaries produced along track
 private:
-	
+
 	G4int			trackID;				///< ID number for this track
 	G4double		incidentEnergy;			///< incident energy at start of track
 	G4double		eDepSoFar;				///< accumulator for energy deposition

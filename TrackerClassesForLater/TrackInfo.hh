@@ -1,7 +1,7 @@
 #ifndef __TrackInfo_hh__
 #define __TrackInfo_hh__
 
-//#include <Rtypes.h>
+#include <Rtypes.h>
 #include <TObject.h>
 
 using namespace std;

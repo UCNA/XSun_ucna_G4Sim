@@ -680,9 +680,75 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     mwpc_kevStrip_log[i] -> SetUserLimits(UserSolidLimits);
   }
 
-  // HERE IS WHERE I WOULD SET SCORING VOLUMES.
-  // But as of right now, all tracking and accumulation is done via SteppingAction.
+  // register logical volumes as sensitive detectors. Used for all info tracking during sim
+  for(int i = 0; i <= 1; i++)
+  {
+    SD_scint_scintillator[i] = RegisterSD(Append(i, "SD_scint_"));
+    scint_scintillator_log[i] -> SetSensitiveDetector(SD_scint_scintillator[i]);
 
+    SD_scint_deadScint[i] = RegisterSD(Append(i, "SD_deadScint_"));
+    scint_deadLayer_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);
+    scint_container_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);
+    frame_mwpcExitGasN2_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);	// include N2 vol here
+    scint_lightGuide_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);	// and also light guides
+
+    SD_scint_backing[i] = RegisterSD(Append(i, "SD_scint_backing_"));
+    scint_backing_log[i] -> SetSensitiveDetector(SD_scint_backing[i]);
+
+    SD_mwpc_winIn[i] = RegisterSD(Append(i, "SD_mwpc_winIn_"));
+    mwpc_winIn_log[i] -> SetSensitiveDetector(SD_mwpc_winIn[i]);
+
+    SD_mwpc_winOut[i] = RegisterSD(Append(i, "SD_mwpc_winOut_"));
+    mwpc_winOut_log[i] -> SetSensitiveDetector(SD_mwpc_winOut[i]);
+
+    SD_decayTrap_windows[i] = RegisterSD(Append(i, "SD_decayTrap_windows_"));
+    decayTrap_mylarWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
+    decayTrap_beWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
+
+    SD_wireVol[i] = RegisterSD(Append(i, "SD_wireVol_"));
+    wireVol_gas_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
+    wireVol_anodeSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
+    wireVol_cathSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
+
+    SD_wireVol_planes[i] = RegisterSD(Append(i, "SD_wireVol_planes_"));
+    wireVol_cathodeWire_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
+    wireVol_cathPlate_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
+    wireVol_anodeWire_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
+
+    SD_mwpc_container[i] = RegisterSD(Append(i, "SD_mwpc_container_"));	// equivalently, dead region in mwpc
+    mwpc_container_log[i] -> SetSensitiveDetector(SD_mwpc_container[i]);
+
+    SD_mwpc_kevStrip[i] = RegisterSD(Append(i, "SD_mwpc_kevStrip_"));
+    mwpc_kevStrip_log[i] -> SetSensitiveDetector(SD_mwpc_kevStrip[i]);
+
+  }
+
+  SD_source = RegisterSD("SD_source");
+  source_window_log -> SetSensitiveDetector(SD_source);
+  for(int i = 0; i <= 1; i++)
+    source_coating_log[i] -> SetSensitiveDetector(SD_source);
+
+  for(int i = 0; i <= 1; i++)
+  {
+    SD_decayTrap_innerMonitors[i] = RegisterSD(Append(i, "SD_decayTrap_innerMonitors_"));
+    decayTrap_innerMonitors_log[i] -> SetSensitiveDetector(SD_decayTrap_innerMonitors[i]);
+  }
+
+  // exp hall vacuum, decay tube, other inert parts. Stores all energy "lost".
+  SD_world = RegisterSD("SD_world");
+  experimentalHall_log -> SetSensitiveDetector(SD_world);
+  decayTrap_tube_log -> SetSensitiveDetector(SD_world);
+  for(int i = 0; i <= 1; i++)
+  {
+    frame_mwpcEntrance_log[i] -> SetSensitiveDetector(SD_world);
+    frame_mwpcExit_log[i] -> SetSensitiveDetector(SD_world);	// confusing, since made of Al. But trust M.M.
+    frame_container_log[i] -> SetSensitiveDetector(SD_world);
+    decayTrap_collimator_log[i] -> SetSensitiveDetector(SD_world);	// and this is polyethylene?
+    decayTrap_collimatorBack_log[i] -> SetSensitiveDetector(SD_world);
+  }
+
+
+  // Create everything needed for global and local EM fields
   G4ThreeVector East_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCEast;
   G4ThreeVector West_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCWest;
 
@@ -693,6 +759,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 			mwpc_fieldE0, NULL, West_EMFieldLocation);
 
   return experimentalHall_phys;
+}
+
+TrackerSD* DetectorConstruction::RegisterSD(G4String sdName)
+{
+  TrackerSD* sd = new TrackerSD(sdName);
+  G4SDManager::GetSDMpointer() -> AddNewDetector(sd);
+  return sd;
 }
 
 string DetectorConstruction::Append(int i, string str)

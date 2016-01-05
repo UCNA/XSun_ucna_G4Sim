@@ -31,6 +31,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   outfile.close();
 */
 
+  // kill switch in case simulation runs too long
   G4int stepNo = step -> GetTrack() -> GetCurrentStepNumber();
   clock_t timeSpentSoFar = clock() - ((EventAction*)G4EventManager::GetEventManager()->GetUserEventAction())->GetStartTime();
 
@@ -43,6 +44,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
     fEventAction -> SetTrappedTrue();	// sets the event action flag as true.
   }
 
+  // stores energy deposition. i.e. important information tracker
   const DetectorConstruction* detectorConstruction =
         static_cast<const DetectorConstruction*>
         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());

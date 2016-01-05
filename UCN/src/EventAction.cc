@@ -34,6 +34,7 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
   fEdep_West_Scint = 0;
   fEdep_East_MWPC = 0;
   fEdep_West_MWPC = 0;
+  fStartTime = 0;
 
   if((evt->GetEventID())%1000 == 0)
   {
@@ -50,6 +51,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   if(fTrapped == true)
   {
     G4cout << "Trapped particle flag triggered. Incrementing kill count." << G4endl;
+    // some code that M. Mendenhall came up with that allows me to access my own RunAction class
     ((RunAction*)G4RunManager::GetRunManager()->GetUserRunAction()) -> IncrementKillCount();
   }
 

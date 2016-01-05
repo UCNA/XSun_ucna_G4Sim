@@ -1,4 +1,3 @@
-//#include "Enums.hh"
 #include "TrackerHit.hh"
 
 #include <G4SystemOfUnits.hh>
@@ -28,15 +27,16 @@ void TrackerHit::Print() {
 			<< G4endl;
 }
 
-/*void TrackerHit::fillTrackInfo(TrackInfo& h) const {
+
+void TrackerHit::fillTrackInfo(TrackInfo h) const {
 	h.trackID = GetTrackID();
 	h.hitTime = GetHitTime()/ns;
 	h.KE = GetIncidentEnergy()/keV;
-	h.Edep = GetEdep()/keV; 
-	h.EdepQuenched = GetEdepQuenched()/keV; 
+	h.Edep = GetEdep()/keV;
+	h.EdepQuenched = GetEdepQuenched()/keV;
 	h.isEntering = (originEnergy==0);
-	
-	for(AxisDirection d=X_DIRECTION; d<=Z_DIRECTION; ++d) {
+
+	for(int d=0; d<=2; d++) {
 		h.edepPos[d] = GetEdepPos()[d]/(cm*keV);
 		h.edepPos2[d] = GetEdepPos2()[d]/(cm*cm*keV);
 		h.vertexPos[d] = GetVertex()[d]/cm;
@@ -44,7 +44,7 @@ void TrackerHit::Print() {
 		h.pIn[d] = GetIncidentMomentum()[d]/keV;
 		h.pOut[d] = GetExitMomentum()[d]/keV;
 	}
-	
+
 	h.pID = GetPID();
 }
-*/
+

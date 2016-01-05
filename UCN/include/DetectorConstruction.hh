@@ -1,6 +1,8 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
+#include "TrackerSD.hh"
+
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 
@@ -125,6 +127,22 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 				// d = mwpc electric potential
 				// e = rotation matrix of our coordinate system
 				// f = translation vector of our coordinate system
+
+    TrackerSD* RegisterSD(G4String sdName);
+
+    TrackerSD* SD_scint_scintillator[2];	// all the SD objects that will be used
+    TrackerSD* SD_scint_deadScint[2];
+    TrackerSD* SD_scint_backing[2];
+    TrackerSD* SD_mwpc_winIn[2];
+    TrackerSD* SD_mwpc_winOut[2];
+    TrackerSD* SD_decayTrap_windows[2];
+    TrackerSD* SD_mwpc_kevStrip[2];
+    TrackerSD* SD_wireVol[2];
+    TrackerSD* SD_wireVol_planes[2];
+    TrackerSD* SD_mwpc_container[2];
+    TrackerSD* SD_source;
+    TrackerSD* SD_decayTrap_innerMonitors[2];
+    TrackerSD* SD_world;
 
     G4double fScintStepLimit;
 };

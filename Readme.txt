@@ -30,3 +30,9 @@ Completed the basic functions of the simulation. Geometry and magnetic fields re
 Physics list matches Michael's and the particle generation is my own.
 Information I/O is done via simple C++ I/O, not compiling with ROOT.
 
+
+Update: December 22, 2015.
+
+Completed the addition of Particle Generation using M. Mendenhall's tools.
+Stand alone code is used to generate event initial conditions, then piped to .txt files.
+Simple C++ I/O is used except for conversion between .root files to .txt files.
