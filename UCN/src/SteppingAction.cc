@@ -22,6 +22,8 @@ SteppingAction::~SteppingAction()
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
 /*
+  // The below is used for debugging the geometry in a step-by-step fashion.
+  // Not needed but saved in case will be used in future.
   G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
   G4ThreeVector preStepPosition = step->GetPreStepPoint()->GetPosition();
 
@@ -45,6 +47,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   }
 
   // stores energy deposition. i.e. important information tracker
+  // THIS WILL BE MOVED OVER TO TrackerSD AND TrackerHit!
   const DetectorConstruction* detectorConstruction =
         static_cast<const DetectorConstruction*>
         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());

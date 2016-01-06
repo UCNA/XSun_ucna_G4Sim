@@ -16,7 +16,7 @@
 #include <cmath>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
+#define	OUTPUT_FILE	"UCNASimOutput.txt"
 
 EventAction::EventAction()
 : G4UserEventAction(), fStartTime(0)
@@ -36,13 +36,13 @@ void EventAction::BeginOfEventAction(const G4Event* evt)
   fEdep_West_MWPC = 0;
   fStartTime = 0;
 
+  // Sets the start of the C++ 'clock' used for tracking trapped ptcl's
+  fStartTime = clock();
+
   if((evt->GetEventID())%1000 == 0)
   {
     G4cout << "\n -------------- Begin of event: " << evt->GetEventID() << "\n" << G4endl;
   }
-
-  // Sets the start of the C++ 'clock' used for tracking trapped ptcl's
-  fStartTime = clock();
 }
 
 
@@ -50,15 +50,20 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 {
   if(fTrapped == true)
   {
-    G4cout << "Trapped particle flag triggered. Incrementing kill count." << G4endl;
+    G4cout << "Event " << evt->GetEventID() << " trapped. Incrementing kill count." << G4endl;
     // some code that M. Mendenhall came up with that allows me to access my own RunAction class
     ((RunAction*)G4RunManager::GetRunManager()->GetUserRunAction()) -> IncrementKillCount();
   }
 
+  clock_t timeOfEvent = clock() - fStartTime;
+  double compTime = ((double)timeOfEvent)/CLOCKS_PER_SEC;
+
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << fEdep_East_Scint/keV << "\t \t" << fEdep_East_MWPC/keV << "\t \t"
-	  << fEdep_West_Scint/keV << "\t \t" << fEdep_West_MWPC/keV << "\n";
+  outfile << fTrapped << "\t"
+	  << compTime << "\t"
+	  << fEdep_East_Scint/keV << "\t" << fEdep_East_MWPC/keV << "\t"
+	  << fEdep_West_Scint/keV << "\t" << fEdep_West_MWPC/keV << "\n";
   outfile.close();
 }
 

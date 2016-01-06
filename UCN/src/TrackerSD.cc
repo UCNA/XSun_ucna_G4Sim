@@ -42,13 +42,17 @@ void TrackerSDMessenger::SetNewValue(G4UIcommand* command, G4String newValue) {
 TrackerSD::TrackerSD(G4String name): G4VSensitiveDetector(name), kb(0.01907*cm/MeV), rho(1.032*g/cm3)
 {
 	new TrackerSDMessenger(this);
+	// G4VSensitiveDetector class object maintains a "collectionName" vector
+	// which is the name of the hits collection defined in teh sensitive detector object.
+	// In the constructor, the name of the hits collection must be defined.
 	collectionName.insert("trackerCollection");
 }
 
+// Initialize method is invoked at the beginning of each event. Here you must instantiate a hits collection object
+// and set it to the G4HCofThisEvent object
 void TrackerSD::Initialize(G4HCofThisEvent* HCE)
 {
 	// make a new hits collection and register it for this event
-	assert(collectionName.size());
 	trackerCollection = new TrackerHitsCollection(SensitiveDetectorName,collectionName[0]);
 	G4int HCID = G4SDManager::GetSDMpointer()->GetCollectionID(trackerCollection);
 	HCE->AddHitsCollection(HCID, trackerCollection);
@@ -69,9 +73,7 @@ double TrackerSD::quenchFactor(double E) const
 //otherwise add a new entry into the hit collection
 G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 {
-	assert(aStep);
 	G4Track* aTrack = aStep->GetTrack();
-	assert(aTrack);
 
 	G4String creator_proc = "";
 	// Check if the track has the creator process (not the case for primaries)
@@ -80,9 +82,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 	else creator_proc = creatorProcess->GetProcessName();
 
 	G4StepPoint* preStep = aStep->GetPreStepPoint();
-	assert(preStep);
 	G4StepPoint* postStep = aStep->GetPostStepPoint();
-	assert(postStep);
 
 	G4ThreeVector prePos = preStep->GetPosition();
 	G4ThreeVector postPos = postStep->GetPosition();
@@ -93,6 +93,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 	// get prior track, or initialize a new one
 	G4int thisTrackID = aTrack->GetTrackID();
 	std::map<G4int,TrackerHit*>::iterator myTrack = tracks.find(thisTrackID);
+
 	if(myTrack==tracks.end())
 	{
 		TrackerHit* newHit = new TrackerHit();
@@ -135,7 +136,6 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 
 	// record origin energy for secondaries in same volume
 	const G4TrackVector* secondaries = aStep->GetSecondary();
-	assert(secondaries);
 	while(myTrack->second->nSecondaries < secondaries->size())
 	{
 		const G4Track* sTrack = (*secondaries)[myTrack->second->nSecondaries++];
@@ -160,3 +160,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 	return true;
 }
 
+void TrackerSD::EndOfEvent(G4HCofThisEvent*)
+{
+//  G4cout << "Reached end of this event. Moving to EventAction code." << G4endl;
+}

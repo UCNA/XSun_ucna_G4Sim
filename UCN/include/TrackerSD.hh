@@ -20,7 +20,7 @@ public:
 	/// run for each step during event
 	G4bool ProcessHits(G4Step* aStep, G4TouchableHistory*);
 	/// run at end of event
-//	void EndOfEvent(G4HCofThisEvent*);
+	void EndOfEvent(G4HCofThisEvent*);
 
 	/// set kb
 	void SetKb(double c) { kb = c; }

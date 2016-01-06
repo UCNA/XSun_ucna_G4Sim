@@ -31,17 +31,17 @@ using namespace std;
 
 struct event
 {
-  G4int event_id;
-  G4double event_energy;
+  G4int event_gen_id;
+  G4double event_energy;	// turns into keV
   G4int event_speciesFlag;      // 11 means electron, 22 is gamma
-  G4double event_xMo;
+  G4double event_xMo;		// momentum is unitless vector
   G4double event_yMo;
   G4double event_zMo;
-  G4double event_xPos;
+  G4double event_xPos;		// turns into m
   G4double event_yPos;
   G4double event_zPos;
-  G4double event_time;
-  G4double event_weight;
+  G4double event_time;		// turns into s but always 0. I think supposed to be ns
+  G4double event_weight;	// unitless
 };
 
 class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
@@ -67,7 +67,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     void LoadFile(char fileName[]);
     void DiskRandom(G4double radius, G4double& x, G4double& y);
     void DisplayGunStatus();
-    void PrintPtclInfo();
+    void SavePrimPtclInfo(int index);
     void Set_113SnSource();
 
 };

@@ -17,8 +17,8 @@
 #include <string>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"FinalSim_EnergyOutput.txt"
-#define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/initPtclInfo_1.txt"
+#define	OUTPUT_FILE	"UCNASimOutput.txt"
+#define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/initPtclInfo_0.txt"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
@@ -75,10 +75,16 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 						fEvtsArray[nID].event_zMo));
 
 
-  fParticleGun -> SetParticleTime(fEvtsArray[nID].event_time*s);
+  fParticleGun -> SetParticleTime(fEvtsArray[nID].event_time*ns);
 
+  // Call to method to save primary particle initial info.
+  // Need to be super careful here. A Priori, there's no reason that the momentum vector
+  // is normalized when I'm reading it from final.
+  // And momentum direction is a normalized vector once GEANT4 gets a hold of it.
+  // So when we print out what was read in vs. what we get from particle gun may not be the same.
+  // Will need to check this. For now it is the same within float to double rounding.
+  SavePrimPtclInfo(nID);
 
-  PrintPtclInfo();
   fParticleGun -> GeneratePrimaryVertex(anEvent);
 }
 
@@ -100,7 +106,7 @@ void PrimaryGeneratorAction::LoadFile(char fileName[])
     istringstream bufstream(buf);
     if(!bufstream.eof())
     {
-      bufstream >> eRead.event_id
+      bufstream >> eRead.event_gen_id
 		>> eRead.event_speciesFlag
 		>> eRead.event_energy
 		>> eRead.event_xPos >> eRead.event_yPos >> eRead.event_zPos
@@ -137,17 +143,21 @@ void PrimaryGeneratorAction::DisplayGunStatus()
   G4endl;
 }
 
-void PrimaryGeneratorAction::PrintPtclInfo()
+void PrimaryGeneratorAction::SavePrimPtclInfo(int index)
 {
-  ofstream outfile;     // output initial particle information
+  ofstream outfile;     // output initial particle information into same file as final sim output
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << fParticleGun -> GetParticleDefinition() -> GetParticleName() << "\t"
-        << fParticleGun -> GetParticleMomentumDirection().x() << "\t"
-        << fParticleGun -> GetParticleMomentumDirection().y() << "\t"
-        << fParticleGun -> GetParticleMomentumDirection().z() << "\t"
-        << fParticleGun -> GetParticlePosition().x()/cm << "cm \t"
-        << fParticleGun -> GetParticlePosition().y()/cm << "cm \t"
-        << fParticleGun -> GetParticlePosition().z()/cm << "cm \t";
+  outfile << fEvtsArray[index].event_gen_id << "\t"
+	<< fEvtsArray[index].event_speciesFlag << "\t"
+	<< fEvtsArray[index].event_energy << "\t"
+	<< fEvtsArray[index].event_xPos << "\t"
+	<< fEvtsArray[index].event_yPos << "\t"
+	<< fEvtsArray[index].event_zPos << "\t"
+	<< fEvtsArray[index].event_xMo << "\t"	// be careful here with momentum
+	<< fEvtsArray[index].event_yMo << "\t"	// see comment back in GeneratePrimaries
+	<< fEvtsArray[index].event_zMo << "\t"
+	<< fEvtsArray[index].event_time << "\t"
+	<< fEvtsArray[index].event_weight << "\t";	// has to be a \t since getting appended in EventAction
   outfile.close();
 }
 
