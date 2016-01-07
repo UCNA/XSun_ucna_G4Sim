@@ -686,7 +686,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     SD_scint_scintillator[i] = RegisterSD(Append(i, "SD_scint_"));
     scint_scintillator_log[i] -> SetSensitiveDetector(SD_scint_scintillator[i]);
 
-    SD_scint_deadScint[i] = RegisterSD(Append(i, "SD_deadScint_"));
+/*    SD_scint_deadScint[i] = RegisterSD(Append(i, "SD_deadScint_"));
     scint_deadLayer_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);
     scint_container_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);
     frame_mwpcExitGasN2_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);	// include N2 vol here
@@ -704,12 +704,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     SD_decayTrap_windows[i] = RegisterSD(Append(i, "SD_decayTrap_windows_"));
     decayTrap_mylarWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
     decayTrap_beWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
-
+*/
     SD_wireVol[i] = RegisterSD(Append(i, "SD_wireVol_"));
     wireVol_gas_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
     wireVol_anodeSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
     wireVol_cathSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
-
+/*
     SD_wireVol_planes[i] = RegisterSD(Append(i, "SD_wireVol_planes_"));
     wireVol_cathodeWire_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
     wireVol_cathPlate_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
@@ -720,10 +720,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
     SD_mwpc_kevStrip[i] = RegisterSD(Append(i, "SD_mwpc_kevStrip_"));
     mwpc_kevStrip_log[i] -> SetSensitiveDetector(SD_mwpc_kevStrip[i]);
-
+*/
   }
 
-  SD_source = RegisterSD("SD_source");
+/*  SD_source = RegisterSD("SD_source");
   source_window_log -> SetSensitiveDetector(SD_source);
   for(int i = 0; i <= 1; i++)
     source_coating_log[i] -> SetSensitiveDetector(SD_source);
@@ -746,7 +746,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     decayTrap_collimator_log[i] -> SetSensitiveDetector(SD_world);	// and this is polyethylene?
     decayTrap_collimatorBack_log[i] -> SetSensitiveDetector(SD_world);
   }
-
+*/
 
   // Create everything needed for global and local EM fields
   G4ThreeVector East_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCEast;

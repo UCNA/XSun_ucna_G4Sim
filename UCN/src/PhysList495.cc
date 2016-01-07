@@ -22,7 +22,7 @@ PhysList495::PhysList495() : G4VModularPhysicsList(), emPhysicsList(NULL) {
 	cutForGamma     = defaultCutValue;
 	cutForElectron  = 0.5*defaultCutValue;
 	cutForPositron  = defaultCutValue;
-	SetVerboseLevel(1);
+	SetVerboseLevel(/*1*/0);
 	setPhysicsList("Livermore");
 }
 

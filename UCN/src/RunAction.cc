@@ -15,7 +15,7 @@
 #include <cmath>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"UCNASimOutput.txt"
+#define	OUTPUT_FILE	"TrackerTestOutput.txt"
 
 RunAction::RunAction()
 : G4UserRunAction()
@@ -30,8 +30,11 @@ void RunAction::BeginOfRunAction(const G4Run* run)
   fKillCount = 0;
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
-  outfile << "Event ID \t Species \t Init KE (keV) \t xPos (m) \t yPos (m) \t zPos (m) \t xMomentum \t yMo \t zMo \t time (ns) \t weight \t"
+/*  outfile << "Event ID \t Species \t Init KE (keV) \t xPos (m) \t yPos (m) \t zPos (m) \t xMomentum \t yMo \t zMo \t time (ns) \t weight \t"
 	<< "Trapped? \t Comp Time (s) \t Energy Deposited (keV): East Scint \t East MWPC \t West Scint \t West MWPC \n";
+*/
+  outfile << "Event ID \t Init KE (keV) \t"
+	<< "Trapped? \t Edep (keV): East Scint \t East MWPC \t West Scint \t West MWPC \n";
   outfile.close();
 
   //inform the runManager to save random number seed

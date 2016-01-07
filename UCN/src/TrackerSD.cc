@@ -73,7 +73,7 @@ double TrackerSD::quenchFactor(double E) const
 //otherwise add a new entry into the hit collection
 G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 {
-	G4Track* aTrack = aStep->GetTrack();
+/*	G4Track* aTrack = aStep->GetTrack();
 
 	G4String creator_proc = "";
 	// Check if the track has the creator process (not the case for primaries)
@@ -144,23 +144,23 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 		const G4double eOrig = myTrack->second->originEnergy>0?myTrack->second->originEnergy:Ec;
 		if(originEnergy.find(sTrack) != originEnergy.end())
 		{
-/*
+
 			SMExcept e("duplicateSecondary");
 			e.insert("eOrig",eOrig);
 			e.insert("pID",myTrack->second->GetPID());
 			e.insert("nSec",myTrack->second->nSecondaries++);
 			e.insert("eOrig_old",originEnergy.find(sTrack)->second);
 			throw(e);
-*/
+
 			G4cout << "Error during tracking: apparently origin energies don't match up." << G4endl;
 		}
 		originEnergy.insert(std::pair<const G4Track*,double>(sTrack,eOrig));
 	}
-
+*/
 	return true;
 }
 
 void TrackerSD::EndOfEvent(G4HCofThisEvent*)
 {
-//  G4cout << "Reached end of this event. Moving to EventAction code." << G4endl;
+  G4cout << "Reached end of this event. Moving to EventAction code." << G4endl;
 }

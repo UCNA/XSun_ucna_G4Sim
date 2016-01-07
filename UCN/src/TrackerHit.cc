@@ -9,11 +9,14 @@
 
 G4Allocator<TrackerHit> TrackerHitAllocator;
 
-TrackerHit::TrackerHit(): eDepSoFar(0), eDepQuenchedSoFar(0), hitPosition(), edepWeightedPosition(),
-edepWeightedPosition2(), incidentMomentum(), exitMomentum(), vertex() {}
+TrackerHit::TrackerHit(): fEdep(0) {}
+/*eDepSoFar(0), eDepQuenchedSoFar(0), hitPosition(), edepWeightedPosition(),
+edepWeightedPosition2(), incidentMomentum(), exitMomentum(), vertex() {} */
 
-void TrackerHit::Print() {
-  G4cout	<< "  trackID: " << trackID
+void TrackerHit::Print()
+{
+  G4cout << "Printing tracker hit info. There's nothing here." << G4endl;
+/*  G4cout	<< "  trackID: " << trackID
 			<< "  vertex: " << G4BestUnit(vertex,"Length")
 			<< "  created in " << creatorVolumeName
 			<< "  in " << volumeName
@@ -25,10 +28,11 @@ void TrackerHit::Print() {
 			<< "  incident momentm: " << G4BestUnit(incidentMomentum,"Energy")
 			<< "  exit momentum " << G4BestUnit(exitMomentum,"Energy")
 			<< G4endl;
+*/
 }
 
 
-void TrackerHit::fillTrackInfo(TrackInfo h) const {
+/*void TrackerHit::fillTrackInfo(TrackInfo h) const {
 	h.trackID = GetTrackID();
 	h.hitTime = GetHitTime()/ns;
 	h.KE = GetIncidentEnergy()/keV;
@@ -46,5 +50,5 @@ void TrackerHit::fillTrackInfo(TrackInfo h) const {
 	}
 
 	h.pID = GetPID();
-}
+}*/
 

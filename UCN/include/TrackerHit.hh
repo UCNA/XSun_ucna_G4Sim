@@ -7,7 +7,7 @@
 #include <G4ThreeVector.hh>
 #include <G4String.hh>
 
-struct TrackInfo
+/*struct TrackInfo
 {
   int trackID;          // ID number for this track
   int hcID;             // SD ID number for this track
@@ -27,10 +27,10 @@ struct TrackInfo
   int pID;              // particle creating this track (PDG code)
   bool isEntering;      // whether this is initial track entering a volume
 
-};
+};	*/
 
 /// accumuates segment-by-segment information for a track in an SD
-class TrackerHit : public G4VHit {
+/*class TrackerHit : public G4VHit {
 public:
 	/// constructor
 	TrackerHit();
@@ -99,6 +99,46 @@ private:
 	G4String volumeName;					///< name of volume where track is
 	G4ThreeVector	vertex;					///< track vertex position
 	G4String creatorVolumeName;				///< volume where track was created
+};
+
+typedef G4THitsCollection<TrackerHit> TrackerHitsCollection;
+
+extern G4Allocator<TrackerHit> TrackerHitAllocator;
+
+inline void* TrackerHit::operator new(size_t)
+{
+  void *aHit;
+  aHit = (void *) TrackerHitAllocator.MallocSingle();
+  return aHit;
+}
+
+inline void TrackerHit::operator delete(void *aHit)
+{
+  TrackerHitAllocator.FreeSingle((TrackerHit*) aHit);
+}
+*/
+
+class TrackerHit : public G4VHit
+{
+  public:
+    TrackerHit();
+    inline void* operator new(size_t);
+    inline void  operator delete(void*);
+
+    // methods from base class. Won't bother really defining them. Not gonna use.
+    virtual void Draw() { };
+    virtual void Print();
+
+    // method that accumulates energy deposition in private members
+    void Add(G4double deltaE) {fEdep = fEdep + deltaE; };
+
+    // Getter methods
+    G4double GetEdep() { return fEdep; };
+
+
+  private:
+    G4double fEdep;	// this is the value that we want to return
+
 };
 
 typedef G4THitsCollection<TrackerHit> TrackerHitsCollection;

@@ -41,6 +41,11 @@ int main(int argc,char** argv)
   runManager->SetUserInitialization(detector);
   runManager->SetUserInitialization(new PhysList495());
 
+  // Chi Feng's optical photons physics list
+//  G4String physicsList = "QGSP_BERT";
+//  UCNbPhysicsList* physics = new UCNbPhysicsList(physicsList);
+//  runManager->SetUserInitialization(physics);
+
   runManager->SetUserAction(new PrimaryGeneratorAction(detector));
   runManager->SetUserAction(new RunAction);
   EventAction* eventAction = new EventAction;

@@ -16,7 +16,7 @@
 #include <cmath>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"UCNASimOutput.txt"
+#define	OUTPUT_FILE	"TrackerTestOutput.txt"
 
 EventAction::EventAction()
 : G4UserEventAction(), fStartTime(0)
