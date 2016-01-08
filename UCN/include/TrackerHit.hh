@@ -100,22 +100,6 @@ private:
 	G4ThreeVector	vertex;					///< track vertex position
 	G4String creatorVolumeName;				///< volume where track was created
 };
-
-typedef G4THitsCollection<TrackerHit> TrackerHitsCollection;
-
-extern G4Allocator<TrackerHit> TrackerHitAllocator;
-
-inline void* TrackerHit::operator new(size_t)
-{
-  void *aHit;
-  aHit = (void *) TrackerHitAllocator.MallocSingle();
-  return aHit;
-}
-
-inline void TrackerHit::operator delete(void *aHit)
-{
-  TrackerHitAllocator.FreeSingle((TrackerHit*) aHit);
-}
 */
 
 class TrackerHit : public G4VHit
@@ -135,6 +119,8 @@ class TrackerHit : public G4VHit
     // Getter methods
     G4double GetEdep() { return fEdep; };
 
+    // Setter method. Get rid of this after done testing code.
+//    void SetE(G4double value) { fEdep = value; };
 
   private:
     G4double fEdep;	// this is the value that we want to return

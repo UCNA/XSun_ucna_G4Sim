@@ -683,7 +683,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // register logical volumes as sensitive detectors. Used for all info tracking during sim
   for(int i = 0; i <= 1; i++)
   {
-    SD_scint_scintillator[i] = RegisterSD(Append(i, "SD_scint_"));
+    SD_scint_scintillator[i] = RegisterSD(Append(i, "SD_scint_"), Append(i, "HC_scint_"));
     scint_scintillator_log[i] -> SetSensitiveDetector(SD_scint_scintillator[i]);
 
 /*    SD_scint_deadScint[i] = RegisterSD(Append(i, "SD_deadScint_"));
@@ -705,7 +705,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     decayTrap_mylarWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
     decayTrap_beWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
 */
-    SD_wireVol[i] = RegisterSD(Append(i, "SD_wireVol_"));
+    SD_wireVol[i] = RegisterSD(Append(i, "SD_wireVol_"), Append(i, "HC_wireVol_"));
     wireVol_gas_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
     wireVol_anodeSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
     wireVol_cathSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
@@ -761,9 +761,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   return experimentalHall_phys;
 }
 
-TrackerSD* DetectorConstruction::RegisterSD(G4String sdName)
+TrackerSD* DetectorConstruction::RegisterSD(G4String sdName, G4String hcName)
 {
-  TrackerSD* sd = new TrackerSD(sdName);
+  TrackerSD* sd = new TrackerSD(sdName, hcName);
   G4SDManager::GetSDMpointer() -> AddNewDetector(sd);
   return sd;
 }

@@ -128,7 +128,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 				// e = rotation matrix of our coordinate system
 				// f = translation vector of our coordinate system
 
-    TrackerSD* RegisterSD(G4String sdName);
+    TrackerSD* RegisterSD(G4String sdName, G4String hcName);
 
     TrackerSD* SD_scint_scintillator[2];	// all the SD objects that will be used
     TrackerSD* SD_scint_deadScint[2];

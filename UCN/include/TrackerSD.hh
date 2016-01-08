@@ -13,7 +13,7 @@ class TrackerSD : public G4VSensitiveDetector
 {
 public:
 	/// constructor
-	TrackerSD(G4String);
+	TrackerSD(G4String name, G4String hcname);
 
 	/// run at start of each event
 	void Initialize(G4HCofThisEvent*);
@@ -27,15 +27,21 @@ public:
 	/// sed density
 	void SetRho(double c) { rho = c; }
 
+	// Sets the name of the TrackerSD
+	void SetName(G4String title) { fSDName = title; };
+
 	/// calculate quenching factor for electron at given energy
 	double quenchFactor(double E) const;
 
 private:
+        G4String fSDName;	// Store the name of the SD which gets registered.
+				// NOTE: not the same as the HC which you access in EventAction
+
 	G4double kb;									///< Birk's law quenching constant
 	G4double rho;									///< material density
-	std::map<const G4Track*,double> originEnergy;	///< energy at track origin, for Equenched calculaiton
-	std::map<G4int,TrackerHit*> tracks;				///< event tracks listed by ID
-	TrackerHitsCollection* trackerCollection;		///< hits objects
+//	std::map<const G4Track*,double> originEnergy;	///< energy at track origin, for Equenched calculaiton
+//	std::map<G4int,TrackerHit*> tracks;				///< event tracks listed by ID
+	TrackerHitsCollection* fHitsCollection;		///< hits objects
 };
 
 

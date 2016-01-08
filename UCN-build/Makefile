@@ -152,54 +152,6 @@ ucn/fast:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/build
 .PHONY : ucn/fast
 
-src/B4cCalorHit.o: src/B4cCalorHit.cc.o
-.PHONY : src/B4cCalorHit.o
-
-# target to build an object file
-src/B4cCalorHit.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o
-.PHONY : src/B4cCalorHit.cc.o
-
-src/B4cCalorHit.i: src/B4cCalorHit.cc.i
-.PHONY : src/B4cCalorHit.i
-
-# target to preprocess a source file
-src/B4cCalorHit.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorHit.cc.i
-.PHONY : src/B4cCalorHit.cc.i
-
-src/B4cCalorHit.s: src/B4cCalorHit.cc.s
-.PHONY : src/B4cCalorHit.s
-
-# target to generate assembly for a file
-src/B4cCalorHit.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorHit.cc.s
-.PHONY : src/B4cCalorHit.cc.s
-
-src/B4cCalorimeterSD.o: src/B4cCalorimeterSD.cc.o
-.PHONY : src/B4cCalorimeterSD.o
-
-# target to build an object file
-src/B4cCalorimeterSD.cc.o:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o
-.PHONY : src/B4cCalorimeterSD.cc.o
-
-src/B4cCalorimeterSD.i: src/B4cCalorimeterSD.cc.i
-.PHONY : src/B4cCalorimeterSD.i
-
-# target to preprocess a source file
-src/B4cCalorimeterSD.cc.i:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.i
-.PHONY : src/B4cCalorimeterSD.cc.i
-
-src/B4cCalorimeterSD.s: src/B4cCalorimeterSD.cc.s
-.PHONY : src/B4cCalorimeterSD.s
-
-# target to generate assembly for a file
-src/B4cCalorimeterSD.cc.s:
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.s
-.PHONY : src/B4cCalorimeterSD.cc.s
-
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
 
@@ -477,12 +429,6 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... ucn"
-	@echo "... src/B4cCalorHit.o"
-	@echo "... src/B4cCalorHit.i"
-	@echo "... src/B4cCalorHit.s"
-	@echo "... src/B4cCalorimeterSD.o"
-	@echo "... src/B4cCalorimeterSD.i"
-	@echo "... src/B4cCalorimeterSD.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"

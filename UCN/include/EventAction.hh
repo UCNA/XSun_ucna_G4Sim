@@ -1,6 +1,8 @@
 #ifndef EventAction_h
 #define EventAction_h 1
 
+#include "TrackerHit.hh"
+
 #include "G4UserEventAction.hh"
 #include "globals.hh"
 #include <G4Event.hh>
@@ -31,6 +33,13 @@ class EventAction : public G4UserEventAction
     bool  fTrapped;             // check if event was killed due to being trapped
 
     clock_t fStartTime;		// time.h uses to define 'trapped' ptcl's & kill them
+
+    TrackerHitsCollection* GetHitsCollection(int hcID, const G4Event* event) const;
+				// stuff used for SD tracker classes
+    G4int fEastScintHCID;
+    G4int fWestScintHCID;
+    G4int fEastwireVolHCID;
+    G4int fWestwireVolHCID;
 };
 
 #endif

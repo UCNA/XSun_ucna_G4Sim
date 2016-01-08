@@ -95,32 +95,9 @@ CMakeFiles/ucn.dir/src/PhysList495.cc.o.provides: CMakeFiles/ucn.dir/src/PhysLis
 
 CMakeFiles/ucn.dir/src/PhysList495.cc.o.provides.build: CMakeFiles/ucn.dir/src/PhysList495.cc.o
 
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorimeterSD.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorimeterSD.cc
-
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorimeterSD.cc > CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.i
-
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorimeterSD.cc -o CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.s
-
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.requires
-
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.provides: CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.provides
-
-CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.provides.build: CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o
-
 CMakeFiles/ucn.dir/src/TrackerSD.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/TrackerSD.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/TrackerSD.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/TrackerSD.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/TrackerSD.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/TrackerSD.cc
 
@@ -143,7 +120,7 @@ CMakeFiles/ucn.dir/src/TrackerSD.cc.o.provides.build: CMakeFiles/ucn.dir/src/Tra
 
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PrimaryGeneratorAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PrimaryGeneratorAction.cc
 
@@ -166,7 +143,7 @@ CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.provides.build: CMakeFiles/uc
 
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/DetectorConstruction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/DetectorConstruction.cc
 
@@ -189,7 +166,7 @@ CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.provides.build: CMakeFiles/ucn.
 
 CMakeFiles/ucn.dir/src/TrackerHit.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/TrackerHit.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/TrackerHit.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/TrackerHit.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/TrackerHit.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/TrackerHit.cc
 
@@ -212,7 +189,7 @@ CMakeFiles/ucn.dir/src/TrackerHit.cc.o.provides.build: CMakeFiles/ucn.dir/src/Tr
 
 CMakeFiles/ucn.dir/src/GlobalField.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/GlobalField.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/GlobalField.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/GlobalField.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/GlobalField.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/GlobalField.cc
 
@@ -235,7 +212,7 @@ CMakeFiles/ucn.dir/src/GlobalField.cc.o.provides.build: CMakeFiles/ucn.dir/src/G
 
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/SteppingAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/SteppingAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/SteppingAction.cc
 
@@ -256,32 +233,9 @@ CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides: CMakeFiles/ucn.dir/src/Step
 
 CMakeFiles/ucn.dir/src/SteppingAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
 
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o: CMakeFiles/ucn.dir/flags.make
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorHit.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_10)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorHit.cc
-
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ucn.dir/src/B4cCalorHit.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorHit.cc > CMakeFiles/ucn.dir/src/B4cCalorHit.cc.i
-
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ucn.dir/src/B4cCalorHit.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/B4cCalorHit.cc -o CMakeFiles/ucn.dir/src/B4cCalorHit.cc.s
-
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.requires:
-.PHONY : CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.requires
-
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.provides: CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.requires
-	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.provides.build
-.PHONY : CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.provides
-
-CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.provides.build: CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o
-
 CMakeFiles/ucn.dir/src/MWPCField.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/MWPCField.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/MWPCField.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/MWPCField.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/MWPCField.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/MWPCField.cc
 
@@ -304,7 +258,7 @@ CMakeFiles/ucn.dir/src/MWPCField.cc.o.provides.build: CMakeFiles/ucn.dir/src/MWP
 
 CMakeFiles/ucn.dir/src/EventAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/EventAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/EventAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/EventAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/EventAction.cc
 
@@ -327,7 +281,7 @@ CMakeFiles/ucn.dir/src/EventAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/E
 
 CMakeFiles/ucn.dir/src/RunAction.cc.o: CMakeFiles/ucn.dir/flags.make
 CMakeFiles/ucn.dir/src/RunAction.cc.o: /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/RunAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_13)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ucn.dir/src/RunAction.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ucn.dir/src/RunAction.cc.o -c /home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/RunAction.cc
 
@@ -352,14 +306,12 @@ CMakeFiles/ucn.dir/src/RunAction.cc.o.provides.build: CMakeFiles/ucn.dir/src/Run
 ucn_OBJECTS = \
 "CMakeFiles/ucn.dir/ucn.cc.o" \
 "CMakeFiles/ucn.dir/src/PhysList495.cc.o" \
-"CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o" \
 "CMakeFiles/ucn.dir/src/TrackerSD.cc.o" \
 "CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o" \
 "CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/ucn.dir/src/TrackerHit.cc.o" \
 "CMakeFiles/ucn.dir/src/GlobalField.cc.o" \
 "CMakeFiles/ucn.dir/src/SteppingAction.cc.o" \
-"CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o" \
 "CMakeFiles/ucn.dir/src/MWPCField.cc.o" \
 "CMakeFiles/ucn.dir/src/EventAction.cc.o" \
 "CMakeFiles/ucn.dir/src/RunAction.cc.o"
@@ -369,14 +321,12 @@ ucn_EXTERNAL_OBJECTS =
 
 ucn: CMakeFiles/ucn.dir/ucn.cc.o
 ucn: CMakeFiles/ucn.dir/src/PhysList495.cc.o
-ucn: CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o
 ucn: CMakeFiles/ucn.dir/src/TrackerSD.cc.o
 ucn: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o
 ucn: CMakeFiles/ucn.dir/src/TrackerHit.cc.o
 ucn: CMakeFiles/ucn.dir/src/GlobalField.cc.o
 ucn: CMakeFiles/ucn.dir/src/SteppingAction.cc.o
-ucn: CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o
 ucn: CMakeFiles/ucn.dir/src/MWPCField.cc.o
 ucn: CMakeFiles/ucn.dir/src/EventAction.cc.o
 ucn: CMakeFiles/ucn.dir/src/RunAction.cc.o
@@ -449,14 +399,12 @@ CMakeFiles/ucn.dir/build: ucn
 
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/ucn.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PhysList495.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B4cCalorimeterSD.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/TrackerSD.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/DetectorConstruction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/TrackerHit.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/GlobalField.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/SteppingAction.cc.o.requires
-CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/B4cCalorHit.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/MWPCField.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/EventAction.cc.o.requires
 CMakeFiles/ucn.dir/requires: CMakeFiles/ucn.dir/src/RunAction.cc.o.requires
