@@ -74,7 +74,8 @@
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fScintStepLimit(1.0*mm)	// note: fScintStepLimit initialized here
+  fScintStepLimit(1.0*mm),	// note: fScintStepLimit initialized here
+  fStorageIndex(0)	// this variable loops over our TrackerHit names storage index
 { }
 
 
@@ -232,8 +233,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   source_ring_log -> SetVisAttributes(new G4VisAttributes(G4Colour(0.7,0.7,0.7,0.5)));
   source_ring_phys = new G4PVPlacement(NULL, G4ThreeVector(), source_ring_log, "source_ring_phys", source_container_log, false, 0);
 
-  // place entire source holder object
-  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log,"source_container_phys", experimentalHall_log, false, 0, true);
+  // place entire source holder object. Comment these two lines out if don't want to use the source holder geom.
+//  source_phys = new G4PVPlacement(NULL, source_holderPos, source_container_log, "source_container_phys",
+//				 experimentalHall_log, false, 0, true);
 
   //----- Decay Trap object (length 3m, main tube)
   G4double decayTrap_windowThick = 0.180*um;
@@ -492,7 +494,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double mwpc_exitRadius = 7.5*cm;
   G4double mwpc_entranceToCathodes = 5.0*mm;
   G4double mwpc_exitToCathodes = 5.0*mm;
-  G4double mwpc_fieldE0 = 0;	// initialize field potential to 0. Also tricky.
+  G4double mwpc_fieldE0 = 2700*volt;		// gets passed to MWPC fields and used in SetPotential
   G4Material* mwpc_fillGas = wireVol_activeGas;	// want it to be WCPentane
 
   G4double mwpc_containerHalf_Z = 0.5*(mwpc_entranceToCathodes + mwpc_exitToCathodes + 2*cm);
@@ -679,26 +681,119 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     mwpc_kevStrip_log[i] -> SetUserLimits(UserSolidLimits);
   }
 
-  fScoreVol1 = scint_scintillator_log[0];       // set scoring volumes for SteppingAction
-  fScoreVol2 = mwpc_container_log[0];
-  fScoreVol3 = scint_scintillator_log[1];
-  fScoreVol4 = mwpc_container_log[1];
+  // register logical volumes as sensitive detectors. Used for all info tracking during sim
+  for(int i = 0; i <= 1; i++)
+  {
+    SD_scint_scintillator[i] = RegisterSD(Append(i, "SD_scint_"), Append(i, "HC_scint_"));
+    scint_scintillator_log[i] -> SetSensitiveDetector(SD_scint_scintillator[i]);
 
+/*    SD_scint_deadScint[i] = RegisterSD(Append(i, "SD_deadScint_"));
+    scint_deadLayer_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);
+    scint_container_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);
+    frame_mwpcExitGasN2_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);	// include N2 vol here
+    scint_lightGuide_log[i] -> SetSensitiveDetector(SD_scint_deadScint[i]);	// and also light guides
+
+    SD_scint_backing[i] = RegisterSD(Append(i, "SD_scint_backing_"));
+    scint_backing_log[i] -> SetSensitiveDetector(SD_scint_backing[i]);
+
+    SD_mwpc_winIn[i] = RegisterSD(Append(i, "SD_mwpc_winIn_"));
+    mwpc_winIn_log[i] -> SetSensitiveDetector(SD_mwpc_winIn[i]);
+
+    SD_mwpc_winOut[i] = RegisterSD(Append(i, "SD_mwpc_winOut_"));
+    mwpc_winOut_log[i] -> SetSensitiveDetector(SD_mwpc_winOut[i]);
+
+    SD_decayTrap_windows[i] = RegisterSD(Append(i, "SD_decayTrap_windows_"));
+    decayTrap_mylarWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
+    decayTrap_beWindow_log[i] -> SetSensitiveDetector(SD_decayTrap_windows[i]);
+*/
+    SD_wireVol[i] = RegisterSD(Append(i, "SD_wireVol_"), Append(i, "HC_wireVol_"));
+    wireVol_gas_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
+    wireVol_anodeSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
+    wireVol_cathSeg_log[i] -> SetSensitiveDetector(SD_wireVol[i]);
+/*
+    SD_wireVol_planes[i] = RegisterSD(Append(i, "SD_wireVol_planes_"));
+    wireVol_cathodeWire_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
+    wireVol_cathPlate_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
+    wireVol_anodeWire_log[i] -> SetSensitiveDetector(SD_wireVol_planes[i]);
+
+    SD_mwpc_container[i] = RegisterSD(Append(i, "SD_mwpc_container_"));	// equivalently, dead region in mwpc
+    mwpc_container_log[i] -> SetSensitiveDetector(SD_mwpc_container[i]);
+
+    SD_mwpc_kevStrip[i] = RegisterSD(Append(i, "SD_mwpc_kevStrip_"));
+    mwpc_kevStrip_log[i] -> SetSensitiveDetector(SD_mwpc_kevStrip[i]);
+*/
+  }
+
+/*  SD_source = RegisterSD("SD_source");
+  source_window_log -> SetSensitiveDetector(SD_source);
+  for(int i = 0; i <= 1; i++)
+    source_coating_log[i] -> SetSensitiveDetector(SD_source);
+
+  for(int i = 0; i <= 1; i++)
+  {
+    SD_decayTrap_innerMonitors[i] = RegisterSD(Append(i, "SD_decayTrap_innerMonitors_"));
+    decayTrap_innerMonitors_log[i] -> SetSensitiveDetector(SD_decayTrap_innerMonitors[i]);
+  }
+
+  // exp hall vacuum, decay tube, other inert parts. Stores all energy "lost".
+  SD_world = RegisterSD("SD_world");
+  experimentalHall_log -> SetSensitiveDetector(SD_world);
+  decayTrap_tube_log -> SetSensitiveDetector(SD_world);
+  for(int i = 0; i <= 1; i++)
+  {
+    frame_mwpcEntrance_log[i] -> SetSensitiveDetector(SD_world);
+    frame_mwpcExit_log[i] -> SetSensitiveDetector(SD_world);	// confusing, since made of Al. But trust M.M.
+    frame_container_log[i] -> SetSensitiveDetector(SD_world);
+    decayTrap_collimator_log[i] -> SetSensitiveDetector(SD_world);	// and this is polyethylene?
+    decayTrap_collimatorBack_log[i] -> SetSensitiveDetector(SD_world);
+  }
+*/
+
+  // Create everything needed for global and local EM fields
   G4ThreeVector East_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCEast;
   G4ThreeVector West_EMFieldLocation = mwpc_activeRegionTrans + sideTransMWPCWest;
 
   ConstructGlobalField();			// make magnetic and EM fields.
-  ConstructEastMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius, EastSideRot, East_EMFieldLocation);
-  ConstructWestMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius, NULL, West_EMFieldLocation);
+  ConstructEastMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius,
+			mwpc_fieldE0, EastSideRot, East_EMFieldLocation);
+  ConstructWestMWPCField(wireVol_wireSpacing, wireVol_planeSpacing, wireVol_anodeRadius,
+			mwpc_fieldE0, NULL, West_EMFieldLocation);
 
   return experimentalHall_phys;
 }
 
+TrackerSD* DetectorConstruction::RegisterSD(G4String sdName, G4String hcName)
+{
+  TrackerSD* sd = new TrackerSD(sdName, hcName);
+  G4SDManager::GetSDMpointer() -> AddNewDetector(sd);
+
+  fSDNamesArray[fStorageIndex] = sdName;
+  fHCNamesArray[fStorageIndex] = hcName;
+  fStorageIndex++;
+
+  return sd;
+}
+
 string DetectorConstruction::Append(int i, string str)
 {
-  stringstream newString;
-  newString << str << i;
-  return newString.str();
+//  stringstream newString;
+
+  string newString;
+
+  if(i == 0)
+  {
+    newString = str + "EAST";
+  }
+  else if(i == 1)
+  {
+    newString = str + "WEST";
+  }
+  else
+    G4cout << "Int flag doesn't match type of naming." << G4endl;
+
+  return newString;
+
+//  return newString.str();
 }
 
 void DetectorConstruction::ConstructGlobalField()
@@ -730,16 +825,16 @@ void DetectorConstruction::ConstructGlobalField()
   return;
 }
 
-void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* d, G4ThreeVector e)
+void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4double c, G4double d, G4RotationMatrix* e, G4ThreeVector f)
 {
   G4cout << "Setting up East wirechamber electromagnetic field." << G4endl;
   MWPCField* eastLocalField = new MWPCField();
   eastLocalField -> SetActiveReg_d(a);
   eastLocalField -> SetActiveReg_L(b);
   eastLocalField -> SetActiveReg_r(c);
-  eastLocalField -> SetSideRot(d);
-  eastLocalField -> SetSideTrans(e);
-  eastLocalField -> SetPotential(2700*volt);
+  eastLocalField -> SetSideRot(e);
+  eastLocalField -> SetSideTrans(f);
+  eastLocalField -> SetPotential(d);
 
   G4FieldManager* eastLocalFieldManager = new G4FieldManager();
   eastLocalFieldManager -> SetDetectorField(eastLocalField);
@@ -759,16 +854,16 @@ void DetectorConstruction::ConstructEastMWPCField(G4double a, G4double b, G4doub
   return;
 }
 
-void DetectorConstruction::ConstructWestMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* d, G4ThreeVector e)
+void DetectorConstruction::ConstructWestMWPCField(G4double a, G4double b, G4double c, G4double d, G4RotationMatrix* e, G4ThreeVector f)
 {
   G4cout << "Setting up West wirechamber electromagnetic field." << G4endl;
   MWPCField* westLocalField = new MWPCField();
   westLocalField -> SetActiveReg_d(a);
   westLocalField -> SetActiveReg_L(b);
   westLocalField -> SetActiveReg_r(c);
-  westLocalField -> SetSideRot(d);
-  westLocalField -> SetSideTrans(e);
-  westLocalField -> SetPotential(2700*volt);
+  westLocalField -> SetSideRot(e);
+  westLocalField -> SetSideTrans(f);
+  westLocalField -> SetPotential(d);
 
   G4FieldManager* westLocalFieldManager = new G4FieldManager();
   westLocalFieldManager -> SetDetectorField(westLocalField);

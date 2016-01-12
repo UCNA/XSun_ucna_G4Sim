@@ -1,7 +1,7 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
-//#include "Field.hh"
+#include "TrackerSD.hh"
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
@@ -18,7 +18,9 @@
 #include <string>
 #include <sstream>
 
-using 	namespace	std;
+//using 	namespace	std;
+
+const int fNbSDs = 4;
 
 const G4double inch = 2.54*cm;
 const G4double torr = atmosphere/760.;
@@ -36,11 +38,6 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     virtual G4VPhysicalVolume* Construct();
 
     void SetVacuumPressure(G4double pressure);
-
-    G4LogicalVolume* GetScoringVolume1() const { return fScoreVol1; }	// SteppingAction needs access
-    G4LogicalVolume* GetScoringVolume2() const { return fScoreVol2; }	// to scoring volumes.
-    G4LogicalVolume* GetScoringVolume3() const { return fScoreVol3; }
-    G4LogicalVolume* GetScoringVolume4() const { return fScoreVol4; }
 
     G4Material* Be; 		///< Beryllium for trap windows
     G4Material* Al; 		///< Aluminum
@@ -96,6 +93,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* frame_mwpcExitGasN2_log[2];
     G4LogicalVolume* frame_backStuff_log[2];
 
+    G4String fSDNamesArray[fNbSDs];	// needs to be public since EventAction will access all elements
+    G4String fHCNamesArray[fNbSDs];
+
   protected:
     G4VPhysicalVolume* experimentalHall_phys;
     G4VPhysicalVolume* source_holder_phys;
@@ -120,18 +120,38 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
   private:
     void DefineMaterials();
-    string Append(int i, string str);
-    void ConstructGlobalField();		// a,b,c don't mean anything significant
-    void ConstructEastMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* sideRot, G4ThreeVector sideTrans);
-    void ConstructWestMWPCField(G4double a, G4double b, G4double c, G4RotationMatrix* sideRot, G4ThreeVector sideTrans);
+    std::string Append(int i, std::string str);
+    void ConstructGlobalField();
+    void ConstructEastMWPCField(G4double a, G4double b, G4double c, G4double d,
+				G4RotationMatrix* e, G4ThreeVector f);
+    void ConstructWestMWPCField(G4double a, G4double b, G4double c, G4double d,
+				G4RotationMatrix* e, G4ThreeVector f);
+				// a = active region wire spacing
+				// b = active region plane spacing
+				// c = active region anode radius
+				// d = mwpc electric potential
+				// e = rotation matrix of our coordinate system
+				// f = translation vector of our coordinate system
+
+    TrackerSD* RegisterSD(G4String sdName, G4String hcName);
+
+    TrackerSD* SD_scint_scintillator[2];	// all the SD objects that will be used
+    TrackerSD* SD_scint_deadScint[2];
+    TrackerSD* SD_scint_backing[2];
+    TrackerSD* SD_mwpc_winIn[2];
+    TrackerSD* SD_mwpc_winOut[2];
+    TrackerSD* SD_decayTrap_windows[2];
+    TrackerSD* SD_mwpc_kevStrip[2];
+    TrackerSD* SD_wireVol[2];
+    TrackerSD* SD_wireVol_planes[2];
+    TrackerSD* SD_mwpc_container[2];
+    TrackerSD* SD_source;
+    TrackerSD* SD_decayTrap_innerMonitors[2];
+    TrackerSD* SD_world;
+
+    int fStorageIndex;
 
     G4double fScintStepLimit;
-
-    G4LogicalVolume* fScoreVol1;
-    G4LogicalVolume* fScoreVol2;
-    G4LogicalVolume* fScoreVol3;
-    G4LogicalVolume* fScoreVol4;
-
 };
 
 #endif

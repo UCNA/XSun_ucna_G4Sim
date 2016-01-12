@@ -12,6 +12,8 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/PrimaryGeneratorAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/PrimaryGeneratorAction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/RunAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/RunAction.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/SteppingAction.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/SteppingAction.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/TrackerHit.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/TrackerHit.cc.o"
+  "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/src/TrackerSD.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/src/TrackerSD.cc.o"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/ucn.cc" "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN-build/CMakeFiles/ucn.dir/ucn.cc.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
@@ -36,6 +38,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include"
+  "/home/xuansun/root/root-build/include"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

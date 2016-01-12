@@ -140,19 +140,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named UCN
-
-# Build rule for target.
-UCN: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 UCN
-.PHONY : UCN
-
-# fast build rule for target.
-UCN/fast:
-	$(MAKE) -f CMakeFiles/UCN.dir/build.make CMakeFiles/UCN.dir/build
-.PHONY : UCN/fast
-
-#=============================================================================
 # Target rules for targets named ucn
 
 # Build rule for target.
@@ -357,6 +344,54 @@ src/SteppingAction.cc.s:
 	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/SteppingAction.cc.s
 .PHONY : src/SteppingAction.cc.s
 
+src/TrackerHit.o: src/TrackerHit.cc.o
+.PHONY : src/TrackerHit.o
+
+# target to build an object file
+src/TrackerHit.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/TrackerHit.cc.o
+.PHONY : src/TrackerHit.cc.o
+
+src/TrackerHit.i: src/TrackerHit.cc.i
+.PHONY : src/TrackerHit.i
+
+# target to preprocess a source file
+src/TrackerHit.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/TrackerHit.cc.i
+.PHONY : src/TrackerHit.cc.i
+
+src/TrackerHit.s: src/TrackerHit.cc.s
+.PHONY : src/TrackerHit.s
+
+# target to generate assembly for a file
+src/TrackerHit.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/TrackerHit.cc.s
+.PHONY : src/TrackerHit.cc.s
+
+src/TrackerSD.o: src/TrackerSD.cc.o
+.PHONY : src/TrackerSD.o
+
+# target to build an object file
+src/TrackerSD.cc.o:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/TrackerSD.cc.o
+.PHONY : src/TrackerSD.cc.o
+
+src/TrackerSD.i: src/TrackerSD.cc.i
+.PHONY : src/TrackerSD.i
+
+# target to preprocess a source file
+src/TrackerSD.cc.i:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/TrackerSD.cc.i
+.PHONY : src/TrackerSD.cc.i
+
+src/TrackerSD.s: src/TrackerSD.cc.s
+.PHONY : src/TrackerSD.s
+
+# target to generate assembly for a file
+src/TrackerSD.cc.s:
+	$(MAKE) -f CMakeFiles/ucn.dir/build.make CMakeFiles/ucn.dir/src/TrackerSD.cc.s
+.PHONY : src/TrackerSD.cc.s
+
 ucn.o: ucn.cc.o
 .PHONY : ucn.o
 
@@ -387,7 +422,6 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... UCN"
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
@@ -419,6 +453,12 @@ help:
 	@echo "... src/SteppingAction.o"
 	@echo "... src/SteppingAction.i"
 	@echo "... src/SteppingAction.s"
+	@echo "... src/TrackerHit.o"
+	@echo "... src/TrackerHit.i"
+	@echo "... src/TrackerHit.s"
+	@echo "... src/TrackerSD.o"
+	@echo "... src/TrackerSD.i"
+	@echo "... src/TrackerSD.s"
 	@echo "... ucn.o"
 	@echo "... ucn.i"
 	@echo "... ucn.s"
