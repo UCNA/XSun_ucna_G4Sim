@@ -119,9 +119,6 @@ class TrackerHit : public G4VHit
     // Getter methods
     G4double GetEdep() { return fEdep; };
 
-    // Setter method. Get rid of this after done testing code.
-//    void SetE(G4double value) { fEdep = value; };
-
   private:
     G4double fEdep;	// this is the value that we want to return
 

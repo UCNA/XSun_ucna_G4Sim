@@ -20,6 +20,8 @@
 
 //using 	namespace	std;
 
+const int fNbSDs = 4;
+
 const G4double inch = 2.54*cm;
 const G4double torr = atmosphere/760.;
 
@@ -91,6 +93,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume* frame_mwpcExitGasN2_log[2];
     G4LogicalVolume* frame_backStuff_log[2];
 
+    G4String fSDNamesArray[fNbSDs];	// needs to be public since EventAction will access all elements
+    G4String fHCNamesArray[fNbSDs];
+
   protected:
     G4VPhysicalVolume* experimentalHall_phys;
     G4VPhysicalVolume* source_holder_phys;
@@ -143,6 +148,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     TrackerSD* SD_source;
     TrackerSD* SD_decayTrap_innerMonitors[2];
     TrackerSD* SD_world;
+
+    int fStorageIndex;
 
     G4double fScintStepLimit;
 };

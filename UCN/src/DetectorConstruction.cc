@@ -74,7 +74,8 @@
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fScintStepLimit(1.0*mm)	// note: fScintStepLimit initialized here
+  fScintStepLimit(1.0*mm),	// note: fScintStepLimit initialized here
+  fStorageIndex(0)	// this variable loops over our TrackerHit names storage index
 { }
 
 
@@ -765,14 +766,34 @@ TrackerSD* DetectorConstruction::RegisterSD(G4String sdName, G4String hcName)
 {
   TrackerSD* sd = new TrackerSD(sdName, hcName);
   G4SDManager::GetSDMpointer() -> AddNewDetector(sd);
+
+  fSDNamesArray[fStorageIndex] = sdName;
+  fHCNamesArray[fStorageIndex] = hcName;
+  fStorageIndex++;
+
   return sd;
 }
 
 string DetectorConstruction::Append(int i, string str)
 {
-  stringstream newString;
-  newString << str << i;
-  return newString.str();
+//  stringstream newString;
+
+  string newString;
+
+  if(i == 0)
+  {
+    newString = str + "EAST";
+  }
+  else if(i == 1)
+  {
+    newString = str + "WEST";
+  }
+  else
+    G4cout << "Int flag doesn't match type of naming." << G4endl;
+
+  return newString;
+
+//  return newString.str();
 }
 
 void DetectorConstruction::ConstructGlobalField()

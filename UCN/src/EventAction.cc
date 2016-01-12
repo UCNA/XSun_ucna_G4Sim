@@ -24,10 +24,21 @@ using   namespace       std;
 #define	OUTPUT_FILE	"TrackerTestOutput.txt"
 
 EventAction::EventAction()
-: G4UserEventAction(), fStartTime(0),
-  fEastScintHCID(-1), fWestScintHCID(-1),
-  fEastwireVolHCID(-1), fWestwireVolHCID(-1)
-{}
+: G4UserEventAction(), fStartTime(0)
+{
+  fMyDetectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+  // initialize all values to -1 since that doesn't correspond to any actual SD
+
+  for(int i = 0; i < fNbSDs; i++)	// see comment in EventAction.hh on fNbSDs
+  {
+    fHitsCollectionIDs[i] = -1;
+  }
+
+  fScintEast_index = -1;
+  fScintWest_index = -1;
+  fActiveWireVolEast_index = -1;
+  fActiveWireVolWest_index = -1;
+}
 
 
 EventAction::~EventAction()
@@ -73,44 +84,55 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   double compTime = ((double)timeOfEvent)/CLOCKS_PER_SEC;
 
   // get hits collection IDs only once in an overall run though.
-  if(fEastScintHCID == -1)
+  if(fHitsCollectionIDs[0] == -1)
   {
-    fEastScintHCID = G4SDManager::GetSDMpointer()->GetCollectionID("HC_scint_0");
-    fWestScintHCID = G4SDManager::GetSDMpointer()->GetCollectionID("HC_scint_1");
-    fEastwireVolHCID = G4SDManager::GetSDMpointer()->GetCollectionID("HC_wireVol_0");
-    fWestwireVolHCID = G4SDManager::GetSDMpointer()->GetCollectionID("HC_wireVol_1");
+    for(int i = 0; i < fNbSDs; i++)
+    {
+      fHitsCollectionIDs[i] = G4SDManager::GetSDMpointer()->GetCollectionID((*fMyDetectorConstruction).fHCNamesArray[i]);
+//      G4cout << "HC ID: " << fHitsCollectionIDs[i] << ", belongs to HC name: " << (*fMyDetectorConstruction).fHCNamesArray[i] << G4endl;
+      // these are the special ones we want to record extra info from.
+      if((*fMyDetectorConstruction).fHCNamesArray[i] == "HC_scint_EAST")
+      {
+        fScintEast_index = i;
+      }
+      else if((*fMyDetectorConstruction).fHCNamesArray[i] == "HC_scint_WEST")
+      {
+        fScintWest_index = i;
+      }
+      else if((*fMyDetectorConstruction).fHCNamesArray[i] == "HC_wireVol_EAST")
+      {
+        fActiveWireVolEast_index = i;
+      }
+      else if((*fMyDetectorConstruction).fHCNamesArray[i] == "HC_wireVol_WEST")
+      {
+        fActiveWireVolWest_index = i;
+      }
+    }
   }
 
-  TrackerHitsCollection* EScint_totHC = GetHitsCollection(fEastScintHCID, evt);
-  TrackerHitsCollection* WScint_totHC = GetHitsCollection(fWestScintHCID, evt);
-  TrackerHitsCollection* EwireVol_totHC = GetHitsCollection(fEastwireVolHCID, evt);
-  TrackerHitsCollection* WwireVol_totHC = GetHitsCollection(fWestwireVolHCID, evt);
+  TrackerHitsCollection* SD_totalHC[fNbSDs];
+  TrackerHit* SD_hits[fNbSDs];
+  G4double SD_edep[fNbSDs];
+  for(int i = 0; i < fNbSDs; i++)
+  {
+    SD_totalHC[i] = GetHitsCollection(fHitsCollectionIDs[i], evt);
+    SD_hits[i] = (*SD_totalHC[i])[0];	// 0th entry is the hit item in HC we are using to record everything
+    SD_edep[i] = SD_hits[i] -> GetEdep();
+  }
 
-  // since my HC was made with 2 hits (1 for current event, 1 for total accumulation)
-  // accessing total accumulation  should be # of entries -1, or equivalently, index 1 in the array
-  // I've gotten rid of the hitTotal TrackerHit so now the only entry for each HC should be 0
-  TrackerHit* EScint_hit = (*EScint_totHC)[0];
-  TrackerHit* WScint_hit = (*WScint_totHC)[WScint_totHC->entries()-1];
-  TrackerHit* EwireVol_hit = (*EwireVol_totHC)[EwireVol_totHC->entries()-1];
-  TrackerHit* WwireVol_hit = (*WwireVol_totHC)[WwireVol_totHC->entries()-1];
-
-  G4double edep_e_scint, edep_w_scint, edep_e_wireVol, edep_w_wireVol;
-  edep_e_scint = EScint_hit->GetEdep();	// variables for printing out.
-  edep_w_scint = WScint_hit->GetEdep();
-  edep_e_wireVol = EwireVol_hit->GetEdep();
-  edep_w_wireVol = WwireVol_hit->GetEdep();
 
   // print out of class member variables due to stepping action
   ofstream outfile;
   outfile.open(OUTPUT_FILE, ios::app);
   outfile << fTrapped << "\t"
-	  << compTime << "\n"
-	  << fEdep_East_Scint/keV << "\t" << edep_e_scint/keV << "\n"
-	  << fEdep_East_MWPC/keV << "\t" << edep_e_wireVol/keV << "\n"
-	  << fEdep_West_Scint/keV << "\t" << edep_w_scint/keV << "\n"
-	  << fEdep_West_MWPC/keV << "\t" << edep_w_wireVol/keV << "\n";
+	  << compTime << "\t"
+	  << fEdep_East_Scint/keV << "\t" << SD_edep[fScintEast_index]/keV << "\t"
+	  << fEdep_East_MWPC/keV << "\t" << SD_edep[fActiveWireVolEast_index]/keV << "\t"
+	  << fEdep_West_Scint/keV << "\t" << SD_edep[fScintWest_index]/keV << "\t"
+	  << fEdep_West_MWPC/keV << "\t" << SD_edep[fActiveWireVolWest_index]/keV << "\n";
   outfile.close();
 }
+
 // locFlag = 0 -> EAST
 // 	     1 -> WEST
 // typeFlag = 0 -> Scint
