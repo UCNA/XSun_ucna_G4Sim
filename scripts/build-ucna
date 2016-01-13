@@ -106,7 +106,15 @@ ensure "${UCNABUILD}"    "No build directory set. Nowhere to build."
 echo "Looks like we have everything we need to build."
 
 
-echo "Preparing to build ${UCNAEXE}..."
+echo "Preparing to build..."
+cd ${UCNABUILD}
+cmake -DGeant4_DIR=${G4BUILD} ${UCNASRC}
+make -j"$(nproc)"
+#install $PROGRAM ${UCNABIN}/
+
+exit 0
+
+echo "Preparing to build all of ${UCNAEXE}..."
 for PROGRAM in ${UCNAEXE}
 do
     echo "Setting up build space for $PROGRAM..."

@@ -48,6 +48,7 @@ if [ -z "${G4ROOT}" ]; then
 	echo "Aborting install."
 	exit 1
 fi
+echo "Done."
 
 
 if [ ! -r "${G4ROOT}/FindROOT.cmake" ]; then
@@ -65,6 +66,7 @@ if [ -z "${G4ROOT}" ]; then
 	echo "Aborting install."
 	exit 1
 fi
+echo "Done."
 
 
 echo "Looks like we have everything we need."
