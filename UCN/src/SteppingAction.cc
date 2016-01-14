@@ -46,33 +46,5 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
     fEventAction -> SetTrappedTrue();	// sets the event action flag as true.
   }
 
-  // stores energy deposition. i.e. important information tracker
-  // THIS WILL BE MOVED OVER TO TrackerSD AND TrackerHit!
-  const DetectorConstruction* detectorConstruction =
-        static_cast<const DetectorConstruction*>
-        (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-
-  G4LogicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
-
-  G4double edepStep = step->GetTotalEnergyDeposit();
-
-  // check if the volume we are in is one of the logical volumes we're interested in
-  if(volume == (*detectorConstruction).scint_scintillator_log[0])
-  {
-    fEventAction -> AddEdep(edepStep, 0, 0);
-  }
-  if(volume == (*detectorConstruction).mwpc_container_log[0])
-  {
-    fEventAction -> AddEdep(edepStep, 1, 0);
-  }
-  if(volume == (*detectorConstruction).scint_scintillator_log[1])
-  {
-    fEventAction -> AddEdep(edepStep, 0, 1);
-  }
-  if(volume == (*detectorConstruction).mwpc_container_log[1])
-  {
-    fEventAction -> AddEdep(edepStep, 1, 1);
-  }
-
 }
 

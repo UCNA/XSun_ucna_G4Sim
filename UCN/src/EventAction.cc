@@ -54,10 +54,10 @@ TrackerHitsCollection* EventAction::GetHitsCollection(int hcID, const G4Event* e
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
   fTrapped = false;
-  fEdep_East_Scint = 0;	// Ensuring these values are reset.
+/*  fEdep_East_Scint = 0;	// Ensuring these values are reset.
   fEdep_West_Scint = 0;
   fEdep_East_MWPC = 0;
-  fEdep_West_MWPC = 0;
+  fEdep_West_MWPC = 0;*/
   fStartTime = 0;
 
   // Sets the start of the C++ 'clock' used for tracking trapped ptcl's
@@ -126,10 +126,10 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   outfile.open(OUTPUT_FILE, ios::app);
   outfile << fTrapped << "\t"
 	  << compTime << "\t"
-	  << fEdep_East_Scint/keV << "\t" << SD_edep[fScintEast_index]/keV << "\t"
-	  << fEdep_East_MWPC/keV << "\t" << SD_edep[fActiveWireVolEast_index]/keV << "\t"
-	  << fEdep_West_Scint/keV << "\t" << SD_edep[fScintWest_index]/keV << "\t"
-	  << fEdep_West_MWPC/keV << "\t" << SD_edep[fActiveWireVolWest_index]/keV << "\n";
+	  << "\t" << SD_edep[fScintEast_index]/keV << "\t"
+	  << "\t" << SD_edep[fActiveWireVolEast_index]/keV << "\t"
+	  << "\t" << SD_edep[fScintWest_index]/keV << "\t"
+	  << "\t" << SD_edep[fActiveWireVolWest_index]/keV << "\n";
   outfile.close();
 }
 
@@ -137,28 +137,4 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 // 	     1 -> WEST
 // typeFlag = 0 -> Scint
 //	      1 -> MWPC
-void EventAction::AddEdep(G4double edep, int typeFlag, int locFlag)
-{
-  if(locFlag == 0)
-  {
-    if(typeFlag == 0)
-    {
-      fEdep_East_Scint = fEdep_East_Scint + edep;
-    }
-    else if(typeFlag == 1)
-    {
-      fEdep_East_MWPC = fEdep_East_MWPC + edep;
-    }
-  }
-  else if(locFlag == 1)
-  {
-    if(typeFlag == 0)
-    {
-      fEdep_West_Scint = fEdep_West_Scint + edep;
-    }
-    else if(typeFlag == 1)
-    {
-      fEdep_West_MWPC = fEdep_West_MWPC + edep;
-    }
-  }
-}
+
