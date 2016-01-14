@@ -176,8 +176,8 @@ GCCXML:FILEPATH=GCCXML-NOTFOUND
 //Path to a program.
 GENREFLEX_EXECUTABLE:FILEPATH=/home/xuansun/root/root-build/bin/genreflex
 
-//The directory containing a CMake configuration file for Geant4.
-Geant4_DIR:PATH=/home/xuansun/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2
+//No help, variable specified on the command line.
+Geant4_DIR:UNINITIALIZED=~/geant4/geant4-10.01.p02-install/lib/Geant4-10.1.2
 
 //Path to a program.
 ROOTCINT_EXECUTABLE:FILEPATH=/home/xuansun/root/root-build/bin/rootcint
