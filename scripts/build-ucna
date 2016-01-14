@@ -56,7 +56,6 @@ if [ -z "$G4SRC" ]; then
 	exit 1
 fi
 
-
 if [ -z "$G4PATH" ]; then
 	echo "Need to set G4PATH."
 	echo "Export script seems to not be working."
@@ -83,12 +82,12 @@ if [ -z "$G4ROOT" ]; then
 	exit 1
 fi
 
-if [ ! -r "$G4ROOT/FindROOT.cmake" ]; then
-	echo "$G4ROOT/FindROOT.cmake not found."
-	echo "Is your ROOT instillation working?"
-	echo "Aborting build."
-	exit 1
-fi
+#if [ ! -r "$G4ROOT/FindROOT.cmake" ]; then
+#	echo "$G4ROOT/FindROOT.cmake not found."
+#	echo "Is your ROOT instillation working?"
+#	echo "Aborting build."
+#	exit 1
+#fi
 
 
 
@@ -96,11 +95,11 @@ fi
 # Check UCNA environment
 #
 echo "Checking if the UCNA environment is setup..."
-ensure "${UCNASOURCES}"  "Need to set UCNA sources directory with UCNASOURCES."
+ensure "${UCNASRC}"  "Need to set UCNA sources directory with UCNASRC"
 #ensure "${UCNASVN}"      "Need to set UCNA svn repository location UCNASVN."
 #ensure "${UCNAUSER}"     "Need to set UCNA svn user name UCNAUSER."
 ensure "${UCNABIN}"     "Need to set a bin path to place exicutables with UCNABIN"
-ensure "${UCNAEXE}"      "No executables listed in UCNAEXE. Nothing to build."
+#ensure "${UCNAEXE}"      "No executables listed in UCNAEXE. Nothing to build."
 ensure "${UCNABUILD}"    "No build directory set. Nowhere to build."
 
 echo "Looks like we have everything we need to build."
