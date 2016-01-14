@@ -38,7 +38,6 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 SET(CMAKE_C_TARGET_INCLUDE_PATH
   "/home/xuansun/geant4/geant4-10.01.p02-install/include/Geant4"
   "/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/include"
-  "/home/xuansun/root/root-build/include"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

@@ -37,11 +37,11 @@ private:
         G4String fSDName;	// Store the name of the SD which gets registered.
 				// NOTE: not the same as the HC which you access in EventAction
 
-	G4double kb;									///< Birk's law quenching constant
-	G4double rho;									///< material density
-//	std::map<const G4Track*,double> originEnergy;	///< energy at track origin, for Equenched calculaiton
-//	std::map<G4int,TrackerHit*> tracks;				///< event tracks listed by ID
-	TrackerHitsCollection* fHitsCollection;		///< hits objects
+	G4double kb;						///< Birk's law quenching constant
+	G4double rho;						///< material density
+	std::map<const G4Track*,double> fTrackOriginEnergy;	///< energy at track origin, for Equenched calculaiton
+	std::map<G4int,TrackerHit*> fTrackerHitList;		///< event tracks listed by ID
+	TrackerHitsCollection* fHitsCollection;			///< hits objects
 };
 
 

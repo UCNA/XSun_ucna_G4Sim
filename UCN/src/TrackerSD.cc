@@ -39,8 +39,8 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
   // So I don't need to explicitly reset the energy to 0
   fHitsCollection->insert(new TrackerHit());
 
-//	tracks.clear();
-//	originEnergy.clear();
+  fTrackerHitList.clear();
+  fTrackOriginEnergy.clear();
 }
 
 //If the track is already stored, simply update dedx
