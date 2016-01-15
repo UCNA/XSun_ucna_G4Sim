@@ -88,13 +88,13 @@ class TrackerHit : public G4VHit
     G4String		GetCreatorVolumeName() { return fCreatorVolumeName; };
 
     G4double		fOriginEnergy;		// energy at split from "originating" track for EdepQ tracking
-    int			fNSecondaries;		// number of secondaries produced along track
+    unsigned int			fNbSecondaries;		// number of secondaries produced along track
 
   private:
-    G4double fEdep;	// this is the value that we want to return
+    G4double fEdep;	// delete this once you complete the move over.
 
     G4int		fTrackID;		// ID # for this track
-    G4double		fIncidentE;		// incident energy at start of track
+    G4double		fIncidentE;		// incident kinetic energy at start of track
     G4double		fEdepDelta;			// accumulator for energy deposition
     G4double		fEdepQuenched;		// accumulator for quenched energy
     G4double		fHitTime;		// time at entry into volume

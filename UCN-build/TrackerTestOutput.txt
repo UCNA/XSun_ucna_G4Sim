@@ -1036,3 +1036,280 @@ Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West S
 10998	490.024	0	0.087812		0		0		0		0
 10999	91.217	0	0.098815		76.664		2.80902		0		0
 Total number events: 1000 || Final kill count: 1
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.076654		138.718		3.17079		0		0
+10001	602.852	0	0.110401		0		0		594.522		1.60129
+10002	240.999	0	0.0836		0		0		231.681		2.71585
+10003	362.689	0	0.094451		0		0		0		0
+10004	476.296	0	0.128823		466.536		3.57813		0		0
+10005	79.7563	0	0.043548		0		0		0		0
+10006	300.154	0	0.094328		0		0		293.937		1.32977
+10007	181.556	0	0.083059		0		0		0		0
+10008	387.968	0	0.083148		382.746		1.53378		0		0
+10009	263.025	0	0.107393		0		0		249.926		4.08589
+10010	513.749	0	0.069532		0		0		506.911		1.43503
+10011	108.281	0	0.28259		0		58.8115		0		0
+10012	204.12	0	0.103482		173.286		2.8728		0		0
+10013	322.99	0	0.081723		0		0		312.721		1.53114
+10014	13.6403	0	0.16617		0		0		0		0
+10015	424.258	0	0.064508		418.653		1.07865		0		0
+10016	377.269	0	0.064962		370.08		2.53626		0		0
+10017	253.839	0	0.127926		0		0		232.252		2.15784
+10018	662.783	0	0.090338		0		0		650.88		1.82479
+10019	164.227	0	0.278851		54.529		46.4675		0		26.2897
+10020	194.778	0	0.146168		155.877		18.1035		0		0
+10021	313.406	0	0.064951		0		0		306.223		1.7159
+10022	96.8178	0	0.128539		0		0		38.5262		7.18799
+10023	497.34	0	0.085219		471.2		1.82917		0		0
+10024	123.592	0	0.111089		87.8703		16.7044		0		0
+Total number events: 25 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07976		137.679		3.94122		0		0
+10001	602.852	0	0.112023		0		0		594.012		1.43142
+10002	240.999	0	0.07993		0		0		235.007		1.17019
+10003	362.689	0	0.096561		0		0		0		0
+10004	476.296	0	0.903831		0		0		462.961		1.32141
+Total number events: 5 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.081542		141.399		2.15349		0		0
+10001	602.852	0	0.110899		0		0		594.404		1.34632
+10002	240.999	0	0.078171		0		0		233.488		1.19641
+10003	362.689	0	0.093647		0		0		0		0
+10004	476.296	0	0.124818		464.265		1.85778		0		0
+10005	79.7563	0	0.044068		0		0		0		0
+10006	300.154	0	0.092973		0		0		292.399		2.11626
+10007	181.556	0	0.081937		0		0		0		0
+10008	387.968	0	0.079025		382.623		1.27362		0		0
+10009	263.025	0	0.108605		0		0		217.546		5.52562
+10010	513.749	0	0.307038		211.374		30.1844		192.414		5.65656
+10011	108.281	0	0.151095		84.8883		4.58902		0		0
+10012	204.12	0	0.10224		173.484		5.44448		0		0
+10013	322.99	0	0.080967		0		0		314.94		2.26721
+10014	13.6403	0	0.388783		0		0		0		0
+Total number events: 15 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078953		138.45		2.08633		0		0
+10001	602.852	0	0.11208		0		0		591.269		6.17363
+10002	240.999	0	0.080303		0		0		235.076		1.83841
+10003	362.689	0	0.237259		0		0		0		0
+10004	476.296	0	0.145138		466.264		1.39582		0		0
+10005	79.7563	0	0.045907		0		0		0		0
+10006	300.154	0	0.098945		0		0		292.372		1.94547
+10007	181.556	0	0.084549		0		0		0		0
+10008	387.968	0	0.0808		380.165		1.75008		0		0
+10009	263.025	0	0.106606		0		0		251.009		2.1361
+Total number events: 10 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078709		143.588		2.05663		0		0
+10001	602.852	0	0.117442		0		0		595.802		1.39597
+10002	240.999	0	0.081642		0		0		230.049		2.07541
+10003	362.689	0	0.093004		0		0		0		0
+10004	476.296	0	0.133613		464.694		1.88976		0		0
+10005	79.7563	0	0.047909		0		0		0		0
+10006	300.154	0	0.096705		0		0		292.697		1.86739
+10007	181.556	0	0.085548		0		0		0		0
+10008	387.968	0	0.08225		381.234		1.868		0		0
+10009	263.025	0	0.109361		0		0		249.624		4.48661
+Total number events: 10 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.076789		142.452		2.14135		0		0
+10001	602.852	0	0.108844		0		0		596.614		1.66198
+10002	240.999	0	0.082293		0		0		232.355		2.05595
+10003	362.689	0	0.097741		0		0		0		0
+10004	476.296	0	0.15361		467.067		1.62548		0		0
+10005	79.7563	0	0.042902		0		0		0		0
+10006	300.154	0	0.094991		0		0		280.286		1.64919
+10007	181.556	0	0.084203		0		0		0		0
+10008	387.968	0	0.079373		380.96		2.08864		0		0
+10009	263.025	0	0.11539		0		0		242.263		15.6469
+Total number events: 10 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.082311		140.302		4.46394		0		0
+10001	602.852	0	0.119149		0		0		594.27		1.87723
+10002	240.999	0	0.303472		0		0.854656		171.715		4.69874
+10003	362.689	0	0.096991		0		0		0		0
+10004	476.296	0	0.150536		464.492		1.44748		0		0
+10005	79.7563	0	0.047148		0		0		0		0
+10006	300.154	0	0.09361		0		0		293.546		1.13973
+10007	181.556	0	0.499079		0		0		0		0
+10008	387.968	0	0.082859		378.75		2.59257		0		0
+10009	263.025	0	0.11105		0		0		253.28		1.6614
+Total number events: 10 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079798		127.71		1.42206		0		0
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079651		142.624		2.33063		0		0
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.082082		138.72		2.64402		0		0
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078288		134.998		2.50442		0		0
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.080273		127.549		2.38335		0		0
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078745		2.03291e-313		2.122e-311		0		0
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07723		-20338.2		10.0237		-1000		0
+10001	602.852	0	0.110467		6.95316e-307		2.11923e-314		6.95316e-307		6.95316e-307
+10002	240.999	0	0.083149		0		0.0270299		-1000		0
+10003	362.689	0	0.096986		0		0.00378191		-1000		6.92477e-307
+10004	476.296	0	0.138171		0		0.00264259		-1000		0
+10005	79.7563	0	0.04808		0		0.00243925		-1000		0
+10006	300.154	0	0.099408		0		0.0029802		-1000		0
+10007	181.556	0	0.080824		0		0.00251828		-1000		0
+10008	387.968	0	0.08082		6.95316e-307		2.11923e-314		6.95316e-307		6.95316e-307
+10009	263.025	0	0.102236		0		0.00292561		-1000		0
+Total number events: 10 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.076895		0		0		6.95315e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079004		0		0		6.95315e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.080596		0		0		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.241603		0		0		-1000		4.00193e-319
+10001	602.852	Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07869		0		0		6.9532e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079593		0		0		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07604		0		0		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.074455		21892.5		16427.4		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.099892		65.754		16438.3		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077019		95.5784		1.80187		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077058		100.218		4.46444		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07645		106.225		3.75824		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078316		91.1953		97.435		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078925		90.1718		100.125		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.080932		108.908		102.609		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07938		89.8196		6.61486		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.081916		115.086		4.75306		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.076887		118.648		14.6047		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077946		104.137		9.53817		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079167		108.438		8.18341		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.076988		88.8291		12.6554		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07575		77.6346		10.8864		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079127		124.491		13.747		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07782		120.057		124.815		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.25314		168.897		22.0645		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077482		118.19		15.7139		6.95328e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.085303		-2.0593e+06		6.92139e-307		6.95317e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077952		0.597139		0.767697		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.081481		19297.2		4.98018e-318		6.95317e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.079446		1.42511		5.42604		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.075256		1681.5		4.98018e-318		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077883		2.08009		3.53691		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077778		3.83477		5.38713		6.95317e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078161		2.84871		6.34206		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.078415		4.25612		8.4159		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.081651		5.26748		-2.0593e+06		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.077569		10.9666		6.92138e-307		6.95317e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.093441		2.68555		27.486		6.95317e-307		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.07953		6.2561		5.25586		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0
+Event ID 	 Init KE (keV) 	Trapped? 	 Edep (keV): East Scint 	 East MWPC 	 West Scint 	 West MWPC 
+10000	150.405	0	0.084747		3.9477		4.94066e-321		-1000		4.00193e-319
+Total number events: 1 || Final kill count: 0

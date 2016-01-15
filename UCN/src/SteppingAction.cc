@@ -21,18 +21,6 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
-/*
-  // The below is used for debugging the geometry in a step-by-step fashion.
-  // Not needed but saved in case will be used in future.
-  G4String preStepName = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
-  G4ThreeVector preStepPosition = step->GetPreStepPoint()->GetPosition();
-
-  ofstream outfile;
-  outfile.open("DebuggingGeometry.txt", ios::app);
-  outfile << "Pre step volume is: " << preStepName <<"\t\t at position " << preStepPosition/m << "m \n";
-  outfile.close();
-*/
-
   // kill switch in case simulation runs too long
   G4int stepNo = step -> GetTrack() -> GetCurrentStepNumber();
   clock_t timeSpentSoFar = clock() - ((EventAction*)G4EventManager::GetEventManager()->GetUserEventAction())->GetStartTime();

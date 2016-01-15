@@ -31,7 +31,7 @@ public:
 	void SetName(G4String title) { fSDName = title; };
 
 	/// calculate quenching factor for electron at given energy
-	double quenchFactor(double E) const;
+	double QuenchFactor(double E) const;
 
 private:
         G4String fSDName;	// Store the name of the SD which gets registered.

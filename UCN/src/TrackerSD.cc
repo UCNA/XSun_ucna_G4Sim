@@ -14,6 +14,8 @@
 #include <G4ParticleDefinition.hh>
 #include <G4Gamma.hh>
 
+using namespace std;
+
 TrackerSD::TrackerSD(G4String name, G4String hcname):
  G4VSensitiveDetector(name), kb(0.01907*cm/MeV), rho(1.032*g/cm3)
 {
@@ -36,9 +38,11 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
   hce -> AddHitsCollection(hcID, fHitsCollection);
 
   // make a single hit for this event. It will be remade at the conclusion of event
-  // So I don't need to explicitly reset the energy to 0
-  fHitsCollection->insert(new TrackerHit());
+  // Previous statement not necessarily true. May need to reset explicitly.
+//  fHitsCollection->insert(new TrackerHit());
 
+
+  // this is an explicit resetting of the tracker hit collection we're keeping
   fTrackerHitList.clear();
   fTrackOriginEnergy.clear();
 }
@@ -47,103 +51,121 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
 //otherwise add a new entry into the hit collection
 G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 {
-  G4double edep = aStep -> GetTotalEnergyDeposit();
+/*
+  G4double edepStep = aStep -> GetTotalEnergyDeposit();
 
-  if(edep == 0.) return false;	// get out if in our SD, no energy is deposited
+  if(edepStep == 0.) return false;	// get out if in our SD, no energy is deposited
 
   // access first entry of fHitsCollection since that is the track-by-track tracker
   TrackerHit* hit = (*fHitsCollection)[0];
 
   // Accumulate values in TrackerHit objects now.
-  hit -> Add(edep);
-
-
-/*
-	G4Track* aTrack = aStep->GetTrack();
-
-	G4String creator_proc = "";
-	// Check if the track has the creator process (not the case for primaries)
-	const G4VProcess* creatorProcess = aTrack->GetCreatorProcess();
-	if(!creatorProcess) creator_proc="original";
-	else creator_proc = creatorProcess->GetProcessName();
-
-	G4StepPoint* preStep = aStep->GetPreStepPoint();
-	G4StepPoint* postStep = aStep->GetPostStepPoint();
-
-	G4ThreeVector prePos = preStep->GetPosition();
-	G4ThreeVector postPos = postStep->GetPosition();
-	G4double E0 = preStep->GetKineticEnergy();
-	G4double E1 = postStep->GetKineticEnergy();
-	G4double Ec = 0.5*(E0+E1);
-
-	// get prior track, or initialize a new one
-	G4int thisTrackID = aTrack->GetTrackID();
-	std::map<G4int,TrackerHit*>::iterator myTrack = tracks.find(thisTrackID);
-
-	if(myTrack==tracks.end())
-	{
-		TrackerHit* newHit = new TrackerHit();
-		newHit->SetTrackID(thisTrackID);
-		newHit->SetPID(aTrack->GetDefinition()->GetPDGEncoding());
-		newHit->SetProcessName(creator_proc);
-		newHit->SetIncidentEnergy(preStep->GetKineticEnergy());
-		newHit->SetPos(postPos);
-		newHit->SetHitTime(preStep->GetGlobalTime());
-		newHit->SetIncidentMomentum(preStep->GetMomentum());
-		G4VPhysicalVolume* preVolume = preStep->GetPhysicalVolume();
-		newHit->SetVolumeName(preVolume?preVolume->GetName():"Unknown");
-		newHit->SetVertex(aTrack->GetVertexPosition());
-		newHit->SetCreatorVolumeName(aTrack->GetLogicalVolumeAtVertex()->GetName());
-		newHit->nSecondaries = 0;
-		std::map<const G4Track*,double>::iterator itorig = originEnergy.find(aTrack);
-		if(itorig == originEnergy.end())
-		{
-			// originEnergy = 0 for primary tracks (not a sub-track of another track in this volume)
-			newHit->originEnergy = 0;
-		}
-		else
-		{
-			// get previously stored origin energy for secondary tracks; remove listing entry
-			newHit->originEnergy = itorig->second;
-			originEnergy.erase(itorig);
-		}
-		unsigned int hitn = trackerCollection->insert(newHit);
-		tracks.insert(std::pair<G4int,TrackerHit*>(thisTrackID,(TrackerHit*)trackerCollection->GetHit(hitn-1)));
-		myTrack = tracks.find(thisTrackID);
-	}
-
-	// accumulate edep, edepq, local position for this step
-	G4double edep = aStep->GetTotalEnergyDeposit();
-	G4double edepQ = edep*quenchFactor(myTrack->second->originEnergy==0?Ec:myTrack->second->originEnergy);
-	G4ThreeVector localPosition = preStep->GetTouchableHandle()->GetHistory()->GetTopTransform().TransformPoint(prePos);
-	myTrack->second->AddEdep(edep,localPosition);
-	myTrack->second->AddEdepQuenched(edepQ);
-	myTrack->second->SetExitMomentum(postStep->GetMomentum());
-
-	// record origin energy for secondaries in same volume
-	const G4TrackVector* secondaries = aStep->GetSecondary();
-	while(myTrack->second->nSecondaries < secondaries->size())
-	{
-		const G4Track* sTrack = (*secondaries)[myTrack->second->nSecondaries++];
-		if(sTrack->GetVolume() != aTrack->GetVolume())
-			continue;
-		const G4double eOrig = myTrack->second->originEnergy>0?myTrack->second->originEnergy:Ec;
-		if(originEnergy.find(sTrack) != originEnergy.end())
-		{
-
-			SMExcept e("duplicateSecondary");
-			e.insert("eOrig",eOrig);
-			e.insert("pID",myTrack->second->GetPID());
-			e.insert("nSec",myTrack->second->nSecondaries++);
-			e.insert("eOrig_old",originEnergy.find(sTrack)->second);
-			throw(e);
-
-			G4cout << "Error during tracking: apparently origin energies don't match up." << G4endl;
-		}
-		originEnergy.insert(std::pair<const G4Track*,double>(sTrack,eOrig));
-	}
+  hit -> Add(edepStep);
 */
-	return true;
+  // BELOW IS THE ACTUAL CODE FOR USING TRACKER SD AND HITS FOR ACCUMULATION.
+
+  G4Track* aTrack = aStep -> GetTrack();
+  G4String creatorProcessName = "";
+  // Check if the track has the creator process (not the case for primaries)
+  const G4VProcess* creatorProcess = aTrack -> GetCreatorProcess();
+  if(creatorProcess == NULL)
+  {
+    creatorProcessName = "original";
+//    G4cout << "Original is the name of our creator process. " << G4endl;
+  }
+  else
+  {
+    creatorProcessName = creatorProcess -> GetProcessName();
+//    G4cout << "NOT PRIMARY. Creator process name: " << creatorProcessName << G4endl;
+  }
+
+  G4StepPoint* preStep = aStep -> GetPreStepPoint();
+  G4StepPoint* postStep = aStep -> GetPostStepPoint();
+  G4ThreeVector prePos = preStep -> GetPosition();
+  G4ThreeVector postPos = postStep -> GetPosition();
+  G4double Epre = preStep -> GetKineticEnergy();
+  G4double Epost = postStep -> GetKineticEnergy();
+  G4double avgE = 0.5*(Epre + Epost);
+
+  // Get prior track, or initialize a new one
+  G4int currentTrackID = aTrack -> GetTrackID();
+
+  map<G4int, TrackerHit*>::iterator myTrack = fTrackerHitList.find(currentTrackID);
+
+  if(myTrack == fTrackerHitList.end())
+  {
+    TrackerHit* newHit = new TrackerHit();
+
+    newHit -> SetTrackID(currentTrackID);
+    newHit -> SetPtclSpeciesID(aTrack -> GetDefinition() -> GetPDGEncoding());
+    newHit -> SetProcessName(creatorProcessName);
+    newHit -> SetIncidentEnergy(preStep -> GetKineticEnergy());
+    newHit -> SetHitPos(postPos);
+    newHit -> SetHitTime(preStep -> GetGlobalTime());
+    newHit -> SetIncidentMomentum(preStep -> GetMomentum());
+    // is pre-step physical volume defined? If not, set the name as "Unknown"
+    G4VPhysicalVolume* preVolume = preStep -> GetPhysicalVolume();
+    newHit -> SetVolumeName(preVolume? preVolume -> GetName(): "Unknown");
+    newHit -> SetTrackVertex(aTrack -> GetVertexPosition());
+    newHit -> SetCreatorVolumeName(aTrack -> GetLogicalVolumeAtVertex() -> GetName());
+    (*newHit).fNbSecondaries = 0;
+
+    map<const G4Track*, double>::iterator itorig = fTrackOriginEnergy.find(aTrack);
+    if(itorig == fTrackOriginEnergy.end())
+    {
+      // fOriginEnergy = 0 for primary tracks (not a sub-track of another track in this volume)
+      (*newHit).fOriginEnergy = 0;
+    }
+    else
+    {
+      // Get previously stored origin energy for secondary tracks. Remove listing entry
+      (*newHit).fOriginEnergy = itorig -> second;
+      fTrackOriginEnergy.erase(itorig);
+    }
+
+    int hitNb = fHitsCollection -> insert(newHit);
+
+//    G4cout << "hitNb = " << hitNb << G4endl;
+
+    fTrackerHitList.insert(pair<G4int, TrackerHit*>(currentTrackID, (TrackerHit*)fHitsCollection->GetHit(hitNb - 1)));
+    myTrack = fTrackerHitList.find(currentTrackID);
+  }
+
+  // accumulate edep, edep quenched, and local position for this step
+  G4double edep = aStep -> GetTotalEnergyDeposit();
+  // fetch the TrackerHit fOriginEnergy. If 0, plug in avgE into call to QuenchFactor. Else, use fOriginEnergy.
+  G4double edepQuenched;
+  if((myTrack -> second -> fOriginEnergy) == 0)
+    edepQuenched = edep*QuenchFactor(avgE);
+  else
+    edepQuenched = edep*QuenchFactor(myTrack -> second -> fOriginEnergy);
+
+  G4ThreeVector localPos = preStep -> GetTouchableHandle() -> GetHistory() -> GetTopTransform().TransformPoint(prePos);
+  myTrack -> second -> AddEdep(edep, localPos);
+  myTrack -> second -> AddEdepQuenched(edepQuenched);
+  myTrack -> second -> SetExitMomentum(postStep -> GetMomentum());
+
+  // record origin energy for secondaries in same volume
+  const G4TrackVector* secondaries = aStep -> GetSecondary();
+  while(myTrack -> second -> fNbSecondaries < secondaries -> size())
+  {
+    // don't really understand the argument of this line.
+    const G4Track* sTrack = (*secondaries)[myTrack -> second -> fNbSecondaries++];
+    if(sTrack -> GetVolume() != sTrack -> GetVolume())
+    {  continue; }
+
+    const G4double eOrig = ((myTrack->second->fOriginEnergy)>0)?(myTrack->second->fOriginEnergy):(avgE);
+
+    if(fTrackOriginEnergy.find(sTrack) != fTrackOriginEnergy.end())
+    {
+      // Add code that increments a kill counter or kills the entire event here.
+      G4cout << "Apparently we have a duplicate secondary. \n"
+             << "This event should be invalid. Make of a note of it." << G4endl;
+    }
+    fTrackOriginEnergy.insert(pair<const G4Track*, double>(sTrack, eOrig));
+  }
+
+  return true;
 }
 
 void TrackerSD::EndOfEvent(G4HCofThisEvent*)
@@ -153,6 +175,10 @@ void TrackerSD::EndOfEvent(G4HCofThisEvent*)
   // This method is invoked at the end of processing an event (obvi)
   // It is invoked even if the event is aborted. Could be useful.
   // It is invoked before UserEndOfEventAction.
+
+  G4cout << "Number of entries in fHitsCollection: " << fHitsCollection -> GetSize() << G4endl;
+
+  G4cout << "Reached end of event. Seg fault happens in EventAction." << G4endl;
 }
 
 
@@ -171,7 +197,7 @@ void TrackerSD::EndOfEvent(G4HCofThisEvent*)
 // ----- Gotta ignore these methods for now ----- //
 
 // quenching calculation... see Junhua's thesis
-double TrackerSD::quenchFactor(double E) const
+double TrackerSD::QuenchFactor(double E) const
 {
         const G4double a = 116.7*MeV*cm*cm/g;           // dEdx fit parameter a*e^(b*E)
         const G4double b = -0.7287;                                     // dEdx fit parameter a*e^(b*E)

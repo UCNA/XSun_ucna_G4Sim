@@ -54,10 +54,6 @@ TrackerHitsCollection* EventAction::GetHitsCollection(int hcID, const G4Event* e
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
   fTrapped = false;
-/*  fEdep_East_Scint = 0;	// Ensuring these values are reset.
-  fEdep_West_Scint = 0;
-  fEdep_East_MWPC = 0;
-  fEdep_West_MWPC = 0;*/
   fStartTime = 0;
 
   // Sets the start of the C++ 'clock' used for tracking trapped ptcl's
@@ -89,7 +85,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
     for(int i = 0; i < fNbSDs; i++)
     {
       fHitsCollectionIDs[i] = G4SDManager::GetSDMpointer()->GetCollectionID((*fMyDetectorConstruction).fHCNamesArray[i]);
-//      G4cout << "HC ID: " << fHitsCollectionIDs[i] << ", belongs to HC name: " << (*fMyDetectorConstruction).fHCNamesArray[i] << G4endl;
+      G4cout << "HC ID: " << fHitsCollectionIDs[i] << ", belongs to HC name: " << (*fMyDetectorConstruction).fHCNamesArray[i] << G4endl;
       // these are the special ones we want to record extra info from.
       if((*fMyDetectorConstruction).fHCNamesArray[i] == "HC_scint_EAST")
       {
@@ -113,12 +109,50 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   TrackerHitsCollection* SD_totalHC[fNbSDs];
   TrackerHit* SD_hits[fNbSDs];
   G4double SD_edep[fNbSDs];
+
   for(int i = 0; i < fNbSDs; i++)
   {
+    if( (i != 2) && (i != 3)) {
     SD_totalHC[i] = GetHitsCollection(fHitsCollectionIDs[i], evt);
-    SD_hits[i] = (*SD_totalHC[i])[0];	// 0th entry is the hit item in HC we are using to record everything
-    SD_edep[i] = SD_hits[i] -> GetEdep();
+
+
+  /* In the old code, you made a TrackerHit item for each SD and only incremented the ones
+     that we went inside of. This was because .insert(new TrackerHit()) happened in initialize.
+     Now, we only .insert a new TrackerHit during the ProcessHits method. Hence, if we do not
+     enter some of the other SD's, there is no default TrackerHit with zeros everywhere.
+     Thus we need some check statement to make sure we don't try to access a null pointer.
+
+     Furthermore, you are currently saving a TrackerHit object in the fHitsCollection for each
+     track made inside the SD's. This means you have some arbitrary number of TrackerHits in each fHitCollection.
+     You want to access the TrackerHit object in the LAST entry of fHitsCollection. This is the one
+     that has the final accumulation variables! However, this is non-trivial to do. Also, perhaps
+     storing so many TrackerHits is a time-intensive operation. We could just use a single TrackerHit
+     as an event-by-event accumulator, which is what the Basic Example does.
+
+     As you wanted to test and unfortunately confirmed, there's no guarantee the last entry stores all
+     the info. It seems like each TrackerHit stores it's own energy and all of it would get summed up later.
+     That isn't how Michael's code seems to be laid out. But it is the reality.
+
+     NOTE: you got the ordering mixed up. A HitsCollection item doesn't exist for i = 2, 3.
+     So the whole if-statement needs to encompass everything.
+     NOTE: OK so you don't understand what is happening with this Seg Fault. Instead of trying to fix it,
+     you may choose to redo everything anyway so don't worry too much about it.
+
+     Soon, you need to choose which way we'll record info. Is it easier to do it like Basic Example?
+     What information do we lose if that is how we choose to do it?
+
+  */
+
+    SD_hits[i] = (*SD_totalHC[i])[1];	// 0th entry is the hit item in HC we are using to record everything
+
+//    SD_edep[i] = SD_hits[i] -> GetEdep();
+    SD_edep[i] = SD_hits[i] -> GetEdepTrack();
+
+    }
   }
+  G4cout << "SD_edep[0] = " << SD_edep[0]/keV << " keV. " << G4endl;
+  G4cout << "SD_edep[1] = " << SD_edep[1]/keV << " keV. " << G4endl;
+
 
 
   // print out of class member variables due to stepping action
