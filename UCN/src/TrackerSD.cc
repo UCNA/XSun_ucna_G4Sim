@@ -39,7 +39,9 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
 
   // make a single hit for this event. It will be remade at the conclusion of event
   // Previous statement not necessarily true. May need to reset explicitly.
-//  fHitsCollection->insert(new TrackerHit());
+  // So far, this is a debugging check to make sure the total energy summed is correct.
+  // I've tested this against SteppingAction accumulation. Using it to verify Michael's tracking recording.
+  fHitsCollection->insert(new TrackerHit());
 
 
   // this is an explicit resetting of the tracker hit collection we're keeping
@@ -51,33 +53,27 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
 //otherwise add a new entry into the hit collection
 G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 {
-/*
+
   G4double edepStep = aStep -> GetTotalEnergyDeposit();
 
-  if(edepStep == 0.) return false;	// get out if in our SD, no energy is deposited
+//  if(edepStep == 0.) return false;	// get out if in our SD, no energy is deposited
 
   // access first entry of fHitsCollection since that is the track-by-track tracker
   TrackerHit* hit = (*fHitsCollection)[0];
 
   // Accumulate values in TrackerHit objects now.
   hit -> Add(edepStep);
-*/
+
   // BELOW IS THE ACTUAL CODE FOR USING TRACKER SD AND HITS FOR ACCUMULATION.
 
+  // Access some useful info for now.
   G4Track* aTrack = aStep -> GetTrack();
   G4String creatorProcessName = "";
-  // Check if the track has the creator process (not the case for primaries)
   const G4VProcess* creatorProcess = aTrack -> GetCreatorProcess();
   if(creatorProcess == NULL)
-  {
     creatorProcessName = "original";
-//    G4cout << "Original is the name of our creator process. " << G4endl;
-  }
   else
-  {
     creatorProcessName = creatorProcess -> GetProcessName();
-//    G4cout << "NOT PRIMARY. Creator process name: " << creatorProcessName << G4endl;
-  }
 
   G4StepPoint* preStep = aStep -> GetPreStepPoint();
   G4StepPoint* postStep = aStep -> GetPostStepPoint();
@@ -86,6 +82,9 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
   G4double Epre = preStep -> GetKineticEnergy();
   G4double Epost = postStep -> GetKineticEnergy();
   G4double avgE = 0.5*(Epre + Epost);
+
+//  TrackerHit* trackerHitRecorder = new TrackerHit();
+
 
   // Get prior track, or initialize a new one
   G4int currentTrackID = aTrack -> GetTrackID();
@@ -125,7 +124,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 
     int hitNb = fHitsCollection -> insert(newHit);
 
-//    G4cout << "hitNb = " << hitNb << G4endl;
+    G4cout << "hitNb = " << hitNb << G4endl;
 
     fTrackerHitList.insert(pair<G4int, TrackerHit*>(currentTrackID, (TrackerHit*)fHitsCollection->GetHit(hitNb - 1)));
     myTrack = fTrackerHitList.find(currentTrackID);
@@ -151,6 +150,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
   {
     // don't really understand the argument of this line.
     const G4Track* sTrack = (*secondaries)[myTrack -> second -> fNbSecondaries++];
+
     if(sTrack -> GetVolume() != sTrack -> GetVolume())
     {  continue; }
 
@@ -176,10 +176,10 @@ void TrackerSD::EndOfEvent(G4HCofThisEvent*)
   // It is invoked even if the event is aborted. Could be useful.
   // It is invoked before UserEndOfEventAction.
 
-  G4cout << "Number of entries in fHitsCollection: " << fHitsCollection -> GetSize() << G4endl;
+  G4cout << "End of tracking. Size of fHitsCollection is " << fHitsCollection->GetSize() << G4endl;
 
-  G4cout << "Reached end of event. Seg fault happens in EventAction." << G4endl;
 }
+
 
 
 
