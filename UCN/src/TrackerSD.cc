@@ -45,12 +45,14 @@ void TrackerSD::Initialize(G4HCofThisEvent* hce)
 
 
   // this is an explicit resetting of the tracker hit collection we're keeping
-  fTrackerHitList.clear();
-  fTrackOriginEnergy.clear();
+  // This is Michaels tracker variables. Not working with my simple level coding
+//  fTrackerHitList.clear();
+//  fTrackOriginEnergy.clear();
 }
 
-//If the track is already stored, simply update dedx
-//otherwise add a new entry into the hit collection
+// Make a new TrackerHit object for each track. Store them in HitsCollection.
+// Store that instances track information in the TrackerHit.
+// In EventAction, loop over and sum all values.
 G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 {
 
@@ -59,10 +61,12 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
 //  if(edepStep == 0.) return false;	// get out if in our SD, no energy is deposited
 
   // access first entry of fHitsCollection since that is the track-by-track tracker
-  TrackerHit* hit = (*fHitsCollection)[0];
+  TrackerHit* firstHit = (*fHitsCollection)[0];
 
   // Accumulate values in TrackerHit objects now.
-  hit -> Add(edepStep);
+  firstHit -> Add(edepStep);
+
+
 
   // BELOW IS THE ACTUAL CODE FOR USING TRACKER SD AND HITS FOR ACCUMULATION.
 
@@ -83,11 +87,66 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
   G4double Epost = postStep -> GetKineticEnergy();
   G4double avgE = 0.5*(Epre + Epost);
 
-//  TrackerHit* trackerHitRecorder = new TrackerHit();
+  TrackerHit* hit = new TrackerHit();
+
+  // below is done to add the total energy deposited to tEdep.
+  G4double totalEdepOnTrack = aStep -> GetTotalEnergyDeposit();
+  hit -> AddToTestEdep(totalEdepOnTrack);
+  // Get rid of the above when done.
+
+  hit -> SetTrackID(aTrack -> GetTrackID());
+  hit -> SetPtclSpeciesID(aTrack -> GetDefinition() -> GetPDGEncoding());
+  hit -> SetProcessName(creatorProcessName);
+  hit -> SetIncidentEnergy(preStep -> GetKineticEnergy());
+  hit -> SetHitPos(postPos);
+  hit -> SetHitTime(preStep -> GetGlobalTime());	// there's a better method in example B5 on this
+  hit -> SetIncidentMomentum(preStep -> GetMomentum());
+  // is pre-step physical volume defined? If not, set the name as "Unknown"
+  G4VPhysicalVolume* preVolume = preStep -> GetPhysicalVolume();
+  hit -> SetVolumeName(preVolume? preVolume -> GetName(): "Unknown");
+  hit -> SetTrackVertex(aTrack -> GetVertexPosition());
+  hit -> SetCreatorVolumeName(aTrack -> GetLogicalVolumeAtVertex() -> GetName());
+  (*hit).fNbSecondaries = 0;
+
+  (*hit).fOriginEnergy = 0;	// explicitly set for now. Since ignoring secondaries atm
+
+  // Copied over from Michael's code in order to calculate e quenched.
+/*  map<const G4Track*, double>::iterator itorig = fTrackOriginEnergy.find(aTrack);
+  if(itorig == fTrackOriginEnergy.end())
+  {
+    // fOriginEnergy = 0 for primary tracks (not a sub-track of another track in this volume)
+    (*hit).fOriginEnergy = 0;
+  }
+  else
+  {
+    // Get previously stored origin energy for secondary tracks. Remove listing entry
+    (*hit).fOriginEnergy = itorig -> second;
+    fTrackOriginEnergy.erase(itorig);
+  }
+*/
+  G4double edep = aStep -> GetTotalEnergyDeposit();
+  // This is always going to trigger the if part since now it goes sequentially.
+  // Will need to go back and think of how to deal with this.
+  G4double edepQuenched;
+  if((hit -> fOriginEnergy) == 0)
+    edepQuenched = edep*QuenchFactor(avgE);
+  else
+    edepQuenched = edep*QuenchFactor(hit -> fOriginEnergy);
+
+  G4ThreeVector localPos = preStep -> GetTouchableHandle() -> GetHistory() -> GetTopTransform().TransformPoint(prePos);
+  hit -> AddEdep(edep, localPos);
+  hit -> AddEdepQuenched(edepQuenched);
+  hit -> SetExitMomentum(postStep -> GetMomentum());
+
+  // And then stuff pertaining to secondaries. Ignore for now. See if this other stuff works.
+
+  fHitsCollection -> insert(hit);	// this gonna go at the end. Won't use complicated C++ objects.
+
+  return true;
 
 
   // Get prior track, or initialize a new one
-  G4int currentTrackID = aTrack -> GetTrackID();
+/*  G4int currentTrackID = aTrack -> GetTrackID();
 
   map<G4int, TrackerHit*>::iterator myTrack = fTrackerHitList.find(currentTrackID);
 
@@ -166,6 +225,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,G4TouchableHistory*)
   }
 
   return true;
+*/
 }
 
 void TrackerSD::EndOfEvent(G4HCofThisEvent*)
@@ -175,6 +235,7 @@ void TrackerSD::EndOfEvent(G4HCofThisEvent*)
   // This method is invoked at the end of processing an event (obvi)
   // It is invoked even if the event is aborted. Could be useful.
   // It is invoked before UserEndOfEventAction.
+
 
   G4cout << "End of tracking. Size of fHitsCollection is " << fHitsCollection->GetSize() << G4endl;
 

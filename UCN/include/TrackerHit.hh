@@ -43,10 +43,11 @@ class TrackerHit : public G4VHit
     virtual void Print();
 
     // Methods that add/accumulate private member variables
-    void Add(G4double deltaE) {fEdep = fEdep + deltaE; };	// this was for the steppingAction accumulation (old)
+    void AddToTestEdep(G4double e) { tEdep = e; };
+    void Add(G4double deltaE) {sEdep = sEdep + deltaE; };	// this was for the steppingAction accumulation (old)
     void AddEdep(G4double edep, G4ThreeVector xyz)
     {
-      fEdepDelta = fEdepDelta + edep;
+      fEdep = fEdep + edep;
       fEdepWeightedPos = fEdepWeightedPos + xyz*edep;
       for(int i = 0; i < 3; i++)
       {
@@ -69,11 +70,12 @@ class TrackerHit : public G4VHit
     void SetCreatorVolumeName(G4String sName) { fCreatorVolumeName = sName; };
 
     // Getter methods
-    G4double GetEdep() { return fEdep; };
+    G4double GetStepEdep() { return sEdep; };
+    G4double GetTestEdep() { return tEdep; };
 
     G4int 		GetTrackID() { return fTrackID; };
     G4double 		GetIncidentEnergy() { return fIncidentE; };
-    G4double 		GetEdepTrack() { return fEdepDelta; };
+    G4double 		GetEdep() { return fEdep; };
     G4double 		GetEdepQuenched() { return fEdepQuenched; };
     G4ThreeVector       GetHitPos() { return fHitPos; };
     G4double		GetHitTime() { return fHitTime; };
@@ -91,11 +93,12 @@ class TrackerHit : public G4VHit
     unsigned int			fNbSecondaries;		// number of secondaries produced along track
 
   private:
-    G4double fEdep;	// delete this once you complete the move over.
-
+    G4double sEdep;	// delete this once you complete the move over. Using 0th element of HC
+    G4double tEdep;	// test Edep being used with new TrackerHit accumulation
+			// Delete both of the above when you're done testing
     G4int		fTrackID;		// ID # for this track
     G4double		fIncidentE;		// incident kinetic energy at start of track
-    G4double		fEdepDelta;			// accumulator for energy deposition
+    G4double		fEdep;			// accumulator for energy deposition
     G4double		fEdepQuenched;		// accumulator for quenched energy
     G4double		fHitTime;		// time at entry into volume
     G4ThreeVector	fHitPos;		// position where this track entered volume

@@ -9,7 +9,14 @@
 
 G4Allocator<TrackerHit> TrackerHitAllocator;
 
-TrackerHit::TrackerHit(): fEdep(0) {}
+TrackerHit::TrackerHit()
+{
+  fEdep = 0;
+  fEdepQuenched = 0;
+
+  tEdep = 0;
+  sEdep = 0;
+}
 /*eDepSoFar(0), eDepQuenchedSoFar(0), hitPosition(), edepWeightedPosition(),
 edepWeightedPosition2(), incidentMomentum(), exitMomentum(), vertex() {} */
 
