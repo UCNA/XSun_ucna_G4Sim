@@ -13,9 +13,15 @@ TrackerHit::TrackerHit()
 {
   fEdep = 0;
   fEdepQuenched = 0;
+  fHitPos = G4ThreeVector();		// G4ThreeVector is initially set to zero vector
+  fEdepWeightedPos = G4ThreeVector();	// this doesn't match Michael Mendenhall's code
+  fEdepWeightedPos2 = G4ThreeVector();	// but hopefully accomplishes same thing
+  fIncidentMo = G4ThreeVector();
+  fExitMo = G4ThreeVector();
+  fTrackVertex = G4ThreeVector();
 
-  tEdep = 0;
-  sEdep = 0;
+
+  sEdep = 0;	// keep them here for now
 }
 /*eDepSoFar(0), eDepQuenchedSoFar(0), hitPosition(), edepWeightedPosition(),
 edepWeightedPosition2(), incidentMomentum(), exitMomentum(), vertex() {} */

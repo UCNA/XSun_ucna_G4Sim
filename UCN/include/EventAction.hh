@@ -32,6 +32,7 @@ class EventAction : public G4UserEventAction
 
 //    TrackerHitsCollection* GetHitsCollection(int hcID, const G4Event* event) const;
 
+    G4String fSDNames[fNbSDs];
     G4int fHitsCollectionIDs[fNbSDs]; 	// note: fNbSDs is defined in DetectorConstruction.hh
 					// it's a global const variable.
 					// Since #include "..." copies the code, this should (and is) fine.

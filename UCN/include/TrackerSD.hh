@@ -13,7 +13,7 @@ class TrackerSD : public G4VSensitiveDetector
 {
 public:
 	/// constructor
-	TrackerSD(G4String name, G4String hcname);
+	TrackerSD(G4String sdname, G4String hcname);
 
 	/// run at start of each event
 	void Initialize(G4HCofThisEvent*);

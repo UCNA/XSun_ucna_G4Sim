@@ -17,7 +17,7 @@
 #include <string>
 using   namespace       std;
 
-#define	OUTPUT_FILE	"TrackerTestOutput.txt"
+#define	OUTPUT_FILE	"UCNASimOutput.txt"
 #define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/initPtclInfo_1.txt"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
@@ -147,7 +147,7 @@ void PrimaryGeneratorAction::SavePrimPtclInfo(int index)
 {
   ofstream outfile;     // output initial particle information into same file as final sim output
   outfile.open(OUTPUT_FILE, ios::app);
-/*  outfile << fEvtsArray[index].event_gen_id << "\t"
+  outfile << fEvtsArray[index].event_gen_id << "\t"
 	<< fEvtsArray[index].event_speciesFlag << "\t"
 	<< fEvtsArray[index].event_energy << "\t"
 	<< fEvtsArray[index].event_xPos << "\t"
@@ -158,10 +158,10 @@ void PrimaryGeneratorAction::SavePrimPtclInfo(int index)
 	<< fEvtsArray[index].event_zMo << "\t"
 	<< fEvtsArray[index].event_time << "\t"
 	<< fEvtsArray[index].event_weight << "\t";	// has to be a \t since getting appended in EventAction
-*/
+
 	// while debugging TrackerSD and TrackerHit, this is what we print.
-  outfile << fEvtsArray[index].event_gen_id << "\t"
-	<< fEvtsArray[index].event_energy << "\t";
+//  outfile << fEvtsArray[index].event_gen_id << "\t"
+//	<< fEvtsArray[index].event_energy << "\t";
   outfile.close();
 }
 

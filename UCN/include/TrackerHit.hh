@@ -27,8 +27,8 @@
   int pID;              // particle creating this track (PDG code)
   bool isEntering;      // whether this is initial track entering a volume
 
-};	*/
-
+};
+*/
 
 // accumulates segment-by-segment information for a track in an SD
 class TrackerHit : public G4VHit
@@ -43,7 +43,6 @@ class TrackerHit : public G4VHit
     virtual void Print();
 
     // Methods that add/accumulate private member variables
-    void AddToTestEdep(G4double e) { tEdep = e; };
     void Add(G4double deltaE) {sEdep = sEdep + deltaE; };	// this was for the steppingAction accumulation (old)
     void AddEdep(G4double edep, G4ThreeVector xyz)
     {
@@ -70,8 +69,7 @@ class TrackerHit : public G4VHit
     void SetCreatorVolumeName(G4String sName) { fCreatorVolumeName = sName; };
 
     // Getter methods
-    G4double GetStepEdep() { return sEdep; };
-    G4double GetTestEdep() { return tEdep; };
+    G4double GetStepEdep() { return sEdep; };	// won't need this when done
 
     G4int 		GetTrackID() { return fTrackID; };
     G4double 		GetIncidentEnergy() { return fIncidentE; };
@@ -90,12 +88,11 @@ class TrackerHit : public G4VHit
     G4String		GetCreatorVolumeName() { return fCreatorVolumeName; };
 
     G4double		fOriginEnergy;		// energy at split from "originating" track for EdepQ tracking
-    unsigned int			fNbSecondaries;		// number of secondaries produced along track
+    unsigned int	fNbSecondaries;		// number of secondaries produced along track
 
   private:
     G4double sEdep;	// delete this once you complete the move over. Using 0th element of HC
-    G4double tEdep;	// test Edep being used with new TrackerHit accumulation
-			// Delete both of the above when you're done testing
+
     G4int		fTrackID;		// ID # for this track
     G4double		fIncidentE;		// incident kinetic energy at start of track
     G4double		fEdep;			// accumulator for energy deposition
