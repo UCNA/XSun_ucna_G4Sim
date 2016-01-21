@@ -30,8 +30,6 @@ class EventAction : public G4UserEventAction
 
     clock_t fStartTime;		// time.h uses to define 'trapped' ptcl's & kill them
 
-//    TrackerHitsCollection* GetHitsCollection(int hcID, const G4Event* event) const;
-
     G4String fSDNames[fNbSDs];
     G4int fHitsCollectionIDs[fNbSDs]; 	// note: fNbSDs is defined in DetectorConstruction.hh
 					// it's a global const variable.

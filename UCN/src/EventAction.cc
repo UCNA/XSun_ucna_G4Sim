@@ -78,13 +78,6 @@ EventAction::EventAction()
 EventAction::~EventAction()
 {}
 
-/*TrackerHitsCollection* EventAction::GetHitsCollection(int hcID, const G4Event* event) const
-{
-  TrackerHitsCollection* hitsCollection = static_cast<TrackerHitsCollection*>(event->GetHCofThisEvent()->GetHC(hcID));
-
-  return hitsCollection;
-}*/
-
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
   fTrapped = false;
@@ -162,6 +155,9 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   {
     SD_totalHC[i] = static_cast<TrackerHitsCollection*>(hce->GetHC(fHitsCollectionIDs[i]));
 
+    SD_info[i].name = fSDNames[i];	// set name manually because I know how I stored them. Not optimal.
+					// but guaranteed to get the name set.
+
     // deals with seg fault error when it tries to access an SD that had no track inside it
     if(SD_totalHC[i]->GetSize() == 0)
       continue;
@@ -174,19 +170,21 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 
       if(t == 0)	// get info related to first track into SD i.e. first entry of hits collection
       {
-        SD_info[i].name = fSDNames[i];	// Set name manually because I know how I stored them. NOT OPTIMAL.
         SD_info[i].hitTime = SD_hits[i] -> GetHitTime();
         SD_info[i].NbOfTracks = SD_totalHC[i] -> GetSize();
 
         G4double pIn_x = (SD_hits[i] -> GetIncidentMomentum()).x();
         G4double pIn_y = (SD_hits[i] -> GetIncidentMomentum()).y();
         G4double pIn_z = (SD_hits[i] -> GetIncidentMomentum()).z();
-        G4double magPIn2 = pIn_x*pIn_x + pIn_y*pIn_y + pIn_z*pIn_z;
-
-	// these values only useful/mean what they are supposed to for first track into SD
-        SD_info[i].keIn = sqrt(magPIn2 + kMe*kMe) - kMe;
-        SD_info[i].thetaIn = acos(fabs(pIn_z/sqrt(magPIn2)));
+        if(pIn_x || pIn_y || pIn_z)
+        {
+          G4double magPIn2 = pIn_x*pIn_x + pIn_y*pIn_y + pIn_z*pIn_z;
+	  // these values only useful/mean what they are supposed to for first track into SD
+          SD_info[i].keIn = sqrt(magPIn2 + kMe*kMe) - kMe;
+          SD_info[i].thetaIn = acos(fabs(pIn_z/sqrt(magPIn2)));
+        }
       }
+
       // accumulation of variables across all tracks.
       SD_info[i].energy += SD_hits[i] -> GetEdep();
       SD_info[i].energyQuenched += SD_hits[i] -> GetEdepQuenched();
@@ -199,15 +197,14 @@ void EventAction::EndOfEventAction(const G4Event* evt)
         G4double pOut_x = (SD_hits[i] -> GetExitMomentum()).x();
         G4double pOut_y = (SD_hits[i] -> GetExitMomentum()).y();
         G4double pOut_z = (SD_hits[i] -> GetExitMomentum()).z();
-        G4double magPOut2 = pOut_x*pOut_x + pOut_y*pOut_y + pOut_z*pOut_z;
-
-        // Same as above, exit values only useful for last entry.
-        SD_info[i].keOut = sqrt(magPOut2 + kMe*kMe) - kMe;
-        SD_info[i].thetaOut = acos(fabs(pOut_z/sqrt(magPOut2)));
-
-
+        if(pOut_x || pOut_y || pOut_z)
+        {
+          G4double magPOut2 = pOut_x*pOut_x + pOut_y*pOut_y + pOut_z*pOut_z;
+          // Same as above, exit values only useful for last entry.
+          SD_info[i].keOut = sqrt(magPOut2 + kMe*kMe) - kMe;
+          SD_info[i].thetaOut = acos(fabs(pOut_z/sqrt(magPOut2)));
+        }
       }
-
     }
   }
 
@@ -225,7 +222,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   outfile.open(OUTPUT_FILE, ios::app);
 
   outfile << event.trapped << "\t"
-	  << event.compTime/ns << "\t";
+	  << event.compTime/s << "\t";
 
   for(int j = 0; j < 2; j++)
   {
@@ -234,8 +231,12 @@ void EventAction::EndOfEventAction(const G4Event* evt)
   	  << event.Scint_crystals[j].energyQuenched/keV << "\t"
 	  << event.Scint_crystals[j].hitTime/s << "\t"
 	  << event.Scint_crystals[j].NbOfTracks << "\t"
-	  << event.Scint_crystals[j].edepWeightedPos/(m*keV) << "\t"
-	  << event.Scint_crystals[j].edepWeightedPos/(m*m*keV) << "\t"
+	  << (event.Scint_crystals[j].edepWeightedPos).x()/(m*keV) << "\t"
+          << (event.Scint_crystals[j].edepWeightedPos).y()/(m*keV) << "\t"
+          << (event.Scint_crystals[j].edepWeightedPos).z()/(m*keV) << "\t"
+	  << (event.Scint_crystals[j].edepWeightedPos2).x()/(m*m*keV) << "\t"
+          << (event.Scint_crystals[j].edepWeightedPos2).y()/(m*m*keV) << "\t"
+          << (event.Scint_crystals[j].edepWeightedPos2).z()/(m*m*keV) << "\t"
 	  << event.Scint_crystals[j].thetaIn/deg << "\t"
 	  << event.Scint_crystals[j].thetaOut/deg << "\t"
 	  << event.Scint_crystals[j].keIn/keV << "\t"
@@ -246,8 +247,12 @@ void EventAction::EndOfEventAction(const G4Event* evt)
           << event.MWPC_activeWireVol[j].energyQuenched/keV << "\t"
           << event.MWPC_activeWireVol[j].hitTime/s << "\t"
           << event.MWPC_activeWireVol[j].NbOfTracks << "\t"
-          << event.MWPC_activeWireVol[j].edepWeightedPos/(m*keV) << "\t"
-          << event.MWPC_activeWireVol[j].edepWeightedPos/(m*m*keV) << "\t"
+          << (event.MWPC_activeWireVol[j].edepWeightedPos).x()/(m*keV) << "\t"
+          << (event.MWPC_activeWireVol[j].edepWeightedPos).y()/(m*keV) << "\t"
+          << (event.MWPC_activeWireVol[j].edepWeightedPos).z()/(m*keV) << "\t"
+          << (event.MWPC_activeWireVol[j].edepWeightedPos2).x()/(m*m*keV) << "\t"
+          << (event.MWPC_activeWireVol[j].edepWeightedPos2).y()/(m*m*keV) << "\t"
+          << (event.MWPC_activeWireVol[j].edepWeightedPos2).z()/(m*m*keV) << "\t"
           << event.MWPC_activeWireVol[j].thetaIn/deg << "\t"
           << event.MWPC_activeWireVol[j].thetaOut/deg << "\t"
           << event.MWPC_activeWireVol[j].keIn/keV << "\t"
