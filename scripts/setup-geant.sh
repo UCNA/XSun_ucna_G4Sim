@@ -140,19 +140,19 @@ then
 else
 	echo "Using data files in ${G4DATA}"
 	# We should probably test that G4DATA directory exists and contains the data dirs
-	export G4LEDATA=${G4DATA}/G4EMLOW6.32
-	export G4LEVELGAMMADATA=${G4DATA}/PhotonEvaporation2.3
-	export G4NEUTRONHPDATA=${G4DATA}/G4NDL4.2
-	export G4RADIOACTIVEDATA=${G4DATA}/RadioactiveDecay3.6
+	export G4LEDATA=${G4DATA}/G4EMLOW6.41
+	export G4LEVELGAMMADATA=${G4DATA}/PhotonEvaporation3.1
+	export G4NEUTRONHPDATA=${G4DATA}/G4NDL4.5
+	export G4RADIOACTIVEDATA=${G4DATA}/RadioactiveDecay4.2
 	export G4ABLADATA=${G4DATA}/G4ABLA3.0
 	export G4REALSURFACEDATA=${G4DATA}/RealSurface1.0
-	export G4NEUTRONXSDATA=${G4DATA}/G4NEUTRONXS1.2
+	export G4NEUTRONXSDATA=${G4DATA}/G4NEUTRONXS1.4
 	export G4PIIDATA=${G4DATA}/G4PII1.3 
 	#export G4SAIDDATA=${G4DATA}/G4SAIDDATA1.1
 	export G4SAIDXSDATA=${G4DATA}/G4SAIDDATA1.1
 	#export GENDATA=${G4DATA}/GENDATA
 	export G4MUDATA=${G4DATA}/MUDATA
-	export NeutronHPCrossSections=${G4DATA}/G4NDL4.2
+	#export NeutronHPCrossSections=${G4DATA}/G4NDL4.5
 fi
 
 #
