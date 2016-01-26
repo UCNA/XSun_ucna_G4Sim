@@ -22,8 +22,8 @@ export UCNAPATCH=${UCNA_BASE}/patch
 export UCNASRC=${UCNA_BASE}/UCN
 export UCNABIN=${UCNA_BASE}/bin
 #export UCNABUILD=${UCNA_BASE}-build
-export UCNABUILD=${UCNA_SRC}-build
-export PATH=${PATH}:${UCNA_BIN}
+export UCNABUILD=${UCNASRC}-build
+export PATH=${PATH}:${UCNABIN}
 export UCNAEXE=""
 
 
