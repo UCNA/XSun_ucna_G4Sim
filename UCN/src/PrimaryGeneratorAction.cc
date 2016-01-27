@@ -18,7 +18,6 @@
 using   namespace       std;
 
 #define	OUTPUT_FILE	"UCNASimOutput.txt"
-#define	INIT_PARTICLE_INFO_FILE	"/home/xuansun/Documents/Caltech/UCNA_Sim/XSun_ucna_G4Sim/UCN/EventGenTools/G4Sim_Ptcl_Input_Files/initPtclInfo_1.txt"
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
 : G4VUserPrimaryGeneratorAction(),
@@ -31,7 +30,14 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(DetectorConstruction* myDC)
   G4int nPtcls = 1;
   fParticleGun = new G4ParticleGun(nPtcls);
 
-  LoadFile(INIT_PARTICLE_INFO_FILE);
+  G4String base = getenv("UCNA_BASE");
+  G4String path = base + "UCN/EventGenTools/G4Sim_Ptcl_Input_Files/";
+  G4String file = path + "big_initPtclInfo.txt";
+
+  G4cout << "------> Path to primaries file: " << path << G4endl;
+  G4cout << "Fetching initial particles info from file name: " << file << G4endl;
+
+  LoadFile(file);
   // At the end of constructor, GEANT4 default calls GeneratePrimaries method
 }
 
@@ -88,7 +94,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   fParticleGun -> GeneratePrimaryVertex(anEvent);
 }
 
-void PrimaryGeneratorAction::LoadFile(char fileName[])
+void PrimaryGeneratorAction::LoadFile(G4String fileName)
 {
   event eRead;
   int i = 0;
