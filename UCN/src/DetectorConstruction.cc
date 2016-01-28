@@ -238,14 +238,25 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //				 experimentalHall_log, false, 0, true);
 
   //----- Decay Trap object (length 3m, main tube)
-  G4double decayTrap_windowThick = 0.180*um;
-  G4double decayTrap_coatingThick = 0.150*um;
+//  G4double decayTrap_windowThick = 0.180*um;	// from thin foil geometry configuration
+  G4double decayTrap_coatingThick = 0.150*um;	// in M.M.'s code.
   G4double decayTrap_innerRadiusOfTrap = 2.45*inch;
   G4double decayTrap_tubeWallThick = 2*mm;
+//  G4double decayTrap_innerRadiusCollimator = 2.3*inch;
+
+  // Michael Brown's changes that form the 2011/2012 detector geometry
+  // All the appropriate variables have been commented out everywhere else.
+  // Note: some of these values take the same value as previously declared (commented out)
+  G4double decayTrap_windowThick = 0.500*um;
+  G4Material* decayTrap_windowMaterial = Mylar;
   G4double decayTrap_innerRadiusCollimator = 2.3*inch;
+  G4double decayTrap_collimatorThick = 0.7*inch;
+  G4double wireVol_anodeRadius = 5*um;
+  G4double wireVol_cathodeRadius = 39.1*um;
+
   G4Material* decayTrap_tubeMaterial = Cu;
   G4Material* decayTrap_collimatorMaterial = Polyethylene;
-  G4Material* decayTrap_windowMaterial = Mylar;
+//  G4Material* decayTrap_windowMaterial = Mylar;
   G4Material* decayTrap_coatingMaterial = Be;
 
   // decay tube construction
@@ -260,7 +271,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   // decay trap windows, collimator, monitors
   G4double decayTrap_totalWindowThickness = decayTrap_windowThick + decayTrap_coatingThick;
-  G4double decayTrap_collimatorThick = 0.8*inch;
+//  G4double decayTrap_collimatorThick = 0.8*inch;
   G4double decayTrap_beWindow_PosZ = -decayTrap_totalWindowThickness/2. + decayTrap_coatingThick/2.;
   G4double decayTrap_mylarWindow_PosZ = decayTrap_totalWindowThickness/2. - decayTrap_windowThick/2.;
   G4double decayTrap_window_PosZ = (decayTrap_tube_length + decayTrap_totalWindowThickness)/2.;
@@ -403,8 +414,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 				"scint_container_phys_WEST", experimentalHall_log, false, 0, true);
 
   //----- Begin Wire volume construction. Active region inside wire chamber.
-  G4double wireVol_anodeRadius = 5*um;
-  G4double wireVol_cathodeRadius = 25*um;
+//  G4double wireVol_anodeRadius = 5*um;
+//  G4double wireVol_cathodeRadius = 25*um;
   G4double wireVol_platingThick = 0.2*um;
   G4double wireVol_wireSpacing = 2.54*mm;
   G4double wireVol_NbOfWires = 64;
