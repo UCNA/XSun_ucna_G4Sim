@@ -12,7 +12,8 @@ LDLIBS		= `root-config --glibs`
 CFLAGS 		= $(CXX) $(CXXFLAGS) -W -Wall -o $@ $^ $(LDLIBS) $(LDFLAGS) -I $(PATH_USED)/include/
 
 #These variables need to be changed to the name of the executable/source
-SOURCE		= MC_EventGen.cc $(PATH_USED)/src/BetaSpectrum.cc\
+SOURCE		= Tagged_EventGen.cc\
+				 $(PATH_USED)/src/BetaSpectrum.cc\
 				 $(PATH_USED)/src/ControlMenu.cc\
 				 $(PATH_USED)/src/ElectronBindingEnergy.cc\
 				 $(PATH_USED)/src/Enums.cc\
@@ -24,7 +25,7 @@ SOURCE		= MC_EventGen.cc $(PATH_USED)/src/BetaSpectrum.cc\
 				 $(PATH_USED)/src/SMExcept.cc\
 				 $(PATH_USED)/src/strutils.cc\
 				 $(PATH_USED)/src/TChainScanner.cc
-EXECUTABLE 	= MC_EventGen
+EXECUTABLE 	= Tagged_EventGen
 
 all:	$(EXECUTABLE)
 
