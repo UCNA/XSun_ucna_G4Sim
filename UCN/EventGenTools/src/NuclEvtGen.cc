@@ -265,6 +265,47 @@ double BetaDecayTrans::evalBeta(double* x, double*) { return BSG.decayProb(x[0])
 
 //-----------------------------------------
 
+FierzDecayTrans::FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn, unsigned int forbidden):
+    BetaDecayTrans(f, t, pstrn, forbidden) :
+//TransitionBase(f,t), positron(pstrn), BSG(to.A,to.Z*(positron?-1:1),from.E-to.E),
+   // betaTF1((f.name+"-"+t.name+"_Fierz").c_str(),this,&FierzDecayTrans::evalBeta,0,1,0) {
+{       
+	//BSG.forbidden = forbidden;
+	//betaTF1.SetNpx(1000);
+	//betaTF1.SetRange(0,from.E-to.E);
+	//if(from.jpi==to.jpi) { BSG.M2_F = 1; BSG.M2_GT = 0; }
+	//else { BSG.M2_GT = 1; BSG.M2_F = 0; } // TODO not strictly true; need more general mechanism to fix
+	//betaQuantiles = new TF1_Quantiles(betaTF1);
+    
+    /// TODO for Fierz
+    // spectral number = what ever it is for fierz instead of normal beta decay
+}
+
+//BetaDecayTrans::~BetaDecayTrans() {
+//	delete betaQuantiles;
+//}
+
+void BetaDecayTrans::display(bool verbose) const {
+	printf("Fierz(%.1f) ",from.E-to.E);
+	if(BSG.forbidden) printf("%u-forbidden F=%g GT=%g ", BSG.forbidden, BSG.M2_F, BSG.M2_GT);
+	TransitionBase::display(verbose);
+}
+
+/*
+void BetaDecayTrans::run(std::vector<NucDecayEvent>& v, double* rnd) {
+	NucDecayEvent evt;
+	evt.d = positron?D_POSITRON:D_ELECTRON;
+	evt.randp(rnd);
+	if(rnd) evt.E = betaQuantiles->eval(rnd[2]);
+	else evt.E = betaTF1.GetRandom();
+	v.push_back(evt);
+}
+*/
+
+//double BetaDecayTrans::evalBeta(double* x, double*) { return BSG.decayProb(x[0]); }
+
+//-----------------------------------------
+
 void ECapture::run(std::vector<NucDecayEvent>&, double*) {
 	isKCapt = gRandom->Uniform(0,1) < toAtom->IMissing;
 }
