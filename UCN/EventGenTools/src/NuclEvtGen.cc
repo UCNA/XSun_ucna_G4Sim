@@ -338,6 +338,21 @@ NucDecaySystem::NucDecaySystem(const QFile& Q, const BindingEnergyLibrary& B, do
 		addTransition(BD);
 	}
 	
+	// set up Fierz decays (like beta decay, but with scalar - tensor coupling)
+	std::vector<Stringmap> fierztrans = Q.retrieve("fierz");
+	for(std::vector<Stringmap>::iterator it = fierztrans.begin(); it != fierztrans.end(); it++) {
+		FierzDecayTrans* BD = new FierzDecayTrans(levels[levIndex(it->getDefault("from",""))],
+										levels[levIndex(it->getDefault("to",""))],
+										it->getDefault("positron",0),
+										it->getDefault("forbidden",0));
+		BD->Itotal = it->getDefault("I",0)/100.0;
+		if(it->count("M2_F") || it->count("M2_GT")) {
+			BD->BSG.M2_F = it->getDefault("M2_F",0);
+			BD->BSG.M2_GT = it->getDefault("M2_GT",0);
+		}
+		addTransition(BD);
+	}
+	
 	// set up electron captures
 	std::vector<Stringmap> ecapts = Q.retrieve("ecapt");
 	for(std::vector<Stringmap>::iterator it = ecapts.begin(); it != ecapts.end(); it++) {

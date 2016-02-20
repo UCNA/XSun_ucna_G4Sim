@@ -13,7 +13,7 @@ using namespace ROOT::Math;
 #if 1
 void mi_evtgen(StreamInteractor* S) {
     std::string base = getenv("UCNA_BASE");
-    std::string path = base + "UCN/EventGenTools";
+    std::string path = base + "/UCN/EventGenTools";
 
 	// load arguments
 	const unsigned int nTrees = S->popInt();
@@ -102,7 +102,6 @@ void mi_evtgen(StreamInteractor* S) {
 #endif
 
 int main(int argc, char *argv[]) {
-
 	InputRequester exitMenu("Exit Menu",&menutils_Exit);
 	
 	// discrete selectors
@@ -124,7 +123,7 @@ int main(int argc, char *argv[]) {
 	run_evt_gen.addArg("Generator name");
 //  run_evt_gen.addArg("Output path",getEnvSafe("G4EVTDIR"));
     std::string base = getenv("UCNA_BASE");
-    std::string path = base + "UCN/EventGenTools";
+    std::string path = base + "/UCN/EventGenTools";
     run_evt_gen.addArg("Output path", path);
 	run_evt_gen.addArg(&selectVertexPos);
 	run_evt_gen.addArg(&selectRandomType);
