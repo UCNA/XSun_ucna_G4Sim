@@ -232,7 +232,7 @@ public:
 	/// constructor
 	FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn = false, unsigned int forbidden = 0);
 	/// destructor
-	~FierzDecayTrans();
+	//~FierzDecayTrans();
 	// select transition outcome
 	//virtual void run(std::vector<NucDecayEvent>& v, double* rnd = NULL);
 	/// display transition line info

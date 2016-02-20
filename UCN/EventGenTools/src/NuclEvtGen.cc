@@ -266,7 +266,7 @@ double BetaDecayTrans::evalBeta(double* x, double*) { return BSG.decayProb(x[0])
 //-----------------------------------------
 
 FierzDecayTrans::FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn, unsigned int forbidden):
-    BetaDecayTrans(f, t, pstrn, forbidden) :
+    BetaDecayTrans(f, t, pstrn, forbidden) 
 //TransitionBase(f,t), positron(pstrn), BSG(to.A,to.Z*(positron?-1:1),from.E-to.E),
    // betaTF1((f.name+"-"+t.name+"_Fierz").c_str(),this,&FierzDecayTrans::evalBeta,0,1,0) {
 {       
@@ -285,10 +285,9 @@ FierzDecayTrans::FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn, unsigned 
 //	delete betaQuantiles;
 //}
 
-void BetaDecayTrans::display(bool verbose) const {
-	printf("Fierz(%.1f) ",from.E-to.E);
-	if(BSG.forbidden) printf("%u-forbidden F=%g GT=%g ", BSG.forbidden, BSG.M2_F, BSG.M2_GT);
-	TransitionBase::display(verbose);
+void FierzDecayTrans::display(bool verbose) const {
+	printf("Fierz(%.1f) ",from.E-to.E); // TODO Add spectral index, F, GT information?
+	FierzDecayTrans::display(verbose);
 }
 
 /*
