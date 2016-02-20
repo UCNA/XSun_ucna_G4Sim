@@ -33,7 +33,7 @@ const double gamma_euler = 0.577215;			///< Euler's constant
 inline double plainPhaseSpace(double W, double W0=beta_W0) { return (1.<W && W<W0)?sqrt(W*W-1)*W*(W0-W)*(W0-W):0; }
 
 /// beta decay with spectral index for BSM decays like Fierz terms (1 for V,A and 0 for S,T)
-inline double spectralIndexPhaseSpace(double W, double W0=beta_W0, int SI) { 
+inline double spectralIndexPhaseSpace(double W, double W0=beta_W0, int SI=1) { 
     double prob = (1.<W && W<W0)?sqrt(W*W-1)*(W0-W)*(W0-W):0;
     for (int si = 0; si < SI; si++)
         prob *= W;
