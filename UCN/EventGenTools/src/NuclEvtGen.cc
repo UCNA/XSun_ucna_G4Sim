@@ -267,8 +267,6 @@ double BetaDecayTrans::evalBeta(double* x, double*) { return BSG.decayProb(x[0])
 
 FierzDecayTrans::FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn, unsigned int forbidden):
     BetaDecayTrans(f, t, pstrn, forbidden) 
-//TransitionBase(f,t), positron(pstrn), BSG(to.A,to.Z*(positron?-1:1),from.E-to.E),
-   // betaTF1((f.name+"-"+t.name+"_Fierz").c_str(),this,&FierzDecayTrans::evalBeta,0,1,0) {
 {       
 	//BSG.forbidden = forbidden;
 	//betaTF1.SetNpx(1000);
@@ -277,8 +275,8 @@ FierzDecayTrans::FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn, unsigned 
 	//else { BSG.M2_GT = 1; BSG.M2_F = 0; } // TODO not strictly true; need more general mechanism to fix
 	//betaQuantiles = new TF1_Quantiles(betaTF1);
     
-    /// TODO for Fierz
-    // spectral number = what ever it is for fierz instead of normal beta decay
+    /// spectral number which is -1 for fierz instead of normal beta decay at zero.
+    BSG.SI = -1;
 }
 
 //BetaDecayTrans::~BetaDecayTrans() {
@@ -287,7 +285,7 @@ FierzDecayTrans::FierzDecayTrans(NucLevel& f, NucLevel& t, bool pstrn, unsigned 
 
 void FierzDecayTrans::display(bool verbose) const {
 	printf("Fierz(%.1f) ",from.E-to.E); // TODO Add spectral index, F, GT information?
-	FierzDecayTrans::display(verbose);
+	BetaDecayTrans::display(verbose);
 }
 
 /*
