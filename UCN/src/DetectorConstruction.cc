@@ -253,6 +253,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   G4double decayTrap_collimatorThick = 0.7*inch;
   G4double wireVol_anodeRadius = 5*um;
   G4double wireVol_cathodeRadius = 39.1*um;
+  // to change back, you'll need to find EXACTLY where these are all commented out.
 
   G4Material* decayTrap_tubeMaterial = Cu;
   G4Material* decayTrap_collimatorMaterial = Polyethylene;
