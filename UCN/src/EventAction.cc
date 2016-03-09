@@ -163,7 +163,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
       continue;
 
     // loop over TrackerHits per hits collection assigned to each SD
-    for(int t = 0; t < SD_totalHC[i] -> GetSize(); t++)
+    for(unsigned int t = 0; t < SD_totalHC[i] -> GetSize(); t++)
     {
       // assign array of TrackerHit objects to have info extracted from it
       SD_hits[i] = (*SD_totalHC[i])[t];

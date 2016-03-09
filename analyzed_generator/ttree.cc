@@ -44,7 +44,7 @@ int main()
   Int_t ptclSpecies;
 
   Double_t primKE;
-  Double_t primPos[3];
+  Double_t primPos[4];	// fourth element is radius from the z axis
   Double_t primMo[3];
   Double_t primTime;
   Double_t primWeight;
@@ -78,6 +78,9 @@ int main()
   // Probably cause the array variable is already a pointer.
   // For primitive types (including wrapper classes _t), you need &.
   TTree* anaTree = new TTree("anaTree", "tree for analysis");
+
+/*// Note these are the variable names I would like to use.
+  // however , I cannot since they need to match Michael's print out
 
   // initial variables read out by PrimaryGeneratorAction
   anaTree -> Branch("primaryEventID", &eventID, "eventID/I");
@@ -115,6 +118,44 @@ int main()
   anaTree -> Branch("ScintPos", scintPos, "scintPosE[3]/D:scintPosW[3]/D");
   anaTree -> Branch("MWPCPosSigma", mwpcPos2, "mwpcPos2E[3]/D:mwpcPos2W[3]/D");
   anaTree -> Branch("ScintPosSigma", scintPos2, "scintPos2E[3]/D:scintPos2W[3]/D");
+*/
+
+  anaTree -> Branch("primKE", &primKE, "primKE/D");
+  anaTree -> Branch("primTheta", primMo, "primMo[3]/D");
+  anaTree -> Branch("primPos", primPos, "primPos[4]/D");
+  anaTree -> Branch("primWeight", &primWeight, "primWeight/D");
+  anaTree -> Branch("trapped", &trapped, "trapped/I");
+  anaTree -> Branch("compTime", &compTime, "compTime/D");
+
+  Int_t seed = 1;	// implementiong fake seed variable
+  anaTree -> Branch("seed", &seed, "seed/I");
+
+  anaTree -> Branch("Edep", edepScint, "EdepE/D:EdepW/D");
+  anaTree -> Branch("EdepQ", edepQScint, "EdepQE/D:EdepQW/D");
+  anaTree -> Branch("MWPCEnergy", edepMWPC, "MWPCEnergyE/D:MWPCEnergyW/D");
+  anaTree -> Branch("time", scintHitTime, "timeE/D:timeW/D");
+
+  Double_t trapMonTime[] = {0, 0};	// setting fake time from trap monitors
+  Int_t subEvt = 0;			// setting subEvt flag as false for all events
+  anaTree -> Branch("tmTime", trapMonTime, "tmTimeE/D:tmTimeW/D");
+  anaTree -> Branch("subEvt", &subEvt, "subEvt/I");
+
+  char tmp[1024];
+  sprintf(tmp, "EdepSD[%i]/D", N_SD);
+  anaTree -> Branch("EdepSD", edepSD, tmp);
+  sprintf(tmp, "thetaInSD[%i]/D", N_SD);
+  anaTree -> Branch("thetaInSD", thetaInSD, tmp);
+  sprintf(tmp, "thetaOutSD[%i]/D", N_SD);
+  anaTree -> Branch("thetaOutSD", thetaOutSD, tmp);
+  sprintf(tmp, "keInSD[%i]/D", N_SD);
+  anaTree -> Branch("keInSD", keInSD, tmp);
+  sprintf(tmp, "keOutSD[%i]/D", N_SD);
+  anaTree -> Branch("keOutSD", keOutSD, tmp);
+
+  anaTree -> Branch("MWPCPos", mwpcPos, "MWPCPosE[3]/D:MWPCPosW[3]/D");
+  anaTree -> Branch("ScintPos", scintPos, "ScintPosE[3]/D:ScintPosW[3]/D");
+  anaTree -> Branch("MWPCPosSigma", mwpcPos2, "MWPCPosSigmaE[3]/D:MWPCPosSigmaW[3]/D");
+  anaTree -> Branch("ScintPosSigma", scintPos2, "ScintPosSigmaE[3]/D:ScintPosSigmaW[3]/D");
 
 
   Int_t eid, sid;
@@ -185,6 +226,7 @@ int main()
     primPos[0] = x;
     primPos[1] = y;
     primPos[2] = z;
+    primPos[3] = sqrt(primPos[0]*primPos[0] + primPos[1]*primPos[1]);
     primMo[0] = px;
     primMo[1] = py;
     primMo[2] = pz;
